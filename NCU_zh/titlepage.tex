@@ -1,0 +1,46 @@
+\documentclass[class=NCU_thesis, crop=false, float=true]{standalone}
+\begin{document}
+\input{macros_document}
+
+\fontsize{16}{25}\selectfont
+% --------define title page layout for thesis
+\sffamily % use sans font
+\newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
+\begin{titlepage}
+    \null\vfill
+    \begin{center}
+        {\Huge\textbf{國\quad 立\quad 中\quad 央\quad 大\quad 學}\par}
+        \vspace*{30mm}
+        {\Huge {\dept} \par}
+        \vspace*{2ex}
+        {\Huge {\degree}論文\par}
+        \vspace*{20mm}
+        {\Huge {\title} \par}
+        \vspace*{5mm}
+        {\Huge {\subtitle} \par}
+        \vspace*{10mm}
+        {\ifx \logo\empty\vspace*{40mm}
+        \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
+        \fi}
+        \begin{tabular}{l@{：}l@{\quad}r}
+        研$\!$究$\!$生 & \author &       \\[1ex]
+        指導教授         & \mprof & 博士     \\[1ex]
+        \ifx \sprofi\empty
+        \else  共同指導 & \sprofi & 博士\fi \\[1ex]
+        \ifx \sprofii\empty
+        \else  & \sprofii & 博士 \fi
+        \end{tabular}\par
+        \vspace*{5ex}
+        {\Huge {\degreedate} \par}
+        \vspace*{2ex}
+        \ifthenelse{\boolean{printcopyright}}
+        {{{版權所有\copyright\ \author\ \copyyear} \par}}
+        {\hspace{5cm}}
+    \end{center}
+    \null\vfill
+\end{titlepage}
+\restoregeometry
+\rmfamily % use main font
+%--------end of title page for thesis
+\cleardoublepage
+\end{document}

@@ -1,0 +1,47 @@
+\usepackage{textcomp} % 貝利
+\usepackage{xltxtra} % for \XeLaTeX logo only
+
+
+% for todo colors(ref: http://tex.stackexchange.com/questions/9796/how-to-add-todo-notes?noredirect=1)
+\newcommandx{\todoUnsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\todoChange}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\todoInfo}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+% \newcommand{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+% \newcommand{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+
+
+% 調整subsubsection,paragraph的標題格式以及段落縮排
+\NewDocumentCommand\setTitleStyle{m O{0cm} O{0cm}}{
+\ifthenelse{\equal{#1}{0}}{}{
+    \def\indentblocksss{#2}
+    \def\indentblockpar{#3}
+    \titleformat{\subsubsection}{\setlength{\leftskip}{\indentblocksss}\large\bfseries}{\arabic{subsubsection}.}{1em}{}
+    \titleformat{\paragraph}{\setlength{\leftskip}{\indentblockpar}\large\bfseries}{(\arabic{paragraph})}{1em}{}
+%     \titlespacing*{\section} {0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+%     \titlespacing*{\subsection} {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+    \titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+    \titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
+%     \titlespacing*{\subparagraph} {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
+
+% % below modify from book.cls, add \par\setlength{\leftskip}{0cm}
+% \makeatletter
+% \renewcommand\section{\par\setlength{\leftskip}{0cm}\@startsection {section}{1}{\z@}%
+%                                    {-3.5ex \@plus -1ex \@minus -.2ex}%
+%                                    {2.3ex \@plus.2ex}%
+%                                    {\normalfont\Large\bfseries}}
+% \renewcommand\subsection{\par\setlength{\leftskip}{0cm}\@startsection{subsection}{2}{\z@}%
+%                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
+%                                      {1.5ex \@plus .2ex}%
+%                                      {\normalfont\large\bfseries}}
+% \renewcommand\subsubsection{\par\setlength{\leftskip}{##2}\@startsection{subsubsection}{3}{\z@}%
+%                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
+%                                      {1.5ex \@plus .2ex}%
+%                                      {\normalfont\normalsize\bfseries}}
+% \renewcommand\paragraph{\par\setlength{\leftskip}{##3}\@startsection{paragraph}{4}{\z@}%
+%                                     {3.25ex \@plus1ex \@minus.2ex}%
+%                                     {-1em}%
+%                                     {\normalfont\normalsize\bfseries}}
+% \makeatother
+}}
+
+
