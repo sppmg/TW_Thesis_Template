@@ -1,0 +1,68 @@
+\documentclass[class=NCU_thesis_en, crop=false]{standalone}
+\begin{document}
+
+\chapter{Chapter name(demo)}
+Content of chapter
+\section{Section name}
+Content of section
+\subsection{Subsection name}
+\subsubsection{Subsubsection name}
+\paragraph{Paragraph name}
+
+
+\chapter{Test demo}
+First line.
+(next line in \LaTeX\ )still first line. \\
+Second line.
+
+
+\chapter{figure}
+\section{Insert single figure(by sppmg's tool)}
+\insfig[0.15][fig:labal_test][!hbt]{logo-Linux.png}[caption][short caption]
+
+\section{Insert figures}
+\begin{figure}[!hbt]
+    %\captionsetup[subfigure]{labelformat=empty} % hide figure's number.
+    \centering
+    \subcaptionbox
+        {Linux (A kernel of OS)
+        \label{fig:subfig_linux}}
+        {\includegraphics[width=0.3\linewidth]{logo-Linux.png}}
+    ~
+    \subcaptionbox
+        {Debain (A popular distribution). Demo long caption,  bla bla bla bla bla.
+        \label{fig:subfig_debian}}
+        {\includegraphics[width=0.3\linewidth]{logo-Debian.png}}
+    \vspace{\baselineskip} % 分隔上下列
+    \subcaptionbox
+        {GNU (A project of OS)
+        \label{fig:subfig_gnu}}
+        {\includegraphics[width=0.6\linewidth]{logo-GNU.png}}
+    \caption{caption, use ``\subref{fig:subfig_debian}'' get ID of subfigure(this ID is Debian) in caption}
+    \label{fig:labal}
+\end{figure}
+
+
+\chapter{Table}
+\section{Simple table}
+\begin{table}[h]
+    \centering
+    \caption{Solution}
+    \begin{tabular}{| l | l |}
+        \hline
+        Component  & Concentration(mM) \\ \hline
+        \ce{CaCl2} & 118.0 \\ \hline
+    \end{tabular}
+\end{table}
+
+\section{Auto break line table}
+\begin{table}[h]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | X |}
+        \hline
+        short & short short \\ \hline
+        long  & long long long long long long long long long long \\ \hline
+    \end{tabularx}
+\end{table}
+
+\end{document}

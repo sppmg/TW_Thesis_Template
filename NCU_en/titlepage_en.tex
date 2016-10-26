@@ -1,0 +1,46 @@
+\documentclass[class=NCU_thesis_en, crop=false]{standalone}
+\begin{document}
+
+\fontsize{16}{25}\selectfont
+% --------define title page layout for thesis
+\sffamily % use sans font
+\newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
+\begin{titlepage}
+    \null\vfill
+    \begin{center}
+        {\Huge\textbf{National Central University}\par}
+        \vspace*{30mm}
+        {\Huge {\dept} \par}
+        \vspace*{2ex}
+        {\Huge {\degree}\ Thesis\par}
+        \vspace*{20mm}
+        {\Huge {\title} \par}
+        \vspace*{5mm}
+        {\Huge {\subtitle} \par}
+        \vspace*{10mm}
+        {\ifx \logo\empty\vspace*{40mm}
+        \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
+        \fi}
+        \begin{tabular}{l@{：}l@{\quad}r}
+        Student  & \author &       \\[1ex]
+        Advisors & Prof. \mprof &     \\[1ex]
+        \ifx \sprofi\empty
+        \else     & Prof. \sprofi & \fi \\[1ex]
+        \ifx \sprofii\empty
+        \else  & Prof. \sprofii &  \fi
+        \end{tabular}\par
+        \vspace*{5ex}
+        {\Huge {\degreedateEn} \par}
+        \vspace*{2ex}
+        \ifthenelse{\boolean{printcopyright}}
+        {{{Copyright\copyright\ \author\ \copyyear} \par}}
+        {\hspace{5cm}}
+    \end{center}
+    \null\vfill
+\end{titlepage}
+\restoregeometry
+\rmfamily % use main font
+%--------end of title page for thesis
+\todo[inline]{English cover is unofficial template, not recommended to use in cover. (This box will hide if you set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex)}
+\cleardoublepage
+\end{document}

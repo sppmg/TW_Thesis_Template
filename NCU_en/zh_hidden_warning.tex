@@ -1,0 +1,25 @@
+\documentclass[class=NCU_thesis_en, crop=false]{standalone}
+\begin{document}
+
+\fontsize{16}{25}\selectfont
+% --------define title page layout for thesis
+\sffamily % use sans font
+\newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
+\begin{titlepage}
+    \vspace*{30mm}
+    \begin{center}
+        {\Huge\textbf{\thispage\ hidden now !!}\par}
+    \end{center}
+    \vspace*{30mm}
+    {\Huge 
+    It avoid you get error because your computer no Chinese font, 
+    Please set ``titlepageLang'' value (to zh or en) in the ``config.tex'' to display this page.
+    if you don't have Chinese font, you can try ``cwTeX'' font. 
+    (\url{https://github.com/l10n-tw/cwtex-q-fonts})\par}
+    \null\vfill
+\end{titlepage}
+\restoregeometry
+\rmfamily % use main font
+%--------end of title page for thesis
+\cleardoublepage
+\end{document}

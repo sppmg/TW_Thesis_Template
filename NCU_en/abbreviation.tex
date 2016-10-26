@@ -1,0 +1,21 @@
+\documentclass[class=NCU_thesis_en, crop=false]{standalone}
+\begin{document}
+
+\chapter{Symbol}
+Use table for symbol list
+
+\begin{table}[h]
+	\fontsize{14}{25}\selectfont  % 使用與內文一樣大的字體，請自調
+	\centering
+	\begin{tabular}{c@{\quad}@{：}l}
+% 		符號		& \ 說明 \\ 
+		VIM     & The best guy's editor \\ 
+		Emacs   & The God's editor \\ 
+		CTAN    & Comprehensive TeX Archive Network, ctan.org \\
+		
+	\end{tabular} 
+	\caption{Symbols} % Hide caption by comment/remove it, labal will inactive also. 不想顯示請註解/刪除\caption行(\label自動失效)
+	\label{table:symbol_def}
+\end{table}
+
+\end{document}

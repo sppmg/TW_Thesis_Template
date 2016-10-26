@@ -1,0 +1,73 @@
+% Use XeLaTexX to build.
+% Set info in config.tex
+% Change or add chapter after ``mainmatter'' and ``appendix'', one chapter one tex file is recommended. 
+% To creat new file ,you shoule copy from ``chapter_template.tex'', because some format is requisite.
+% Under normal circumstance, you don't need change ``frontmatter'' and ``backmatter'', 
+% if you don't need ``letter_publication_request.pdf'' ,only need remove pdf file.
+\documentclass[]{NCU_thesis_en} % [draft] = don't load fig'
+\usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
+
+\begin{document}
+    \frontmatter
+        \ifx\titlepageLang\empty % Avoid get error because no Chinese font.
+            \newcommand\thispage{Title page (cover)}
+            \input{zh_hidden_warning}
+        \else
+            \input{titlepage_\titlepageLang}        % Cover/Titlepage 封面/書名頁
+        \fi
+        \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
+            \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
+        % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
+        \IfFileExists{letter_authorization.pdf}{
+            \cleardoublepage        % 由下個右頁開始
+            \includepdf{letter_authorization.pdf}}{}
+        % 碩博士紙本論文延後公開/下架申請書(可略)。 Publication request (option)
+        \IfFileExists{letter_publication_request.pdf}{
+            \cleardoublepage
+            \includepdf{letter_publication_request.pdf}}{}
+        % 指導教授推薦書
+        \IfFileExists{letter_recommendation.pdf}{
+            \cleardoublepage
+            \includepdf{letter_recommendation.pdf}}{}
+        % 口試委員審定書
+        \IfFileExists{letter_verification.pdf}{
+            \cleardoublepage
+            \includepdf{letter_verification.pdf}}{}
+        \cleardoublepage
+        % 中英文論文摘要:內容應說明研究目的,資料來源,研究方法及研究結果等
+        \ifx\titlepageLang\empty
+            \renewcommand\thispage{Chinese abstract}
+            \input{zh_hidden_warning}
+        \else
+            \input{abstract_zh} % Chinese abstract
+        \fi
+        \input{abstract_en} % English abstract
+        \input{acknowledgements} % acknowledgements(option) 誌謝(可略)
+            \cleardoublepage
+            \phantomsection
+            \addcontentsline{toc}{chapter}{Contents}    % Add ``Contents'' to TOC
+        \tableofcontents        % Table Of Contents
+        \listoffigures          % List Of Figures   圖目錄
+        \listoftables           % List Of Tables    表目錄
+        \input{abbreviation}    % Symbols           符號及術語
+    \mainmatter
+        \input{chapter_introduction}    % introduction  緒論
+        \input{chapter_method}          % method        分析方法
+        \input{chapter_result}          % result        實驗結果
+        \input{chapter_conclusion}      % conclusion    結論
+        \input{chapter_template_demo}   % some demo
+    \backmatter          % book class 預設\backmatter 在\appendix 後面。因此.cls修改過\appendix 定義
+        \printbibliography[heading = bibnumbered]
+    \appendix
+        \input{appendix_device}
+        \input{appendix_solution}
+        \input{appendix_codes}
+        
+        \ifx\titlepageLang\empty
+            \renewcommand\thispage{Chinese abstract}
+            \input{zh_hidden_warning}
+        \else
+            \input{appendix_letters_NCU}
+        \fi
+        
+\end{document}
