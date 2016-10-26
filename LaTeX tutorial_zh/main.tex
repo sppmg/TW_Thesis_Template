@@ -1,8 +1,6 @@
 \documentclass[]{NCU_thesis} % [draft] = don't load fig'
-\usepackage{standalone}
-
+\usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
 \begin{document}
-    \input{macros_document}
     \frontmatter
         \input{titlepage}       % 封面/書名頁
         \cleardoublepage        % 由下個右頁開始
@@ -19,4 +17,5 @@
     \backmatter          % book class 預設\backmatter 在\appendix 後面。因此.cls修改過\appendix 定義
         \printbibliography[title = {參考文獻}, heading = bibnumbered]
     \appendix
+        \input{appendix_commonBug}
 \end{document}

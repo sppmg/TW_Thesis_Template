@@ -1,6 +1,5 @@
 \documentclass[class=NCU_thesis, crop=false, float=true]{standalone}
 \begin{document}
-\input{macros_document}
 \let\orilabel\label % enable \ref in LTXexample
 
 \chapter{FAQ}
@@ -19,7 +18,9 @@
 \footnote{其中還是有很小一部份是修改自羅吉昌的樣板，譬如封面頁的格式幾乎就是羅吉昌的。}
 我寫論文時選定的編譯器是\XeLaTeX\  ，理由是他可以直接使用系統內的字型，也對非拉丁文字支援較好的樣子。所以這個樣板完全只測試\XeLaTeX\ 下的使用情況。
 
-除了專注在\XeLaTeX\ 之外，我的版本也儘量使用套件處理格式而不直接動底層的設定。譬如版面設定直接使用geometry 套件設定邊距。這麼做除了我本身不熟\LaTeX\ 外，也相當於將底層的轉換交給套件開發人員，會比我自己維護來的好得多。我也替換掉將數字轉成中文(1 $\rightarrow$ 一、2 $\rightarrow$ 二)的xCJKnumb而改用zhnumber。這是因為xCJKnumb為CJKnumb的改造版，而這個套件不存在於ctan網站上，要取得只能google，然後在不知名blog上下載。雖然目前使用上沒有問題，但未來維護則未知。
+除了專注在\XeLaTeX\ 之外，我的版本也儘量使用套件處理格式而不直接動底層的設定。
+\footnote{2016/10/26: 為了符合學校要求，還是重定義了一些\LaTeX\ 指令......}
+譬如版面設定直接使用geometry 套件設定邊距。這麼做除了我本身不熟\LaTeX\ 外，也相當於將底層的轉換交給套件開發人員，會比我自己維護來的好得多。我也替換掉將數字轉成中文(1 $\rightarrow$ 一、2 $\rightarrow$ 二)的xCJKnumb而改用zhnumber。這是因為xCJKnumb為CJKnumb的改造版，而這個套件不存在於ctan網站上，要取得只能google，然後在不知名blog上下載。雖然目前使用上沒有問題，但未來維護則未知。
 
 \section{這樣板符合學校要求嗎？}
 先說結論，我的論文是照此格式提交的，既然審過了，應該沒有問題。
@@ -34,7 +35,8 @@
 另外還有章節風格的問題，請見\cref{sec:s_specialTemplate_ncu_secStyle}。
 
 \section{這樣板有很厲害嗎？}
-我前後大概花了1個月左右來調樣板吧！（然後教學又是1個多月......）有很多小細節都已經解決了，也儘量做到自動化設定。當然啦！花費時間跟天資也是有關的，你要說「這東西也要花一個月？」我也認了orz......
+我前後大概花了1個月左右來調樣板吧！（然後教學又是1個多月......）有很多小細節都已經解決了，也儘量做到自動化設定（連pdf屬性都貼心的幫你完成了呢！\cref{fig:pdf_metadata.png}）。當然啦！花費時間跟天資也是有關的，你要說「這東西也要花一個月？」我也認了orz......
+\insfig[0.6]{pdf_metadata.png}
 
 \section{要怎麼使用樣板？}
 整個流程如下：
@@ -44,9 +46,9 @@
     \item 依樣畫葫蘆。
     \begin{enumerate}
         \item 設定（各學校目錄中的）config.tex中的個人資訊以及相關設定。
-        \item 照教學檔試著插入章節、文字、圖檔、表格......（圖片檔、程式碼檔案請置入figures、codes目錄中。）
+        \item 照教學檔試著插入文字、圖檔、表格......至以存在的chapter\_開頭的檔案。（圖片檔、程式碼檔案請置入figures、codes目錄中。）
         \item 須要新增章節子檔的話直接複製chapter\_template(\_demo).tex，修改內容、重命名後插入main.tex對應的章節位置。
-        \item 要新增使用套件或其他導言區指令請填入 macros\_preamble.tex檔案，樣板會自動讀取。
+        \item 要新增使用套件或其他導言區指令請填入 macros\_preamble.tex檔案，樣板會自動讀取。文獻資料庫bib檔一樣於此檔中設定。
         \item 同樣的，文件內的共用指令（填在\textbackslash{}begin\{document\}之後的）填入macros\_document.tex。
         \item 若有風格不符合的部份（如：文獻引用要用作者名、列表要照字母排序等等），請於cls檔中搜尋關鍵字（編輯器通常會提供，快速鍵Ctrl\+f），找到設定行之後自行修改。
     \end{enumerate}
@@ -57,6 +59,8 @@
 
 \section{樣板不符合我的要求怎辦？}
 要新增使用套件或其他導言區指令請填入 macros\_preamble.tex檔案，樣板會自動讀取。文件內的共用指令（填在\textbackslash{}begin\{document\}之後的）填入macros\_document.tex。一些設定要改的話可於cls檔中搜尋關鍵字（編輯器通常會提供，快速鍵Ctrl$+$f），找到設定行之後自行修改。
+
+如果遇到（其他）學校要求一些奇奇怪怪的格式，真的不會改的話，只好用其他軟體（LiberOffice Writer，甚至是LiberOffice Draw）先生成pdf檔再插入囉！
         
 \section{有其他教學嗎？}
 \LaTeX\ 教學很多，但大多是英文的。免費資源中，wikibook的\LaTeX\ 
@@ -74,10 +78,15 @@
 如果是流程圖或一些手繪線條圖，雖然\LaTeX\ 有套件可以畫出，但我建議初學者還是用Dia/Libreoffice Draw之類的，先畫完再匯出成eps插入比較快。
 
 \section{編譯出錯怎辦？}
-看錯誤訊息囉！如果自己找不出解決辦法，試著把錯誤訊息拿去google看看。
+看錯誤訊息囉！首先回憶你剛剛做了什麼。接著儘量減少錯誤的可能，把新增行一一註解掉。有必要的話新增一個空的子檔，把新增內容複製過去檢查（會比編譯整份文件快得多）。
+如果自己找不出解決辦法，試著把錯誤訊息拿去google看看。
 
-%\section{為什麼你一直Linux Linux的啊！}
-% lol
+\section{為什麼你一直Linux Linux的啊！}
+正啊! lol \\
+只有和她好好相處一個月才會發現她的好，也才會發現她是無可取代的。 \\
+
+\noindent 要試嗎？ :D
+
 
 
 \chapter{軟體安裝}
@@ -92,6 +101,8 @@
     \item TeXShop, Mac上的另一個選擇。（沒用過，自己試） 
 \end{enumerate}
 關於編譯時的行為，TexStudio與Kile兩者都能夠自動找到根文件（將整份文件分割成不同tex檔撰寫時，最上層的主文件）進行編譯。TexStudio毋須任何設定，Kile則須要將檔案加入專案中。此功能好處是編輯任何子文件後，直接按下編譯快速鍵即可完整編譯整份文件，不過缺點是浪費時間。如果你有用到subfile/standalone等輔助套件可以考慮禁用此功能，也不須修改根文件的內容。（我在Kile 的作法是除了main.tex外，全部加入專案做管理，按編譯後由於kile找不到引用的上層文件，所以就會只編譯當前檔案。）
+
+TexStudio 由於持續開發的緣故，支援了很多有趣的東西。像是``magic comments''，可以在Tex檔開頭利用註解指定一些編譯參數，當使用支援的環境編譯時，就不須手動選擇使用\XeLaTeX\ 或是手動插入編譯所須參數。
 
 \section{TeX 發行版}
 所謂「發行版」指的是特定組織將編譯TeX所須的環境，包含編譯器、常用套件等等包裝在一起發佈的軟體集合。最流行的三個分別是TeX Live、MiKTeX、MacTeX 。 TeX Live 設計上是朝多人使用設計（應該是指安裝在伺服器上共用），而MiKTeX 則是單人使用，所以在安全性方面TeX Live 會較好，詳情請自行google。以下是其官方網站：
@@ -154,17 +165,69 @@ Zotero 有Firefox addon 版以及Standalone版
 
 \LaTeX\  引用文獻時須要使用\textbackslash{}cite\{cite\_key\}這樣的指令，但對於大量文獻，我們很難記得每一個的cite\_key（有些編輯器支援自動補完，但仍須記得前幾個字母），所以文獻管理軟體要是能支援插入\textbackslash{}cite\{cite\_key\}是一件非常美好的事，這也是我朋友極力推薦 JabRef 的原因之一。 Zotero 雖然本身不提供這個功能，但透過\textbf{B}etter \textbf{B}ib(La)\textbf{T}eX 擴充後能夠以拖曳方式插入\textbackslash{}cite\{cite\_key\} 。
 
-安裝完Zotero以及BBT套件
-\footnote{BBT擴充的專案位於\url{https://github.com/retorquere/zotero-better-bibtex} }
-後，開啟Zotero 設定視窗，在「匯出」分頁的「預設輸出格式」選「Better BibTeX Quick Copy」即可使用拖曳插入\textbackslash{}cite\{cite\_key\} 的功能。
-\insfig[0.7][][h]{tutorial_zotero_bbt_config.png}[BBT拖曳插入cite\_key的設定方法。]
+\subsection{安裝Zotero以及BBT套件}
+Zotero 可由官網\url{https://www.zotero.org/}下載。而BBT擴充的專案位於\url{https://github.com/retorquere/zotero-better-bibtex}。安裝說明頁 \url{https://github.com/retorquere/zotero-better-bibtex/wiki/Installation} 其中的xpi檔連結即為BBT套件，下載並安裝至Zotero/Firefox。
 
-最後要編譯前記得對Zotero中的文獻庫（左方窗格的資料夾圖示）按滑鼠右鍵，選「匯出文獻庫」並選擇「BibLaTeX」格式（如果你打算採用BibTeX格式請記得自行修改樣版）匯出.bib文獻庫。
+安裝完畢後開啟Zotero 設定視窗，在「匯出」分頁的「預設輸出格式」選「Better BibTeX Quick Copy」即可使用拖曳插入\textbackslash{}cite\{cite\_key\} 的功能。
+\insfig[0.7][][h]{tutorial_zotero_bbt_config.png}[BBT拖曳插入cite\_key的設定方法。]
+\subsection{Zotero使用方法}
+Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\cref{fig:zotero_save}為儲存一篇\emph{Nature}期刊的例子。只要在Firefox上點一點，不但儲存作者、期刊標題等資訊，連pdf檔都一起存進來了呢！（當然你要有權限才可以啦！還有像APS系列期刊還要先朝\emph{愛因斯坦}三鞠躬才準載喔！）
+\begin{figure}
+    %\captionsetup[subfigure]{labelformat=empty} % 完全隱藏圖號
+    \centering
+    \subcaptionbox
+        {點紅框處儲存
+        \label{fig:Zotero_01}}
+        {\includegraphics[width=0.95\linewidth]{Zotero_01.png}}
+        
+    \vspace{\baselineskip}
+    \subcaptionbox
+        {儲存中（螢幕右下角）
+        \label{fig:Zotero_02}}
+        {\includegraphics[width=0.4\linewidth]{Zotero_02.png}}
+        
+    \vspace{\baselineskip} % 分隔上下列
+    \subcaptionbox
+        {完成
+        \label{fig:Zotero_03}}
+        {\includegraphics[width=0.95\linewidth]{Zotero_03.png}}
+    
+    \vspace{\baselineskip} % 分隔上下列
+    \subcaptionbox
+        {資料庫項目
+        \label{fig:Zotero_04}}
+        {\includegraphics[width=0.4\linewidth]{Zotero_04.png}}
+    \hspace{0.8cm}
+    \subcaptionbox
+        {條目資訊
+        \label{fig:Zotero_05}}
+        {\includegraphics[width=0.4\linewidth]{Zotero_05.png}}
+    \caption{Zotero 儲存期刊資訊}
+    \label{fig:zotero_save}
+\end{figure}
+
+最後要編譯前記得對Zotero中的文獻庫（左方窗格的資料夾圖示）按滑鼠右鍵，選「匯出文獻庫」並選擇「BibLaTeX」格式（如果你打算採用BibTeX格式請記得自行修改樣版）匯出.bib文獻庫。如\cref{fig:zotero_exportBib}
 \footnote{JabRef這類直接對.bib進行管理的軟體應該就不須要再匯出了。}
+\begin{figure}
+    %\captionsetup[subfigure]{labelformat=empty} % 完全隱藏圖號
+    \centering
+    \subcaptionbox
+        {匯出文獻庫（選定的目錄）
+        \label{fig:Zotero_06}}
+        {\includegraphics[width=0.4\linewidth]{Zotero_06.png}}
+    \hspace{2em}
+    \subcaptionbox
+        {匯出BibLaTeX格式（本樣板採用BibLaTeX）
+        \label{fig:Zotero_07}}
+        {\includegraphics[width=0.4\linewidth]{Zotero_07.png}}
+    \caption{Zotero 匯出文獻資料庫bib檔}
+    \label{fig:zotero_exportBib}
+\end{figure}
 
 \section{本\LaTeX\ 專案結構及使用說明}
+這節的說明若涉及到\LaTeX\ 專有名詞請先閱讀後面教學。
 \subsection{取得專案}
-本專案公開於GitHub，你可以在``TW\_Thesis\_Template''專案首頁（不是我的帳號首頁喔！）右邊找到Download鈕（\cref{fig:github_pjDownload.png}）下載整個專案（github不提供下載單一目錄。單檔可以進入頁面後另存）。下載前確認你要載的版本，左側``Branch''鈕可以選擇不同的分支（\cref{fig:github_branchList}），master分支通常是穩定版，而有時為了測試會新增develop分支。``tag''則是在重要版本發布時(Ver 1.0)才會特別標記（\cref{fig:github_tagList}）。
+本專案公開於GitHub，你可以在``TW\_Thesis\_Template''專案首頁\cite{_sppmg/tw_thesis_template_????}（不是我的帳號首頁喔！）右邊找到Download鈕（\cref{fig:github_pjDownload.png}）下載整個專案（github不提供下載單一目錄。單檔可以進入頁面後另存）。下載前確認你要載的版本，左側``Branch''鈕可以選擇不同的分支（\cref{fig:github_branchList}），master分支通常是穩定版，而有時為了測試會新增develop分支。``tag''則是在重要版本發布時(Ver 1.0)才會特別標記（\cref{fig:github_tagList}）。
 \insfig[0.3]{github_pjDownload.png}
 \begin{figure}
     \centering
@@ -172,7 +235,7 @@ Zotero 有Firefox addon 版以及Standalone版
         {GitHub 分支列表（使用我的另一個有develop分支的專案當範例）。
         \label{fig:github_branchList}}
         {\includegraphics[width=0.3\linewidth]{github_branchList.png}}
-    ~
+    \hspace{2em}
     \subcaptionbox
         {GitHub 標籤列表。
         \label{fig:github_tagList}}
@@ -184,9 +247,8 @@ Zotero 有Firefox addon 版以及Standalone版
 \subsection{專案結構}
 \label{sec:s_template_structure}
 專案根目錄包含教學（LaTeX tutorial）、各校規定（info）、各校樣板與語系（NCU\_zh）三類型目錄。另附上教學與樣板的編譯結果(*.pdf)作為閱讀以及對照使用者編譯之用。
-各\LaTeX\ 目錄中的共用檔案及目錄(結尾含``/''者)如下，請盡量不要修改檔名或刪除檔案：，config.tex用來設定個人資訊
-
-\begin{table}[h]
+各\LaTeX\ 目錄中的共用檔案及目錄(結尾含``/''者)如\cref{tab:template_structure} ，請盡量不要修改檔名或刪除檔案。
+\begin{table}
     \centering
     \begin{tabularx}{\textwidth}{| l | X |}
         \hline
@@ -196,17 +258,19 @@ Zotero 有Firefox addon 版以及Standalone版
         main.tex & 主檔案。\textbf{欲生成整份文件請編譯此檔}。檔案用於定義各子檔（章節）順序。  \\ \hline
         config.tex & 個人資訊設定檔。設定如論文題目等設定。\textbf{請設定使用之中文字型再編譯}。修改的方法是直接將花括號\{\}內改成你要的設定值。\footnote{儘量設定字型的英文名稱以避免出錯。Linux中可以使用指令``fc-list :lang=zh''來查詢可用的中文字型名稱。}，不然可能因找不中文字型而出錯。\textbf{本樣板可以利用設定作業系統來使用各系統預設字型}。  \\ \hline
         macros\_preamble.tex & 共用導言檔。將你要放在各個檔案導言區\footnote{何謂導言區，請見\cref{sec:s_latexDoc_structure}。}的指令置於此檔。此檔將由NCU\_thesis.cls讀入，子文件中不須再引入。  \\ \hline
-        macros\_document.tex & 共用文內設定。有些指令必須置於文內（\textbackslash{}begin\{document\}內），如設定字體大小的fontsize指令。這類型指令可置於此檔保持各子檔整潔以及避免漏放指令。  \\ \hline
-        titlepage.tex & 封面。  \\ \hline
+        macros\_document.tex & 共用文內設定。有些指令必須置於文內（\textbackslash{}begin\{document\}內），如設定字體大小的fontsize指令。這類型指令可置於此檔保持各子檔整潔以及避免漏放指令。（這個檔案會自動載入於\textbackslash{}begin\{document\}之後）  \\ \hline
+        titlepage.tex & 封面。（英文版有兩種封面，但如非必要建議僅用中文封面）  \\ \hline
         acknowledgements.tex & 誌謝（可不加，自行於main.tex註解掉。）  \\ \hline
         abbreviation.tex & 符號表。這裡簡單的以表格列出。\footnote{\LaTeX\ 亦有專用套件幫助處理術語，好處是可以自動進行排序，google關鍵字:Nomenclature(套件：nomencl)、Glossary(套件：glossary)以及綜合功能的套件：glossaries}  \\ \hline
         abstract\_*.tex & 各語系摘要。  \\ \hline
-        chapter\_*.tex & 各章節。（通常一章就一個檔。當然你可以再細分成更小的section子檔。\footnote{似乎在巢狀引入子擋上import套件比較好，請自行查閱說明手冊。}）  \\ \hline
+        chapter\_*.tex & 各章節。（通常一章就一個檔。當然你可以再細分成更小的section子檔。\footnote{似乎在巢狀引入子擋上import套件比較好，請自行查閱說明手冊。}有些人會將chapter放在獨立目錄中，但以我的經驗，在搭配standalone等套件做子檔單獨編譯的情況下容易搞混相對路徑，所以我都放一起。）  \\ \hline
         appendix\_*.tex & 各附錄。  \\ \hline
         letter\_*.pdf & 各校須附文件。（不附加直接刪除即可，可不註解）  \\ \hline
     \end{tabularx}
+    \caption{樣板目錄結構。}
+    \label{tab:template_structure}
 \end{table}
-上面共用檔名開頭（如chapter\_*.tex）只是我個人為了文件目錄的整潔而自訂的規則，各位自行決定是否跟隨。
+共用檔名開頭（如chapter\_*.tex）只是我個人為了文件目錄的整潔而自訂的規則，各位自行決定是否跟隨。
 
 \chapter{\LaTeX\ 基礎教學}
 \label{sec:c_basicLatex}
@@ -253,15 +317,45 @@ xelatex -interaction=nonstopmode main
 \end{lstlisting}
 
 而多次編譯的話可以安裝latexmk 這個軟體，它可以自動完成所須的編譯動作。
-\footnote{latexmk似乎會自行處理標記(\textbackslash{}labal)，所以用我\cref{sec:s_figure}提到的快速插圖指令\textbackslash{}insfig會顯示找不到標記。加上``-f''強制繼續編譯即可，但要注意是否有其他「真正」的錯誤導致編譯出錯。}
-\XeLaTeX\  使用者可以使用以下指令：\\
+
+\XeLaTeX\ 使用者推薦使用以下指令：\\
 \begin{lstlisting}[style=consoleStyle,language=bash]
-latexmk -xelatex -interaction=nonstopmode main
+latexmk -xelatex -interaction=errorstopmode main
 \end{lstlisting}
+其中``-xelatex'' 指定用xelatex處理，須要latexmk 4.31版(2012年發佈)以上才可用。``errorstopmode''設定僅當編譯出錯才暫停，對於一些警告直接略過（時常因字體大小等等問題出現一堆警告，不理不會有任何問題）。亦可用nonstopmode取代之，但不甚推薦。
+在 TeX Live 2016 上使用latexmk編譯後，輸出訊息結尾如下：（首行\$表示Linux下輸入指令）
+\begin{lstlisting}[style=consoleStyle,language=bash]
+$ latexmk -time -xelatex -interaction=errorstopmode main
+....
+....
+....
+Output written on main.pdf (69 pages).
+SyncTeX written on main.synctex.gz.
+Transcript written on main.log.
+Latexmk: All targets (main.pdf) are up-to-date
+'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 18.7
+'biber  "main"': time = 1.66999999999999
+'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 19.01
+'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 18.48
+Accumulated processing time = 59.41
+\end{lstlisting}
+會發現xelatex 總共執行三次。實際上次數不固定，有時會見到 biber 執行兩次、xelatex執行超過3次的情況，所以若使用手動指定編譯次數方法，最好在編譯後檢視訊息，你可能會看到要求再次執行 biber 的訊息：
+\begin{lstlisting}[style=consoleStyle,language=bash]
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+ )
+\end{lstlisting}
+或是編譯完發現pdf檔缺東缺西（目錄不正常啦、todonotes 的線沒對到之類的）就可能要再執行一次 xelatex。
+
+
 編譯完成後，若你的系統上有Ghostscript (Linux上應該很常見)可以以下面指令壓縮pdf檔：
 \begin{lstlisting}[style=consoleStyle,language=bash]
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="Compressed.pdf" "Original.pdf"
 \end{lstlisting}
+壓縮後體積可以縮小不少，以我的論文來說縮了約40\%。不過缺點是pdf檔的附加資訊會連帶被消除。解決辦法是搭配pdftk取出附加資訊，gs處理完再匯入。
+\footnote{\url{http://unix.stackexchange.com/questions/50475/how-to-make-ghostscript-not-wipe-pdf-metadata} 提到這是gs的bug，要利用pdftk處理。}
 
 你可能會發現在編譯之後，工作目錄下出現許多奇怪附檔名的檔案。這是由於\LaTeX\  編譯時無法往回處理之前的標記，所以須要將標記資料紀錄下，待下次編譯時再處理。你可以不理會它們，對你而只有.tex（文件檔）、.bib（你置入的文獻資料庫）以及編譯生成的.pdf須要保留。不過有時會因為殘留的紀錄檔導致編譯出錯，所以有時遇到奇怪問題時記得試試先清除它們再編譯，或是直接將「清除紀錄檔」這個動作加到編譯序列的最前面。
 \footnote{各檔案說明見\url{https://en.wikibooks.org/wiki/LaTeX/Basics\#Ancillary_files} }
@@ -401,12 +495,12 @@ Hello world!
 
 
 \subsection{字體大小}
-字體大小預設12pt(1pt=1/72 inch)，設定在檔案最開頭如：
+字體大小預設10pt(1pt=1/72 inch)，設定在檔案最開頭如：
 \begin{lstlisting}
-documentclass[a4paper,12pt]{book}
+documentclass[a4paper,10pt]{book}
 \end{lstlisting}
-不過12pt對於中文來說太小，而\LaTeX\ 預設文件類別又只提供有限的選項，且最高僅到12pt。
-解決方法有兩種。一是在內文區段（\textbackslash{}begin\{document\}內）使用\textbackslash{}fontsize調整。% 字高、行高？
+不過10pt對於中文來說太小，而\LaTeX\ 預設文件類別又只提供有限的選項，且最高僅到12pt。
+解決方法有兩種。一是在內文區段（\textbackslash{}begin\{document\}內）使用\textbackslash{}fontsize調整（由anyfontsize套件提供，本樣板中是由其他套件載入anyfontsize）。% 字高、行高
 \begin{lstlisting}
 \fontsize{size}{baselineskip}\selectfont
 \end{lstlisting}
@@ -423,16 +517,21 @@ documentclass[a4paper,12pt]{book}
     \begin{tabular}{| l | l |}
         \hline
         指令                                & 效果         \\ \hline
-        \textbackslash{}tiny\{...\}        & \tiny{字體大小}\\ \hline
-        \textbackslash{}normalsize\{...\}  & \normalsize{字體大小} \\ \hline
-        \textbackslash{}large\{...\}       & \large{字體大小} \\ \hline
-        \textbackslash{}LARGE\{...\}       & \LARGE{字體大小} \\ \hline
-        \textbackslash{}Huge\{...\}        & \Huge{字體大小} \\ \hline
+        \{\textbackslash{}tiny ...\}        & {\tiny 字體大小}\\ \hline
+        \{\textbackslash{}normalsize ...\}  & {\normalsize 字體大小} \\ \hline
+        \{\textbackslash{}large ...\}       & {\large 字體大小} \\ \hline
+        \{\textbackslash{}LARGE ...\}       & {\LARGE 字體大小} \\ \hline
+        \{\textbackslash{}Huge ...\}        & {\Huge 字體大小} \\ \hline
     \end{tabular}
 \end{table}
+須要注意的是所有的大小都是相對於\textbackslash{}normalsize而訂，而這個\textbackslash{}normalsize就是一開始傳給class的數值。（本樣板因為歷史的因素使用了10pt，因此在使用\textbackslash{}fontsize調整後，會出現\textbackslash{}large比原文還小的情況，並且行高也會連帶受影響（
+{\large 我是\textbackslash{}large啊！}
+）。要確實處理這個問題只有使用其他class才能解決。）
+
+更豐富的字體大小設定請見\url{http://texblog.org/2012/08/29/changing-the-font-size-in-latex/}
 
 \subsection{字型樣式}
-\LaTeX\  中的字形樣式以指令設定，包含文字風格（粗、斜體）以及字型。下面這張表格示範了常用的樣式指令以及效果。其中第一欄(\LaTeX\ )指令會影響後面的所有文字
+\LaTeX\ 中的字形樣式以指令設定，包含文字風格（粗、斜體）以及字型。下面這張表格示範了常用的樣式指令以及效果。其中第一欄(\LaTeX\ )指令會影響後面的所有文字
 \footnote{可使用\{\}來限制範圍，如\{\textbackslash{}em ... \}}
 。第二欄(小範圍)則是只影響\{...\}中的內容。最後面分別測試中英文的效果。
 \footnote{改自\LaTeX\  wikibook:\url{https://en.wikibooks.org/wiki/LaTeX/Fonts\#Shapes}}
@@ -474,7 +573,9 @@ documentclass[a4paper,12pt]{book}
 先畫完再匯出成eps插入比較快。
 \footnote{M\$ Office 「力點」應該也可以啦！我沒試過。}
 
-這裡用的圖片全部都不採用「文繞圖」模式，一般正式文件應該也很少使用文繞圖。欲使用的話請自行google。
+這裡用的圖片全部都不採用「文繞圖」模式，一般正式文件應該也很少使用文繞圖。欲使用的話可使用wrapfigure套件
+\footnote{\url{https://nl.sharelatex.com/learn/Inserting\_Images}}
+。
 
 \subsection{插入單一圖片}
 \begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
@@ -544,15 +645,13 @@ documentclass[a4paper,12pt]{book}
 % 以下內文示範引用
 \cref{fig:multifig_labal}為三張圖的編號，Debian是\cref{fig:subfig_debian}。
 \end{LTXexample}
-\~{} 表示在圖片間插入間隔，當圖片較密時比較美觀。使用這個多圖的格式時，圖片一行的寬度總和建議不要超過「0.98\textbackslash{}linewidth」，不然會自動折行跑到下一行去。也由於這個自動排列的特性，\textbackslash{}subcaptionbox無法做很精確的圖片排列，譬如說第一行0.3，第二行$0.3+0.3+0.3$，\textbackslash{}subcaptionbox一定會將第二、三張圖移到第一行。如果要做這種設定請自行參考minipage用法。
+\~{} 表示在圖片間插入間隔，當圖片較密時比較美觀（亦可用\textbackslash{}hspace\{\}來指定）。使用這個多圖的格式時，圖片一行的寬度總和建議不要超過「0.98\textbackslash{}linewidth」，不然會自動折行跑到下一行去。也由於這個自動排列的特性，\textbackslash{}subcaptionbox無法做很精確的圖片排列，譬如說第一行0.3，第二行$0.3+0.3+0.3$，\textbackslash{}subcaptionbox一定會將第二、三張圖移到第一行。如果要做這種設定請自行參考minipage用法。
 \footnote{\url{http://tex.stackexchange.com/questions/55337/how-to-use-figure-inside-a-minipage}}
 
-引用圖片時直接使用\textbackslash{}labal的標記即可，子圖會自動加上編號，如：
-
-\cref這堆圖片
+引用圖片時直接使用\textbackslash{}labal的標記即可，子圖會自動加上編號。
 
 \section{表格}
-\label{sec:s_teble}
+\label{sec:s_table}
 表格如果太複雜不會製作或是嫌不好輸入，可以找圖形界面的軟體或是線上網站。同樣的，有些編輯器也已經內建表格產生器了，不過功能可能很陽春就是了。
 表格的說明文字(caption)位置改設定在表格上方。（雖然說caption位置可以透過\textbackslash{}caption和tabular環境的相對位置來設定，但產生出的caption與表格距離會過近
 \footnote{事實上這個距離由\textbackslash{}abovecaptionskip 和\textbackslash{}belowcaptionskip 設定，預設為10pt、0pt。}
@@ -829,6 +928,7 @@ BibLaTeX與 BibTeX 非常類似。首先你要有一個 BibLaTeX 的資料庫，
 \end{lstlisting}
 \textbackslash{}addbibresource 作用為加入文獻資料庫。與 BibTeX的\textbackslash{}bibliography 有以下差異：
 \begin{itemize}
+    \item 僅能置於導言區。（\emph{本樣板請置於macros\_preamble.tex}）
     \item 僅加入文獻資料庫而非印在當前位置。
     \item \{\} 內僅允許加入單一資料庫，但可多次使用\textbackslash{}addbibresource 來加入多個文獻資料庫。
     \item 文獻資料庫路徑（檔名）須要加上副檔名(.bib)
@@ -844,9 +944,13 @@ BibLaTeX與 BibTeX 非常類似。首先你要有一個 BibLaTeX 的資料庫，
 依此設定風格將會是nature，citestyle是數字``[1]''，且列表順序照文內出現順序。其他風格或是排序方法請自行參考套件手冊並自行於cls檔中修改。
 \footnote{排序方法還有依作者字母排序，也有相應的CJK排序。}
 
-編譯方面與BibTeX類似，一樣須要多執行一次編譯動作，只不過中間換成biber。也就是說要經過 xelatex tex $\rightarrow$ biber tex $\rightarrow$ xelatex tex 三個動作。tex附檔名(.tex)不用加。
+編譯方面與BibTeX類似，一樣須要多執行一次編譯動作，只不過中間換成biber。也就是說至少要經過 xelatex tex $\rightarrow$ biber tex $\rightarrow$ xelatex tex 三個動作。tex附檔名(.tex)不用加。
 
-
+最後這裡示範引用。（\textbackslash{}cite只要能唯一對應資料庫檔的條目即可，``????''是資料庫檔內的設定。）
+\begin{lstlisting}
+這是一篇Nature的文章\cite{session_genome_2016}。再來個\LaTeX\ 的書\cite{mittelbach_latex_2004}。然後是\LaTeX\ 中文教學網頁\cite{__????}。最後這整份教學以及樣板都是源自於sppmg的GitHub\cite{_sppmg/tw_thesis_template_????}。
+\end{lstlisting}
+這是一篇Nature的文章\cite{session_genome_2016}。再來個\LaTeX\ 的書\cite{mittelbach_latex_2004}。然後是\LaTeX\ 中文教學網頁\cite{__????}。最後這整份教學以及樣板都是源自於sppmg的GitHub\cite{_sppmg/tw_thesis_template_????}。
 
 \section{程式碼}
 \label{sec:s_code}
@@ -908,14 +1012,64 @@ TodoNotes搭配上\cref{sec:s_tools_ext_synctex}提到的SyncTeX簡直就是神�
 
 \section{分割文件}
 \label{sec:s_split}
-如同寫程式般，大型文件（論文就算是啦！）通常不會一個檔案完成，而是依章節分割成多個子檔撰寫後再以一個主檔合併。
+如同寫程式般，大型文件（論文就算是啦！）通常不會一個檔案完成，而是依章節分割成多個子檔撰寫後再以一個主檔合併。這樣不僅可以專注於單一章節，還可以僅編譯單一章節（子檔），加速處理、測試效果。
+
 以本樣板及教學為例，主檔都是main.tex。
 \footnote{檔名隨你訂，不限於main.tex。}
-main.tex中再以\textbackslash{}input\{filename\}引入其他tex檔。除\textbackslash{}input\{\}外，亦可用\textbackslash{}include\{\}。兩者差異在於\textbackslash{}input\{\}一定會另起一頁，且雙面配置時一定由右頁開始
+main.tex中再以\textbackslash{}input\{filename\}引入其他tex檔。除了\textbackslash{}input\{\}外，亦可用\textbackslash{}include\{\}。兩者差異在於\textbackslash{}input\{\}一定會另起一頁，且雙面配置時一定由右頁開始
 \footnote{預設起始頁為右頁，可自訂為左頁。}。這兩個引入的指令不須另加套件即可使用
 \footnote{ShareLaTeX網站提到用到巢狀引用時用import套件較好}。
 
-若要做到可單獨編譯子檔(節省編譯時間)，需要使用subfile或是standalone套件。（本樣板預設採用standalone套件。所須的子檔標頭已經寫在chapter\_template.tex中，直接複製進行修改即可。）
+不過若僅使用\textbackslash{}input\{\}或\textbackslash{}include\{\}
+子檔案不能包含\textbackslash{}documentclass\{\}以及\textbackslash{}begin\{document\}這幾句，因為這樣會造成主文件有巢狀的documentclass。也因此無法單獨編譯子檔，必須由主檔編譯，然後在主檔註解掉其他子檔或是利用\textbackslash{}includeonly\{\}設定僅引入某一子檔。這樣在編譯/編輯各子檔時須要頻繁修改主檔，非常麻煩。
+
+解決辦法是利用subfile或是standalone之類的套件來處理子檔中的相關語句。
+介紹可見wikibook \url{https://en.wikibooks.org/wiki/LaTeX/Modular_Documents\#Separate_compilation_of_child_documents}
+（本樣板預設採用standalone套件。所須的子檔標頭已經寫在chapter\_template.tex中，直接複製進行修改即可。）
+
+\subsection{subfile}
+subfile的概念較簡單，就是改以\textbackslash{}subfile插入子檔，並且在編譯時子檔一律會去讀主檔的導言區，所以要添加任何套件統統都填到主檔導言區。這種方法的缺點是在後期會越來越肥，即使一個空的tex都要讀其他子檔須要的套件因而浪費些許時間。
+
+\subsection{standalone}
+本樣板採用standalone的理由就是他可以做到單獨設定子檔所須套件。以本樣板為例，主檔結構如下：
+\begin{lstlisting}
+\documentclass{NCU_thesis}
+\usepackage[subpreambles=true]{standalone}
+%% Main-preamble
+\begin{document}
+%% my document content
+\input{chapter1}
+\end{document}
+\end{lstlisting}
+首行指定使用NCU\_thesis這個自訂樣式（也可以是book這種基礎樣式）
+第二行引入standalone套件，並給予``subpreambles=true''的選項，這部份稍後說明。中間插入子檔直接照舊有的習慣以\textbackslash{}input\{\}或\textbackslash{}include\{\}即可。
+
+子檔的部份如下：
+\begin{lstlisting}
+\documentclass[class=NCU_thesis, crop=false]{standalone}
+\begin{document}
+%% Sub-preamble
+\chapter{chapter name}
+%% my chapter content
+\end{document}
+\end{lstlisting}
+除了首行之外，和一般tex檔完全一樣。首行class改用standalone，而選項中的class指定使用自訂樣式NCU\_thesis，crop=false設定不顯示邊框。
+
+只要照上面的格式舊可以任意選擇編譯子檔還是主檔而不須另外處理。不過用\LaTeX\ 專用編輯器（如Texstudio）按快速鍵編譯者可能要注意編輯器可能會自動判斷主檔，導致即使你在子檔按下編譯鈕也還是選擇主檔進行編譯。
+
+
+standalone 的選項分成兩類：package option以及class option。前者即主檔使用的選項，後者為子檔的選項。兩類選項的細目請見standalone的手冊。
+上面範例中，package option 使用了``subpreambles=true''，這是因為預設情況下standalone 在編譯主檔時會忽略各子檔導言區的設定而僅僅讀取主檔的導言區。設定``subpreambles=true''之後子檔的導言區就可以被讀取了。這樣在各子檔用到不同套件時會非常方便。
+
+class option 除了設定在子檔\textbackslash{}documentclass之外，有「部份」的設定可以用\textbackslash{}standaloneconfig\{\}設定在\textbackslash{}begin\{document\}之後，因此本樣板將此指令放在macro\_document.tex中：
+\begin{lstlisting}
+\IfStandalone{\standaloneconfig{float=true}}{} 
+\end{lstlisting}
+macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所以子檔將共享\textbackslash{}standaloneconfig\{\}中的
+設定。不過這指令只能放在standalone class （子檔）中，所以另外加上\textbackslash{}IfStandalone來判斷是否為子檔。這裡放的``float=true''指得是單獨編譯子檔時是否啟用浮動環境（圖、表等等），預設是不啟用的。
+
+對於各檔共用套件，一般就是加入主檔。不過為了保持主檔的整潔，本樣板提供\textbackslash{}macro\_preamble.tex 作為共用導言區
+\footnote{由.cls末端載入。}。
 
 
 \section{字型}
@@ -984,7 +1138,7 @@ xparse的指令集和原始的定義指令很像，分別是（這裡只列3個�
 \documentclass[a4paper,10pt]{book}
 \end{lstlisting}
 a4paper指定使用A4紙，10pt指定文件基準字體大小為10pt
-\footnote{book class僅接受10pt,11pt,12pt，12pt對中文來說仍略小，因此本樣板採用\textbackslash{}fontsize進行無級調整，所以樣板的cls中雖然設定10pt，但文件字體仍為\textbackslash{}fontsize設定值。唯一被影響到的是自動填單區域。由於我一開始使用的是預設值10pt進行文字定位，加上\textbackslash{}fontsize不知為何字體大小不起作用（但行距仍作用），所以cls中維持10pt設定。}。
+\footnote{book class僅接受10pt,11pt,12pt}。
 其他還有很多選項，一般依照預設值就可以了。不過有一個選項``draft''很有用。它會略去圖形、連結的處理。所以編譯速度會較快(以這份教學為例，draft約減少20\%時間)。要啟用的話只要將它加入方括號中即可。本樣版採用 standalone 處理子文件，這裡分別示範主文件、子文件添加選項方法。\\
 主文件：
 \begin{lstlisting}
@@ -992,12 +1146,15 @@ a4paper指定使用A4紙，10pt指定文件基準字體大小為10pt
 \end{lstlisting}
 子文件：
 \begin{lstlisting}
-\documentclass[class=NCU_thesis, crop=false, float=true, draft]{standalone}
+\documentclass[class=NCU_thesis, crop=false, draft]{standalone}
 \end{lstlisting}
 子文件僅影響編譯子文件時的效果，而主文件影響整體。
 
+另外還有showframe選項，可以顯示文件各區塊邊界，在調整版面時也是蠻好用。
+
 \section{tex檔編碼}
 建立tex檔時請注意使用的文字編碼是否為UTF-8，通常流行的\LaTeX\ 編輯器均預設UTF-8。為了避免編譯時產生問題，建議非純英文文件均使用UTF-8編碼。
+\footnote{微軟內建的編輯器（如記事本）會在UTF-8檔案前面插入BOM字元，可能導致程式出錯。因此請不要使用微軟生產的軟體編輯UTF-8檔案。}
 
 \section{樣板提供工具}
 \label{sec:s_tools_sppmg}
@@ -1047,10 +1204,10 @@ Git是一個版本管理系統，最初用來管理程式碼（Linux kernel）�
 \url{http://www.slideshare.net/sppmg/latex-with-git}
 而遠端git倉庫可以使用``GitLab''這個免費的服務，他可以讓你選擇是否隱藏專案（也就是你的論文啦！）。
 
-論文這種東西隨時隨地多備份比較妥當（當然還有相關資料）。當年中央被偷筆電\+隨身碟的博士生不知最後如何了......之前還有清大研究鍺烯的博士生被撞，焚毀筆電事件。
+論文這種東西隨時隨地多備份比較妥當（當然還有相關資料）。當年中央被偷筆電$+$隨身碟的博士生不知最後如何了......之前還有清大研究鍺烯的博士生被撞，焚毀筆電事件。
 \subsection{gitignore}
-稍微說明一下 gitignore 這個檔案。Git 可以將某目錄下所有檔案加入追蹤。但有些檔案是我們不要的暫存檔或備份檔，如\LaTeX\ 編譯產生的*.aux、*.log或是編輯器自動備份的*.backup等等。所以我們可以在git根目錄加上``.gitignore''這個檔案，這樣在大範圍加入檔案時就會略去符合條件的檔案了（仍然可以用``-f''強制加入，如最終生成的pdf）。
-\footnote{這是Linux的檔名，加.表示隱藏檔。其他系統請自行查詢。}。
+稍微說明一下 gitignore 這個檔案。Git 可以將某目錄下所有檔案加入追蹤。但有些檔案是我們不要的暫存檔或備份檔，如\LaTeX\ 編譯產生的*.aux、*.log或是編輯器自動備份的*.backup等等。所以我們可以在git根目錄加上``.gitignore''這個檔案
+\footnote{這是Linux的檔名，加.表示隱藏檔。其他系統請自行查詢。}，這樣在大範圍加入檔案時就會略去符合條件的檔案了（仍然可以用``-f''強制加入，如最終生成的pdf）。
 \LaTeX\ 用的.gitignore內容為：
 \begin{lstlisting}[style=consoleStyle,language=bash]
 *.aux
@@ -1204,6 +1361,7 @@ book類別的章節層級有：
 \insfig[0.8][fig:titleStyle_1i][!h]{titleStyle_1i.png}[\textbackslash{}styletitles\{1\}與\textbackslash{}leftskip]
 
 \chapter{樣板測試結果及已知問題}
+照目前測試結果來看，TeX Live以及MiKTeX最新版（2016年）都能完美支援。
 \label{sec:c_issue}
 \section{測試結果}
 \begin{table}[h]
@@ -1211,9 +1369,9 @@ book類別的章節層級有：
     \begin{tabularx}{\textwidth}{| X | X | l | X |}
         \hline
         Tex發行版 & 作業系統 & XeTeX 版本 & 測試結果 \\ \hline
-        TeX Live 2012 \newline (2012.20120611-5) & Debian GNU/Linux  \newline wheezy(7.9) & 3.1415926-2.4-0.9998 & 章節標題後立即接圖片會導致整段粗體，插入任一行文字可解決。\textbackslash{}url跨頁會導致頁眉及中間浮動環境均含連結 \\ \hline
+        TeX Live 2012 \newline (2012.20120611-5) & Debian GNU/Linux  \newline wheezy(7.9) & 3.1415926-2.4-0.9998 & 章節標題後立即接圖片會導致整段粗體，插入任一行文字可解決。\textbackslash{}url跨頁會導致頁眉及中間浮動環境均含連結。listings 套件的行號距離會比設定值短。 \\ \hline
         TeX Live 2016 \newline(2016.20160819-2) & Debian GNU/Linux  \newline stretch/sid(9) & 3.14159265-2.6-0.99996 & 無問題 \\ \hline
-        MiKTeX 2016 \newline(???) & Window 7 & ??? & ??? \\ \hline
+        MiKTeX  \newline(???) & Window 7 & ??? & ??? \\ \hline
     \end{tabularx}
 \end{table}
 
@@ -1221,6 +1379,7 @@ book類別的章節層級有：
 %\todo[inline]{url package will load by biblatex. didn't work now.}
 \begin{itemize}
  \item 過長的連結會超出頁邊。本樣板使用url 套件處理這個問題，但仍無法處理超長單字。目前breakurl套件(1.40$+$)提供了anythingbreaks選項，可以任意截斷連結，請參考\url{http://tex.stackexchange.com/questions/107507/biblatex-url-breaking-not-working-in-dvi-mode} 的說明。不過breakurl 僅支援原始的\LaTeX\ ，PDFLaTeX/XeLaTeX不支援。
+ \item 字體大小不合適導致\textbackslash{}large比原文還小。須要更換基礎類別。
 \end{itemize}
 
 

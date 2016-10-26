@@ -1,9 +1,13 @@
 % 這裡的設定是須要在 \begin{document} 之內才能作用的
+\IfStandalone{\standaloneconfig{float=true}}{} % set option for standaloneclass(sub-file)
+% for sub-tex, 
+% ``float=false'' disable floating environment when build sub-tex.
+
 \fontsize{14}{25}\selectfont  % 可調間距以便閱讀 \fontsize{size}{skip} 15/30 約32每行,兩倍高
-\setlength{\parindent}{2em} %縮排約2字寬
+\setlength{\parindent}{2em} %縮排2字寬
 
 
-% 我自己設定的新指令
+% A example for define unit command.
 \providecommand{\temp}[1]{$\SI{#1}{\degreeCelsius}$}
 
 \providecommand{\symumm}[1]{$\SI{#1}{\milli\metre}$}

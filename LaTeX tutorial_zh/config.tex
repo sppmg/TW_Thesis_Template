@@ -1,7 +1,5 @@
 %%%%% build setting | 編譯設定 %%%%%
-\provideboolean{publish} % publish ? Set true before publish. 發怖前設true
-\setboolean{publish}{false} % {true}/{false}
-
+\setboolean{publish}{false} % {true}/{false} Set true before publish. 發怖前設true
 % draft option add to \documentclass[draft]
 
 \synctex=1 % 啟用SyncTeX
@@ -19,13 +17,10 @@
 \def\sprofii   {}      % 共同指導 2                  
 \def\degreedate{中~華~民~國~一百零五~年~十~月}
 \def\copyyear  {2012-2013}
-\provideboolean{printcopyright} % print copyright text on titlepage or cover.
-\setboolean{printcopyright}{false} % {true}/{false}
+\setboolean{printcopyright}{false} % {true}/{false} print copyright text on titlepage or cover.
 
 \def\keywordsZh{latex, 中文, 論文, sppmg} % don't use \def\keywords
 \def\keywordsEn{latex, chinese, thesis, sppmg}
-
-% \addbibresource{introduction.bib} % 填上你的文獻資料庫(Biblatex 格式)，以多次使用以加入多個來源。
 
 %%%%%% set OS | 設定作業系統 %%%%%
 \def\OS{linux} % {linux}/{win}, only effect auto select CJK font.(CJK means Chinese, Japanese, and Korean)

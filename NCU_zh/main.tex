@@ -1,10 +1,10 @@
-\documentclass[]{NCU_thesis} % [draft] = don't load fig'
-\usepackage{standalone}
-
+\documentclass[]{NCU_thesis} % [draft] = don't load fig', showframe
+\usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
 \begin{document}
-\input{macros_document}
     \frontmatter
         \input{titlepage}        % 封面/書名頁
+        \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
+            \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
         \IfFileExists{letter_authorization.pdf}{
             \cleardoublepage        % 由下個右頁開始
@@ -30,7 +30,7 @@
             \phantomsection
             \addcontentsline{toc}{chapter}{目錄}    %手動將「目錄」字樣加入目錄
         \tableofcontents        % 目錄
-         \listoffigures         % 圖目錄
+        \listoffigures         % 圖目錄
         \listoftables           % 表目錄
         \input{abbreviation}    % 符號說明
     \mainmatter
