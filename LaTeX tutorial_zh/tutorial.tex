@@ -206,7 +206,7 @@ Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\
     \label{fig:zotero_save}
 \end{figure}
 
-最後要編譯前記得對Zotero中的文獻庫（左方窗格的資料夾圖示）按滑鼠右鍵，選「匯出文獻庫」並選擇「BibLaTeX」格式（如果你打算採用BibTeX格式請記得自行修改樣版）匯出.bib文獻庫。如\cref{fig:zotero_exportBib}
+最後要編譯前記得對Zotero中的文獻庫（左方窗格的資料夾圖示）按滑鼠右鍵，選「匯出文獻庫」並選擇「BibLaTeX」格式（如果你打算採用BibTeX格式請記得自行修改樣板）匯出.bib文獻庫。如\cref{fig:zotero_exportBib}
 \footnote{JabRef這類直接對.bib進行管理的軟體應該就不須要再匯出了。}
 \begin{figure}
     %\captionsetup[subfigure]{labelformat=empty} % 完全隱藏圖號
@@ -279,10 +279,10 @@ Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\
 \section{背景知識}
 
 \subsection{\TeX\ 、\LaTeX\ 歷史}
-\LaTeX\  是一個非常強大、專業的排版軟體。事實上\LaTeX\ 其實是\TeX\ 的巨集。它使得原本較為困難的Tex語法變得簡單許多。
+\LaTeX\  是一個非常強大、專業的排版軟體。事實上\LaTeX\ 其實是\TeX\ 的巨集。它使得原本較為困難的TeX語法變得簡單許多。
 \TeX\  是 Donald Knuth 1977年為其巨著「The Art of Computer Programming」
 \footnote{這本「神書」目前還沒寫完全套，希望Knuth有生之年可以順利完成。}
-進行校稿時，發現當時的數學公式排版過於差勁，於是決定自己弄一個排版系統出來（這才是真正的Hacker !!）。由於直接寫\TeX\ 或稱Plain \TeX\ ）文件較困難，因此後來發展出\LaTeX\ 來簡化上手難度。而後來又因為非英語、直接產生PDF 等需求又衍生出各式各樣的\TeX\ /\LaTeX\ 版本。
+進行校稿時，發現當時的數學公式排版過於差勁，於是決定自己弄一個排版系統出來（這才是真正的Hacker !!）。由於直接寫\TeX\ （或稱Plain \TeX\ ）文件較困難，因此後來發展出\LaTeX\ 來簡化上手難度。而後來又因為非英語、直接產生PDF 等需求又衍生出各式各樣的\TeX\ /\LaTeX\ 版本。
 \footnote{\TeX\  追求穩定，所以只除錯，不添加新功能。}
 
 \subsection{編譯/生成PDF檔}
@@ -871,7 +871,7 @@ Use \textbackslash{}cref :\cref{fig:reftest}
 
 \section{文獻}
 \label{sec:s_bib}
-如同之前的\textbackslash{}labal、\textbackslash{}ref 插入引用文獻須要建立文獻條目，再利用\textbackslash{}cite\{cite\_key\}來插入條目編號。
+如同之前的\textbackslash{}labal、\textbackslash{}ref 。插入引用文獻須要建立文獻條目，再利用\textbackslash{}cite\{cite\_key\}來插入條目編號。
 \footnote{下面提到的bibtex, biber, biblatex, natbib 詳細資訊可參考  \url{http://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib}}
 
 \subsection{嵌入式文獻資料庫}
@@ -894,7 +894,7 @@ see bibliography \cite{lamport94}.
 
 \subsection{BibTeX}
 \begin{center}
-\noindent{\color{red}\textbf{本樣板採用的是BibLaTeX，請見下節。}}
+\noindent{\color{red}\textbf{本樣板採用的是BibLaTeX，請見\cref{sec:s_bib_biblatex}。}}
 \end{center}
 
 針對大量文獻，通常使用文獻管理軟體先產生一個包含各條目的.bib檔（亦為純文字檔），再於tex中引入。
@@ -910,15 +910,16 @@ see bibliography \cite{lamport94}.
 
 用了BibTex之後，記得要再多執行一次編譯動作。也就是說要經過 xelatex tex $\rightarrow$ bibtex tex $\rightarrow$ xelatex tex 三個動作。tex附檔名(.tex)不用加。
 
-BibTeX生成的文獻編號一律是數字，如果你須要更有變化譬作者和年份(eg. Roberts, 2003)，那你可以使用Natbib套件，不過\textbackslash{}cite指令須要修改。這部份請自行查詢wikibook
+BibTeX生成的文獻編號一律是數字，如果你須要更有變化譬如作者和年份(eg. Roberts, 2003)，那你可以使用Natbib套件，不過\textbackslash{}cite指令須要修改。這部份請自行查詢wikibook
 \footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management\#Natbib}}
 。
 
 \subsection{BibLaTeX}
+\label{sec:s_bib_biblatex}
 另一個管理大量文獻的方法則是使用 BibLaTeX。雖然這裡說是「使用 BibLaTeX」，但實際上處理文獻資料庫的是biber這個程式。
 \footnote{亦可使用BibTeX作為BibLaTeX的後端。}
 BibLaTeX只是一個套件，作為\LaTeX\  與 biber的中間介面，作用如同上面提到的Natbib套件。
-BibLaTeX\+ biber的好處是支援UTF-8 ，能夠處理非英語系的文獻條目。並且資料庫格式新增如online類別用來紀錄網頁內容。另外對於文獻的排序方式也有多種選擇。因此本樣板使用 BibLaTeX\+ biber作為預設的文獻管理方式。（不過 BibLaTeX 畢竟是較新的方法，如果你要發期刊可能不被接受，只能使用BibTeX。）
+BibLaTeX$+$biber的好處是支援UTF-8 ，能夠處理非英語系的文獻條目。並且資料庫格式新增如online類別用來紀錄網頁內容。另外對於文獻的排序方式也有多種選擇。因此本樣板使用 BibLaTeX$+$biber作為預設的文獻管理方式。（不過 BibLaTeX 畢竟是較新的方法，如果你要發期刊可能不被接受，只能使用BibTeX。）
 
 BibLaTeX與 BibTeX 非常類似。首先你要有一個 BibLaTeX 的資料庫，副檔名一樣是.bib，內容格式大同小異。接著使用如下指令：
 \begin{lstlisting}
@@ -1022,15 +1023,19 @@ main.tex中再以\textbackslash{}input\{filename\}引入其他tex檔。除了\te
 
 不過若僅使用\textbackslash{}input\{\}或\textbackslash{}include\{\}
 子檔案不能包含\textbackslash{}documentclass\{\}以及\textbackslash{}begin\{document\}這幾句，因為這樣會造成主文件有巢狀的documentclass。也因此無法單獨編譯子檔，必須由主檔編譯，然後在主檔註解掉其他子檔或是利用\textbackslash{}includeonly\{\}設定僅引入某一子檔。這樣在編譯/編輯各子檔時須要頻繁修改主檔，非常麻煩。
-
 解決辦法是利用subfile或是standalone之類的套件來處理子檔中的相關語句。
 介紹可見wikibook \url{https://en.wikibooks.org/wiki/LaTeX/Modular_Documents\#Separate_compilation_of_child_documents}
 （本樣板預設採用standalone套件。所須的子檔標頭已經寫在chapter\_template.tex中，直接複製進行修改即可。）
 
 \subsection{subfile}
+\begin{center}
+\noindent{\color{red}\textbf{本樣板採用的是standalone，請見\cref{sec:s_split_standalone}。}}
+\end{center}
+
 subfile的概念較簡單，就是改以\textbackslash{}subfile插入子檔，並且在編譯時子檔一律會去讀主檔的導言區，所以要添加任何套件統統都填到主檔導言區。這種方法的缺點是在後期會越來越肥，即使一個空的tex都要讀其他子檔須要的套件因而浪費些許時間。
 
 \subsection{standalone}
+\label{sec:s_split_standalone}
 本樣板採用standalone的理由就是他可以做到單獨設定子檔所須套件。以本樣板為例，主檔結構如下：
 \begin{lstlisting}
 \documentclass{NCU_thesis}
@@ -1055,7 +1060,7 @@ subfile的概念較簡單，就是改以\textbackslash{}subfile插入子檔，�
 \end{lstlisting}
 除了首行之外，和一般tex檔完全一樣。首行class改用standalone，而選項中的class指定使用自訂樣式NCU\_thesis，crop=false設定不顯示邊框。
 
-只要照上面的格式舊可以任意選擇編譯子檔還是主檔而不須另外處理。不過用\LaTeX\ 專用編輯器（如Texstudio）按快速鍵編譯者可能要注意編輯器可能會自動判斷主檔，導致即使你在子檔按下編譯鈕也還是選擇主檔進行編譯。
+只要照上面的格式即可任意選擇編譯子檔還是主檔而不須另外處理。不過用\LaTeX\ 專用編輯器（如Texstudio）按快速鍵編譯者可能要注意編輯器可能會自動判斷主檔，導致即使你在子檔按下編譯鈕也還是選擇主檔進行編譯。
 
 
 standalone 的選項分成兩類：package option以及class option。前者即主檔使用的選項，後者為子檔的選項。兩類選項的細目請見standalone的手冊。
@@ -1068,7 +1073,7 @@ class option 除了設定在子檔\textbackslash{}documentclass之外，有「�
 macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所以子檔將共享\textbackslash{}standaloneconfig\{\}中的
 設定。不過這指令只能放在standalone class （子檔）中，所以另外加上\textbackslash{}IfStandalone來判斷是否為子檔。這裡放的``float=true''指得是單獨編譯子檔時是否啟用浮動環境（圖、表等等），預設是不啟用的。
 
-對於各檔共用套件，一般就是加入主檔。不過為了保持主檔的整潔，本樣板提供\textbackslash{}macro\_preamble.tex 作為共用導言區
+對於各檔共用套件，一般就是加入主檔。不過為了保持主檔的整潔，本樣板提供macro\_preamble.tex 作為共用導言區
 \footnote{由.cls末端載入。}。
 
 
@@ -1078,7 +1083,7 @@ macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所
 
 除了字的美觀外，各位可能要注意一下字本身的正確性。因為有些字體使用舊的寫法或是大陸寫法，如「骨」字上面應該是向右而非向左。
 
-關於中文的開源字型可見Cheng-Chia Tseng 的詳細講解。（\url{http://breezymove.blogspot.tw/2013/11/cantarell.html}）。而\LaTeX\ 的搭配可以再參考「阿盤」的設定（http://www.slideshare.net/chenpanliao/apan-beamertemplate）。各字型由Google搜尋字型名稱就可以找到下載點了。除了上面網頁提到的字型外，政府網站也提供「全字庫」字型。
+關於中文的開源字型可見Cheng-Chia Tseng 的詳細講解。（\url{http://breezymove.blogspot.tw/2013/11/cantarell.html}）。而\LaTeX\ 的搭配可以再參考「阿盤」的設定（\url{http://www.slideshare.net/chenpanliao/apan-beamertemplate}）。各字型由Google搜尋字型名稱就可以找到下載點了。除了上面網頁提到的字型外，政府網站也提供「全字庫」字型。
 \footnote{抱怨一下，這東西用納稅人的錢做的，結果只是能免費使用，並不是開放字型....}。
     在意字體美觀的人推薦使用cwTeX的字型（Debain 套件庫已經有了，不過是舊版本。新版請google）。
 \footnote{曾見過有人認為Linux中常用的「AR PL UMing TW」以及對應的楷體很醜，所以替換成全字庫字型。}
