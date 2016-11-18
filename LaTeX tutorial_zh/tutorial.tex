@@ -1,4 +1,5 @@
 \documentclass[class=NCU_thesis, crop=false, float=true]{standalone}
+
 \begin{document}
 \let\orilabel\label % enable \ref in LTXexample
 
@@ -39,9 +40,13 @@
 \insfig[0.6]{pdf_metadata.png}
 
 \section{要怎麼使用樣板？}
+{\color{red}
+    樣板詳細設定方法使用GitHub 專案的wiki頁面做說明。
+}
+
 整個流程如下：
 \begin{enumerate}
-    \item 照教學檔安裝、設定軟體環境。修改編輯器的預設LaTeX編譯器，{改成使用\XeLaTeX\ }。
+    \item 照教學檔安裝、設定軟體環境。修改編輯器的預設LaTeX編譯器，\textbf{改成使用\XeLaTeX\ }。與文獻資料庫處理程式\textbf{（改成使用biber）}。
     \item 先編譯一次樣板或是教學檔中的\textbf{根文件(main.tex)}，確認正常編譯。\textbf{編譯前先修改config.tex中的中文字型或作業系統，詳情見\cref{sec:s_template_structure}。}\footnote{這部份其實可以透過ifplatform套件自動解決，但須要加入``-shell-escape''參數至編譯指令，我怕新手對這比較怕，所以改用設定值處理。}如果編譯出錯的話建議自行找人解決，沒人解決可以找我。不過畢竟不在現場，處理上會較為麻煩。自行解決後請回報問題及解法。
     \item 依樣畫葫蘆。
     \begin{enumerate}
@@ -50,7 +55,7 @@
         \item 須要新增章節子檔的話直接複製chapter\_template(\_demo).tex，修改內容、重命名後插入main.tex對應的章節位置。
         \item 要新增使用套件或其他導言區指令請填入 macros\_preamble.tex檔案，樣板會自動讀取。文獻資料庫bib檔一樣於此檔中設定。
         \item 同樣的，文件內的共用指令（填在\textbackslash{}begin\{document\}之後的）填入macros\_document.tex。
-        \item 若有風格不符合的部份（如：文獻引用要用作者名、列表要照字母排序等等），請於cls檔中搜尋關鍵字（編輯器通常會提供，快速鍵Ctrl\+f），找到設定行之後自行修改。
+        \item 若有風格不符合的部份（如：文獻引用要用作者名、列表要照字母排序等等），請於cls檔中搜尋關鍵字（編輯器通常會提供搜尋功能，或按快速鍵Ctrl+f），找到設定行之後自行修改。
     \end{enumerate}
     \item 全部完成後編譯main.tex，產生pdf。
     \item 口試後將審定書、推薦書等文書簽名後掃描後存成pdf置換原先插入的單頁pdf。（附件區域已嘗試自動生成客製化文件，省去另開Word編輯文件的功夫。）
@@ -58,7 +63,7 @@
 論文各文件、章節次序已經按照學校要求排好，各位只要直接修改或替換即可。
 
 \section{樣板不符合我的要求怎辦？}
-要新增使用套件或其他導言區指令請填入 macros\_preamble.tex檔案，樣板會自動讀取。文件內的共用指令（填在\textbackslash{}begin\{document\}之後的）填入macros\_document.tex。一些設定要改的話可於cls檔中搜尋關鍵字（編輯器通常會提供，快速鍵Ctrl$+$f），找到設定行之後自行修改。
+要新增使用套件或其他導言區指令請填入 macros\_preamble.tex檔案，樣板會自動讀取。文件內的共用指令（填在\textbackslash{}begin\{document\}之後的）填入macros\_document.tex。一些設定要改的話可於cls檔中搜尋關鍵字（編輯器通常會提供搜尋功能，或按快速鍵Ctrl+f），找到設定行之後自行修改。
 
 如果遇到（其他）學校要求一些奇奇怪怪的格式，真的不會改的話，只好用其他軟體（LiberOffice Writer，甚至是LiberOffice Draw）先生成pdf檔再插入囉！
         
@@ -68,14 +73,14 @@
 是我非常推薦的，同時也是本文主要參考的文件。
 中文的完整文件有\LaTeX\ 123
 \footnote{\url{http://www.cs.pu.edu.tw/~wckuo/doc/latex123/node1.html}}。
-不過文中使用的是\LaTeX\ $+$ CJK套件，而本文用的是\XeLaTeX\ ，少數內容與本樣板不同。
+不過文中使用的是\LaTeX\ + CJK套件，而本文用的是\XeLaTeX\ ，少數內容與本樣板不同。
 
 如果你碰到問題，研究半天無解，想問人沒人問又不想上英文論壇問，可以上ptt的latex板試試。（那裡臥虎藏龍啊！）
 
 \section{MATLAB 圖要如何插入？}
 不管你是用MATLAB還是Origin還是其他軟體生成的圖，都要匯出成一般圖檔才能插入。建議格式依序為為eps、png、jpg。
 \footnote{eps是向量圖，縮放不失真，同時也是\LaTeX\ 原本就支援的格式。png, jpg則是\XeLaTeX\ 才支援。}
-如果是流程圖或一些手繪線條圖，雖然\LaTeX\ 有套件可以畫出，但我建議初學者還是用Dia/Libreoffice Draw之類的，先畫完再匯出成eps插入比較快。
+如果是流程圖或一些手繪線條圖，雖然\LaTeX\ 有套件可以畫出，但我建議初學者還是用Dia/LibreOffice Draw之類的，先畫完再匯出成eps插入比較快。
 
 \section{編譯出錯怎辦？}
 看錯誤訊息囉！首先回憶你剛剛做了什麼。接著儘量減少錯誤的可能，把新增行一一註解掉。有必要的話新增一個空的子檔，把新增內容複製過去檢查（會比編譯整份文件快得多）。
@@ -161,7 +166,7 @@ Zotero 有Firefox addon 版以及Standalone版
 。我是兩個都裝，因為Firefox addon 版可以在瀏覽網頁的當下點addon 提供的按鈕，直接匯入網頁、期刊的文獻資料，省去慢慢手打的時間。這方面其他文獻管理軟體就沒這麼方便。
 \footnote{期刊可以使用google scholar各條目下的「引用」複製所須資訊（如BibTeX、EndNote）再匯入管理軟體，。 EndNote 本身則是提供搜索引擎，可以直接取得相關資訊。}
 。
-而Standalone版的好處則是操作快速，當然這可能跟我的Firefox有1000個分頁有關，各位可自行決定是否加安裝Standalone版。
+而Standalone版的好處則是操作快速，當然這可能跟我的Firefox有1000+個分頁有關，各位可自行決定是否加安裝Standalone版。
 
 \LaTeX\  引用文獻時須要使用\textbackslash{}cite\{cite\_key\}這樣的指令，但對於大量文獻，我們很難記得每一個的cite\_key（有些編輯器支援自動補完，但仍須記得前幾個字母），所以文獻管理軟體要是能支援插入\textbackslash{}cite\{cite\_key\}是一件非常美好的事，這也是我朋友極力推薦 JabRef 的原因之一。 Zotero 雖然本身不提供這個功能，但透過\textbf{B}etter \textbf{B}ib(La)\textbf{T}eX 擴充後能夠以拖曳方式插入\textbackslash{}cite\{cite\_key\} 。
 
@@ -228,14 +233,14 @@ Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\
 這節的說明若涉及到\LaTeX\ 專有名詞請先閱讀後面教學。
 \subsection{取得專案}
 本專案公開於GitHub，你可以在``TW\_Thesis\_Template''專案首頁\cite{_sppmg/tw_thesis_template_????}（不是我的帳號首頁喔！）右邊找到Download鈕（\cref{fig:github_pjDownload.png}）下載整個專案（github不提供下載單一目錄。單檔可以進入頁面後另存）。下載前確認你要載的版本，左側``Branch''鈕可以選擇不同的分支（\cref{fig:github_branchList}），master分支通常是穩定版，而有時為了測試會新增develop分支。``tag''則是在重要版本發布時(Ver 1.0)才會特別標記（\cref{fig:github_tagList}）。
-\insfig[0.3]{github_pjDownload.png}
+\insfig[0.5]{github_pjDownload.png}
 \begin{figure}
     \centering
     \subcaptionbox
         {GitHub 分支列表（使用我的另一個有develop分支的專案當範例）。
         \label{fig:github_branchList}}
         {\includegraphics[width=0.3\linewidth]{github_branchList.png}}
-    \hspace{2em}
+    \hspace{3em}
     \subcaptionbox
         {GitHub 標籤列表。
         \label{fig:github_tagList}}
@@ -247,28 +252,40 @@ Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\
 \subsection{專案結構}
 \label{sec:s_template_structure}
 專案根目錄包含教學（LaTeX tutorial）、各校規定（info）、各校樣板與語系（NCU\_zh）三類型目錄。另附上教學與樣板的編譯結果(*.pdf)作為閱讀以及對照使用者編譯之用。
-各\LaTeX\ 目錄中的共用檔案及目錄(結尾含``/''者)如\cref{tab:template_structure} ，請盡量不要修改檔名或刪除檔案。
+各\LaTeX\ 目錄中的共用檔案及目錄(結尾含``/''者)如\cref{tab:template_structure} ，請盡量不要修改檔名或刪除檔案，除非你確定知道你在做什麼。
+\let\tnote\tptabletnote
 \begin{table}
     \centering
+    \begin{threeparttable}
     \begin{tabularx}{\textwidth}{| l | X |}
         \hline
         codes/  & 用來存放程式碼。 \\ \hline
         figures/    & 用來存放論文中的圖片。亦可直接存在根目錄，但可能顯得凌亂。 \\ \hline
         NCU\_thesis.cls & 樣板主要設定，基於\LaTeX\ book class，須要修改格式可以由此檔修改。 \\ \hline
         main.tex & 主檔案。\textbf{欲生成整份文件請編譯此檔}。檔案用於定義各子檔（章節）順序。  \\ \hline
-        config.tex & 個人資訊設定檔。設定如論文題目等設定。\textbf{請設定使用之中文字型再編譯}。修改的方法是直接將花括號\{\}內改成你要的設定值。\footnote{儘量設定字型的英文名稱以避免出錯。Linux中可以使用指令``fc-list :lang=zh''來查詢可用的中文字型名稱。}，不然可能因找不中文字型而出錯。\textbf{本樣板可以利用設定作業系統來使用各系統預設字型}。  \\ \hline
-        macros\_preamble.tex & 共用導言檔。將你要放在各個檔案導言區\footnote{何謂導言區，請見\cref{sec:s_latexDoc_structure}。}的指令置於此檔。此檔將由NCU\_thesis.cls讀入，子文件中不須再引入。  \\ \hline
+        config.tex & 個人資訊設定檔。設定如論文題目等設定。\textbf{請設定使用之中文字型再編譯}。修改的方法是直接將花括號\{\}內改成你要的設定值\tnote{a}，不然可能因找不中文字型而出錯。\textbf{本樣板可以利用設定作業系統來使用各系統預設字型}。  \\ \hline
+        macros\_preamble.tex & 共用導言檔。將你要放在各個檔案導言區\tnote{b}的指令置於此檔。此檔將由NCU\_thesis.cls讀入，子文件中不須再引入。  \\ \hline
         macros\_document.tex & 共用文內設定。有些指令必須置於文內（\textbackslash{}begin\{document\}內），如設定字體大小的fontsize指令。這類型指令可置於此檔保持各子檔整潔以及避免漏放指令。（這個檔案會自動載入於\textbackslash{}begin\{document\}之後）  \\ \hline
         titlepage.tex & 封面。（英文版有兩種封面，但如非必要建議僅用中文封面）  \\ \hline
         acknowledgements.tex & 誌謝（可不加，自行於main.tex註解掉。）  \\ \hline
-        abbreviation.tex & 符號表。這裡簡單的以表格列出。\footnote{\LaTeX\ 亦有專用套件幫助處理術語，好處是可以自動進行排序，google關鍵字:Nomenclature(套件：nomencl)、Glossary(套件：glossary)以及綜合功能的套件：glossaries}  \\ \hline
+        abbreviation.tex & 符號表。這裡簡單的以表格列出。\tnote{c}  \\ \hline
         abstract\_*.tex & 各語系摘要。  \\ \hline
-        chapter\_*.tex & 各章節。（通常一章就一個檔。當然你可以再細分成更小的section子檔。\footnote{似乎在巢狀引入子擋上import套件比較好，請自行查閱說明手冊。}有些人會將chapter放在獨立目錄中，但以我的經驗，在搭配standalone等套件做子檔單獨編譯的情況下容易搞混相對路徑，所以我都放一起。）  \\ \hline
+        chapter\_*.tex & 各章節。（通常一章就一個檔。當然你可以再細分成更小的section子檔。\tnote{d}有些人會將chapter放在獨立目錄中，但以我的經驗，在搭配standalone等套件做子檔單獨編譯的情況下容易搞混相對路徑，所以我都放一起。）  \\ \hline
         appendix\_*.tex & 各附錄。  \\ \hline
         letter\_*.pdf & 各校須附文件。（不附加直接刪除即可，可不註解）  \\ \hline
     \end{tabularx}
+    
     \caption{樣板目錄結構。}
     \label{tab:template_structure}
+    
+    \begin{tablenotes}
+        \footnotesize
+        \item[a]{儘量設定字型的英文名稱以避免出錯。Linux中可以使用指令``fc-list :lang=zh''來查詢可用的中文字型名稱。}
+        \item[b] 何謂導言區，請見\cref{sec:s_latexDoc_structure}。
+        \item[c] \LaTeX\ 亦有專用套件幫助處理術語，好處是可以自動進行排序，google關鍵字:Nomenclature(套件：nomencl)、Glossary(套件：glossary)以及綜合功能的套件：glossaries
+        \item[d] 似乎在巢狀引入子擋上import套件比較好，請自行查閱說明手冊。
+    \end{tablenotes}
+    \end{threeparttable}
 \end{table}
 共用檔名開頭（如chapter\_*.tex）只是我個人為了文件目錄的整潔而自訂的規則，各位自行決定是否跟隨。
 
@@ -282,11 +299,11 @@ Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\
 \LaTeX\  是一個非常強大、專業的排版軟體。事實上\LaTeX\ 其實是\TeX\ 的巨集。它使得原本較為困難的TeX語法變得簡單許多。
 \TeX\  是 Donald Knuth 1977年為其巨著「The Art of Computer Programming」
 \footnote{這本「神書」目前還沒寫完全套，希望Knuth有生之年可以順利完成。}
-進行校稿時，發現當時的數學公式排版過於差勁，於是決定自己弄一個排版系統出來（這才是真正的Hacker !!）。由於直接寫\TeX\ （或稱Plain \TeX\ ）文件較困難，因此後來發展出\LaTeX\ 來簡化上手難度。而後來又因為非英語、直接產生PDF 等需求又衍生出各式各樣的\TeX\ /\LaTeX\ 版本。
+進行校稿時，發現當時的數學公式排版過於差勁，於是決定自己弄一個排版系統出來（這才是真正的Hacker !!）。由於直接寫\TeX\ （或稱Plain \TeX\ ）文件較困難，因此後來發展出\LaTeX\ 來簡化上手難度。而後來又因為非英語、直接產生PDF 等等需求又衍生出各式各樣的\TeX\ /\LaTeX\ 版本。
 \footnote{\TeX\  追求穩定，所以只除錯，不添加新功能。}
 
 \subsection{編譯/生成PDF檔}
-\LaTeX\  不同於LibreOffice Writer/ MS Office Word 之類的程式，它須要寫好tex檔之後以Latex程式（再透過Tex程式）編譯成最終檔案
+\LaTeX\  不同於LibreOffice Writer/ MS Office Word 之類的程式，它須要寫好tex檔之後以LaTeX程式（再透過Tex程式）編譯成最終檔案
 \footnote{原始的\LaTeX\ 編譯器(就稱為latex)是將tex轉為dvi檔（可用evince等軟體開啟）。若要再轉pdf 須要再經由其他軟體轉換。}。% 編輯過程中無法看到排版結果，
 其中tex檔為純文字檔，和常見的.txt 文字檔相同，亦即你可以由任何文字編輯器開啟，如Linux上的VIM或是Windows 上的記事本。相對的像是Word 的doc檔一定要用支援doc的程式才能開啟，否則會顯示成亂碼。
 
@@ -323,23 +340,29 @@ xelatex -interaction=nonstopmode main
 latexmk -xelatex -interaction=errorstopmode main
 \end{lstlisting}
 其中``-xelatex'' 指定用xelatex處理，須要latexmk 4.31版(2012年發佈)以上才可用。``errorstopmode''設定僅當編譯出錯才暫停，對於一些警告直接略過（時常因字體大小等等問題出現一堆警告，不理不會有任何問題）。亦可用nonstopmode取代之，但不甚推薦。
-在 TeX Live 2016 上使用latexmk編譯後，輸出訊息結尾如下：（首行\$表示Linux下輸入指令）
+下面是某次我在 TeX Live 2016 上使用latexmk編譯後，輸出訊息結尾（首行\$表示Linux下輸入指令）：
 \begin{lstlisting}[style=consoleStyle,language=bash]
 $ latexmk -time -xelatex -interaction=errorstopmode main
 ....
 ....
 ....
-Output written on main.pdf (69 pages).
+Output written on main.pdf (89 pages).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Found biber source file(s) [main.bcf tutorial.bib]
 Latexmk: All targets (main.pdf) are up-to-date
-'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 18.7
-'biber  "main"': time = 1.66999999999999
-'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 19.01
-'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 18.48
-Accumulated processing time = 59.41
+'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 5.92
+'biber  "main"': time = 0.66
+'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 18.36
+'biber  "main"': time = 0.920000000000002
+'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 18.01
+'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 18.2
+'xelatex  -interaction=errorstopmode -recorder  "main.tex"': time = 18.09
+Accumulated processing time = 82.53
 \end{lstlisting}
-會發現xelatex 總共執行三次。實際上次數不固定，有時會見到 biber 執行兩次、xelatex執行超過3次的情況，所以若使用手動指定編譯次數方法，最好在編譯後檢視訊息，你可能會看到要求再次執行 biber 的訊息：
+會發現xelatex 總共執行5次。實際上次數不固定，所以若使用手動指定編譯次數方法，最好在編譯後檢視訊息，你可能會看到要求再次執行 biber 的訊息：
 \begin{lstlisting}[style=consoleStyle,language=bash]
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -371,7 +394,9 @@ Hello world!
 \end{document}
 \end{lstlisting}
 以\textbackslash{} 開頭的均為指令，而\{\}為其選項。
-\textbackslash{}doocumentclass 選擇文件的類型(class)，article 適合一篇簡單的文件（如實驗報告）。而其他如book/report則適合較大型的書、期刊等等。本樣板即是使用book class。
+\textbackslash{}doocumentclass 選擇文件的類型(class)，article 適合一篇簡單的文件（如實驗報告）。而其他如book/report則適合較大型的書、期刊等等。
+不同的類型會產生不同風格的文件，如單雙面、單雙欄、頁眉頁尾、目錄等等。甚至連可使用的指令都有差異。選擇合適的類型可以省下很多調整的功夫。由於論文比較近似書的風格，因此本樣板即是使用(類)book class。
+\footnote{說(類)是因為原始的book class 有字大小的限制，因此後來改用其他套件提供的book class。}
 \textbackslash{}begin～\textbackslash{}end 則是某個環境的範圍。（這裡是document環境）\textbackslash{}begin\{document\} 表示其中為文件內容。而\textbackslash{}begin\{document\}前面的區域為導言區(preamble)，用來設定所用的套件。
 
 各個不同的文件的類型(class)提供不同的風格設定。以本樣板用到的book為例，其原始結構如下：
@@ -444,11 +469,6 @@ Hello world!
         \verb*|text\cmd{}text| & o  Valid \\ \hline
         \verb*|text\cmdtext|   & x  Invalid \\ \hline
         \verb*|text\cmd文字|    & x  Invalid \\ \hline
-%         
-%         text\textbackslash{}cmd text  & o  Valid \\ \hline
-%         text\textbackslash{}cmd\{\}text  & o  Valid \\ \hline
-%         text\textbackslash{}cmdtext  & x  Invalid \\ \hline
-%         text\textbackslash{}cmd文字  & x  Invalid \\ \hline
     \end{tabular}
 \end{table}
 
@@ -494,41 +514,80 @@ Hello world!
 \end{table}
 
 
-\subsection{字體大小}
-字體大小預設10pt(1pt=1/72 inch)，設定在檔案最開頭如：
-\begin{lstlisting}
-documentclass[a4paper,10pt]{book}
-\end{lstlisting}
-不過10pt對於中文來說太小，而\LaTeX\ 預設文件類別又只提供有限的選項，且最高僅到12pt。
-解決方法有兩種。一是在內文區段（\textbackslash{}begin\{document\}內）使用\textbackslash{}fontsize調整（由anyfontsize套件提供，本樣板中是由其他套件載入anyfontsize）。% 字高、行高
-\begin{lstlisting}
-\fontsize{size}{baselineskip}\selectfont
-\end{lstlisting}
-\LaTeX\ 預設值10pt,12pt。本樣板設定14pt,25pt（約1.5倍行高）。
+\subsection{字體大小與行高}
+{\color{red}
+本樣板已提供豐富、簡便的「字體大小與行高」設定，請於config.tex中「字體大小風格及行距」、「標題風格」等選項設定。直接使用\LaTeX\ 指令即可。風格均可疊加，如``\textbackslash{}sffamily\textbackslash{}Large''。
+}
 
-另一個則是以其他文件類別如scrbook來取代傳統的book class。scrbook 提供了許多方便的選項以及特性，有興趣可以試試看。由於本樣板原先就使用book為基底，且考慮到有些舊的TeX 發行版可能未包含scrbook，因此目前暫時不轉移至scrbook。
+\subsubsection{字體大小}
+\LaTeX\ 中的字體大小基本上使用相對大小的方式設置。在一開始載入class 檔時就先決定基礎字體大小。之後文內（以及標題等等）使用相對大小進行修改，如\textbackslash{}large、\textbackslash{}small。
+\footnote{其對應的真實大小可以由wikibook查到，也可以自己寫指令測量。}
+此外，我們也可以經由anyfontsize套件提供的\textbackslash{}fontsize指令來調整字的絕對大小。
 
-對於區域性的修改字體大小指令示範如下
+設定基礎大小的方法如下：
+\begin{lstlisting}
+\documentclass[a4paper,10pt]{book}
+\end{lstlisting}
+10pt(1pt=1/72 inch)即為這個例子所設定的大小（事實上10pt也是book class預設值，不指定就是10pt）。不過10pt對於中文來說太小，而\LaTeX\ 預設文件類別又只提供有限的選項（10pt,11pt,12pt）。
+若要用更大的字體，解決方法有兩種。一是改用其他套件提供的class，另一是在內文區段（\textbackslash{}begin\{document\}內）使用\textbackslash{}fontsize調整。
+
+改用其他套件提供的class方面。如extsize套件對應的extbook class提供了 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt這些選項。而 KOMA-script的scrbook class則是使用無級縮放[fontsize=14pt]。
+由於本樣板目前(v1.6)採用extsize，所以請從extbook class的大小選項中選一個使用並填入main.tex的\textbackslash{}documentclass選項（樣板預設中文樣板使用14pt，英文使用12pt）。
+設定範例如下：（documentclass使用extbook舉例，樣板使用者請維持原本的documentclass。）
+\begin{lstlisting}
+\documentclass[a4paper,10pt]{extbook}
+\end{lstlisting}
+
+若是採用\textbackslash{}fontsize調整文字，雖然它可以方便的無級縮放文字，但要注意
+\textbackslash{}fontsize只能放在\textbackslash{}begin\{document\}內（樣板提供macro\_document.tex，置於此即可），並且只能暫時影響其後的文字。當遇到\textbackslash{}large之類的指令時將調回基礎大小的「large大小」（以及行高），有可能發生\textbackslash{}large比原文還小的情況。
+\textbackslash{}fontsize範例如下：
+\begin{lstlisting}
+% \fontsize{size}{baselineskip}\selectfont
+\fontsize{10}{12}\selectfont 
+\end{lstlisting}
+size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,12pt。（一倍行高=1.2x））。
+
+相對的修改字體大小指令示範如\cref{tab:fontsize}
 \footnote{完整列表見wikibook:\url{https://en.wikibooks.org/wiki/LaTeX/Fonts\#Sizing_text}}
 ：
 \begin{table}[h]
     \centering
-    \caption{字體大小範例}
+    \caption{字體大小範例（指令前後的\{\}作用為限制影響範圍）}
     \begin{tabular}{| l | l |}
         \hline
         指令                                & 效果         \\ \hline
         \{\textbackslash{}tiny ...\}        & {\tiny 字體大小}\\ \hline
+        \{\textbackslash{}footnotesize ...\}       & {\footnotesize 字體大小} \\ \hline
+        \{\textbackslash{}small ...\}       & {\small 字體大小} \\ \hline
         \{\textbackslash{}normalsize ...\}  & {\normalsize 字體大小} \\ \hline
         \{\textbackslash{}large ...\}       & {\large 字體大小} \\ \hline
         \{\textbackslash{}LARGE ...\}       & {\LARGE 字體大小} \\ \hline
         \{\textbackslash{}Huge ...\}        & {\Huge 字體大小} \\ \hline
     \end{tabular}
+    \label{tab:fontsize}
 \end{table}
-須要注意的是所有的大小都是相對於\textbackslash{}normalsize而訂，而這個\textbackslash{}normalsize就是一開始傳給class的數值。（本樣板因為歷史的因素使用了10pt，因此在使用\textbackslash{}fontsize調整後，會出現\textbackslash{}large比原文還小的情況，並且行高也會連帶受影響（
-{\large 我是\textbackslash{}large啊！}
-）。要確實處理這個問題只有使用其他class才能解決。）
+再次提醒！所有的大小都是相對於\textbackslash{}normalsize而訂，而這個\textbackslash{}normalsize就是一開始傳給class的數值。
 
+本樣板於1.5版以前採用\textbackslash{}fontsize，1.6版後已經遷移至extbook，所以預設不用\textbackslash{}fontsize做調整。不過仍舊於 macro\_document.tex保留註解掉的\textbackslash{}fontsize。
 更豐富的字體大小設定請見\url{http://texblog.org/2012/08/29/changing-the-font-size-in-latex/}
+
+\subsubsection{行高}
+行高方面有多種設定方式。（\textbackslash{}fontsize可以直接設定，這裡就不再提了）
+本樣板採用的方式是利用setspace套件設定。
+\begin{lstlisting}
+\setstretch{1.5} 
+\end{lstlisting}
+上面的設定將使得行高變更為1.5倍，這也是公認最舒適的行距並且是本樣板預設值。不過表格內容以及caption也會因此而改成1.5倍，不太好看。沒關係！本樣板已經幫你調好，只要在config.tex中分別設定即可。（細節我就不講啦！自己去研究cls檔。）
+
+其他不用套件調行高的方法如下：
+\begin{lstlisting}
+\renewcommand{\baselinestretch}{1.5} 
+\end{lstlisting}
+免套件，但統一調整所有行距。彈性不如setspace套件。
+\begin{lstlisting}
+\linespread{1.3} 
+\end{lstlisting}
+倍數不直觀，例如1.6為2倍行高。
 
 \subsection{字型樣式}
 \LaTeX\ 中的字形樣式以指令設定，包含文字風格（粗、斜體）以及字型。下面這張表格示範了常用的樣式指令以及效果。其中第一欄(\LaTeX\ )指令會影響後面的所有文字
@@ -554,7 +613,9 @@ documentclass[a4paper,10pt]{book}
 本樣板中，\textbackslash{}rmfamily, \textbackslash{}sffamily, \textbackslash{}ttfamily 可以由config.tex的 \textbackslash{}def\textbackslash{}mainfont等指令設定使用的字型，中文則是\textbackslash{}def\textbackslash{}CJKmainfont等指令。
 \footnote{事實上是透過 fontspec套件提供的 \textbackslash{}setmainfont, \textbackslash{}setsansfont, \textbackslash{}setmonofont進行設定。而對應的中文則是由xeCJK套件提供的\textbackslash{}setCJKmainfont,\textbackslash{}setCJKsansfont,\textbackslash{}setCJKmonofont }
 
-普通文件常用的字體有\textsf{楷體}以及明體(或用宋體)兩種。通常內文較適合細字的明體，這樣讀起來較不容易疲勞。而楷體適合放在字體、空間較大的標題，因此本樣板中設定主要字體為明體，而無襯線字體則是設定楷體。若要新增其他字型，可以使用\textbackslash{}newfontfamily來設定。下面是一個簡單的範例，這裡假設你的系統中有「cwTeX 楷書」字型。
+普通文件常用的字體有\textsf{楷體}以及明體(或用宋體)兩種。通常內文較適合細字的明體，這樣讀起來較不容易疲勞。而楷體適合放在字體、空間較大的標題，因此本樣板中設定中文的主要字體為明體，而無襯線字體則是設定楷體
+\footnote{若要在一段文字中暫時的使用襯線英文與楷體，可以簡單的用\textbackslash{}rmfamily\textbackslash{}CJKfamily{sf}達成。}
+。若要新增其他字型，可以使用\textbackslash{}newfontfamily來設定。下面是一個簡單的範例，這裡假設你的系統中有「cwTeX 楷書」字型。
 \begin{lstlisting}[style=LatexStyle,xleftmargin=0.5cm]
 \begin{document}
 \newfontfamily\cwbm{cwTeX 楷書}
@@ -564,14 +625,14 @@ documentclass[a4paper,10pt]{book}
 \end{document}
 \end{lstlisting}
 
-有些文件會以一種較短的指令來設定樣式，如粗體使用\textbackslash{}bf、斜體使用 \textbackslash{}it。這是舊的指令。現在(2016年)請用\textbackslash{}bfseries、 \textbackslash{}itshape。
+有些文件會以一種較短的指令來設定樣式，如粗體使用\textbackslash{}bf、斜體使用 \textbackslash{}it。這是舊的指令，存在某些問題。現在(2016年)請用\textbackslash{}bfseries、 \textbackslash{}itshape。
 
 \section{圖片}
 \label{sec:s_figure}
-\XeLaTeX\ 支援的圖片格式有eps, pdf, png, jpg。數據圖推薦使用eps格式，因為eps是向量圖檔，縮放不會失真。流程圖或一些手繪線條圖，雖然\LaTeX\ 有套件可以畫出，但我建議初學者還是用Dia/Libreoffice Draw之類的
-\footnote{推薦的自由軟體：影像、照片修圖：GIMP。向量圖、手繪線條：Inkscape、Libreoffice Draw。流程圖：Dia}，
-先畫完再匯出成eps插入比較快。
-\footnote{M\$ Office 「力點」應該也可以啦！我沒試過。}
+\XeLaTeX\ 支援的圖片格式有eps, pdf, png, jpg。數據圖推薦使用eps格式，因為eps是向量圖檔，縮放不會失真。流程圖或一些手繪線條圖，雖然\LaTeX\ 有套件可以畫出，但我建議初學者還是用Dia/LibreOffice Draw之類的
+\footnote{推薦的自由軟體：影像、照片修圖：GIMP。向量圖、手繪線條：Inkscape、LibreOffice Draw。流程圖：Dia}，
+先畫完再匯出成eps插入比較快。LibreOffice Draw的匯出方法見\cref{sec:a_loDraw}。
+\footnote{M\$ Office 「力點」據說無法匯出成eps格式。}
 
 這裡用的圖片全部都不採用「文繞圖」模式，一般正式文件應該也很少使用文繞圖。欲使用的話可使用wrapfigure套件
 \footnote{\url{https://nl.sharelatex.com/learn/Inserting\_Images}}
@@ -670,6 +731,7 @@ documentclass[a4paper,10pt]{book}
         \ce{CaCl_2} & 2.11 \\ \hline
         \ce{KCl} & 4.69 \\ \hline
     \end{tabular}
+    \label{key}
 \end{table}
 \end{LTXexample}
 \textbackslash{}begin\{tabular\}\{| l | l |\}旁的「|」表示畫垂直線，英文字母「l」表示左對齊，\textbackslash{}hline表示水平線。對齊控制除了「l」外，亦可用「c」(center)、「r」(right)。表格分隔若想用其他字元亦可用「@\{\}」處理，樣板的符號列表就是利用冒號分隔「@\{：\}」
@@ -684,6 +746,7 @@ documentclass[a4paper,10pt]{book}
         short & ssssssss \\ \hline
         long & llllllllll lllllll llllllll lllllllllll llllllll \\ \hline
     \end{tabular}
+    \label{key}
 \end{table}
 
 \begin{table}[h]
@@ -693,10 +756,11 @@ documentclass[a4paper,10pt]{book}
         short & ssssssss \\ \hline
         long & llllllllll lllllll llllllll lllllllllll llllllll \\ \hline
     \end{tabularx}
+    \label{key}
 \end{table}
 \end{LTXexample}
 
-\subsection{複雜表格}
+\subsection{合併欄位表格}
 示範合併欄位。
 \begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
 \begin{table}[h]
@@ -710,11 +774,12 @@ documentclass[a4paper,10pt]{book}
         9 & \multicolumn{2}{c|}{ a }& g  \\ \hline
         b & c & h & i  \\ \hline
     \end{tabular}
+    \label{key}
 \end{table}
 \end{LTXexample}
 
 \subsection{其他表格}
-對於太長、太寬的表格可以參考LaTeX 123的說明(\url{http://www.cs.pu.edu.tw/~wckuo/doc/latex123/node9.html}\ )
+\LaTeX\ 預設的tabular表格無法使用腳註(footnote)，此外還有無法處理太長、太寬的表格等問題。須要用到的話可見\cref{sec:s_advTable}的說明。
 
 \section{列表/條列}
 \label{sec:s_list}
@@ -749,9 +814,7 @@ documentclass[a4paper,10pt]{book}
 
 \section{數學符號、方程}
 \label{sec:s_math}
-數學式的編輯實在太廣，
-%這裡不講解如何產生各個符號。只對「數學式的顯示模式」進行說明。
-這裡只講解一些基本概念。
+數學式的編輯實在太廣，這裡只講解一些基本概念。
 更多資訊請參考wikibook: \url{https://en.wikibooks.org/wiki/LaTeX/Mathematics}
 
 \subsection{顯示模式}
@@ -786,10 +849,11 @@ end equation
 
 \subsection{常用數學符號}
 下面示範常用數學符號。（如果你用的是\LaTeX\ 專用編輯器，通常都有按紐可以輔助插入指令，不用拿個手冊在旁邊對照。）
+
 \begin{table}[h]
     \centering
     \caption{常用數學符號}
-    \begin{tabular}{| l | l | l |}
+    \begin{tabularx}{\textwidth}{| l | l | >{\raggedright\arraybackslash}X |}
         \hline
         \LaTeX\         & Result    &   說明      \\ \hline
         \verb|A_i=\mathrm{e}^{-x}|   & $A_i=\mathrm{e}^{-x}$        & \^{}\ \_{} 為上、下標。\textbackslash{}mathrm標示數學文字 \\ \hline
@@ -799,7 +863,7 @@ end equation
         \verb|\alpha\beta\gamma\Omega| & $\alpha\beta\gamma\Omega$ & 希臘字母 \\ \hline
         \verb|50\textbaht| & $50\textbaht$ & 一隻喬巴 (須要textcomp套件)\\ \hline
         \verb|\infty| & $\infty$ & 富間 \\ \hline
-    \end{tabular}
+    \end{tabularx}
 \end{table}
 數學模式中，非指令文字均視為變數，而變數一律以斜體表達。為了避免一些非變數文字變成斜體就必須特別處理。（載入amsmath套件後）\textbackslash{}text與\textbackslash{}mathrm就是處理這個問題。\textbackslash{}text通常用在純文字上，而\textbackslash{}mathrm則是符號類文字。
 \footnote{\url{http://tex.stackexchange.com/questions/19502/is-there-a-preference-of-when-to-use-text-and-mathrm}}
@@ -817,7 +881,9 @@ $\SI{25}{\degreeCelsius}$ \\
 \end{LTXexample}
 
 \subsection{化學式}
-前面表格已經示範了。使用到mhchem套件。表達離子帶電用\^{}，原子數用\_ 。離子帶電可以不加上標，因為用在後面預設視為上標模式。
+前面表格已經示範了。使用到mhchem套件
+\footnote{TeX Live 2016 的 mhchem為第四版，但我的TeX Live 2012的mhchem套件為第三版，所以我在cls檔中設定mhchem選項[version=3] ，如果各位沒有相容性問題又想用最新版可以取消掉。我保留這個設定也是怕說mhchem未來更動語法可能會出現論文移到新的TeX發行版後就不能用的情況。}
+。表達離子帶電用\^{}，原子數用\_ 。離子帶電可以不加上標，因為用在後面預設視為上標模式。
 \begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
 \begin{table}[h]
     \centering
@@ -833,9 +899,10 @@ $\SI{25}{\degreeCelsius}$ \\
 \section{標記與參考Cross-referencing}
 \label{sec:s_labalRef}
 「標記與參考」是\LaTeX\ 很好用的一個功能。各位千萬不要手打「見圖 1.1」啊!!標記可以設定一個標籤給它，而內文可以藉由參考指令取得標記位置的數值。這功能可以用在圖、表格、章節、文獻之上。
+
 \subsection{標記(labal)}
 標記方法前面已經提到，用\textbackslash{}labal\{type:mylabal\}標記。type方面如\cref{tab:labal_type}所示。
-\begin{table}
+\begin{table}[!t]
     \centering
     \caption{常用標記類型}
     \begin{tabular}{| l | l |}
@@ -849,6 +916,7 @@ $\SI{25}{\degreeCelsius}$ \\
 \end{table}
 有些套件會用到這個縮寫，所以最好符合通用習慣。(其餘見\url{https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing\#Introduction})
 稍微注意的是\textbackslash{}labal\{\}要放在\textbackslash{}caption\{\}之後才會有作用。（caption也不能為空喔！）
+
 \subsection{參考(ref/cref)}
 假設你已經在figure中使用\textbackslash{}labal\{fig:image001\}，那文章中若要產生此圖的標號可以用\textbackslash{}ref\{fig:image001\}，但有時我們懶得每個圖都要打``\emph{fig}. \textbackslash{}ref\{fig:image001\}這樣，所以我這使用了cleveref 套件。它提供\textbackslash{}cref指令自動產生相對應的文字。
 \footnote{文字可以由\textbackslash{}crefname修改，見cls檔。cleveref亦提供大寫版\textbackslash{}Crefname用於行首風格（大寫）。不過中文無此須求。}
@@ -919,13 +987,13 @@ BibTeX生成的文獻編號一律是數字，如果你須要更有變化譬如�
 另一個管理大量文獻的方法則是使用 BibLaTeX。雖然這裡說是「使用 BibLaTeX」，但實際上處理文獻資料庫的是biber這個程式。
 \footnote{亦可使用BibTeX作為BibLaTeX的後端。}
 BibLaTeX只是一個套件，作為\LaTeX\  與 biber的中間介面，作用如同上面提到的Natbib套件。
-BibLaTeX$+$biber的好處是支援UTF-8 ，能夠處理非英語系的文獻條目。並且資料庫格式新增如online類別用來紀錄網頁內容。另外對於文獻的排序方式也有多種選擇。因此本樣板使用 BibLaTeX$+$biber作為預設的文獻管理方式。（不過 BibLaTeX 畢竟是較新的方法，如果你要發期刊可能不被接受，只能使用BibTeX。）
+BibLaTeX+biber的好處是支援UTF-8 ，能夠處理非英語系的文獻條目。並且資料庫格式新增如online類別用來紀錄網頁內容。另外對於文獻的排序方式也有多種選擇。因此本樣板使用 BibLaTeX+biber作為預設的文獻管理方式。（不過 BibLaTeX 畢竟是較新的方法，如果你要發期刊可能不被接受，只能使用BibTeX。）
 
 BibLaTeX與 BibTeX 非常類似。首先你要有一個 BibLaTeX 的資料庫，副檔名一樣是.bib，內容格式大同小異。接著使用如下指令：
 \begin{lstlisting}
 \addbibresource{sample1.bib} % must including the extension
 \addbibresource{sample2.bib}
-\printbibliography[title = {Bibliography title}, heading = bibnumbered]
+\printbibliography[heading = bibnumbered, title = {Bibliography title}]
 \end{lstlisting}
 \textbackslash{}addbibresource 作用為加入文獻資料庫。與 BibTeX的\textbackslash{}bibliography 有以下差異：
 \begin{itemize}
@@ -935,14 +1003,18 @@ BibLaTeX與 BibTeX 非常類似。首先你要有一個 BibLaTeX 的資料庫，
     \item 文獻資料庫路徑（檔名）須要加上副檔名(.bib)
 \end{itemize}
 加入的資料庫最終會在\textbackslash{}printbibliography的位置生成文獻列表，資料庫有但未用到的文獻不會顯示出。
+\footnote{可以用\textbackslash{}nocite顯示，請查閱手冊。}
 選項中``title''直接指定文獻頁的章標題（中文就是「參考文獻」了）
-\footnote{我的經驗是BibLaTex 不會使用到\textbackslash{}bibname 這個變數，所以改了也沒用。}
+\footnote{BibLaTeX 不會使用到\textbackslash{}bibname 這個變數，所以改了也沒用。}
 
 文獻列表的風格是在引入套件時設定的，下面是樣板($\ast$thesis.cls)內的指令（一般tex內用\textbackslash{}usepackage引入套件，cls內要用\textbackslash{}RequirePackage）
 \begin{lstlisting}
-\RequirePackage[backend=biber, natbib=true, style=nature, citestyle=numeric-comp, sorting=none]{biblatex}
+\RequirePackage[backend=biber, style=nature]{biblatex}
 \end{lstlisting}
-依此設定風格將會是nature，citestyle是數字``[1]''，且列表順序照文內出現順序。其他風格或是排序方法請自行參考套件手冊並自行於cls檔中修改。
+依此設定風格將會是nature，
+\footnote{這是一個非標準的選項，使用後將由biblatex-nature套件進行設定。見\url{https://www.sharelatex.com/learn/Biblatex_citation_styles}}
+其引用標記使用數字``[1]''，且列表順序照文內出現順序，也就是隱含了\verb| citestyle=numeric-comp, sorting=none|這兩個選項。理工論文通常使用這樣的設定即可，但文組論文據說較習慣使用作者名來標記和排序，可以在選項處加上\verb|citestyle=authoryear-comp, sorting=nyt|。\textbf{（樣板使用者可以在config.tex中設定bibStyleNameYear為true。）}
+其他風格或是排序方法請自行參考套件手冊並自行於cls檔中修改。
 \footnote{排序方法還有依作者字母排序，也有相應的CJK排序。}
 
 編譯方面與BibTeX類似，一樣須要多執行一次編譯動作，只不過中間換成biber。也就是說至少要經過 xelatex tex $\rightarrow$ biber tex $\rightarrow$ xelatex tex 三個動作。tex附檔名(.tex)不用加。
@@ -1036,9 +1108,10 @@ subfile的概念較簡單，就是改以\textbackslash{}subfile插入子檔，�
 
 \subsection{standalone}
 \label{sec:s_split_standalone}
+Standalone的一個主要目的就是讓一些由\TeX\ 指令生成的圖片可以單獨編譯。
 本樣板採用standalone的理由就是他可以做到單獨設定子檔所須套件。以本樣板為例，主檔結構如下：
 \begin{lstlisting}
-\documentclass{NCU_thesis}
+\documentclass{NCU_thesis_zh}
 \usepackage[subpreambles=true]{standalone}
 %% Main-preamble
 \begin{document}
@@ -1051,20 +1124,20 @@ subfile的概念較簡單，就是改以\textbackslash{}subfile插入子檔，�
 
 子檔的部份如下：
 \begin{lstlisting}
-\documentclass[class=NCU_thesis, crop=false]{standalone}
+\documentclass[class=NCU_thesis_zh, crop=false]{standalone}
 \begin{document}
 %% Sub-preamble
 \chapter{chapter name}
 %% my chapter content
 \end{document}
 \end{lstlisting}
-除了首行之外，和一般tex檔完全一樣。首行class改用standalone，而選項中的class指定使用自訂樣式NCU\_thesis，crop=false設定不顯示邊框。
+除了首行之外，和一般tex檔完全一樣。首行class改用standalone，而選項中的class指定使用自訂樣式NCU\_thesis，crop=false設定不裁切，維持原紙面大小。
 
 只要照上面的格式即可任意選擇編譯子檔還是主檔而不須另外處理。不過用\LaTeX\ 專用編輯器（如Texstudio）按快速鍵編譯者可能要注意編輯器可能會自動判斷主檔，導致即使你在子檔按下編譯鈕也還是選擇主檔進行編譯。
 
-
 standalone 的選項分成兩類：package option以及class option。前者即主檔使用的選項，後者為子檔的選項。兩類選項的細目請見standalone的手冊。
 上面範例中，package option 使用了``subpreambles=true''，這是因為預設情況下standalone 在編譯主檔時會忽略各子檔導言區的設定而僅僅讀取主檔的導言區。設定``subpreambles=true''之後子檔的導言區就可以被讀取了。這樣在各子檔用到不同套件時會非常方便。
+\footnote{不過我自己的經驗是使用子導言區有時會出現一些奇怪問題。曾有指令同一行後面的註解改換到下一行後就可以編譯通過的問題。如果懷疑是 standalone 產生問題可以改將指令插入到主導言區(main.tex)或是 macro\_preamble.tex中。}
 
 class option 除了設定在子檔\textbackslash{}documentclass之外，有「部份」的設定可以用\textbackslash{}standaloneconfig\{\}設定在\textbackslash{}begin\{document\}之後，因此本樣板將此指令放在macro\_document.tex中：
 \begin{lstlisting}
@@ -1078,7 +1151,7 @@ macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所
 
 
 \section{字型}
-電腦上常用的中文字型有四大基本類型，分別為楷、明、宋、黑（這是不包含行書之類的非正式文書字體）。楷體較粗，明、宋較細。而黑體則是各筆劃粗細相同（常用於廣告？）。一般來說文件的內文應該要是較細的文字（如明、宋體），避免閱讀疲勞。因此此樣板設定僅封面為楷體，其餘皆為明體。
+電腦上常用的中文字型有四大基本類型，分別為楷、明、宋、黑（這是不包含行書之類的非正式文書字體）。楷體較粗，明、宋較細。而黑體則是各筆劃粗細相同（常用於廣告？）。一般來說文件的內文應該要是較細的文字（如明、宋體），避免閱讀疲勞。因此此樣板設定封面、標題為楷體（應文則是預設無襯線字），其餘皆為明體。
 \footnote{對應到微軟預設字型就是標楷體以及細明體。新細明體與細明體差別為英文字元是否等距。}
 
 除了字的美觀外，各位可能要注意一下字本身的正確性。因為有些字體使用舊的寫法或是大陸寫法，如「骨」字上面應該是向右而非向左。
@@ -1088,9 +1161,258 @@ macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所
     在意字體美觀的人推薦使用cwTeX的字型（Debain 套件庫已經有了，不過是舊版本。新版請google）。
 \footnote{曾見過有人認為Linux中常用的「AR PL UMing TW」以及對應的楷體很醜，所以替換成全字庫字型。}
 英文字型的分類就簡單的多。一般就分兩大類：襯線與無襯線。Windows上最常見的Times New Roman就是襯線字型。一般來說內文的英文用襯線會比較美觀。
+
 另外英文還有一種等寬字型。這是因為英文字母若均為相同寬度，一般文件會顯得太零散導致不易閱讀，因此一般使用非等寬的字型（如lllll與wwwww的寬度是不同的）。但在如程式碼這種須要對齊字元的用途上，等寬字元則是比較適合的字型。
 
 此樣版可以在config.tex中分別設定中文以及英文字型。
+
+\section{表格細說}
+\label{sec:s_advTable}
+在講表格前先來個名詞定義
+\begin{table}[h]
+\setstretch{1}
+\renewcommand{\arraystretch}{1}
+\centering
+\begin{tabular}{lccc}
+\thead{英文}    & \thead{方向}  & \thead{台灣}  & \thead{大陸} \\ 
+\midrule
+row     & 橫   & 列    & 行   \\
+column  & 直   & 行    & 列   \\
+\end{tabular}
+\end{table}
+這裡將以台灣的用法為準。
+
+\par\noindent\rule{\textwidth}{1pt}
+
+前面提過\LaTeX\ 原生表格指令是tabular環境：
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
+\setstretch{1}
+\renewcommand{\arraystretch}{1}
+
+\begin{tabular}{lcr}
+    Head a      & Head b     & Head c      \\
+    cell 1      & cell 02    & cell 003    \\
+    cell 0004   & cell 00005 & cell 000006 \\
+\end{tabular}
+\end{LTXexample}
+（tabular 是一個不可浮動環境，所以通常再將它置於table環境中浮動，這裡因為已經包於示範\LaTeX\ 的環境了，就不多此一舉。）
+
+欄位屬性中，對齊方式除了基本的 l, c, r 之外，還可以用>\{\textbackslash{}cmd\} 或 <\{\textbackslash{}cmd\}。
+\footnote{見\url{https://en.wikibooks.org/wiki/LaTeX/Tables\#Column\_specification\_using\_.3E.7B.5Ccmd.7D\_and\_.3C.7B.5Ccmd.7D}}
+``>'' 指得是在欄位之前執行，``<'' 指得是在欄位之後執行。以直接讓欄位進入數學模式為例，欄位屬性應該寫成：\verb|{>{$}c<{$}}| 也就是各行(column)置中，並且前後均以\$包起來。
+
+接著我們來談談格線。
+
+\subsection{格線}
+上面的示範是無格線，基礎\LaTeX\ 說明則是用\textbackslash{}hline。但\textbackslash{}hline 會佔用一定的空間，使得表格看起來較窄。若一定要畫格線的話，一個更好的方法是使用booktabs 套件中的三種\textbackslash{}*rule。
+（下面的示範為了更明顯，特別將文字行高與表格行高均改成1倍。）
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
+\setstretch{1}
+\renewcommand{\arraystretch}{1}
+
+Original \LaTeX\ \textbackslash{}hline :
+\begin{tabular}{lcr}
+\hline
+    Head a      & Head b     & Head c      \\
+\hline
+    cell 1      & cell 02    & cell 003    \\
+    cell 0004   & cell 00005 & cell 000006 \\
+\hline
+\end{tabular}
+
+\vspace{2ex} % ----------------------
+
+Use booktab :
+\begin{tabular}{lcr}
+\toprule
+    Head a      & Head b     & Head c      \\
+\midrule
+    cell 1      & cell 02    & cell 003    \\
+    cell 0004   & cell 00005 & cell 000006 \\
+\bottomrule
+\end{tabular}
+\end{LTXexample}
+很明顯的，改用booktab 的表格會較為美觀，這是因為 booktab 的線會分別調整其粗細以及與欄位的間隙。
+若要畫上中間的格線只要使用\textbackslash{}midrule置於行後，如\textbackslash{}hline一般。
+
+\subsection{表頭}
+\LaTeX\ 的表格首欄沒有定義任何行為。如果欲達到表頭粗體，須要自行定義。舉例來說，若之前的表格的表頭須要加粗+置中，每欄都得要寫成下面這樣（利用multicolumn調整欄位屬性成置中，不能用\textbackslash{}centering）：
+\begin{lstlisting}
+\multicolumn{1}{c}{\bfseries Head a}
+\end{lstlisting}
+不過每次都打很麻煩，所以可以定義一個指令來簡化：
+\begin{lstlisting}
+\newcommand*{\thead}[1]{\multicolumn{1}{c}{\bfseries #1}}
+\end{lstlisting}
+這裡給個示範：
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
+\setstretch{1}
+\renewcommand{\arraystretch}{1}
+
+\begin{tabular}{lcr}
+\toprule
+    \thead{Head a} & \thead{Head b} & \thead{Head c} \\
+\midrule
+    cell 1         & cell 02        & cell 003       \\
+    cell 0004      & cell 00005     & cell 000006    \\
+\bottomrule
+\end{tabular}
+\end{LTXexample}
+
+另一個方法是使用tabu套件的\textbackslash{}rowfont指令指定屬性。有興趣的自行查閱。
+
+\subsection{腳註(footnote)}
+原始的 tabular 是不處理腳註(footnote)的，直接使用腳註的情況下會出現只有腳註標記而無腳註文字的情況。解決辦法一是使用 tabularx（\LaTeX\ 示例套件無法處理footnote，所以這裡直接放入內文，腳註位於頁底。）
+
+{
+\setstretch{1}
+\renewcommand{\arraystretch}{1}
+\centering
+
+\begin{tabularx}{13em}{cr}
+\toprule
+    \thead{Head b}            & \thead{Head c} \\
+\midrule
+    cell 02 \footnote{note 1} & cell 003       \\
+    cell 00005                & cell 000006 \footnote{note 2} \\
+\bottomrule
+\end{tabularx}
+} \\
+但有兩個問題：一是太醜了！跟表格距離過遠。再來是放入table浮動環境後就失效了。
+所以這裡介紹兩個套件： threeparttable 與 ctable
+
+\subsubsection{threeparttable}
+\let\tnote\tptabletnote
+threeparttable環境為非浮動環境，要浮動的話須放在table環境中。
+其結構如下：
+\begin{lstlisting}
+\begin{table}
+    \begin{threeparttable}[b]
+        \caption{...}
+        % --------------------------
+        \begin{tabular}...% or {tabular*}
+            ...42\tnote{1}&....  ...
+        \end{tabular}
+        % --------------------------
+        \begin{tablenotes}
+            \item [1] the first note ...
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+\end{lstlisting}
+threeparttable 等於是在原有的表格基礎上增加 tablenotes 環境放置註解，並加上標記註解的\textbackslash{}tnote\{\} 與\textbackslash{}item[]（標記須要手動指定）。因為語法幾乎和原有表格一樣，所以這裡直接示範較複雜的表格，其中使用到booktabs的\textbackslash{}toprule等指令。（[b]選項處可用t,b,c，預設t。但結合table環境下似乎沒差。）
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm, pos=b]
+\setstretch{1}
+\renewcommand{\arraystretch}{1}
+
+\begin{table}[h]
+\centering
+    \begin{threeparttable}
+        \caption{caption of threeparttable}
+        \begin{tabular}{llr}
+        \toprule
+        \multicolumn{2}{c}{Name} \\
+        \cmidrule(r){1-2}
+        First name & Last Name & Grade \\
+        \midrule
+        John\tnote{1} & Doe & $7.5$ \\
+        Richard & Miles & $2$ \\
+        \bottomrule
+        \end{tabular}
+        
+        \begin{tablenotes}
+        \footnotesize
+        \item [1] the first note (long notes long notes long notes long notes long notes) ...
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+\end{LTXexample}
+由於 threeparttable 使用了table 浮動環境，所以字體方面會受到\textbackslash{}floatsetup設定的影響（也就是樣板config.tex中的\textbackslash{}floatFontStyle設定值）
+\footnote{這裡的文字大小因為包在示例環境中，所以是\textbackslash{}normalsize}
+。不過連帶的也會影響 tablenotes 的風格，只能透過在tablenotes使用字體大小指令做修改。
+
+\subsubsection{ctable}
+\let\tnote\ctabletnote
+{\color{red}
+    注意！ctable與threeparttable的\textbackslash{}tnote會發生衝突，同時使用須要做一點處理。
+}
+\footnote{若文內只用到ctable，可於載入套件「\textbackslash{}usepackage\{ctable\}」前使用\let\tnote\relax 去除原threeparttable定義的\textbackslash{}tnote（常見情況如apa6 documentclass 預先載入threeparttable）。若要同時使用兩套件，可以\textbackslash{}let暫存至另一個巨集，用前再指定回來，請參考本文原始碼。}
+
+ctable 整合了原有\LaTeX\ 表格相關的指令，並且本身是浮動環境。
+所以單獨使用\textbackslash{}ctable即可處理相關設定。其結構如下：
+\begin{lstlisting}
+\ctable[options]       % key=value,...
+       {coldefs}       % for \begin{tabular}
+       {foottable}     % zero or more \tnote commands (see below)
+       {table rows}    % rows for the table
+\end{lstlisting}
+\begin{description}
+    \item[options]      選項，如caption, 浮動位置等等。
+    \item[coldefs]      tabular中的行(column)對齊定義，如{rlc}
+    \item[foottable]    定義註解文字
+    \item[table rows]   定義欄位
+\end{description}
+直接來看範例。首先來個基本版：
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
+\setstretch{1}
+\renewcommand{\arraystretch}{1}
+
+\ctable[
+caption = Simple example for ctable,
+label   = ctable_simple,
+pos     = ht
+]{lll}{
+  \tnote{tablenotes 1}
+  \tnote[b]{tablenotes 2}
+}{                                    \FL
+  cell 1 \tmark & cell 02             \ML
+  cell 003      & cell 0004 \tmark[b] \NN
+  cell 5        & cell 6              \LL
+}
+\end{LTXexample}
+其中\textbackslash{}tmark就是定義註解標記位置與符號。省略的話會設為``a''（不過這是固定的，所以多次使用會全部都是``a''）。\textbackslash{}tnote就是對應的文字了。\textbackslash{}FL等等的定義如下：
+\begin{description}
+    \item[\textbackslash{}FL] First Line, 相當於booktab 的 \textbackslash{}toprule
+    \item[\textbackslash{}ML] Middle Line, 相當於booktab 的 \textbackslash{}midrule
+    \item[\textbackslash{}NN] Normal Newline, 單純換行，相當於``\textbackslash{}\textbackslash{}''
+    \item[\textbackslash{}LL] Last Line, 相當於booktab 的 \textbackslash{}bottomrule
+\end{description}
+
+再來複雜點
+\footnote{此範例修改自ctable說明文件}：
+\begin{LTXexample}[style=LatexStyle, xleftmargin=0.5cm, pos=b]
+\setstretch{1}
+\renewcommand{\arraystretch}{1}
+
+\ctable[
+caption = Complex example for ctable with a specified width of 100mm,
+cap     = Complex example for ctable
+label   = ctable_complex,
+width   = 100mm,
+pos     = ht
+]{c>{\raggedright}XcX}{
+\tnote[1]{Tablenotes are placed under the table. (long notes long notes long notes long notes long notes.)}
+\tnote[b]{Sec. tablenotes}
+}{                                                      \FL
+\multicolumn{4}{c}{Example using tabularx}              \ML
+\multicolumn{2}{c}{Multicolumn entry!} & THREE & FOUR   \NN
+\cmidrule(r){1-2}\cmidrule(rl){3-3}\cmidrule(l){4-4}
+one&
+The width of this column depends on the width of the table.\tmark[1] &
+three \tmark[b] &
+Column four will act in the same way as column two, with the same width.\LL
+}
+\end{LTXexample}
+這個例子示範合併欄位以及自動折行(tabularx)的功能。並且在折行欄位使用不同的對齊方式。選項處也示範使用short caption以及固定表格寬度的方法。這裡的標記故意用數字英文參雜，也就是說你可以自訂想要的標記。
+
+字體大小方面，預設表格內文為\textbackslash{}normalsize，註解文字則是\textbackslash{}footnotesize。不會受到\textbackslash{}floatsetup設定的影響（也就是樣板config.tex中的\textbackslash{}floatFontStyle設定值）。要修改的話，表格內文字大小可用doinside=\textbackslash{}small選項設定（或是在\textbackslash{}ctable外面使用\textbackslash{}setupctable\{doinside=\textbackslash{}small\}來設定其後所有的ctable）。註解文字大小似乎沒有選項可以設定，只能在每個tnote文字前設定。
+
+\subsection{其他表格}
+\begin{itemize}
+    \item 超長、跨頁表格：使用longtable套件（wikibook推薦改用 tabu，理由是含腳註功能），若須用到 threeparttable 功能，改用 threeparttablex 。如果使用ctable，只能手動截斷另建表格並加上``continued''參數。
+    \item 超寬表格：旋轉90度，用 rotfloat 套件（keyword: Sideways tables）。ctable 則是內建此功能。
+\end{itemize}
+
 
 \section{自製指令與巨集}
 \label{sec:s_defMacro}
@@ -1114,7 +1436,7 @@ Cat : Here is soooo cold , \temp{-195} , let me out !
 定義指令也可以使用Plain \TeX\ 的\textbackslash{}def，它同樣也可以接受輸入參數，config.tex內的設定大多由\textbackslash{}def完成，一方面是它不檢查重複定義（不同於\textbackslash{}providecommand忽略第二次定義，而是重新定義，覆蓋原有設定。），另一方面是字母少，美觀 :D 。
 
 對於變動數量的指令可以使用xparse或xargs來處理。這裡推薦使用xparse，他是\LaTeX\ 3計畫中用來替換\LaTeX\ $2_\varepsilon$的\textbackslash{}newcommand等指令。據說它對於參數省略的狀況處理得比xargs好。
-\footnote{本樣板兩個都有用，因為todonotes的顏色設定是複製別人的。而他用的就是xargs，懶得自己再改XD。}
+\footnote{本樣板早期兩個都有用，因為todonotes的顏色設定是複製別人的。而他用的就是xargs，目前已經改成以 xparse 實現。}
 xparse的指令集和原始的定義指令很像，分別是（這裡只列3個）：
 \begin{itemize}
     \item \textbackslash{}NewDocumentCommand
@@ -1147,11 +1469,11 @@ a4paper指定使用A4紙，10pt指定文件基準字體大小為10pt
 其他還有很多選項，一般依照預設值就可以了。不過有一個選項``draft''很有用。它會略去圖形、連結的處理。所以編譯速度會較快(以這份教學為例，draft約減少20\%時間)。要啟用的話只要將它加入方括號中即可。本樣版採用 standalone 處理子文件，這裡分別示範主文件、子文件添加選項方法。\\
 主文件：
 \begin{lstlisting}
-\documentclass[draft]{NCU_thesis}
+\documentclass[draft]{NCU_thesis_zh}
 \end{lstlisting}
 子文件：
 \begin{lstlisting}
-\documentclass[class=NCU_thesis, crop=false, draft]{standalone}
+\documentclass[class=NCU_thesis_zh, crop=false, draft]{standalone}
 \end{lstlisting}
 子文件僅影響編譯子文件時的效果，而主文件影響整體。
 
@@ -1183,7 +1505,7 @@ a4paper指定使用A4紙，10pt指定文件基準字體大小為10pt
 之前提過，見圖片的章節(\cref{sec:s_figure})。
 
 \subsection{單位}
-提供一些單位，指令名稱不喜歡可以自改，位於macros\_document.tex中。要更多的單位請參考siunitx套件的手冊。
+提供一些單位，指令名稱不喜歡可以自改，位於macros\_preamble.tex中。要更多的單位請參考siunitx套件的手冊。
 \begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
 \temp{37}\\
 \symumm{300}=\SI{30}{\centi\metre}\\
@@ -1198,9 +1520,17 @@ a4paper指定使用A4紙，10pt指定文件基準字體大小為10pt
 由於\LaTeX\ 非所見即所得的排版軟體，如果我們編譯後發現須修改生成檔(dvi/pdf)的特定位置，往往要辛苦找尋原始碼中的對應位置。SyncTeX 即是一個解決這個麻煩的方法。他可以讓你點閱讀器後，自動將編輯器移到對應位置。使用的方法是在編譯時加入``\verb|--synctex=1|''的選項(或是\verb|-synctex=1|)，或是在tex檔中插入``\textbackslash{}synctex=1''。（除非編譯器太舊，不然都支援。）本樣板已於config.tex中設定了\textbackslash{}synctex=1。
 
 \subsection{Kile + Okuar}
-我用的寫作環境是Kile編輯器$+$Okuar檢視器。
+我用的寫作環境是Kile編輯器+Okuar檢視器。
 只要將Kile檢視pdf的動作改用``ForwardPDF''，然後在Okuar中設定Editor為Kile這樣就可以了。只要在Okuar瀏覽pdf時按下\emph{shift+滑鼠左鍵}，Kile就會自動跳過去了。
 這個網頁有詳細圖文教學：\url{https://localframeofreference.wordpress.com/2010/08/31/kile-synctex/}
+
+\section{自動完成(Autocomplete)與cwl檔}
+\LaTeX\ 編輯器通常會提供指令自動完成功能，只要打指令開頭就會有選單跑出來顯示可選指令。一方面大大節省時間與腦力，另方面也可以減少打錯指令的機會。
+（Kile還提供非指令文字的自動完成以及程式碼片段(Snippets)，TexStudio似乎就沒這些了。）
+
+但有時打套件提供的指令（如\textbackslash{}cref）不會跑出來選單，這是因為自動完成功能須要.cwl檔指示指令的格式，而.cwl尚未載入。以 TexStudio來說，當它看到\textbackslash{}usepackage{package}時，將自動載入相應的.cwl（不過我不確定樣板檔.cls中的\textbackslash{}RequirePackage是否也會觸發自動載入。）。假如 TexStudio 沒有自動載入，可以從功能表的「Options -> Completion」去手動載入。以\textbackslash{}cref 來說，就是要勾選 cleveref.cwl （如果真不知道要選哪個的話就全勾吧！XD）。
+其他的編輯器同理，請自行找尋如何載入.cwl。對於自訂指令也可以自寫.cwl來解決。
+
 
 \section{Git版本管理與tex檔比較}
 其實這是兩個不同主題的東西，不過我不打算在這裡細講，只概略提一下。
@@ -1209,7 +1539,7 @@ Git是一個版本管理系統，最初用來管理程式碼（Linux kernel）�
 \url{http://www.slideshare.net/sppmg/latex-with-git}
 而遠端git倉庫可以使用``GitLab''這個免費的服務，他可以讓你選擇是否隱藏專案（也就是你的論文啦！）。
 
-論文這種東西隨時隨地多備份比較妥當（當然還有相關資料）。當年中央被偷筆電$+$隨身碟的博士生不知最後如何了......之前還有清大研究鍺烯的博士生被撞，焚毀筆電事件。
+論文這種東西隨時隨地多備份比較妥當（當然還有相關資料）。當年中央被偷筆電+隨身碟的博士生不知最後如何了......之前還有清大研究鍺烯的博士生被撞，焚毀筆電事件。
 \subsection{gitignore}
 稍微說明一下 gitignore 這個檔案。Git 可以將某目錄下所有檔案加入追蹤。但有些檔案是我們不要的暫存檔或備份檔，如\LaTeX\ 編譯產生的*.aux、*.log或是編輯器自動備份的*.backup等等。所以我們可以在git根目錄加上``.gitignore''這個檔案
 \footnote{這是Linux的檔名，加.表示隱藏檔。其他系統請自行查詢。}，這樣在大範圍加入檔案時就會略去符合條件的檔案了（仍然可以用``-f''強制加入，如最終生成的pdf）。
@@ -1252,6 +1582,7 @@ Git是一個版本管理系統，最初用來管理程式碼（Linux kernel）�
 *.sta
 *.directory
 *_latexmk
+*.tdo
 .*
 \end{lstlisting}
 
@@ -1376,15 +1707,15 @@ book類別的章節層級有：
         Tex發行版 & 作業系統 & XeTeX 版本 & 測試結果 \\ \hline
         TeX Live 2012 \newline (2012.20120611-5) & Debian GNU/Linux  \newline wheezy(7.9) & 3.1415926-2.4-0.9998 & 章節標題後立即接圖片會導致整段粗體，插入任一行文字可解決。\textbackslash{}url跨頁會導致頁眉及中間浮動環境均含連結。listings 套件的行號距離會比設定值短。 \\ \hline
         TeX Live 2016 \newline(2016.20160819-2) & Debian GNU/Linux  \newline stretch/sid(9) & 3.14159265-2.6-0.99996 & 無問題 \\ \hline
-        MiKTeX  \newline(???) & Window 7 & ??? & ??? \\ \hline
+        MiKTeX  \newline(???) & Window 7/8/10(en) & ??? & 無問題 \\ \hline
+        TeX Live 2016   & Window 7 & ??? & 無問題 \\ \hline
     \end{tabularx}
 \end{table}
 
 \section{待解決問題}
 %\todo[inline]{url package will load by biblatex. didn't work now.}
 \begin{itemize}
- \item 過長的連結會超出頁邊。本樣板使用url 套件處理這個問題，但仍無法處理超長單字。目前breakurl套件(1.40$+$)提供了anythingbreaks選項，可以任意截斷連結，請參考\url{http://tex.stackexchange.com/questions/107507/biblatex-url-breaking-not-working-in-dvi-mode} 的說明。不過breakurl 僅支援原始的\LaTeX\ ，PDFLaTeX/XeLaTeX不支援。
- \item 字體大小不合適導致\textbackslash{}large比原文還小。須要更換基礎類別。
+ \item 過長的連結會超出頁邊。本樣板使用url 套件處理這個問題，但仍無法處理超長單字。目前breakurl套件(1.40+)提供了anythingbreaks選項，可以任意截斷連結，請參考\url{http://tex.stackexchange.com/questions/107507/biblatex-url-breaking-not-working-in-dvi-mode} 的說明。不過breakurl 僅支援原始的\LaTeX\ ，PDFLaTeX/XeLaTeX不支援。
 \end{itemize}
 
 

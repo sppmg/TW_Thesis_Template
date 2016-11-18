@@ -1,4 +1,4 @@
-\documentclass[class=NCU_thesis_en, crop=false]{standalone}
+\documentclass[class=NCU_thesis, crop=false]{standalone}
 \begin{document}
 
 \chapter{Chapter name(demo)}
@@ -25,20 +25,20 @@ Second line.
     %\captionsetup[subfigure]{labelformat=empty} % hide figure's number.
     \centering
     \subcaptionbox
-        {Linux (A kernel of OS)
-        \label{fig:subfig_linux}}
-        {\includegraphics[width=0.3\linewidth]{logo-Linux.png}}
+        {caption\_1
+        \label{fig:subfig_fig1}}
+        {\includegraphics[width=0.3\linewidth]{fig1.png}}
     ~
     \subcaptionbox
-        {Debain (A popular distribution). Demo long caption,  bla bla bla bla bla.
-        \label{fig:subfig_debian}}
-        {\includegraphics[width=0.3\linewidth]{logo-Debian.png}}
+        {caption\_2
+        \label{fig:subfig_fig2}}
+        {\includegraphics[width=0.3\linewidth]{fig2.png}}
     \vspace{\baselineskip} % 分隔上下列
     \subcaptionbox
-        {GNU (A project of OS)
-        \label{fig:subfig_gnu}}
-        {\includegraphics[width=0.6\linewidth]{logo-GNU.png}}
-    \caption{caption, use ``\subref{fig:subfig_debian}'' get ID of subfigure(this ID is Debian) in caption}
+        {caption\_3
+        \label{fig:subfig_fig3}}
+        {\includegraphics[width=0.6\linewidth]{fig3.png}}
+    \caption{caption, use ``\subref{fig:subfig_fig2}'' get ID of subfigure(this ID is Debian) in caption}
     \label{fig:labal}
 \end{figure}
 

@@ -1,8 +1,106 @@
-\addbibresource{tutorial.bib} % 填上你的文獻資料庫(Biblatex 格式)，可以多次使用以加入多個來源。
+% This file is common preamble region, 
+% it will load in .cls, before hyperref and cleveref package. 
+% If your package need load aftre hyperref (to get link function), 
+% please load in main.tex by \usepackage{package}
+% --------------------------------------------------
+\addbibresource{demo.bib} % add your bib file here
+
+
 
 % for todo colors(ref: http://tex.stackexchange.com/questions/9796/how-to-add-todo-notes?noredirect=1)
-\newcommandx{\todoUnsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
-\newcommandx{\todoChange}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
-\newcommandx{\todoInfo}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
-% \newcommand{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
-% \newcommand{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+\NewDocumentCommand{\todoUnsure}{O{} +m}{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\NewDocumentCommand{\todoChange}{O{} +m}{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\NewDocumentCommand{\todoInfo}{O{} +m}{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\NewDocumentCommand{\todoImprovement}{O{} +m}{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\NewDocumentCommand{\todoThiswillnotshowUnsure}{O{} +m}{\todo[disable,#1]{#2}}
+
+% A example for define unit command.
+\providecommand{\temp}[1]{$\SI{#1}{\degreeCelsius}$}
+\providecommand{\symumm}[1]{$\SI{#1}{\milli\metre}$}
+\providecommand{\symums}[1]{$\SI{#1}{\milli\second}$}
+\providecommand{\symumM}[1]{$\SI{#1}{\milli\Molar}$}
+\providecommand{\symumv}[1]{$\SI{#1}{\milli\volt}$}
+\providecommand{\symuma}[1]{$\SI{#1}{\milli\ampere}$}
+
+\providecommand{\abs}[1]{\lvert #1 \rvert } % Required package: amsmath
+
+%%%%%%%% for codes %%%%%%%%%
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codebgcolor}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{commonStyle}{
+    frame=single,
+    %backgroundcolor=\color{codebgcolor},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\footnotesize\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small\setstretch{1.0},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,
+    caption={\protect\filename@parse{\lstname}\protect\filename@base\text{.}\protect‌​\filename@ext}, 
+        % http://tex.stackexchange.com/questions/174541/only-get-filename-and-extension-of-listing-not-whole-path
+    keepspaces=true,
+    xleftmargin=1cm,
+    %xrightmargin=1cm,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+
+\lstdefinestyle{consoleStyle}{
+    frame=single,
+    %backgroundcolor=\color{codebgcolor},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\footnotesize\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small\setstretch{1.0},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,
+    %caption={\protect\filename@parse{\lstname}\protect\filename@base\text{.}\protect‌​\filename@ext}, 
+        % http://tex.stackexchange.com/questions/174541/only-get-filename-and-extension-of-listing-not-whole-path
+    keepspaces=true,
+    xleftmargin=0cm,
+    numbers=none,
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+
+\lstdefinestyle{LatexStyle}{
+    language={[LaTeX]TeX},
+    inputpath={./}, % must same as root tex
+    frame=single,
+    %backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\scriptsize\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize\setstretch{1.0},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,
+    %caption={\protect\filename@parse{\lstname}\protect\filename@base\text{.}\protect‌​\filename@ext}, 
+        % http://tex.stackexchange.com/questions/174541/only-get-filename-and-extension-of-listing-not-whole-path
+    keepspaces=true,
+    xleftmargin=1cm,
+    %xrightmargin=1cm,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+
+\lstset{style=commonStyle} % default style
+\renewcommand{\lstlistingname}{Code} % change title of caption to ``Code'' from ``Listing'' 

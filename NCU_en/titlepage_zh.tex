@@ -1,26 +1,30 @@
-\documentclass[class=NCU_thesis_en, crop=false]{standalone}
+\documentclass[class=NCU_thesis, crop=false, float=true]{standalone}
 \begin{document}
 
-\fontsize{16}{25}\selectfont
+\def\fsUniversity{\fontsize{26}{31}\selectfont }
+\def\fsTitle{\fontsize{22}{26.4}\selectfont }
+\def\fsNames{\fontsize{16}{20}\selectfont }
 % --------define title page layout for thesis
 \sffamily % use sans font
 \newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
+\begin{spacing}{1.0}
 \begin{titlepage}
     \null\vfill
     \begin{center}
-        {\Huge\textbf{國\quad 立\quad 中\quad 央\quad 大\quad 學}\par}
-        \vspace*{30mm}
-        {\Huge {\dept} \par}
-        \vspace*{2ex}
-        {\Huge {\degree}論文\par}
+        {\fsUniversity\textbf{國\quad 立\quad 中\quad 央\quad 大\quad 學}\par}
         \vspace*{20mm}
-        {\Huge {\title} \par}
+        {\fsTitle {\dept} \par}
+        \vspace*{1ex}
+        {\fsTitle {\degree}論文\par}
+        \vspace*{20mm}
+        {\fsTitle {\title} \par}
         \vspace*{5mm}
-        {\Huge {\subtitle} \par}
+        {\fsTitle {\subtitle} \par}
         \vspace*{10mm}
         {\ifx \logo\empty\vspace*{40mm}
         \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
         \fi}
+        {\fsNames
         \begin{tabular}{l@{：}l@{\quad}r}
         研$\!$究$\!$生 & \author &       \\[1ex]
         指導教授         & \mprof & 博士     \\[1ex]
@@ -28,9 +32,9 @@
         \else  共同指導 & \sprofi & 博士\fi \\[1ex]
         \ifx \sprofii\empty
         \else  & \sprofii & 博士 \fi
-        \end{tabular}\par
+        \end{tabular}\par}
         \vspace*{5ex}
-        {\Huge {\degreedateZh} \par}
+        {\fsTitle {\degreedateZh} \par}
         \vspace*{2ex}
         \ifthenelse{\boolean{printcopyright}}
         {{{版權所有\copyright\ \author\ \copyyear} \par}}
@@ -38,6 +42,7 @@
     \end{center}
     \null\vfill
 \end{titlepage}
+\end{spacing}
 \restoregeometry
 \rmfamily % use main font
 %--------end of title page for thesis

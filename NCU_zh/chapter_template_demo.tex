@@ -1,14 +1,26 @@
 \documentclass[class=NCU_thesis, crop=false]{standalone}
+% \renewcommand{\baselinestretch}{1.5}
 \begin{document}
 
 \chapter{章名（章節示例）}
-章內容
-\section{節名}
-節內容
-\subsection{小節名}
- \subsubsection{小小節}
- \paragraph{段}
+章內容內容內容內容內容 \\
+內容內容內容
 
+\section{節名}
+節內容內容內容內容內容 \\
+內容內容內容
+
+\subsection{小節名}
+內容內容內容 \\
+內容內容內容
+
+\subsubsection{小小節}
+內容內容內容 \\
+內容內容內容
+
+\paragraph{段}
+內容內容內容 \\
+內容內容內容
 
 \chapter{文字}
 第一行。
@@ -25,21 +37,20 @@
     %\captionsetup[subfigure]{labelformat=empty} % 完全隱藏圖號
     \centering
     \subcaptionbox
-        {Linux (A kernel of OS)
-        \label{fig:subfig_linux}}
-        {\includegraphics[width=0.3\linewidth]{logo-Linux.png}}
+        {caption\_1
+        \label{fig:subfig_fig1}}
+        {\includegraphics[width=0.3\linewidth]{fig1.png}}
     ~
     \subcaptionbox
-        {Debain (A popular distribution). Demo long caption,  bla bla bla bla bla.
-        \label{fig:subfig_debian}}
-        {\includegraphics[width=0.3\linewidth]{logo-Debian.png}}
+        {caption\_2
+        \label{fig:subfig_fig2}}
+        {\includegraphics[width=0.3\linewidth]{fig2.png}}
     \vspace{\baselineskip} % 分隔上下列
     \subcaptionbox
-        {GNU (A project of OS)
-        \label{fig:subfig_gnu}}
-        {\includegraphics[width=0.6\linewidth]{logo-GNU.png}}
-     % use ``\subref{fig:subfig_debian}'' get ID of subfigure(this ID is Debian)
-    \caption{caption, 使用 \subref{fig:subfig_debian}取得子圖（Debian）編號 }
+        {caption\_3
+        \label{fig:subfig_fig3}}
+        {\includegraphics[width=0.6\linewidth]{fig3.png}}
+    \caption{caption, 使用 \subref{fig:subfig_fig2}取得子圖（Debian）編號 }
     \label{fig:labal}
 \end{figure}
 
@@ -62,7 +73,7 @@
     \begin{tabularx}{\textwidth}{| l | X |}
         \hline
         short & short short \\ \hline
-        long & long long long long long long long long long long \\ \hline
+        long & long long long long long long long long long long  long long long long long long long long long long\\ \hline
     \end{tabularx}
 \end{table}
 

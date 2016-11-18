@@ -1,0 +1,20 @@
+\documentclass[class=NCU_thesis, crop=false]{standalone}
+\begin{document}
+\chapter{LibreOffice Draw}
+\label{sec:a_loDraw}
+因為朋友的M\$ Office 無法匯出eps
+\footnote{M\$ 好像很不重視eps（還是說像NTFS，不想給死老百姓用？），預設軟體都無法讀取。}
+，於是附上我製作eps圖的方法。當然你如果有其它更好用、更順手的軟體，你就直接用那個吧！
+首先你要有LibreOffice，沒有的請去下載。\url{https://zh-tw.libreoffice.org/}
+
+LibreOffice 如同M\$ Office有各種不同的子軟體
+\footnote{不過和M\$O不同的是 LO 各軟體共用同一核心，所以很多功能是通用的。}
+，其中Draw 就是專門繪圖、製造海報的工具。
+當你畫完圖後，點滑鼠左鍵選擇欲匯出物件（按住Shift連選，或是Ctrl+A全選）並於工具列選擇「匯出」（\cref{fig:loDraw_select}）。
+存檔視窗中，副檔名使用「.eps」或是選擇類型處點選「eps」來指定匯出為eps格式。記得勾選左下角「選取」框限制僅匯出選取的物件，否則會將整張紙面一起匯出。（\cref{fig:loDraw_save}）
+按下確定存檔後會出現eps格式的設定細節。基本上不須要改，頂多注意要使用彩色還是灰階與是否壓縮。（\cref{fig:loDraw_epsOpt}）
+\insfig[0.7][fig:loDraw_select]{LibreOffice_Draw_select.png}
+\insfig[0.8][fig:loDraw_save]{LibreOffice_Draw_epsSave.png}
+\insfig[0.5][fig:loDraw_epsOpt]{LibreOffice_Draw_epsOption.png}
+
+\end{document}
