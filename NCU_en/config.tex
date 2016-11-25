@@ -4,7 +4,7 @@
 %   add to class option in main.tex ( \documentclass[draft] )
 \def\lang{en} % zh/en Set main language.
 \setboolean{disableChinese}{true} % {true}/{false} Disable chinese, for English user.
-\def\titlepageLang{} % zh/en/{} Choose language for titlepage (zh -> Chinese / en -> English / {} -> hide titlepage and disable chinese font)
+\def\titlepageLang{zh} % zh/en/{} Choose language for titlepage (zh -> Chinese / en -> English / {} -> hide titlepage and disable chinese font)
 \synctex=1 % Enable SyncTeX
 
 %%%%% Information of your document. | 定義文件資訊 %%%%%
@@ -56,16 +56,18 @@
 \def\tocDepth{2}    % 目錄顯示層級，\subsection == 2。
 
 %%%%% style of toc and titles | 目錄及章節風格 %%%%%
-% see tutorial.
-\def\tocStyle{0}
-\def\titleStyle{0}
-    \def\indentblocksss{0mm}    % indent \subsubsection{}
-    \def\indentblockpar{0mm}    % indent \paragraph{}
+% see tutorial. (0 -> original)
+\def\tocStyleAlign{0}           % 0/1
+\def\tocStyleChapter{1}         % 0/1/2
+\def\titleStyle{0}              % 0/1 
+    \def\indentBlockSSS{0mm}    % indent \subsubsection{} 
+    \def\indentBlockPar{0mm}    % indent \paragraph{}
+    \def\indentBlockSPar{0mm}   % indent \subparagraph{}
 
 %%%%% style of fonts and line stretch | 字體大小風格及行距 %%%%%
 % Base font
 \def\baseFontSize{12pt} % allowed: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
-\def\baseLineStretch{1.5}
+\def\baseLineStretch{1.3}
 % Bibliography
 \def\bibFontStyle{\small}
 \def\bibLineStretch{1.2}

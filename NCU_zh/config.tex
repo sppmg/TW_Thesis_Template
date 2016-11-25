@@ -55,11 +55,13 @@
 \def\tocDepth{2}    % 目錄顯示層級，\subsection == 2。
 
 %%%%% style of toc and titles | 目錄及章節風格 %%%%%
-% see tutorial.
-\def\tocStyle{0}
-\def\titleStyle{0}
-    \def\indentblocksss{0mm}    % indent \subsubsection{}
-    \def\indentblockpar{0mm}    % indent \paragraph{}
+% see tutorial. (0 -> original)
+\def\tocStyleAlign{0}           % 0/1
+\def\tocStyleChapter{1}         % 0/1/2
+\def\titleStyle{0}              % 0/1 
+    \def\indentBlockSSS{0mm}    % indent \subsubsection{} 
+    \def\indentBlockPar{0mm}    % indent \paragraph{}
+    \def\indentBlockSPar{0mm}   % indent \subparagraph{}
 
 %%%%% style of fonts and line stretch | 字體大小風格及行距 %%%%%
 % Base font
@@ -84,13 +86,13 @@
 %%%%% Style of titles | 標題風格 %%%%%
 \def\abstractHeaderStyle{\sffamily\Large} % Information on abstract, cls default use \centering
 
-\def\chapterTitleNumStyle{\sffamily\LARGE\bfseries} % Number of chapter, only for en
-\def\chapterTitleStyle{\sffamily\huge\bfseries} % cls default use \centering for zh
-\def\sectionTitleStyle{\sffamily\Large\bfseries}
-\def\subsectionTitleStyle{\sffamily\large\bfseries}
+\def\chapterTitleNumStyle   {\sffamily\LARGE\bfseries} % Number of chapter, only for en
+\def\chapterTitleStyle      {\sffamily\huge\bfseries} % cls default use \centering for zh
+\def\sectionTitleStyle      {\sffamily\Large\bfseries}
+\def\subsectionTitleStyle   {\sffamily\large\bfseries}
 \def\subsubsectionTitleStyle{\sffamily\normalsize\bfseries}
-\def\paragraphTitleStyle{\sffamily\normalsize\bfseries}
-\def\subparagraphTitleStyle{\sffamily\normalsize\bfseries}
+\def\paragraphTitleStyle    {\sffamily\normalsize\bfseries}
+\def\subparagraphTitleStyle {\sffamily\normalsize\bfseries}
 
 %%%%% Misc | 雜項 %%%%%
 \setboolean{pdfLinkBoxDisplay}{true} % {true}/{false} ,Draw a box on the link. It only display in pdf viewer, not on paper.

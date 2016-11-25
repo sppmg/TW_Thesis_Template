@@ -9,10 +9,12 @@
 %        LaTeX tools
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\listfiles % display used package list in .log file, information for develop.
 \RequirePackage{ifthen}
+\RequirePackage{etoolbox}
 \RequirePackage{ifplatform}  % only for auto select CJK font.
 \RequirePackage{xparse} % advanced macro package, similar with xargs
-% \RequirePackage{xargs}  % Use more than one optional parameter in a new commands , for orig todonotes macro.
+% \RequirePackage{xargs}  % Use more than one optional parameter in a new commands , for orig todonotes macro, not require now.
 % \RequirePackage{mmap} % testing
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -173,7 +175,9 @@
 \RequirePackage{titletoc}
 
 % ---------------------- Chapter title style ---------------------------
-% LaTeX 章節名稱及目錄改為中文 http://lzsh00262.blogspot.tw/2013/02/xelatex.html
+% 1. Change title to zhnumber when lang=zh (in config.tex).
+% 2. Add header to abstract. (depend on chapter title)
+% ref: LaTeX 章節名稱及目錄改為中文 http://lzsh00262.blogspot.tw/2013/02/xelatex.html
 % \titleformat{\chapter}{\centering\Huge\bfseries}{\zhnumber{\thechapter}、}{1em} {} 
 % Little hack here because need add header to abstract. You should use \titleformat(above) to do that, if you don't need header.(\titleformat is not compatible for this hack.)
 
@@ -187,7 +191,7 @@
     {\ifthenelse{\equal{#1}{Abstract}}{{\abstractHeaderEn\par}}{\vspace*{20\p@}}} % modify by sppmg
     % \abstractHeader don't forget {} for \centering
   \vspace*{20\p@}%  orig = 50pt
-  \ifthenelse{\NOT \boolean{disableChinese} \AND \equal{\lang}{zh}}{
+  \ifzh{
     % Chinese
     {\parindent \z@ \centering \normalfont % modify by sppmg
         \ifnum \c@secnumdepth >\m@ne
@@ -217,7 +221,7 @@
 \def\@makeschapterhead#1{%
     \vspace*{50\p@}%
     {
-    \ifthenelse{\NOT \boolean{disableChinese} \AND \equal{\lang}{zh}}{
+    \ifzh{
         % Chinese
         \parindent \z@ \centering % modify by sppmg
     }{
@@ -233,65 +237,107 @@
 %\titleformat{\chapter}{\centering\Huge\bfseries}{\zhnumber{\thechapter}、}{1em} {}
 %\titlespacing{\chapter}{0cm}{-1.3cm}{1em}  % 修改章節上方空白的大小
 
-% ---------------------- appendix title, header & TOC ---------------------------
-% 修改附錄的章格式，因為附錄使用字母A,B,C所以要另外定義。這裡直接修改\appendix 的定義。
-%\makeatletter
-\renewcommand\appendix{\par
-  \setcounter{chapter}{0}%
-  \setcounter{section}{0}%
-  \gdef\@chapapp{\appendixname}%
-  \gdef\thechapter{\@Alph\c@chapter}%以上複製原book.cls定義
-  \ifthenelse{\NOT \boolean{disableChinese} \AND \equal{\lang}{zh}}{
-    % Chinese
-    \titleformat{\chapter}{\centering\chapterTitleStyle}{\appendixname\thechapter、}{1em} {}% 改章首
-    \titlecontents{chapter}[0em]{}{\makebox[3.8em][l]{附錄\thecontentslabel}}{}{\titlerule*[0.4pc]{.}\contentspage}% 改目錄
-    \renewcommand{\chaptermark}[1]{\markboth{\thechapter、\ ##1}{}}% 改頁眉
-  }{}
-  \@mainmattertrue}% \appendix 置於 \backmatter 之後
-%\makeatother  % Definition inside a definition you need to double the hash char.
 
-% --------------------- title's font size ----------------------------
+% --------------------- title's style and font style ----------------------------
 % http://tex.stackexchange.com/questions/59726/change-size-of-section-subsection-subsubsection-paragraph-and-subparagraph-ti
 \titleformat*{\section}{\sectionTitleStyle}
 \titleformat*{\subsection}{\subsectionTitleStyle}
-\titleformat*{\subsubsection}{\subsubsectionTitleStyle}
-\titleformat*{\paragraph}{\paragraphTitleStyle}
+\ifcase \titleStyle
+    \titleformat*{\subsubsection}{\subsubsectionTitleStyle}
+    \titleformat*{\paragraph}{\paragraphTitleStyle}
+\or
+    \titleformat{\subsubsection}{\subsubsectionTitleStyle}{\arabic{subsubsection}.}{0.5em}{}
+    \titlespacing*{\subsubsection}{\indentBlockSSS}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+    \titleformat{\paragraph}[hang]{\paragraphTitleStyle}{(\arabic{paragraph})}{0.5em}{}
+    \titlespacing*{\paragraph}{\indentBlockPar}{3.25ex plus 1ex minus .2ex}{1em}
+\fi
 \titleformat*{\subparagraph}{\subparagraphTitleStyle}
 
 % --------------------- TOC style ----------------------------
 % 修改目錄的風格（縮排）
-\ifzh{
-\ifthenelse{\equal{\tocStyle}{0}}{
-    \titlecontents{chapter}[0em] % 數字到文字框邊
-    {}{\makebox[3.8em][l]% 3.8 = 數字到文字間距
-    {\zhnumber{\thecontentslabel}、}}{}
-    {\titlerule*[0.4pc]{.}\contentspage}%0.4 = 點距
-    % ----------------------------
-    \titlecontents{section}[1.5em]
-    {}{\makebox[2.3em][l]
-    {\thecontentslabel}}{}
-    {\titlerule*[0.4pc]{.}\contentspage}
-    % ----------------------------
-    \titlecontents{subsection}[3.8em]
-    {}{\makebox[3.0em][l]
-    {\thecontentslabel}}{}
-    {\titlerule*[0.4pc]{.}\contentspage}
+
+\ifzh{ % TOC 章級標號形式設定
+    \gdef\thecontentslabel@chapter{\zhnumber{\thecontentslabel}、}
+    \gdef\thecontentslabel@chapter@app{\appendixname\thecontentslabel}
 }{
-    \titlecontents{chapter}[0em]
-    {}{\makebox[6em][l] %3.8
-    {\zhnumber{\thecontentslabel}、}}{}
-    {\titlerule*[0.4pc]{.}\contentspage}
-    % ----------------------------
-    \titlecontents{section}[2.0em]
-    {}{\makebox[4.0em][l]
-    {\thecontentslabel}}{}
-    {\titlerule*[0.4pc]{.}\contentspage}
-    % ----------------------------
-    \titlecontents{subsection}[3em]
-    {}{\makebox[3.0em][l]
-    {\thecontentslabel}}{}
-    {\titlerule*[0.4pc]{.}\contentspage}
-}}
+    \gdef\thecontentslabel@chapter{\thecontentslabel}
+    \gdef\thecontentslabel@chapter@app{\thecontentslabel}
+}
+
+% TOC 章級風格
+\ifcase \tocStyleChapter 
+    % \tocStyleChapter == 0 近原始 LaTeX, 向上間距、粗體、無點線
+    \def\tocStyleChapterFiller{\bfseries\hfill\contentspage}
+    \def\tocStyleChapterAbove{\addvspace{1em}}
+    \def\tocStyleChapterAboveApp{\tocStyleChapterAbove} % appendix same
+    \def\tocStyleChapterFont{\bfseries}  
+\or
+    % \tocStyleChapter == 1 向上間距(至 \mainmatter 才增加)、粗體、無點線
+    \def\tocStyleChapterFiller{\bfseries\hfill\contentspage}
+    \def\tocStyleChapterAbove{}
+    \def\tocStyleChapterAboveApp{\addvspace{1em}} % appendix same
+    \def\tocStyleChapterFont{\bfseries}
+    \appto{\mainmatter}{ % 至 \mainmatter 才增加 chapter 向上間距
+        \titlecontents{chapter}[\tocNumSpaceC@Before]
+        {\addvspace{1em}}
+        {\tocStyleChapterFont\makebox[\tocNumSpaceC@Total][l]{\thecontentslabel@chapter}}
+        {\tocStyleChapterFont}
+        {\tocStyleChapterFiller}
+    }{}{}
+\or 
+    % \tocStyleChapter == 2 正常間距、正常字體、點線
+    \def\tocStyleChapterFiller{\titlerule*[0.4pc]{.}\contentspage}
+    \def\tocStyleChapterAbove{}
+    \def\tocStyleChapterAboveApp{\tocStyleChapterAbove} % appendix same
+    \def\tocStyleChapterFont{}
+\fi
+
+% \tocNumSpaceC@Before = 數字到文字框邊 , \tocNumSpaceC@Total = 數字到章名間距
+% \appendix will change \titlecontents{chapter}, see below.
+\ifcase \tocStyleAlign
+    % \tocStyleAlign == 0 , (en == LaTeX default)
+    \def\tocNumSpaceC@Before  {0em}     % chapter
+    \ifzh{
+        \def\tocNumSpaceC@Total   {3.8em}   % en = 1.5 zh = 3.8
+    }{
+        \def\tocNumSpaceC@Total   {1.5em}
+    }
+    \def\tocNumSpaceS@Before  {1.5em}   % section
+    \def\tocNumSpaceS@Total   {2.3em}
+    \def\tocNumSpaceSS@Before {3.8em}   % subsection
+    \def\tocNumSpaceSS@Total  {3.0em}
+\or
+    % \tocStyleAlign == 1
+    \def\tocNumSpaceC@Before  {0em}
+    \def\tocNumSpaceC@Total   {6em}
+    \def\tocNumSpaceS@Before  {2em}
+    \def\tocNumSpaceS@Total   {4em}
+    \def\tocNumSpaceSS@Before {3em}
+    \def\tocNumSpaceSS@Total  {3em}
+\fi
+
+% \titlecontents{section}[left (to margin)]
+%     {above} % 數字到文字框(頁)邊
+%     {before with labal (\chapter{})}
+%     {before without labal (\chapter*{})}
+%     {filler}[after]
+% 僅接受定義當下值，後面要改須重使用 \titlecontents
+% 這裡使用 \makebox 拉開標號至標題文字間距。
+\titlecontents{chapter}[\tocNumSpaceC@Before] 
+{\tocStyleChapterAbove}
+{\tocStyleChapterFont\makebox[\tocNumSpaceC@Total][l]{\thecontentslabel@chapter}}
+{\tocStyleChapterFont}
+{\tocStyleChapterFiller}
+% ----------------------------
+\titlecontents{section}[\tocNumSpaceS@Before]
+{}{\makebox[\tocNumSpaceS@Total][l]
+{\thecontentslabel}}{}
+{\titlerule*[0.4pc]{.}\contentspage}%0.4 = 點距
+% ----------------------------
+\titlecontents{subsection}[\tocNumSpaceSS@Before]
+{}{\makebox[\tocNumSpaceSS@Total][l]
+{\thecontentslabel}}{}
+{\titlerule*[0.4pc]{.}\contentspage}
 
 % 各目錄增加「頁次」文字
 \ifzh{\def\@textPage{頁次}}{\def\@textPage{page}}
@@ -310,12 +356,15 @@
 \renewcommand{\chaptermark}[1]{\markboth{%
     \ifnum \c@secnumdepth >\m@ne
         \if@mainmatter % mainmatter 才進行中文化
-            \zhnumber{\thechapter}、\ %
+            \expandafter\ifx\@chapapp\appendixname % in \appendix
+                \thechapter、\ % 
+            \else
+                \zhnumber{\thechapter}、\ %
+            \fi
         \fi
     \fi
     #1}{}}
 }
-
 
 % \renewcommand{\chaptermark}[1]{\markboth{第\arabic{chapter}章\quad  #1 }{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
@@ -335,6 +384,21 @@
     \renewcommand{\footrulewidth}{0pt}
 }
 
+% ---------------------- appendix title, header & TOC ---------------------------
+% 修改附錄的章格式，因為附錄使用字母A,B,C所以要另外定義。這裡使用etoolbox 附加指令到\appendix。
+\apptocmd{\appendix}{
+    \ifzh{
+        \titleformat{\chapter}{\centering\chapterTitleStyle}{\appendixname\thechapter}{1em}{} % 改章首
+    }{}
+    \titlecontents{chapter} % 改目錄
+        [\tocNumSpaceC@Before]
+        {\tocStyleChapterAboveApp}
+        {\tocStyleChapterFont\makebox[\tocNumSpaceC@Total][l]{\thecontentslabel@chapter@app}}
+        {\tocStyleChapterFont}
+        {\tocStyleChapterFiller}
+    \@mainmattertrue % \appendix 置於 \backmatter 之後
+}{}{}
+
 % --------------------- Some color definition ----------------------------
 % Require xcolor . color values Red, Green, Blue
 \definecolor{mygreen}{RGB}{28,172,0} 
@@ -344,6 +408,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Text & bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \RequirePackage{lmodern}
 \RequirePackage{setspace} % for setstretch
 \setstretch{\baseLineStretch} % 行距
@@ -447,6 +512,13 @@
   }%
 }% mm 可取代為\paperwidth 使用比例0-1
 % 選項grid標示座標
+
+% --------------------- show LaTeX  ----------------------------
+% This is for \parindent in LTXexample env. \parindentsave in macros_preamble.tex,
+% so creat \parindentsave here even did not use showexpl package.
+% see. http://tex.stackexchange.com/questions/98302/how-to-prevent-ltxexample-from-ignoring-the-paragraph-indentation
+\newlength{\parindentsave}
+\AtBeginDocument{\setlength{\parindentsave}{\parindent}}
 
 % --------------------- Break long url ----------------------------
 % Break long url. Only for break, \url{} from hyperref package. bibliography url can break without this package.

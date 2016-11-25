@@ -6,6 +6,13 @@
         \usepackage[yyyymmdd]{datetime}
         \renewcommand{\dateseparator}{-}
     }
+\usetikzlibrary{calc,shapes.callouts,shapes.arrows}
+\newcommand{\bubblethis}[2]{
+        \tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        (#1) {#1};\node[overlay,cloud callout,callout relative pointer={(-1.2cm,-0.7cm)},%
+        aspect=3.5,fill=green!50] at ($(2.8cm,6.2cm)$) {#2};}%
+    }
+% http://tex.stackexchange.com/questions/38805/simple-speech-bubbles-arrows-or-balloon-like-shapes-in-beamer
 
 \begin{document}
 \def\fsTitle{\fontsize{22}{26.4}\selectfont }
@@ -21,10 +28,13 @@
         {\fsTitle {\title} \par}
         \vspace*{5mm}
         {\fsTitle {\subtitle} \par}
-        \vspace*{50mm}
-        {\ifx \logo\empty\vspace*{40mm}
-        \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
+        \vspace*{40mm}
+        {\ifx \logo\empty\vspace*{40mm} \else
+            \includegraphics[height=80mm]{\logo} 
+            \bubblethis{}{\parbox{7em}{\fontsize{12}{15}\selectfont 哈哈！欸！胖胖，\\ 有人不會\LaTeX\ 耶！}}
+            \vspace*{10mm} \par
         \fi}
+%         \tikz[remember picture] \node (a) {\vphantom{X}};
         {\fsNames
         \begin{tabular}{l@{：}l@{\quad}r}
         主要作者 & \author &       \\[1ex]
@@ -38,6 +48,9 @@
         {\hspace{5cm}}
     \end{center}
     \vfill
+% \begin{tikzpicture}[remember picture,overlay]
+% \path<2> (a.east) ++(0,1) node[anchor=west,ellipse callout,fill=red!50,opacity=.5, callout absolute pointer={(a.mid)}]  {tex.stackexchange.com};
+% \end{tikzpicture}
 \end{titlepage}
 \end{spacing}
 \restoregeometry

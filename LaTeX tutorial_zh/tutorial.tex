@@ -38,6 +38,7 @@
 \section{這樣板有很厲害嗎？}
 我前後大概花了1個月左右來調樣板吧！（然後教學又是1個多月......）有很多小細節都已經解決了，也儘量做到自動化設定（連pdf屬性都貼心的幫你完成了呢！\cref{fig:pdf_metadata.png}）。當然啦！花費時間跟天資也是有關的，你要說「這東西也要花一個月？」我也認了orz......
 \insfig[0.6]{pdf_metadata.png}
+\footnote{持續更新==持續花時間......}
 
 \section{要怎麼使用樣板？}
 {\color{red}
@@ -141,7 +142,7 @@ TexStudio 由於持續開發的緣故，支援了很多有趣的東西。像是`
 apt-get install texlive texlive-bibtex-extra texlive-lang-chinese
 \end{lstlisting}
 
-稍微注意一下 lmodern 套件是否自動安裝，我在debian 7上面碰過沒自動裝，導致找不到字型的問題。（這套件包含一些英文PS字型，可能是TeX Live 2012預設字體使用到lmodern）
+稍微注意一下 lmodern 套件是否自動安裝，我在debian 7上面碰過沒自動裝，導致找不到字型的問題。（這套件包含一些英文PS字型（Latin Modern family），自樣板1.6版後預設使用它）
 
 稍微說明一下，我的樣板使用\XeLaTeX\  + Biblatex + biber 。如果要用傳統的Bibtex 做文獻索引的話免裝texlive-bibtex-extra biber。
 
@@ -594,7 +595,7 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
 \footnote{可使用\{\}來限制範圍，如\{\textbackslash{}em ... \}}
 。第二欄(小範圍)則是只影響\{...\}中的內容。最後面分別測試中英文的效果。
 \footnote{改自\LaTeX\  wikibook:\url{https://en.wikibooks.org/wiki/LaTeX/Fonts\#Shapes}}
-\footnote{底線須要另外使用ulem套件，理由是應以emphasis取代，見wikibook。}
+\footnote{底線須要另外使用ulem套件，理由是應以emphasis取代，見wikibook。中文的xeCJK亦支援ulem套件，請參考其手冊。}
 \begin{table}[h]
     \centering
     \caption{樣式範例}
@@ -614,7 +615,7 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
 \footnote{事實上是透過 fontspec套件提供的 \textbackslash{}setmainfont, \textbackslash{}setsansfont, \textbackslash{}setmonofont進行設定。而對應的中文則是由xeCJK套件提供的\textbackslash{}setCJKmainfont,\textbackslash{}setCJKsansfont,\textbackslash{}setCJKmonofont }
 
 普通文件常用的字體有\textsf{楷體}以及明體(或用宋體)兩種。通常內文較適合細字的明體，這樣讀起來較不容易疲勞。而楷體適合放在字體、空間較大的標題，因此本樣板中設定中文的主要字體為明體，而無襯線字體則是設定楷體
-\footnote{若要在一段文字中暫時的使用襯線英文與楷體，可以簡單的用\textbackslash{}rmfamily\textbackslash{}CJKfamily{sf}達成。}
+\footnote{若要在一段文字中暫時的使用襯線英文與楷體，可以簡單的用\textbackslash{}rmfamily\textbackslash{}CJKfamily{sf}達成，見\cref{sec:s_fonts}。}
 。若要新增其他字型，可以使用\textbackslash{}newfontfamily來設定。下面是一個簡單的範例，這裡假設你的系統中有「cwTeX 楷書」字型。
 \begin{lstlisting}[style=LatexStyle,xleftmargin=0.5cm]
 \begin{document}
@@ -693,7 +694,7 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
     \subcaptionbox
         {Debain (A popular distribution). Demo long caption,  bla bla bla bla bla.
         \label{fig:subfig_debian}}
-        {\includegraphics[width=0.3\linewidth]{logo-Debian.png}}
+        {\includegraphics[width=0.3\linewidth]{logo-Debian.eps}}
     \vspace{\baselineskip} % 分隔上下列
     \subcaptionbox
         {GNU (A project of OS)
@@ -1033,7 +1034,7 @@ BibLaTeX與 BibTeX 非常類似。首先你要有一個 BibLaTeX 的資料庫，
     \item 忽略\LaTeX\ 關鍵字、不分段、保持縮排與換行
     \item 最好有行號、語法高亮度
 \end{itemize}
-建議使用listings/listingsutf8套件來達成上述目標。（樣板已有）
+建議使用listings/listingsutf8套件來達成上述目標。樣板已載入此套件，使用前請先於 macro\_preamble.tex 中設定語言風格與預設使用風格，之後以``lstlisting'' 環境將程式碼包起來或是用 \textbackslash{}lstinputlisting\{\}引入程式檔。範例請見 macro\_preamble.tex 與 appendix\_code.tex
 
 \section{註解}
 \label{sec:s_comment}
@@ -1151,6 +1152,7 @@ macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所
 
 
 \section{字型}
+\label{sec:s_fonts}
 電腦上常用的中文字型有四大基本類型，分別為楷、明、宋、黑（這是不包含行書之類的非正式文書字體）。楷體較粗，明、宋較細。而黑體則是各筆劃粗細相同（常用於廣告？）。一般來說文件的內文應該要是較細的文字（如明、宋體），避免閱讀疲勞。因此此樣板設定封面、標題為楷體（應文則是預設無襯線字），其餘皆為明體。
 \footnote{對應到微軟預設字型就是標楷體以及細明體。新細明體與細明體差別為英文字元是否等距。}
 
@@ -1160,11 +1162,29 @@ macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所
 \footnote{抱怨一下，這東西用納稅人的錢做的，結果只是能免費使用，並不是開放字型....}。
     在意字體美觀的人推薦使用cwTeX的字型（Debain 套件庫已經有了，不過是舊版本。新版請google）。
 \footnote{曾見過有人認為Linux中常用的「AR PL UMing TW」以及對應的楷體很醜，所以替換成全字庫字型。}
-英文字型的分類就簡單的多。一般就分兩大類：襯線與無襯線。Windows上最常見的Times New Roman就是襯線字型。一般來說內文的英文用襯線會比較美觀。
+英文字型的分類就簡單的多。一般就分兩大類：襯線(serif)與無襯線(sans-serif)。Windows上最常見的Times New Roman就是襯線字型。一般來說內文的英文用襯線會比較美觀。
 
 另外英文還有一種等寬字型。這是因為英文字母若均為相同寬度，一般文件會顯得太零散導致不易閱讀，因此一般使用非等寬的字型（如lllll與wwwww的寬度是不同的）。但在如程式碼這種須要對齊字元的用途上，等寬字元則是比較適合的字型。
 
-此樣版可以在config.tex中分別設定中文以及英文字型。
+此樣版可以在config.tex中分別設定中文以及英文字型。預設封面為楷體中文與無襯線英文，章節標題亦為楷體中文與無襯線英文，其餘內文均為明體中文與襯線英文。\cref{fig:titleFontStyle}為預設風格與自訂的一個示範。
+\begin{figure}
+    \centering
+    \subcaptionbox
+        {預設值，楷體中文+無襯線英文
+        \label{fig:titleFontStyle_sf}}
+        {\includegraphics[width=0.3\linewidth]{titleFontStyle_sf.png}}
+    ~
+    \subcaptionbox
+        {楷體中文+襯線英文
+        \label{fig:titleFontStyle_rm}}
+        {\includegraphics[width=0.3\linewidth]{titleFontStyle_rm.png}}
+    \caption{透過config.tex設定章節標題風格}
+    \label{fig:titleFontStyle}
+\end{figure}
+
+以\textbackslash{}section為例（\textbackslash{}def\textbackslash{}sectionTitleStyle\{\}），預設的風格是\textbackslash{}sffamily\textbackslash{}Large\textbackslash{}bfseries。因為樣板指定中文的\textbackslash{}sffamily(CJKsansfont)就是楷體，所以直接使用\textbackslash{}sffamily就可以了。如果要改成\cref{fig:titleFontStyle_rm}這樣分別設定的形式，可以簡單的以\textbackslash{}rmfamily\textbackslash{}CJKfamily\{sf\}
+\footnote{這是由xeCJK套件提供的指令，\textbackslash{}CJKfamily\{sf\}表示僅中文使用\textbackslash{}sffamily，而前面已指定\textbackslash{}rmfamily，因此其餘（英文）將會是\textbackslash{}rmfamily。另外也可用\textbackslash{}CJKfamily-\{rm\}反過來操作，細節請見xeCJK手冊。}
+來取代原有的\textbackslash{}sffamily。
 
 \section{表格細說}
 \label{sec:s_advTable}
@@ -1234,6 +1254,7 @@ Use booktab :
 \end{LTXexample}
 很明顯的，改用booktab 的表格會較為美觀，這是因為 booktab 的線會分別調整其粗細以及與欄位的間隙。
 若要畫上中間的格線只要使用\textbackslash{}midrule置於行後，如\textbackslash{}hline一般。
+至於垂直格線，若和之前一樣在 tabular 的對齊設定使用``｜''符號的話，會出現垂直格線無法接上橫線的情況。這似乎無解，所以不建議在使用 booktab 的 *rule 情況下使用垂直格線。
 
 \subsection{表頭}
 \LaTeX\ 的表格首欄沒有定義任何行為。如果欲達到表頭粗體，須要自行定義。舉例來說，若之前的表格的表頭須要加粗+置中，每欄都得要寫成下面這樣（利用multicolumn調整欄位屬性成置中，不能用\textbackslash{}centering）：
@@ -1623,78 +1644,92 @@ book類別的章節層級有：
 不過學校體例參考文件中少去「\textbackslash{}subsubsection\{小小節\}」。在樣板中將以\textbackslash{}subsubsection\{小小節\}來代替段的地位。
 對於\textbackslash{}subsubsection以下層級，學校要求修改標題的標號，並且整區進行縮排。我自己大多使用到第2級(1.1.1)，第3級(1.1.1.1)只有用到一次，所以第3級以後的樣式我直接照\LaTeX\ 預設值。不過本樣板還是提供了較為符合格式的風格選項給各位。
 \subsubsection{目錄風格}
-樣本預設目錄僅顯示到第2級（\textbackslash{}subsection\{小小節\}），要調整的話可以在config.tex中修改tocdepth的數值。而目錄風格（各章節等級的縮排策略）方面，本樣板提供兩種選擇，可經由config.tex中的tocStyle切換，其結果如\cref{fig:tocStyle}（紅框是pdf viewer標示連結，不會印出）。\textbackslash{}tocStyle\{0\}表示幾乎按照\LaTeX\ 的方式縮排，\textbackslash{}tocStyle\{0\}表示完全符合學校規定縮排（不過章數值會距離過遠，我認為較醜）。
+樣本預設目錄僅顯示到第2級（\textbackslash{}subsection\{小小節\}），要調整的話可以在config.tex中修改tocDepth的數值。目錄風格方面，本樣板可分別設定對齊策略與章級風格各兩種。
+
+\paragraph{目錄對齊策略}
+可以簡單的經由config.tex中的tocStyleAlign切換，0為推薦值，英文樣板近似 \LaTeX\ 預設值，中文樣板由於加上頓號，所以將章與節對齊。設為1則是將章、節、小節都對齊。雖然完全符合學校規定，但章數值會距離過遠，加上個人認為辨識度不高，太醜。設定結果如\cref{fig:tocStyleAlign}。
 \begin{figure}
     \centering
     \subcaptionbox
-        {\textbackslash{}def\textbackslash{}tocStyle\{0\} }
-        {\includegraphics[width=0.3\linewidth]{tocStyle_0.png}}
-    ~
+        {中文樣板 \textbackslash{}def\textbackslash{}tocStyleAlign\{0\} }
+        {\includegraphics[width=0.35\linewidth]{tocStyleAlign_0_zh.png}}
+    \hspace{10mm}
     \subcaptionbox
-        {\textbackslash{}def\textbackslash{}tocStyle\{1\} }
-        {\includegraphics[width=0.3\linewidth]{tocStyle_1.png}}
-    \caption{樣板提供的目錄風格}
-    \label{fig:tocStyle}
+        {英文樣板 \textbackslash{}def\textbackslash{}tocStyleAlign\{0\} }
+        {\includegraphics[width=0.5\linewidth]{tocStyleAlign_0_en.png}}
+    
+    \vspace{10mm}
+    \subcaptionbox
+        {中文樣板 \textbackslash{}def\textbackslash{}tocStyleAlign\{1\} }
+        {\includegraphics[width=0.35\linewidth]{tocStyleAlign_0_zh.png}}
+    \hspace{10mm}
+    \subcaptionbox
+        {英文樣板 \textbackslash{}def\textbackslash{}tocStyleAlign\{1\} }
+        {\includegraphics[width=0.5\linewidth]{tocStyleAlign_0_en.png}}
+    \caption{樣板提供的目錄對齊風格}
+    \label{fig:tocStyleAlign}
 \end{figure}
 
+\paragraph{目錄章級風格}
+config.tex中的 tocStyleChapter 可以切換目錄章級的風格，如\cref{fig:tocStyleChapter}（中英文效果一樣，只貼中文），章級條目與上方拉開並使用粗體、不用點線。不過在僅有章級的區域（如摘要附近）若亦拉開則會顯得過疏。所以另提供介於中間的風格``1''，其效果如本教學，就不另外截圖了。
+\begin{figure}
+    \centering
+    \subcaptionbox
+        {\textbackslash{}def\textbackslash{}tocStyleChapter\{0\} }
+        {\includegraphics[width=0.6\linewidth]{tocStyleChapter_0.png}}
+    
+    \vspace{10mm}
+    \subcaptionbox
+        {\textbackslash{}def\textbackslash{}tocStyleChapter\{2\} }
+        {\includegraphics[width=0.6\linewidth]{tocStyleChapter_2.png}}
+    \caption{樣板提供的目錄章級風格}
+    \label{fig:tocStyleChapter}
+\end{figure}
 
 \subsubsection{標題風格}
-
 標題風格提供三種形式讓各位自行選擇要採用哪一種。（下面的示範為避免影響到主文件章節數值，使用圖片展示編譯結果。）
 
-首先示範使用\LaTeX\ 預設值（\textbackslash{}styletitles\{0\}）的情況（這裡使用巨集方式實現功能，實用上不須要在同一份文件中改變，因此樣本以變數形式設定風格以及縮排距離。），如\cref{fig:titleStyle_0}：
-% \begin{lstlisting}
-% \setTitleStyle{0}% in config.tex
-% % -----------------
-% \chapter{章}
-% \section{節}
-% \subsection{小節}
-% \subsubsection{小小節}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% \paragraph{段}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% \section{節}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% \end{lstlisting}
-\insfig[0.8][fig:titleStyle_0][!h]{titleStyle_0.png}[\textbackslash{}styletitles\{0\}]
+首先示範使用\LaTeX\ 預設值（\textbackslash{}styletitles\{0\}）的情況，如\cref{fig:titleStyle_0}：
+\begin{figure}[!h]
+    \centering
+    \subcaptionbox
+        {config.tex 中的設定}
+        {\includegraphics[width=0.3\linewidth]{titleStyle_c0.png}}
+    
+    \subcaptionbox
+        {}
+        {\includegraphics[width=0.8\linewidth]{titleStyle_0.png}}
+    \caption{\textbackslash{}def\textbackslash{}titleStyle\{0\}}
+    \label{fig:titleStyle_0}
+\end{figure}
 
 接著是修改標題形式成學校樣式，但不進行縮排。如\cref{fig:titleStyle_1}
-% \begin{lstlisting}
-% \setTitleStyle{1} % in config.tex
-% % -----------------
-% \chapter{章}
-% \section{節}
-% \subsection{小節}
-% \subsubsection{小小節}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% \paragraph{段}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% \section{節}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% \end{lstlisting}
-\insfig[0.8][fig:titleStyle_1][!h]{titleStyle_1.png}[\textbackslash{}styletitles\{1\}]
+\begin{figure}[!h]
+    \centering
+    \subcaptionbox
+        {config.tex 中的設定}
+        {\includegraphics[width=0.3\linewidth]{titleStyle_c1.png}}
+    
+    \subcaptionbox
+        {}
+        {\includegraphics[width=0.8\linewidth]{titleStyle_1.png}}
+    \caption{\textbackslash{}def\textbackslash{}titleStyle\{1\}}
+    \label{fig:titleStyle_1}
+\end{figure}
 
 最後是連縮排也符合學校規定（長度自訂）（\cref{fig:titleStyle_1i}）。不過內文同時縮排須要調整\textbackslash{}leftskip的數值，目前樣板須要手動於縮排前後修改。並且記得以空行分隔上一個段落，否則無法產生效果。\textbackslash{}leftskip只有在碰到\textbackslash{}subsubsection層級之後才須要加，碰到的機會應該不多。
-% \begin{lstlisting}
-% \setTitleStyle{1}[1cm][3cm] % in config.tex
-% % -----------------
-% \chapter{章}
-% \section{節}
-% \subsection{小節}
-% 
-% \setlength{\leftskip}{\indentblocksss} % indent for subsubsection
-% \subsubsection{小小節}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% 
-% \setlength{\leftskip}{\indentblockpar} % indent for paragraph
-% \paragraph{段}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% 
-% \setlength{\leftskip}{0cm} % recover (no indent)
-% \section{節}
-% 內文內文內文內文內文內文內文內文內文內文內文內文內文內文
-% \end{lstlisting}
-\insfig[0.8][fig:titleStyle_1i][!h]{titleStyle_1i.png}[\textbackslash{}styletitles\{1\}與\textbackslash{}leftskip]
+\begin{figure}[!h]
+    \centering
+    \subcaptionbox
+        {config.tex 中的設定}
+        {\includegraphics[width=0.3\linewidth]{titleStyle_c1i.png}}
+    
+    \subcaptionbox
+        {}
+        {\includegraphics[width=0.8\linewidth]{titleStyle_1i.png}}
+    \caption{\textbackslash{}def\textbackslash{}titleStyle\{1\}與\textbackslash{}leftskip}
+    \label{fig:titleStyle_1i}
+\end{figure}
 
 \chapter{樣板測試結果及已知問題}
 照目前測試結果來看，TeX Live以及MiKTeX最新版（2016年）都能完美支援。

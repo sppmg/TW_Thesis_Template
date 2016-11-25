@@ -1,20 +1,25 @@
-% Use XeLaTexX to build.
-% Set info in config.tex
-% Change or add chapter after ``mainmatter'' and ``appendix'', one chapter one tex file is recommended. 
-% To creat new file ,you shoule copy from ``chapter_template.tex'', because some format is requisite.
-% Under normal circumstance, you don't need change ``frontmatter'' and ``backmatter'', 
-% if you don't need ``letter_publication_request.pdf'' ,only need remove pdf file.
+% !TEX TS-program = xelatex
+% !BIB program = biber
+% !TEX encoding = UTF-8 Unicode
+
+% 使用手冊請見 TW_Thesis_Template wiki:
+% https://github.com/sppmg/TW_Thesis_Template/wiki
+
+% User guide in wiki of TW_Thesis_Template :
+% https://github.com/sppmg/TW_Thesis_Template/wiki
+
 \documentclass[]{NCU_thesis} % [draft] = don't load fig'
 \usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
 
 \begin{document}
     \frontmatter
-        \ifx\titlepageLang\empty % Avoid get error because no Chinese font.
+        % Avoid get error because no Chinese font.
+        \ifthenelse{\boolean{disableChinese} \OR \NOT \equal{\titlepageLang}{zh} \AND \NOT \equal{\titlepageLang}{en}}{
             \newcommand\thispage{Title page (cover)}
             \input{zh_hidden_warning}
-        \else
+        }{
             \input{titlepage_\titlepageLang}        % Cover/Titlepage 封面/書名頁
-        \fi
+        }
         \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
             \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
@@ -35,12 +40,12 @@
             \includepdf{letter_verification.pdf}}{}
         \cleardoublepage
         % 中英文論文摘要:內容應說明研究目的,資料來源,研究方法及研究結果等
-        \ifx\titlepageLang\empty
+        \ifthenelse{\boolean{disableChinese} \OR \NOT \equal{\titlepageLang}{zh} \AND \NOT \equal{\titlepageLang}{en}}{
             \renewcommand\thispage{Chinese abstract}
             \input{zh_hidden_warning}
-        \else
-            \input{abstract_zh} % Chinese abstract
-        \fi
+        }{
+            \input{abstract_zh}
+        }
         \input{abstract_en} % English abstract
         \input{acknowledgements} % acknowledgements(option) 誌謝(可略)
             \cleardoublepage
@@ -63,11 +68,10 @@
         \input{appendix_solution}
         \input{appendix_codes}
         
-        \ifx\titlepageLang\empty
-            \renewcommand\thispage{Chinese abstract}
+        \ifthenelse{\boolean{disableChinese} \OR \NOT \equal{\titlepageLang}{zh} \AND \NOT \equal{\titlepageLang}{en}}{
+            \renewcommand\thispage{Automatical write letters}
             \input{zh_hidden_warning}
-        \else
+        }{
             \input{appendix_letters_NCU}
-        \fi
-        
+        }
 \end{document}
