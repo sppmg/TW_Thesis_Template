@@ -505,20 +505,13 @@
 % 浮水印及自動填單
 \RequirePackage{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
 
-\newcommand{\placetextbox}[3]{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
-  \setbox0=\hbox{#3}% Put <stuff> in a box
-  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
-    \put(\LenToUnit{#1mm},\LenToUnit{#2mm}){\vtop{{\null}\makebox[0pt][c]{#3}}}%
-  }%
-}% mm 可取代為\paperwidth 使用比例0-1
-% 選項grid標示座標
-
-% --------------------- show LaTeX  ----------------------------
-% This is for \parindent in LTXexample env. \parindentsave in macros_preamble.tex,
-% so creat \parindentsave here even did not use showexpl package.
-% see. http://tex.stackexchange.com/questions/98302/how-to-prevent-ltxexample-from-ignoring-the-paragraph-indentation
-\newlength{\parindentsave}
-\AtBeginDocument{\setlength{\parindentsave}{\parindent}}
+% \newcommand{\placetextbox}[3]{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+%   \setbox0=\hbox{#3}% Put <stuff> in a box
+%   \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+%     \put(\LenToUnit{#1mm},\LenToUnit{#2mm}){\vtop{{\null}\makebox[0pt][c]{#3}}}%
+%   }%
+% }% mm 可取代為\paperwidth 使用比例0-1
+% % 選項grid標示座標
 
 % --------------------- Break long url ----------------------------
 % Break long url. Only for break, \url{} from hyperref package. bibliography url can break without this package.
@@ -566,26 +559,30 @@ pdfkeywords={\keywordsZh,\ \keywordsEn}
 \crefname{equation}{式}{式}
 \Crefname{equation}{式}{式}
 }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        My tools
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% easy insert single figure
-% \insfig[scalefactor][label][!htb]{path}[caption][short caption]
-\NewDocumentCommand\insfig{O{0.5} o O{} m O{} o}{ % need xparse package
-  \begin{figure}[#3]%[!htb]
-    \centering
-    \includegraphics[width=#1\textwidth]{#4}
-    \IfNoValueTF{#6}{\caption{#5}}{\caption[#6]{#5}}
-    %\label{\IfNoValueTF{#2}{fig:#4}{#2}}
-    \IfNoValueTF{#2}{\label{fig:#4}}{\ifx#2\empty\else\label{#2}\fi}
-  \end{figure}
-}
 
-% make circle around letters (use tikz, copy from other guy)
-\newcommand*\circhar[1]{%
-\begin{tikzpicture}
-    \node[draw,circle,inner sep=1pt] {#1};
-\end{tikzpicture}}
+\RequirePackage{sppmgTools}
+
+% % easy insert single figure
+% % \insfig[scalefactor][label][!htb]{path}[caption][short caption]
+% \NewDocumentCommand\insfig{O{0.5} o O{} m O{} o}{ % need xparse package
+%   \begin{figure}[#3]%[!htb]
+%     \centering
+%     \includegraphics[width=#1\textwidth]{#4}
+%     \IfNoValueTF{#6}{\caption{#5}}{\caption[#6]{#5}}
+%     %\label{\IfNoValueTF{#2}{fig:#4}{#2}}
+%     \IfNoValueTF{#2}{\label{fig:#4}}{\ifx#2\empty\else\label{#2}\fi}
+%   \end{figure}
+% }
+% 
+% % make circle around letters (use tikz, copy from other guy)
+% \newcommand*\circhar[1]{%
+% \begin{tikzpicture}
+%     \node[draw,circle,inner sep=1pt] {#1};
+% \end{tikzpicture}}
 
 
 \endinput % this must be the last command.

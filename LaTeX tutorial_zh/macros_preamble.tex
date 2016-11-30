@@ -9,6 +9,13 @@
 \usepackage{xltxtra} % for \XeLaTeX logo only
 % display latex code with result.(will use listings path,must change to root tex)
 \usepackage{showexpl} 
+
+% This is for \parindent in LTXexample env. \parindentsave in macros_preamble.tex,
+% so creat \parindentsave here even did not use showexpl package.
+% see. http://tex.stackexchange.com/questions/98302/how-to-prevent-ltxexample-from-ignoring-the-paragraph-indentation
+\newlength{\parindentsave}
+\AtBeginDocument{\setlength{\parindentsave}{\parindent}}
+
 \usepackage{booktabs} % beautiful line in table.
 \usepackage{ctable} 
 \let\ctabletnote\tnote  % \tnote collision with threeparttable, save to another .

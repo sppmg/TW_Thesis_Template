@@ -14,6 +14,24 @@
 \footnote{雖然部份編輯器提供即時編譯功能，只要停止輸入幾秒立刻進行編譯。但實務上這不是必要的，並且會加重電腦的負擔。另外有些如Lyx這類「所見即所得」(WYSIWYG)的軟體是基於\LaTeX\ ，各位可以玩玩看。}
 。這種非「所見即所得」(WYSIWYG)的軟體可能會讓許多新手敬而遠之。不過不用擔心，你已經拿到這份教學了，一定可以在1hr內學會寫\LaTeX\ 文件的 :D ！
 
+\section{\LaTeX 比起 Word 有什麼優點？}
+\begin{itemize}
+    \item 文字間距以及字本身大小不是固定的，它會做微幅調整讓整體最為美觀。這點在英文上更為明顯（Microtype套件能做到更漂亮）。
+    \item 圖表位置可以浮動，若要限制圖表只能在頁頂或頁底，不用再擔心插入文字會跑掉。
+    \item 程式化特性，讓許多重複文字、動作都可以簡化。
+    \item 數學公式美觀，輸入更為方便、穩定，不會像Word無法理解的跑來跑去。
+    \item 站在巨人的肩膀上。\LaTeX\ 為出版界所用，排版規則即為專業規範。
+    \item 隨時隨地寫論文，因為只要簡單的文字編輯器即可，任何智慧型手機、平板均可寫作。
+    \item 免費正版，不會好心的告訴你「你是盜版的受害者」。讓你專心寫論文。
+\end{itemize}
+
+\section{新手如何學\LaTeX\ ？}
+\begin{enumerate}
+    \item 砍掉Windows... 喔不，是忘了 Word。\LaTeX\ 不是Word，也不是單純的記事本。請不要用Word 的方式去使用\LaTeX\ 。（其實很多人把Word當記事本用....）
+    \item 快速瀏覽過本教學。不懂沒關係，至少知道\LaTeX\ 有哪些功能、要到哪裡找。瀏覽一遍只要15分鐘，不知道好用功能可以浪費你好幾天。（\emph{學弟妹們！不要再手打圖表編號了啊!!}）本教學不會是最好的\LaTeX\ 教學，不過我相信對中文使用者來說，這是非常好入門的教學。至少足夠你寫論文了！
+    \item 實踐中學習。快寫論文吧！
+\end{enumerate}
+
 \section{這樣板和中央大學(羅吉昌先生)提供的有何不同？}
 嗯.... 這對我來說是能否編譯的差別 XD 。 原因我也不知道為何，不過不少同學即使能夠產生PDF檔，也還是須要修改一些小地方。所以我乾脆就把我從頭打造的設定做成樣板啦！
 \footnote{其中還是有很小一部份是修改自羅吉昌的樣板，譬如封面頁的格式幾乎就是羅吉昌的。}
@@ -32,13 +50,14 @@
     \item 附錄編號採用英文字母A,B,C。理由：附錄編號與正文不該相同。（羅先生樣板雖然表面符合學校格式，但實在不應該讓章條目是中文，節條目出現英文A.1。）
     \item 節編號的連接符「-」換成「.」。理由：1. \LaTeX\ 預設。 2. 表達較為清晰、美觀。 3. 沒看過用「-」的。
     \item 圖、表、公式全部以章分別編號。理由：1. \LaTeX\ 預設。 2. 這樣做更能了解內容類別。
+    \item 參考文獻格式使用 Nature 風格。理由：國際通用、製作方便。
 \end{itemize}
 另外還有章節風格的問題，請見\cref{sec:s_specialTemplate_ncu_secStyle}。
 
 \section{這樣板有很厲害嗎？}
-我前後大概花了1個月左右來調樣板吧！（然後教學又是1個多月......）有很多小細節都已經解決了，也儘量做到自動化設定（連pdf屬性都貼心的幫你完成了呢！\cref{fig:pdf_metadata.png}）。當然啦！花費時間跟天資也是有關的，你要說「這東西也要花一個月？」我也認了orz......
-\insfig[0.6]{pdf_metadata.png}
-\footnote{持續更新==持續花時間......}
+我最初大概花了1個月左右來調樣板吧！（然後教學又是1個多月......）有很多小細節都已經解決了，也儘量做到自動化設定（連pdf屬性都貼心的幫你完成了呢！\cref{fig:pdf_metadata.png}）。當然啦！花費時間跟天資也是有關的，你要說「這東西也要花一個月？」我也認了orz......
+\fig[0.7][][t]{pdf_metadata.png}
+\footnote{持續更新中==持續花時間......}
 
 \section{要怎麼使用樣板？}
 {\color{red}
@@ -75,8 +94,9 @@
 中文的完整文件有\LaTeX\ 123
 \footnote{\url{http://www.cs.pu.edu.tw/~wckuo/doc/latex123/node1.html}}。
 不過文中使用的是\LaTeX\ + CJK套件，而本文用的是\XeLaTeX\ ，少數內容與本樣板不同。
+另外還有cwTeX的文件也可以參考。
 
-如果你碰到問題，研究半天無解，想問人沒人問又不想上英文論壇問，可以上ptt的latex板試試。（那裡臥虎藏龍啊！）
+如果你碰到問題，研究半天無解，想問人沒人問又不想上英文論壇問，可以上ptt的 LaTeX 板試試。（那裡臥虎藏龍啊！）
 
 \section{MATLAB 圖要如何插入？}
 不管你是用MATLAB還是Origin還是其他軟體生成的圖，都要匯出成一般圖檔才能插入。建議格式依序為為eps、png、jpg。
@@ -86,6 +106,17 @@
 \section{編譯出錯怎辦？}
 看錯誤訊息囉！首先回憶你剛剛做了什麼。接著儘量減少錯誤的可能，把新增行一一註解掉。有必要的話新增一個空的子檔，把新增內容複製過去檢查（會比編譯整份文件快得多）。
 如果自己找不出解決辦法，試著把錯誤訊息拿去google看看。
+
+\section{為什麼你的樣板沒有附書脊（側邊）？}
+目前還沒做，實際上也不須要。校園四周影印店的人比你我還專業！（我不清楚書皮製作流程，影印店也有可能為了方便製作根本不用你的書脊。）
+
+\section{台大有規定要加密、保全，為什麼你沒有？}
+{\color{red}因為我認為加密完全沒有用，最後害到的只有你的讀者。}如果你的論文真有極高價值，就是花錢請人重打一份都可以。或是直接OCR也可以獲取文章資訊，所以最好的保全方式就是根本不要拿出來。最終，你的加密只會讓不去破解的使用者感到麻煩而已。看看影音公司為了防止盜版做了多少加密措施，結果要盜的人直接轉錄去除加密。而乖乖牌使用者則要忍受一堆限制，還有未來可能無法使用的問題。
+\footnote{DRM, \url{https://zh.wikipedia.org/wiki/\%E6\%95\%B0\%E5\%AD\%97\%E7\%89\%88\%E6\%9D\%83\%E7\%AE\%A1\%E7\%90\%86}}
+同樣的，Windows使用者因為沒連網就要被抹黑使用盜版，而破解版爽爽用～～（還好我用Linux，沒這問題:D）
+
+\section{為什麼你的\LaTeX 歪歪的啊！}
+這是\LaTeX 的logo，本來就是\textit{歪歪}的。你可以用\textbackslash{}LaTeX 指令做出。注意大小寫以及後面要有空格區別指令與後方文字。英文環境下要再後面加一個反斜線像這樣：\verb*|\LaTeX\ |，不然因為空格被當分隔字元，\LaTeX\ 會和後面文字黏在一起。
 
 \section{為什麼你一直Linux Linux的啊！}
 正啊! lol \\
@@ -175,7 +206,7 @@ Zotero 有Firefox addon 版以及Standalone版
 Zotero 可由官網\url{https://www.zotero.org/}下載。而BBT擴充的專案位於\url{https://github.com/retorquere/zotero-better-bibtex}。安裝說明頁 \url{https://github.com/retorquere/zotero-better-bibtex/wiki/Installation} 其中的xpi檔連結即為BBT套件，下載並安裝至Zotero/Firefox。
 
 安裝完畢後開啟Zotero 設定視窗，在「匯出」分頁的「預設輸出格式」選「Better BibTeX Quick Copy」即可使用拖曳插入\textbackslash{}cite\{cite\_key\} 的功能。
-\insfig[0.7][][h]{tutorial_zotero_bbt_config.png}[BBT拖曳插入cite\_key的設定方法。]
+\fig[0.7][][h]{tutorial_zotero_bbt_config.png}[BBT拖曳插入cite\_key的設定方法。]
 \subsection{Zotero使用方法}
 Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\cref{fig:zotero_save}為儲存一篇\emph{Nature}期刊的例子。只要在Firefox上點一點，不但儲存作者、期刊標題等資訊，連pdf檔都一起存進來了呢！（當然你要有權限才可以啦！還有像APS系列期刊還要先朝\emph{愛因斯坦}三鞠躬才準載喔！）
 \begin{figure}
@@ -234,7 +265,7 @@ Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\
 這節的說明若涉及到\LaTeX\ 專有名詞請先閱讀後面教學。
 \subsection{取得專案}
 本專案公開於GitHub，你可以在``TW\_Thesis\_Template''專案首頁\cite{_sppmg/tw_thesis_template_????}（不是我的帳號首頁喔！）右邊找到Download鈕（\cref{fig:github_pjDownload.png}）下載整個專案（github不提供下載單一目錄。單檔可以進入頁面後另存）。下載前確認你要載的版本，左側``Branch''鈕可以選擇不同的分支（\cref{fig:github_branchList}），master分支通常是穩定版，而有時為了測試會新增develop分支。``tag''則是在重要版本發布時(Ver 1.0)才會特別標記（\cref{fig:github_tagList}）。
-\insfig[0.5]{github_pjDownload.png}
+\fig[0.5]{github_pjDownload.png}
 \begin{figure}
     \centering
     \subcaptionbox
@@ -262,12 +293,15 @@ Zotero 的一個最方便的地方就是直接由瀏覽器匯入所須資訊。\
         \hline
         codes/  & 用來存放程式碼。 \\ \hline
         figures/    & 用來存放論文中的圖片。亦可直接存在根目錄，但可能顯得凌亂。 \\ \hline
-        NCU\_thesis.cls & 樣板主要設定，基於\LaTeX\ book class，須要修改格式可以由此檔修改。 \\ \hline
+        NCU\_thesis.cls & 樣板連結，基本上不處理設定，提供各.tex子檔使用。 \\ \hline
+        NCU\_thesis\_*.cls & 樣板主要設定，基於 extbook class，須要修改格式可以由此檔修改。 \\ \hline
+        sppmgTools.sty & sppmg 提供的工具，可於各樣板間共用，因此另外獨立於cls。（請置於主檔同目錄或 \TeX\ 之套件搜尋路徑中） \\ \hline
+        sppmgTools.cwl & sppmg 提供工具的指令形式，用於編輯器「自動完成」之功能（見\cref{sec:s_autocomplete}），請自行確認編輯器如何載入。 \\ \hline
         main.tex & 主檔案。\textbf{欲生成整份文件請編譯此檔}。檔案用於定義各子檔（章節）順序。  \\ \hline
         config.tex & 個人資訊設定檔。設定如論文題目等設定。\textbf{請設定使用之中文字型再編譯}。修改的方法是直接將花括號\{\}內改成你要的設定值\tnote{a}，不然可能因找不中文字型而出錯。\textbf{本樣板可以利用設定作業系統來使用各系統預設字型}。  \\ \hline
         macros\_preamble.tex & 共用導言檔。將你要放在各個檔案導言區\tnote{b}的指令置於此檔。此檔將由NCU\_thesis.cls讀入，子文件中不須再引入。  \\ \hline
         macros\_document.tex & 共用文內設定。有些指令必須置於文內（\textbackslash{}begin\{document\}內），如設定字體大小的fontsize指令。這類型指令可置於此檔保持各子檔整潔以及避免漏放指令。（這個檔案會自動載入於\textbackslash{}begin\{document\}之後）  \\ \hline
-        titlepage.tex & 封面。（英文版有兩種封面，但如非必要建議僅用中文封面）  \\ \hline
+        titlepage*.tex & 書名頁/封面，中央格式一樣，因此電子檔僅使用一張。（英文版有兩種封面，但如非必要建議僅用中文封面）  \\ \hline
         acknowledgements.tex & 誌謝（可不加，自行於main.tex註解掉。）  \\ \hline
         abbreviation.tex & 符號表。這裡簡單的以表格列出。\tnote{c}  \\ \hline
         abstract\_*.tex & 各語系摘要。  \\ \hline
@@ -373,6 +407,7 @@ Package biblatex Warning: Please (re)run Biber on the file:
 \end{lstlisting}
 或是編譯完發現pdf檔缺東缺西（目錄不正常啦、todonotes 的線沒對到之類的）就可能要再執行一次 xelatex。
 
+編譯過程中若是遇到錯誤會暫停，並顯示在終端上（假設你用文字式終端編譯以及使用了errorstopmode）。按<Enter> 鍵可以略過這個錯誤（文件也不會是完整的）。若是要直接終止編譯過程，可以輸入``x''。
 
 編譯完成後，若你的系統上有Ghostscript (Linux上應該很常見)可以以下面指令壓縮pdf檔：
 \begin{lstlisting}[style=consoleStyle,language=bash]
@@ -630,14 +665,13 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
 
 \section{圖片}
 \label{sec:s_figure}
-\XeLaTeX\ 支援的圖片格式有eps, pdf, png, jpg。數據圖推薦使用eps格式，因為eps是向量圖檔，縮放不會失真。流程圖或一些手繪線條圖，雖然\LaTeX\ 有套件可以畫出，但我建議初學者還是用Dia/LibreOffice Draw之類的
-\footnote{推薦的自由軟體：影像、照片修圖：GIMP。向量圖、手繪線條：Inkscape、LibreOffice Draw。流程圖：Dia}，
-先畫完再匯出成eps插入比較快。LibreOffice Draw的匯出方法見\cref{sec:a_loDraw}。
+\XeLaTeX\ 支援的圖片格式有eps, pdf, png, jpg。數據圖推薦使用eps格式，因為eps是向量圖檔，縮放不會失真。流程圖或一些手繪線條圖，雖然\LaTeX\ 有套件可以畫出，但我建議初學者還是用Dia/LibreOffice Draw之類的，先畫完再匯出成eps插入比較快。
+\footnote{推薦的自由軟體：影像、照片修圖：GIMP。向量圖、手繪線條：Inkscape、LibreOffice Draw。流程圖/關係圖：Dia、Graphviz}
+LibreOffice Draw的匯出方法見\cref{sec:a_loDraw}。
 \footnote{M\$ Office 「力點」據說無法匯出成eps格式。}
 
-這裡用的圖片全部都不採用「文繞圖」模式，一般正式文件應該也很少使用文繞圖。欲使用的話可使用wrapfigure套件
+這裡用的圖片全部都不採用「文繞圖」模式，一般正式文件應該也很少使用文繞圖。欲使用的話可使用wrapfigure套件。
 \footnote{\url{https://nl.sharelatex.com/learn/Inserting\_Images}}
-。
 
 \subsection{插入單一圖片}
 \begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
@@ -650,16 +684,19 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
 \end{LTXexample}
 注意幾件事：
 \begin{itemize}
-    \item \{figure\}環境為一個浮動性環境，也就是說在沒有使用[h]選項的情況下，\LaTeX\ 會自動為我們選擇適當位置。據我個人觀察，它會儘量不切斷文字，並放置於頁的上、下方，再來是直接放置於同一頁。雖然說一般文章會建議不要使用h(here)選項強制置於指令位置，但有時\LaTeX\ 自動排列會出現一些非常愚蠢的結果，可能還是須要自行決定是否使用h。
+    \item \{figure\}環境為一個浮動性環境，也就是說在沒有使用[h]選項的情況下，\LaTeX\ 會自動為我們選擇適當位置。細節請參考\cref{sec:s_float}
         \footnote{本樣板已於cls中設定FloatBarrier，浮動環境不會超出\textbackslash{}subsubsection範圍。}
     \item \textbackslash{}includegraphics中，width=0.2\textbackslash{}textwidth 指得是縮放圖形至0.2倍行寬。
     \item \textbackslash{}label須要放在\textbackslash{}caption之後，因為\textbackslash{}caption存在\textbackslash{}label才會生成標記。
 \end{itemize}
 若只是插入一張圖片，上面的指令稍嫌麻煩，於是我提供一個簡化指令，其語法如下：
 \begin{lstlisting}
-\insfig[scalefactor][label][!htb]{path}[caption][short caption]
+\fig[scalefactor][fig:label][!htb]{path}[caption][short caption]
 \end{lstlisting}
-除path外，其餘均可忽略，但[]中間選項忽略時要補上空括號，以下照優先順序排列說明。
+除path外，其餘均可忽略，但須注意[]在\{\}前後分別為前三後二，若提供數目不足會當作左方的設定值。例如\{\}前只提供兩個[]，則第一個為[scalefactor]，第二個為[fig:label]
+\footnote{雖然這裡寫得是[fig:label]，但其實``fig:'' 就是 label 的內容，見\cref{sec:s_labelRef}。}
+。若須要忽略中間的[fig:label]必須補上空括號，以下照優先順序排列說明。
+\footnote{[scalefactor]基於\textbackslash{}textwidth，也就是文字行寬。數值範圍[0～1]}
 \begin{enumerate}
     \item path，圖片路徑含副檔名。
     \item scalefactor縮放因子，0.0～1.0倍行寬，預設0.5
@@ -670,15 +707,15 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
 \end{enumerate}
 須要注意的是括號僅path為大/花括號，這是因為路徑為必要參數。以下示範各種使用方法：
 \begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
-\insfig{logo-Linux.png}
-\insfig{logo-Linux.png}[line 2, caption]
-\insfig[0.15]{logo-Linux.png}
-\insfig[0.15][][h]{logo-Linux.png}[line 4, caption]
-\insfig[0.15][fig:labal_test_1][h]{logo-Linux.png}[line 5, caption]
-\insfig[0.15][fig:labal_test_2]{logo-Linux.png}[line 6, caption]
-\insfig[0.15][fig:labal_test_3][!hbt]{logo-Linux.png}[line 7, caption][short caption]
+\fig{logo-Linux.png}
+\fig{logo-Linux.png}[line 2, caption]
+\fig[0.15]{logo-Linux.png}
+\fig[0.15][][h]{logo-Linux.png}[line 4, caption]
+\fig[0.15][fig:label_test_1][h]{logo-Linux.png}[line 5, caption]
+\fig[0.15][fig:label_test_2]{logo-Linux.png}[line 6, caption]
+\fig[0.15][fig:label_test_3][!hbt]{logo-Linux.png}[line 7, caption][short caption]
 \end{LTXexample}
-省略labal的圖會自動設定labal為``fig:logo-Linux.png''
+省略label的圖會自動設定label為``fig:logo-Linux.png''
 
 \subsection{插入多張圖片}
 這裡使用subcaption套件並且使用\textbackslash{}subcaptionbox ，它可以對齊各子圖的底部，多行caption時比較整齊。下面範例同時示範文內引用的方法。
@@ -702,15 +739,21 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
         {\includegraphics[width=0.6\linewidth]{logo-GNU.png}}
      % use ``\subref{fig:subfig_debian}'' get ID of subfigure(this ID is Debian)
     \caption{caption, 這裡可使用 \subref{fig:subfig_debian}取得子圖（Debian）編號 }
-    \label{fig:multifig_labal}
+    \label{fig:multifig_label}
 \end{figure}
 % 以下內文示範引用
-\cref{fig:multifig_labal}為三張圖的編號，Debian是\cref{fig:subfig_debian}。
+\cref{fig:multifig_label}為三張圖的編號，Debian是\cref{fig:subfig_debian}。
 \end{LTXexample}
-\~{} 表示在圖片間插入間隔，當圖片較密時比較美觀（亦可用\textbackslash{}hspace\{\}來指定）。使用這個多圖的格式時，圖片一行的寬度總和建議不要超過「0.98\textbackslash{}linewidth」，不然會自動折行跑到下一行去。也由於這個自動排列的特性，\textbackslash{}subcaptionbox無法做很精確的圖片排列，譬如說第一行0.3，第二行$0.3+0.3+0.3$，\textbackslash{}subcaptionbox一定會將第二、三張圖移到第一行。如果要做這種設定請自行參考minipage用法。
+``\~{}'' 表示在圖片間插入間隔，當圖片較密時比較美觀（亦可用\textbackslash{}hspace\{\}來指定）。圖片一行的寬度總和建議不要超過「0.98\textbackslash{}linewidth」，不然會自動折行跑到下一行去。
+若要控制圖片如「品」字排列（強制換行），可以將上面的``\~{}'' 取代為空行，若要再加大上下間距可以用\textbackslash{}vspace\{\}
+\footnote{\textbackslash{}hspace\{\}、\textbackslash{}vspace\{\}可指定長度單位，如\textbackslash{}hspace\{5mm\}}
+。
+當子圖太小時， caption 可能會因為圖片不夠寬導致折行並加大文字間距，非常難看。可以加上subcaptionbox的寬度選項，如： \textbackslash{}subcaptionbox\{caption\}[5cm]\{\textbackslash{}includegraphics .... \} 手動設定圖框的寬度。
+如果要做其他更細緻的子圖位置設定，請自行參考minipage用法。
 \footnote{\url{http://tex.stackexchange.com/questions/55337/how-to-use-figure-inside-a-minipage}}
 
-引用圖片時直接使用\textbackslash{}labal的標記即可，子圖會自動加上編號。
+引用子圖時直接使用子圖(\textbackslash{}subcaptionbox)的\textbackslash{}label的標記即可，子圖會自動加上編號。
+
 
 \section{表格}
 \label{sec:s_table}
@@ -719,7 +762,7 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
 \footnote{事實上這個距離由\textbackslash{}abovecaptionskip 和\textbackslash{}belowcaptionskip 設定，預設為10pt、0pt。}
 ，所以本樣板透過floatrow套件設定表格的caption位置，\LaTeX\ code 中\textbackslash{}caption也不必特別寫在tabular上方。）
 
-表格的\{table\}環境和\{figure\}環境一樣屬於浮動性環境，詳情見\cref{sec:s_figure}中的說明。
+表格的\{table\}環境和\{figure\}環境一樣屬於浮動性環境，詳情見\cref{sec:s_float}中的說明。
 \subsection{一般表格}
 \begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
 \begin{table}[h]
@@ -738,7 +781,9 @@ size指定大小（單位pt），baselineskip為行高（\LaTeX\ 預設值10pt,1
 \textbackslash{}begin\{tabular\}\{| l | l |\}旁的「|」表示畫垂直線，英文字母「l」表示左對齊，\textbackslash{}hline表示水平線。對齊控制除了「l」外，亦可用「c」(center)、「r」(right)。表格分隔若想用其他字元亦可用「@\{\}」處理，樣板的符號列表就是利用冒號分隔「@\{：\}」
 
 \subsection{自動折行表格}
-利用tabularx 套件使表格自動折行。下面以原始tabular進行對照。當文字寬度超出表格時，原始tabular會超出頁面(下面超出的表格是正常的喔！)，而tabularx會自動折行以及調整表格。
+tabularx 套件的 tabularx 環境可以設定表格寬度，過長的內容將自動折行（其實這才是我的目的）。下面以原始tabular進行對照。當文字寬度超出表格時，原始tabular會超出頁面(下面超出的表格是正常的喔！)，而tabularx會自動折行以及調整表格至行寬。
+\footnote{更多資訊請參考wikibook https://en.wikibooks.org/wiki/LaTeX/Tables\#The\_tabularx\_package }
+
 \begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
 \begin{table}[h]
     \centering
@@ -898,11 +943,11 @@ $\SI{25}{\degreeCelsius}$ \\
 \end{LTXexample}
 
 \section{標記與參考Cross-referencing}
-\label{sec:s_labalRef}
+\label{sec:s_labelRef}
 「標記與參考」是\LaTeX\ 很好用的一個功能。各位千萬不要手打「見圖 1.1」啊!!標記可以設定一個標籤給它，而內文可以藉由參考指令取得標記位置的數值。這功能可以用在圖、表格、章節、文獻之上。
 
-\subsection{標記(labal)}
-標記方法前面已經提到，用\textbackslash{}labal\{type:mylabal\}標記。type方面如\cref{tab:labal_type}所示。
+\subsection{標記(label)}
+標記方法前面已經提到，用\textbackslash{}label\{type:mylabel\}標記。type方面如\cref{tab:label_type}所示。
 \begin{table}[!t]
     \centering
     \caption{常用標記類型}
@@ -913,15 +958,15 @@ $\SI{25}{\degreeCelsius}$ \\
         eq  & equation \\ \hline
         sec & section \\ \hline
     \end{tabular}
-    \label{tab:labal_type}
+    \label{tab:label_type}
 \end{table}
 有些套件會用到這個縮寫，所以最好符合通用習慣。(其餘見\url{https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing\#Introduction})
-稍微注意的是\textbackslash{}labal\{\}要放在\textbackslash{}caption\{\}之後才會有作用。（caption也不能為空喔！）
+稍微注意的是\textbackslash{}label\{\}要放在\textbackslash{}caption\{\}之後才會有作用。（caption也不能為空喔！）
 
 \subsection{參考(ref/cref)}
-假設你已經在figure中使用\textbackslash{}labal\{fig:image001\}，那文章中若要產生此圖的標號可以用\textbackslash{}ref\{fig:image001\}，但有時我們懶得每個圖都要打``\emph{fig}. \textbackslash{}ref\{fig:image001\}這樣，所以我這使用了cleveref 套件。它提供\textbackslash{}cref指令自動產生相對應的文字。
+假設你已經在figure中使用\textbackslash{}label\{fig:image001\}，那文章中若要產生此圖的標號可以用\textbackslash{}ref\{fig:image001\}，但有時我們懶得每個圖都要打``\emph{fig}. \textbackslash{}ref\{fig:image001\}這樣，所以我這使用了cleveref 套件。它提供\textbackslash{}cref指令自動產生相對應的文字。
 \footnote{文字可以由\textbackslash{}crefname修改，見cls檔。cleveref亦提供大寫版\textbackslash{}Crefname用於行首風格（大寫）。不過中文無此須求。}
-% \insfig[0.3][fig:reftest0]{logo-Linux.png}[this is ref test figure.]
+% \fig[0.3][fig:reftest0]{logo-Linux.png}[this is ref test figure.]
 % (insfig will add ``fig:'')\\
 % Use \textbackslash{}ref :\ref{fig:reftest}\\
 % Use \textbackslash{}cref :\cref{fig:reftest}
@@ -936,11 +981,14 @@ $\SI{25}{\degreeCelsius}$ \\
 Use \textbackslash{}ref :\ref{fig:reftest}\\
 Use \textbackslash{}cref :\cref{fig:reftest}
 \end{LTXexample}
-
+\textbackslash{}cref 支援多個標籤，如：\textbackslash{}cref\{ref1,ref2,ref4\} 。
+\textbf{（注意！中間不可插入空格。）}
+亦提供連續引用指令\textbackslash{}crefrange。
+\footnote{範例見\url{http://texblog.org/2013/05/06/cleveref-a-clever-way-to-reference-in-latex/}，連接文字、符號欲修改請參考手冊。}
 
 \section{文獻}
 \label{sec:s_bib}
-如同之前的\textbackslash{}labal、\textbackslash{}ref 。插入引用文獻須要建立文獻條目，再利用\textbackslash{}cite\{cite\_key\}來插入條目編號。
+如同之前的\textbackslash{}label、\textbackslash{}ref 。插入引用文獻須要建立文獻條目，再利用\textbackslash{}cite\{cite\_key\}來插入條目編號。
 \footnote{下面提到的bibtex, biber, biblatex, natbib 詳細資訊可參考  \url{http://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib}}
 
 \subsection{嵌入式文獻資料庫}
@@ -981,6 +1029,7 @@ see bibliography \cite{lamport94}.
 
 BibTeX生成的文獻編號一律是數字，如果你須要更有變化譬如作者和年份(eg. Roberts, 2003)，那你可以使用Natbib套件，不過\textbackslash{}cite指令須要修改。這部份請自行查詢wikibook
 \footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management\#Natbib}}
+\footnote{ShareLaTeX 有一個 BibTeX風格列表預覽 https://www.sharelatex.com/learn/Bibtex\_bibliography\_styles }
 。
 
 \subsection{BibLaTeX}
@@ -1017,6 +1066,7 @@ BibLaTeX與 BibTeX 非常類似。首先你要有一個 BibLaTeX 的資料庫，
 其引用標記使用數字``[1]''，且列表順序照文內出現順序，也就是隱含了\verb| citestyle=numeric-comp, sorting=none|這兩個選項。理工論文通常使用這樣的設定即可，但文組論文據說較習慣使用作者名來標記和排序，可以在選項處加上\verb|citestyle=authoryear-comp, sorting=nyt|。\textbf{（樣板使用者可以在config.tex中設定bibStyleNameYear為true。）}
 其他風格或是排序方法請自行參考套件手冊並自行於cls檔中修改。
 \footnote{排序方法還有依作者字母排序，也有相應的CJK排序。}
+\footnote{ShareLaTeX 有一個 BibLaTeX 風格列表預覽  https://www.sharelatex.com/learn/Biblatex\_bibliography\_styles}
 
 編譯方面與BibTeX類似，一樣須要多執行一次編譯動作，只不過中間換成biber。也就是說至少要經過 xelatex tex $\rightarrow$ biber tex $\rightarrow$ xelatex tex 三個動作。tex附檔名(.tex)不用加。
 
@@ -1172,12 +1222,13 @@ macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所
     \subcaptionbox
         {預設值，楷體中文+無襯線英文
         \label{fig:titleFontStyle_sf}}
-        {\includegraphics[width=0.3\linewidth]{titleFontStyle_sf.png}}
-    ~
+        {\includegraphics[width=0.6\linewidth]{titleFontStyle_sf.png}}
+    
+    \vspace{5mm}
     \subcaptionbox
         {楷體中文+襯線英文
         \label{fig:titleFontStyle_rm}}
-        {\includegraphics[width=0.3\linewidth]{titleFontStyle_rm.png}}
+        {\includegraphics[width=0.6\linewidth]{titleFontStyle_rm.png}}
     \caption{透過config.tex設定章節標題風格}
     \label{fig:titleFontStyle}
 \end{figure}
@@ -1185,6 +1236,38 @@ macro\_document.tex 會在碰到\textbackslash{}begin\{document\}時載入，所
 以\textbackslash{}section為例（\textbackslash{}def\textbackslash{}sectionTitleStyle\{\}），預設的風格是\textbackslash{}sffamily\textbackslash{}Large\textbackslash{}bfseries。因為樣板指定中文的\textbackslash{}sffamily(CJKsansfont)就是楷體，所以直接使用\textbackslash{}sffamily就可以了。如果要改成\cref{fig:titleFontStyle_rm}這樣分別設定的形式，可以簡單的以\textbackslash{}rmfamily\textbackslash{}CJKfamily\{sf\}
 \footnote{這是由xeCJK套件提供的指令，\textbackslash{}CJKfamily\{sf\}表示僅中文使用\textbackslash{}sffamily，而前面已指定\textbackslash{}rmfamily，因此其餘（英文）將會是\textbackslash{}rmfamily。另外也可用\textbackslash{}CJKfamily-\{rm\}反過來操作，細節請見xeCJK手冊。}
 來取代原有的\textbackslash{}sffamily。
+
+\section{浮動環境}
+\label{sec:s_float}
+% 
+
+在基礎教學中，我們已經看到圖片環境\{figure\}與表格環境\{table\}都屬於浮動環境。（其實前面沒講的是，即使你不加這兩個環境一樣可以貼圖或是創造表格，只是說就不能浮動了。）
+而其置放位置\LaTeX\ 已經幫我們深思過了，一般來說不須要修改。
+\footnote{據我個人觀察，它會儘量不切斷文字，並放置於頁的上、下方，再來是直接放置於同一頁。雖然說一般文章會建議不要使用h(here)選項強制置於指令位置，但有時\LaTeX\ 自動排列會出現一些非常愚蠢的結果，可能還是須要自行決定是否使用h。}
+\footnote{約有20個因素會影響\LaTeX\ 判斷放置位置。}
+不過\LaTeX\ 仍舊提供幾個參數讓我們手動選擇（\cref{tab:floatOpt}）。參數可以同時使用，如[ht]或[!hbt]。這表示允許的位置集，其順序不影響結果。
+\begin{table}
+\centering
+\caption{浮動環境選項}
+\begin{tabular}{|c|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{參數}} &   \multicolumn{1}{c|}{\textbf{說明}}   \\ \hline
+    !       &   覆蓋原有設定。 \\ \hline
+    h       &   here, 插入於\LaTeX\ 原始碼插入處。\\ \hline
+    t       &   top, 頁頂。 \\ \hline
+    b       &   bottom, 頁底。 \\ \hline
+    p       &   page, 置於專頁 。\\ \hline
+\end{tabular}
+\label{tab:floatOpt}
+\end{table}
+
+一般來說不建議使用h指定位置，儘量由\LaTeX\ 進行排版（畢竟幫它設計規則的人，排版絕對比我們來得專業）。而文章寫作未完稿前也不要去調整特定圖片位置（除非你都用h），因為可能在你添加文字後，圖表就跑到別的位置了。有任何須要手動調整位置的請在內容完成後再行調整。
+
+有時\LaTeX\ 浮動會將圖表移到下一節去顯示。為了避免這問題，本樣板已於cls中設定FloatBarrier（浮動障壁），浮動環境不會超出設置節級的位置。樣板設定最小到 \textbackslash{}subsubsection範圍，若不須這麼小可以自行於cls中註解掉。
+
+關於浮動環境，這裡有非常詳細的解說
+\url{http://tex.stackexchange.com/questions/39017/how-to-influence-the-position-of-float-environments-like-figure-and-table-in-lat}。
+本節也是參考此文略做解說。
 
 \section{表格細說}
 \label{sec:s_advTable}
@@ -1200,12 +1283,14 @@ row     & 橫   & 列    & 行   \\
 column  & 直   & 行    & 列   \\
 \end{tabular}
 \end{table}
-這裡將以台灣的用法為準。
+這裡將以台灣的用法為準。另外，下面的示範中為了呈現 booktabs 格線的效果，特別將表格與文字行高均設為一倍。
+（\textbackslash{}arraystretch、\textbackslash{}setstretch）
+實際使用不須特別設定。
 
 \par\noindent\rule{\textwidth}{1pt}
 
 前面提過\LaTeX\ 原生表格指令是tabular環境：
-\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm, pos=b]
 \setstretch{1}
 \renewcommand{\arraystretch}{1}
 
@@ -1226,7 +1311,7 @@ column  & 直   & 行    & 列   \\
 \subsection{格線}
 上面的示範是無格線，基礎\LaTeX\ 說明則是用\textbackslash{}hline。但\textbackslash{}hline 會佔用一定的空間，使得表格看起來較窄。若一定要畫格線的話，一個更好的方法是使用booktabs 套件中的三種\textbackslash{}*rule。
 （下面的示範為了更明顯，特別將文字行高與表格行高均改成1倍。）
-\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm, pos=b]
 \setstretch{1}
 \renewcommand{\arraystretch}{1}
 
@@ -1242,7 +1327,7 @@ Original \LaTeX\ \textbackslash{}hline :
 
 \vspace{2ex} % ----------------------
 
-Use booktab :
+Use booktab\textquoteright s \textbackslash{}*rule:
 \begin{tabular}{lcr}
 \toprule
     Head a      & Head b     & Head c      \\
@@ -1266,7 +1351,7 @@ Use booktab :
 \newcommand*{\thead}[1]{\multicolumn{1}{c}{\bfseries #1}}
 \end{lstlisting}
 這裡給個示範：
-\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm, pos=b]
 \setstretch{1}
 \renewcommand{\arraystretch}{1}
 
@@ -1374,7 +1459,7 @@ ctable 整合了原有\LaTeX\ 表格相關的指令，並且本身是浮動環�
     \item[table rows]   定義欄位
 \end{description}
 直接來看範例。首先來個基本版：
-\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm]
+\begin{LTXexample}[style=LatexStyle,xleftmargin=0.5cm, pos=b]
 \setstretch{1}
 \renewcommand{\arraystretch}{1}
 
@@ -1468,8 +1553,8 @@ xparse的指令集和原始的定義指令很像，分別是（這裡只列3個�
 直接看我的cls內定義快速插圖的\LaTeX\ Code:
 \begin{lstlisting}
 % easy insert single figure
-% \insfig[scalefactor][label][!htb]{path}[caption][short caption]
-\NewDocumentCommand\insfig{O{0.5} o O{} m O{} o}{ % need xparse package
+% \fig[scalefactor][label][!htb]{path}[caption][short caption]
+\NewDocumentCommand\fig{O{0.5} o O{} m O{} o}{ % need xparse package
   \begin{figure}[#3]%[!htb]
     \centering
     \includegraphics[width=#1\textwidth]{#4}
@@ -1546,6 +1631,7 @@ a4paper指定使用A4紙，10pt指定文件基準字體大小為10pt
 這個網頁有詳細圖文教學：\url{https://localframeofreference.wordpress.com/2010/08/31/kile-synctex/}
 
 \section{自動完成(Autocomplete)與cwl檔}
+\label{sec:s_autocomplete}
 \LaTeX\ 編輯器通常會提供指令自動完成功能，只要打指令開頭就會有選單跑出來顯示可選指令。一方面大大節省時間與腦力，另方面也可以減少打錯指令的機會。
 （Kile還提供非指令文字的自動完成以及程式碼片段(Snippets)，TexStudio似乎就沒這些了。）
 
@@ -1619,7 +1705,7 @@ Git是一個版本管理系統，最初用來管理程式碼（Linux kernel）�
 「權限」指的就是須要付費才能取得。通常學校或研究單位付費購買後，同一個網域的使用者都能用。而網域之外的使用者就要看單位是否提供校外連線方法。以NCU來說，校外使用者可以使用EZproxy。
 我的用法是直接改網址，https://ezproxy.lib.ncu.edu.tw/login?url=<url> 。<url> 表示完整（含http://）的網址。所以\url{http://www.sciencedirect.com} 要載付費全文的話就是由\url{https://ezproxy.lib.ncu.edu.tw/login?url=http://www.sciencedirect.com/}登入後下載。
 至於快速改書籤的方式在Firefox中可以由建立關鍵字書籤方式處理。如下圖：
-\insfig[1][][h]{tutorial_firefox_bookmark.png}
+\fig[1][][h]{tutorial_firefox_bookmark.png}
 於網址填入\url{http://ezproxy.lib.ncu.edu.tw/login?url=http://\%S} 並加上關鍵字ezp，當瀏覽到須要登入的頁面時直接在網址開頭加上``ezp ''即可轉換成所須網址。
 \footnote{同理，NCU圖書館查書可以用\url{http://opac.lib.ncu.edu.tw/search*cht/a?a?searchtype=Y&searcharg=\%S}
     以及關鍵字``lib''來處理。}
@@ -1661,11 +1747,11 @@ book類別的章節層級有：
     \vspace{10mm}
     \subcaptionbox
         {中文樣板 \textbackslash{}def\textbackslash{}tocStyleAlign\{1\} }
-        {\includegraphics[width=0.35\linewidth]{tocStyleAlign_0_zh.png}}
+        {\includegraphics[width=0.35\linewidth]{tocStyleAlign_1_zh.png}}
     \hspace{10mm}
     \subcaptionbox
         {英文樣板 \textbackslash{}def\textbackslash{}tocStyleAlign\{1\} }
-        {\includegraphics[width=0.5\linewidth]{tocStyleAlign_0_en.png}}
+        {\includegraphics[width=0.5\linewidth]{tocStyleAlign_1_en.png}}
     \caption{樣板提供的目錄對齊風格}
     \label{fig:tocStyleAlign}
 \end{figure}
@@ -1699,7 +1785,7 @@ config.tex中的 tocStyleChapter 可以切換目錄章級的風格，如\cref{fi
     \subcaptionbox
         {}
         {\includegraphics[width=0.8\linewidth]{titleStyle_0.png}}
-    \caption{\textbackslash{}def\textbackslash{}titleStyle\{0\}}
+    \caption{標題風格 \textbackslash{}def\textbackslash{}titleStyle\{0\}}
     \label{fig:titleStyle_0}
 \end{figure}
 
@@ -1713,7 +1799,7 @@ config.tex中的 tocStyleChapter 可以切換目錄章級的風格，如\cref{fi
     \subcaptionbox
         {}
         {\includegraphics[width=0.8\linewidth]{titleStyle_1.png}}
-    \caption{\textbackslash{}def\textbackslash{}titleStyle\{1\}}
+    \caption{標題風格 \textbackslash{}def\textbackslash{}titleStyle\{1\}}
     \label{fig:titleStyle_1}
 \end{figure}
 
@@ -1727,7 +1813,7 @@ config.tex中的 tocStyleChapter 可以切換目錄章級的風格，如\cref{fi
     \subcaptionbox
         {}
         {\includegraphics[width=0.8\linewidth]{titleStyle_1i.png}}
-    \caption{\textbackslash{}def\textbackslash{}titleStyle\{1\}與\textbackslash{}leftskip}
+    \caption{標題風格 \textbackslash{}def\textbackslash{}titleStyle\{1\}與\textbackslash{}leftskip}
     \label{fig:titleStyle_1i}
 \end{figure}
 
