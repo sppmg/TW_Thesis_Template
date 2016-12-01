@@ -17,7 +17,7 @@
 \section{\LaTeX 比起 Word 有什麼優點？}
 \begin{itemize}
     \item 文字間距以及字本身大小不是固定的，它會做微幅調整讓整體最為美觀。這點在英文上更為明顯（Microtype套件能做到更漂亮）。
-    \item 圖表位置可以浮動，若要限制圖表只能在頁頂或頁底，不用再擔心插入文字會跑掉。
+    \item 圖表位置可以浮動，能夠限制圖表只能在頁頂或頁底，不用再擔心插入文字會跑掉。
     \item 程式化特性，讓許多重複文字、動作都可以簡化。
     \item 數學公式美觀，輸入更為方便、穩定，不會像Word無法理解的跑來跑去。
     \item 站在巨人的肩膀上。\LaTeX\ 為出版界所用，排版規則即為專業規範。
@@ -564,7 +564,9 @@ Hello world!
 \begin{lstlisting}
 \documentclass[a4paper,10pt]{book}
 \end{lstlisting}
-10pt(1pt=1/72 inch)即為這個例子所設定的大小（事實上10pt也是book class預設值，不指定就是10pt）。不過10pt對於中文來說太小，而\LaTeX\ 預設文件類別又只提供有限的選項（10pt,11pt,12pt）。
+10pt(1pt=1/72.27 inch
+\footnote{\TeX\ 中pt 定義和 Adobe 的 PostScript pt不同，Adobe 的pt在 \TeX\ 中稱為bp，1bp=1/72 inch。Word似乎也是以bp做單位。}
+)即為這個例子所設定的大小（事實上10pt也是book class預設值，不指定就是10pt）。不過10pt對於中文來說太小，而\LaTeX\ 預設文件類別又只提供有限的選項（10pt,11pt,12pt）。
 若要用更大的字體，解決方法有兩種。一是改用其他套件提供的class，另一是在內文區段（\textbackslash{}begin\{document\}內）使用\textbackslash{}fontsize調整。
 
 改用其他套件提供的class方面。如extsize套件對應的extbook class提供了 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt這些選項。而 KOMA-script的scrbook class則是使用無級縮放[fontsize=14pt]。
@@ -948,7 +950,7 @@ $\SI{25}{\degreeCelsius}$ \\
 
 \subsection{標記(label)}
 標記方法前面已經提到，用\textbackslash{}label\{type:mylabel\}標記。type方面如\cref{tab:label_type}所示。
-\begin{table}[!t]
+\begin{table}[t]
     \centering
     \caption{常用標記類型}
     \begin{tabular}{| l | l |}
@@ -960,7 +962,7 @@ $\SI{25}{\degreeCelsius}$ \\
     \end{tabular}
     \label{tab:label_type}
 \end{table}
-有些套件會用到這個縮寫，所以最好符合通用習慣。(其餘見\url{https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing\#Introduction})
+有些套件會用到這個縮寫，所以最好符合通用習慣。(其餘見 \url{https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing\#Introduction})
 稍微注意的是\textbackslash{}label\{\}要放在\textbackslash{}caption\{\}之後才會有作用。（caption也不能為空喔！）
 
 \subsection{參考(ref/cref)}
@@ -1636,7 +1638,7 @@ a4paper指定使用A4紙，10pt指定文件基準字體大小為10pt
 （Kile還提供非指令文字的自動完成以及程式碼片段(Snippets)，TexStudio似乎就沒這些了。）
 
 但有時打套件提供的指令（如\textbackslash{}cref）不會跑出來選單，這是因為自動完成功能須要.cwl檔指示指令的格式，而.cwl尚未載入。以 TexStudio來說，當它看到\textbackslash{}usepackage{package}時，將自動載入相應的.cwl（不過我不確定樣板檔.cls中的\textbackslash{}RequirePackage是否也會觸發自動載入。）。假如 TexStudio 沒有自動載入，可以從功能表的「Options -> Completion」去手動載入。以\textbackslash{}cref 來說，就是要勾選 cleveref.cwl （如果真不知道要選哪個的話就全勾吧！XD）。
-其他的編輯器同理，請自行找尋如何載入.cwl。對於自訂指令也可以自寫.cwl來解決。
+其他的編輯器同理，請自行找尋如何載入.cwl。對於自訂指令也可以自寫.cwl來解決。本樣板也提供appmgTools.cwl給我自製的指令使用。
 
 
 \section{Git版本管理與tex檔比較}

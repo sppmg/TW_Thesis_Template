@@ -24,13 +24,17 @@
 
 % easy insert single figure
 % \fig[scalefactor][label][!htb]{path}[caption][short caption]
-\NewDocumentCommand\fig{O{0.5} o O{} m O{} o}{ % need xparse package
+\NewDocumentCommand\fig{O{0.5} O{} O{} m O{} o}{ % need xparse package
   \begin{figure}[#3]%[!htb]
     \centering
     \includegraphics[width=#1\textwidth]{#4}
     \IfNoValueTF{#6}{\caption{#5}}{\caption[#6]{#5}}
-    %\label{\IfNoValueTF{#2}{fig:#4}{#2}}
-    \IfNoValueTF{#2}{\label{fig:#4}}{\ifx#2\empty\else\label{#2}\fi}
+    \def\temp@fig{#2}
+    \ifx\temp@fig\empty
+        \label{fig:#4}
+    \else
+        \label{#2}
+    \fi
   \end{figure}
 }
 % \insfig is old name of \fig, for compatibility
