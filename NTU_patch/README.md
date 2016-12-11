@@ -25,7 +25,7 @@ Windows 使用者請將 tool 目錄下的 busybox.exe 複製至覆蓋完後的�
 
 ### 格式規範含範本
 台大社會學系網站，但和校方為同一份文件
-(http://sociology.ntu.edu.tw/images_upload/6-3-2_file1.pdf)
+(http://sociology.ntu.edu.tw/images_upload/6-3-2_file1.pdf)
 
 ### 系所名稱的寫法
 (http://writingsos.blogspot.tw/2007/06/blog-post.html)
