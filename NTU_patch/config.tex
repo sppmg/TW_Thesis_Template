@@ -9,19 +9,31 @@
 
 %%%%% Information of your document. | 定義文件資訊 %%%%%
 \def\deptshort {物理}
-\def\dept      {物理研究所}%XX學系XXX碩士班(請參考「中央大學學位論文撰寫體例參考」附錄)
-\def\degree    {碩士} % 碩士/博士
-\def\titleZh   {中央大學LaTeX論文樣板(中文)}   % Chinese title
+\def\deptZh    {物理研究所}%XX學系XXX碩士班(請參考「中央大學學位論文撰寫體例參考」附錄)
+\def\deptEn    {Department of Physics}
+\def\degreeZh  {碩士} % 碩士/博士
+\def\degreeEn  {Master} % Master/博士 master thesis/doctoral dissertation
+\def\titleZh   {台灣大學LaTeX論文樣板(中文)}   % Chinese title
 \def\titleEn   {NCU LaTeX Thesis Template(Chinese)} % English title
 \def\title     {\titleZh} % Main title, default Chinese title
 \def\subtitle  {\titleEn} % Subtitle, default English title, empty allowed.
-\def\logo      {}   % 填入校徽檔名。中央無校徽在封面，維持空白可除去校徽
-\def\author    {君の名は}
-\def\mprof     {你的指導教授}
-\def\sprofi    {你的共同指導} % 共同指導 1
-\def\sprofii   {}      % 共同指導 2                  
-\def\degreedate{中~華~民~國~一百零五~年~六~月}
+\def\logo      {}   % for cover/titlepage only
+\def\watermark {watermark.pdf}   % for all page.
+\def\authorZh  {君の名は}
+\def\authorEn  {Your name}
+\def\author    {\authorZh} % Choose one When only use one name.(book spine using.)
+\def\mprofZh   {你的指導教授}
+\def\sprofiZh  {你的共同指導} % 共同指導 1
+\def\sprofiiZh {}      % 共同指導 2                  
+\def\mprofEn   {Your committee}
+\def\sprofiEn  {Committee member} % 共同指導 1
+\def\sprofiiEn {}      % 共同指導 2   
+\def\degreedateROC{中~華~民~國~一百零五~年~六~月}
+\def\degreedateEn {Jun, 2016}
+\def\degreeyearROC{104} % academic year of ROC
+\def\degreesemesterROC{2}
 \def\copyyear  {2012-2013}
+\def\doi       {10.1006/jmbi.1998.2354} % Do not add ``doi:``
 
 \setboolean{printcopyright}{false} % {true}/{false} print copyright text on titlepage or cover.
 

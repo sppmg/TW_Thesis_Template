@@ -1,0 +1,96 @@
+\documentclass[a4paper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\CJKmainfont{} % font, default use kai
+\def\OS{linux} % 
+\def\deptZh    {物理研究所}
+\def\degreeZh  {碩士} % 碩士/博士
+\def\titleZh   {台灣大學LaTeX論文樣板(中文)}   % Chinese title
+\def\title     {\titleZh} % Main title, default Chinese title
+\def\authorZh  {君の名は}
+\def\authorEn  {Your name}
+\def\author    {\authorZh} % Choose one When only use one name.(book spine using.)
+\def\degreeyearROC{104} % academic year of ROC
+\def\degreesemesterROC{2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Pkg. and setting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{ifplatform}
+\usepackage{ifthen}
+\usepackage{xparse}
+\usepackage{fontspec}
+\usepackage[CJKmath=true, slantfont, boldfont]{xeCJK}
+\xeCJKDeclareSubCJKBlock{GreekCoptic}{ "0370 -> "03FF }% Unicode block of Greek and Coptic
+\XeTeXlinebreakskip = 0pt plus 1pt   % 設定中文字距與英文字距
+\XeTeXlinebreaklocale "zh"   % 設定斷行演算法為中文
+\usepackage[paperwidth=20mm,paperheight=297mm, margin=0.5mm,ignoreall]{geometry}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{eso-pic}
+
+% ---------------------- Font ---------------------------
+\iflinux
+    \def\OS{linux}
+\else\ifwindows
+    \def\OS{win}
+\fi\fi
+\ifx\CJKmainfont\empty
+    \ifthenelse{\equal{\OS}{linux}}{
+        % linux os
+        \def\CJKmainfont{AR PL UKai TW}  % 楷體
+    }{
+        \ifthenelse{\equal{\OS}{win}}{
+            % win os
+            \def\CJKmainfont{DFKai-SB}  % DFKai-SB == 標楷體
+        }{
+            % set macos later
+    }}
+\fi
+
+\NewDocumentCommand\fs{m o}{
+    \IfNoValueTF{#2}{
+        \fontsize{#1}{#1}\selectfont
+        }{
+        \fontsize{#1}{#2}\selectfont
+        }
+}
+
+% ---------------------- Vertical CJK ---------------------------
+% Vertical with fixed base line in a rotatebox box.
+% ref: http://tex.stackexchange.com/questions/11913/baseline-shift-with-fontspec
+\newCJKfontfamily{\vCJKFamily}[Vertical=RotatedGlyphs]{\CJKmainfont} %AR PL UMing TW}%{\CJKsfdefault}
+% Fix base line of Vertical CJK
+\def\vCJKShiftSymbol#1{\raise.35em\hbox{#1}}
+\def\vCJKBL{\let\CJKsymbol\vCJKShiftSymbol
+             \let\CJKpunctsymbol\vCJKShiftSymbol} 
+\def\vCJK#1{\vCJKBL\vCJKFamily\rotatebox{270}{#1}} % Short macro to do all thing of vertical typing.
+
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\vCJK {
+            \renewcommand{\arraystretch}{1}
+%             \setstretch{1}
+            \begin{tabularx}{280mm}{lXcXcXcXrl} 
+            \fs{12}國立台灣大學 & 
+            \multirow{2}{*}{} &
+            \multirow{2}{*}{\fs{12}\degreeZh 論文} &
+            \multirow{2}{*}{} &
+            \multirow{2}{*}{\fs{14}\title} & 
+            \multirow{2}{*}{} &
+            \multirow{2}{*}{\fs{14}\author \quad 撰} & 
+            \multirow{2}{*}{} &
+            \multirow{2}{*}{\rotatebox[origin=r]{90}{\fs{14}\degreeyearROC}} &
+            \multirow{2}{*}{\raisebox{-0.6em}{\rotatebox[origin=r]{90}{\fs{14}\degreesemesterROC}}} \\ 
+            \fs{12}\deptZh   & & & & & & & & & \\  % 
+            \end{tabularx} 
+        }
+\end{center}
+
+\end{document}

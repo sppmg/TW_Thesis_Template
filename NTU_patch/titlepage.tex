@@ -1,0 +1,74 @@
+\documentclass[class=NTU_thesis, crop=false, float=true]{standalone}
+
+\begin{document} 
+\def\fsUniversityZh{\fontsize{18}{27}\selectfont }
+\def\fsUniversityEn{\fontsize{16}{24}\selectfont }
+\def\fsDeptEn{\fontsize{14}{21}\selectfont }
+\def\fsTitle{\fontsize{18}{27}\selectfont }
+\def\fsNames{\fontsize{18}{27}\selectfont }
+% --------define title page layout for thesis
+\rmfamily\CJKfamily{sf} % use roman font for en, kai(sf) for zh
+\newgeometry{top=4cm, bottom=3cm, inner=2cm, outer=2cm} % only for titlepage
+\begin{spacing}{1.0}
+\begin{titlepage}
+%     \null\vfill
+    \begin{center}
+        {\fsUniversityZh\textbf{國立台灣大學~\deptZh} \par
+            \textbf{\degreeZh 論文} \par}
+        \vspace*{5mm}
+        {\fsDeptEn \deptEn \par}
+        {\fsUniversityEn 
+            National Taiwan University \par
+            \degreeEn\ Thesis\par}
+        \vspace*{10mm}
+        
+        {\fsTitle {\titleZh} \par}
+        \vspace*{5mm}
+        {\fsTitle {\titleEn} \par}
+        \vspace*{10mm}
+        
+        {\ifx \logo\empty\vfill
+        \else \includegraphics[height=30mm]{\logo}\vfill\vspace*{3mm} \par
+        \fi}
+        {\fsNames
+        \authorZh \par
+        \authorEn \par}
+        \vspace*{10mm}
+        
+        {\fsNames
+        \begin{tabular}{ll@{\quad}r}
+        指導教授：  & \mprofZh  & 博士     \\[1ex]
+        \ifx \sprofiZh\empty
+            \else & \sprofiZh  & 博士 \fi \\[1ex]
+        \ifx \sprofiiZh\empty
+            \else & \sprofiiZh & 博士 \fi
+        \end{tabular}\par}
+        \vspace*{5mm}
+        
+        {\fsNames
+        \begin{tabular}{ll}
+        Advisor:  & \mprofEn   , Ph.D     \\[1ex]
+        \ifx \sprofiEn\empty
+            \else & \sprofiEn  , Ph.D \fi \\[1ex]
+        \ifx \sprofiiEn\empty
+            \else & \sprofiiEn , Ph.D \fi
+        \end{tabular}\par}
+        \vspace*{5ex}
+        
+        \vfill
+        
+        {\fsTitle \degreedateROC \par
+            \degreedateEn \par}
+        
+        \ifthenelse{\boolean{printcopyright}}
+        {\vspace*{2ex}
+        版權所有\copyright\ \author\ \copyyear \par}
+    \end{center}
+\end{titlepage}
+\end{spacing}
+\restoregeometry
+\rmfamily % use main font
+%--------end of title page for thesis
+\cleardoublepage
+
+\end{document}

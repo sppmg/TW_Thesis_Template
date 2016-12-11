@@ -19,7 +19,7 @@
     \put(\LenToUnit{#1mm},\LenToUnit{#2mm}){\vtop{{\null}\makebox[0pt][c]{#3}}}%
   }%
 }% mm 可取代為\paperwidth 使用比例0-1
-% 選項grid標示座標
+% 選項colorgrid標示座標
 
 
 % easy insert single figure
@@ -47,5 +47,39 @@
     \node[draw,circle,inner sep=1pt] {#1};
 \end{tikzpicture}}
 
+
+
+% short command for fontsize. for easy read.
+\NewDocumentCommand\fs{m o}{
+    \IfNoValueTF{#2}{
+        \fontsize{#1}{#1}\selectfont
+        }{
+        \fontsize{#1}{#2}\selectfont
+        }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Debug
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% display used package list in .log file, information for develop.
+\listfiles
+
+% display current font information.
+\newcommand{\showfont}{ \par
+\begin{tabular}{rcc} \hline
+    current font info.   & En            & CJK           \\ \hline
+    encoding:            & \f@encoding   & -             \\
+    family:              & \f@family     &  
+                                            \ifx\undefined\CJK@family 
+                                                -
+                                            \else
+                                                \CJK@family
+                                            \fi          \\
+    series:              & \f@series     & -             \\
+    shape:               & \f@shape      & -             \\
+    size:                & \f@size       & -             \\ \hline
+\end{tabular}\par
+} % old xeCJK no \CJK@family
 
 \endinput % this must be the last command.

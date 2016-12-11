@@ -9,7 +9,6 @@
 %        LaTeX tools
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\listfiles % display used package list in .log file, information for develop.
 \RequirePackage{ifthen}
 \RequirePackage{etoolbox}
 \RequirePackage{ifplatform}  % only for auto select CJK font.
@@ -20,23 +19,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Load config.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\undefined\configured
+    % --------- Define option for config.tex ----------
+    \provideboolean{publish} % publish ? Set true before publish. 發怖前設true
+    \provideboolean{disableChinese} % Disable chinese, for English user.
+    \provideboolean{printcopyright} % print copyright text on titlepage or cover.
+    \provideboolean{pdfLinkBoxDisplay} % Draw box on link in the pdf viewer.
+    \provideboolean{bibStyleNameYear} % bibliography use name,year to sort and cite.
 
-% --------- Define option for config.tex ----------
-\provideboolean{publish} % publish ? Set true before publish. 發怖前設true
-\provideboolean{disableChinese} % Disable chinese, for English user.
-\provideboolean{printcopyright} % print copyright text on titlepage or cover.
-\provideboolean{pdfLinkBoxDisplay} % Draw box on link in the pdf viewer.
-\provideboolean{bibStyleNameYear} % bibliography use name,year to sort and cite.
+    % --------- Load config.tex ----------
+    \IfFileExists{./config.tex}{\input{./config.tex}\gdef\configured{}}{} % search only in the current directory use ./file
 
-% --------- Load config.tex ----------
-\IfFileExists{./config.tex}{\input{./config.tex}}{} % search only in the current directory use ./file
-
-% Easy check Chinese sitting. It will not disable Chinese font.
-% Usage: \ifzh{zh}{non-zh} or \ifzh{zh}
-\NewDocumentCommand{\ifzh}{+m +G{}}{
-\ifthenelse{\NOT \boolean{disableChinese} \AND \equal{\lang}{zh}}{#1}{#2}
-} 
-
+    % Easy check Chinese sitting. It will not disable Chinese font.
+    % Usage: \ifzh{zh}{non-zh} or \ifzh{zh}
+    \ProvideDocumentCommand{\ifzh}{+m +G{}}{
+    \ifthenelse{\NOT \boolean{disableChinese} \AND \equal{\lang}{zh}}{#1}{#2}
+    } 
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Load base class
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,12 +56,17 @@
 
 % (xeCJK will load fontspec and set \XeTeXlinebreaklocale , but I still keep it.)
 \XeTeXlinebreakskip = 0pt plus 1pt   % 設定中文字距與英文字距
+\RequirePackage{fontspec} % no need these package now : inputenc,xltxtra,xunicode
 \ifthenelse{\boolean{disableChinese}}{}{
     \XeTeXlinebreaklocale "zh"   % 設定斷行演算法為中文
-    \RequirePackage[slantfont, boldfont, AutoFakeBold=\fakeBoldLevel]{xeCJK} % [啟用斜體,粗體]
+    \RequirePackage[CJKmath=true,
+        slantfont,
+        boldfont,
+        EmboldenFactor=\fakeBoldFactor]{xeCJK} % [啟用斜體,粗體]
+    \xeCJKDeclareSubCJKBlock{GreekCoptic}{ "0370 -> "03FF }% Unicode block of Greek and Coptic
 }
-\RequirePackage{fontspec} % no need these package now : inputenc,xltxtra,xunicode
-% \setlength{\parindent}{3em} %縮排約2字寬
+
+% \setlength{\parindent}{2em} % 縮排2字寬(TL2012放導言有bug，會無效，須放內文區。TL2016可放導言)
 % Linux 利用指令 fc-list :lang=zh 來查詢可以用的字體名稱。
 %\setmainfont{DejaVu Sans} % ==\setromanfont
 %\setmonofont[Ligatures=Historical]{DejaVu Sans Mono}
@@ -95,47 +99,44 @@
     \ifx\CJKmainfont\empty
         \ifthenelse{\equal{\OS}{linux}}{
             % linux os
-            \setCJKmainfont{AR PL UMing TW}  % 明體
+            \def\CJKmainfont{AR PL UMing TW}  % 明體
         }{
             \ifthenelse{\equal{\OS}{win}}{
                 % win os
-                \setCJKmainfont{MingLiU}  % MingLiU == 細明體
+                \def\CJKmainfont{MingLiU}  % MingLiU == 細明體
             }{
                 % set macos later
         }}
-    \else
-        \setCJKmainfont{\CJKmainfont}
     \fi
+    \setCJKmainfont{\CJKmainfont}
     %%%
     \ifx\CJKsansfont\empty
         \ifthenelse{\equal{\OS}{linux}}{
             % linux os
-            \setCJKsansfont{AR PL UKai TW}  % 楷體
+            \def\CJKsansfont{AR PL UKai TW}  % 楷體
         }{
             \ifthenelse{\equal{\OS}{win}}{
                 % win os
-                \setCJKsansfont{DFKai-SB}  % DFKai-SB == 標楷體
+                \def\CJKsansfont{DFKai-SB}  % DFKai-SB == 標楷體
             }{
                 % set macos later
         }}
-    \else
-        \setCJKsansfont{\CJKsansfont}
     \fi
+    \setCJKsansfont{\CJKsansfont}
     %%%
     \ifx\CJKmonofont\empty
         \ifthenelse{\equal{\OS}{linux}}{
             % linux os
-            \setCJKmonofont{AR PL UMing TW} % 明體
+            \edef\CJKmonofont{\CJKmainfont} % 明體
         }{
             \ifthenelse{\equal{\OS}{win}}{
                 % win os
-                \setCJKmonofont{MingLiU}  % MingLiU == 細明體
+                \edef\CJKmonofont{\CJKmainfont}  % MingLiU == 細明體
             }{
                 % set macos later
         }}
-    \else
-        \setCJKmonofont{\CJKmonofont}
     \fi
+    \setCJKmonofont{\CJKmonofont}
 }
 %%%%%%%%%%%% Auto select font end %%%%%%%%%%%%%
 
@@ -255,7 +256,7 @@
 
 % --------------------- TOC style ----------------------------
 % 修改目錄的風格（縮排）
-
+\ifx\undefined\thecontentslabel@chapter
 \ifzh{ % TOC 章級標號形式設定
     \gdef\thecontentslabel@chapter{\zhnumber{\thecontentslabel}、}
     \gdef\thecontentslabel@chapter@app{\appendixname\thecontentslabel}
@@ -263,6 +264,7 @@
     \gdef\thecontentslabel@chapter{\thecontentslabel}
     \gdef\thecontentslabel@chapter@app{\thecontentslabel}
 }
+\fi
 
 % TOC 章級風格
 \ifcase \tocStyleChapter 
@@ -353,21 +355,40 @@
 
 % http://tex.stackexchange.com/questions/290400/remove-chapter-0-from-header-in-frontmatter-chapters-with-fancyhdr
 \ifzh{
-\renewcommand{\chaptermark}[1]{\markboth{%
-    \ifnum \c@secnumdepth >\m@ne
-        \if@mainmatter % mainmatter 才進行中文化
-            \expandafter\ifx\@chapapp\appendixname % in \appendix
-                \thechapter、\ % 
-            \else
-                \zhnumber{\thechapter}、\ %
+    % Chinese, translate \thechapter and remove \MakeUppercase .
+    \renewcommand{\chaptermark}[1]{\markboth{%
+        \ifnum \c@secnumdepth >\m@ne
+            \if@mainmatter % mainmatter 才進行中文化
+                \expandafter\ifx\@chapapp\appendixname % in \appendix
+                    \thechapter、\ % 
+                \else
+                    \zhnumber{\thechapter}、\ %
+                \fi
             \fi
         \fi
-    \fi
-    #1}{}}
+        #1}{}}
+    \renewcommand{\sectionmark}[1]{\markright {%
+        \ifnum \c@secnumdepth >\z@
+            \thesection \ %
+        \fi
+        #1}}
+}{
+    % English, copy from book.cls, because fancyhdr remove \if@mainmatter .
+    \renewcommand{\chaptermark}[1]{\markboth {\MakeUppercase{%
+            \ifnum \c@secnumdepth >\m@ne
+            \if@mainmatter
+                \@chapapp\ \thechapter. \ %
+            \fi
+            \fi
+            #1}}{}}
+    \renewcommand{\sectionmark}[1]{\markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\z@
+            \thesection. \ %
+        \fi
+        #1}}}
 }
 
 % \renewcommand{\chaptermark}[1]{\markboth{第\arabic{chapter}章\quad  #1 }{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 \fancyhead{} % 清除頁眉
 \fancyhead[LE]{\pageHeaderStyle\leftmark}
 \fancyhead[RO]{\pageHeaderStyle\rightmark}
@@ -409,7 +430,6 @@
 %        Text & bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{lmodern}
 \RequirePackage{setspace} % for setstretch
 \setstretch{\baseLineStretch} % 行距
 
@@ -505,14 +525,6 @@
 % 浮水印及自動填單
 \RequirePackage{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
 
-% \newcommand{\placetextbox}[3]{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
-%   \setbox0=\hbox{#3}% Put <stuff> in a box
-%   \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
-%     \put(\LenToUnit{#1mm},\LenToUnit{#2mm}){\vtop{{\null}\makebox[0pt][c]{#3}}}%
-%   }%
-% }% mm 可取代為\paperwidth 使用比例0-1
-% % 選項grid標示座標
-
 % --------------------- Break long url ----------------------------
 % Break long url. Only for break, \url{} from hyperref package. bibliography url can break without this package.
 % \RequirePackage[hyphens, allowmove]{url}
@@ -565,24 +577,5 @@ pdfkeywords={\keywordsZh,\ \keywordsEn}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{sppmgTools}
-
-% % easy insert single figure
-% % \insfig[scalefactor][label][!htb]{path}[caption][short caption]
-% \NewDocumentCommand\insfig{O{0.5} o O{} m O{} o}{ % need xparse package
-%   \begin{figure}[#3]%[!htb]
-%     \centering
-%     \includegraphics[width=#1\textwidth]{#4}
-%     \IfNoValueTF{#6}{\caption{#5}}{\caption[#6]{#5}}
-%     %\label{\IfNoValueTF{#2}{fig:#4}{#2}}
-%     \IfNoValueTF{#2}{\label{fig:#4}}{\ifx#2\empty\else\label{#2}\fi}
-%   \end{figure}
-% }
-% 
-% % make circle around letters (use tikz, copy from other guy)
-% \newcommand*\circhar[1]{%
-% \begin{tikzpicture}
-%     \node[draw,circle,inner sep=1pt] {#1};
-% \end{tikzpicture}}
-
 
 \endinput % this must be the last command.

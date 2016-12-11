@@ -1,7 +1,5 @@
 \documentclass[class=NCU_thesis, crop=false]{standalone}
 
-\NewDocumentCommand{\ffs}{m}{\fontsize{#1}{#1}\selectfont}
-
 \begin{document}
 \chapter{自動填單}
 這裡試著幫各位自動填入部份資訊，其餘打勾、日期請手寫。有字體大小不符、位置歪掉等問題的話，請修改 appendix\_letter\_NCU.tex後直接編譯生成文件。
@@ -31,34 +29,34 @@ grid 將顯示格線（一小格是\SI{5}{\milli\metre}）。
 % % 碩博士論文電子檔授權書
 \IfFileExists{letter_authorization.pdf}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{100}{120}{\ffs{17}\title}%
-                            \placetextbox{95}{109}{\ffs{17}\mprof}%
-                            \placetextbox{69}{98}{\ffs{17}\deptshort} }]%
+\includepdf[pagecommand={   \placetextbox{100}{120}{\fs{17}\title}%
+                            \placetextbox{95}{109}{\fs{17}\mprof}%
+                            \placetextbox{69}{98}{\fs{17}\deptshort} }]%
 {letter_authorization.pdf}}{}
 
 % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
 \IfFileExists{letter_publication_request.pdf}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{128}{270}{\ffs{17}\author}%
-                            \placetextbox{70}{258}{\ffs{17}\deptshort}%
-                            \placetextbox{100}{233}{\ffs{17}\title}%
-                            \placetextbox{90}{219.3}{\ffs{17}\mprof} }]%
+\includepdf[pagecommand={   \placetextbox{128}{270}{\fs{17}\author}%
+                            \placetextbox{70}{258}{\fs{17}\deptshort}%
+                            \placetextbox{100}{233}{\fs{17}\title}%
+                            \placetextbox{90}{219.3}{\fs{17}\mprof} }]%
 {letter_publication_request.pdf}}{}
 
 % 指導教授推薦書
 \IfFileExists{letter_recommendation.pdf}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{50}{159}{\ffs{22}\deptshort}%
-                            \placetextbox{118}{159}{\ffs{22}\author}%
-                            \placetextbox{105}{144}{\ffs{22}\title}}%
+\includepdf[pagecommand={   \placetextbox{50}{159}{\fs{22}\deptshort}%
+                            \placetextbox{118}{159}{\fs{22}\author}%
+                            \placetextbox{105}{144}{\fs{22}\title}}%
 ]{letter_recommendation.pdf}}{}
 
 % 口試委員審定書
 \IfFileExists{letter_verification.pdf}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{63}{200.5}{\ffs{22}\deptshort}%
-                            \placetextbox{145}{200.5}{\ffs{22}\author}%
-                            \placetextbox{100}{170}{\ffs{22}\title}}%
+\includepdf[pagecommand={   \placetextbox{63}{200.5}{\fs{22}\deptshort}%
+                            \placetextbox{145}{200.5}{\fs{22}\author}%
+                            \placetextbox{100}{170}{\fs{22}\title}}%
 ]{letter_verification.pdf}}{}
 
 % ------------------------------

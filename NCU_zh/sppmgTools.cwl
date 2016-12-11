@@ -11,4 +11,9 @@
 
 \circhar{text}
 
-\placetextbox{x}{y}{text}
+\placetextbox{x(mm)}{y(mm)}{text}
+
+\fs{fontsize}
+\fs{fontsize}[baselineskip]
+
+\showfont
