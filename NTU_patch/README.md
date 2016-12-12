@@ -2,6 +2,16 @@
 為了維護方便，台大版的僅附上與中央版有差異的檔案。
 
 ## 使用方法
+
+### 自動建立樣板
+Linux 使用者請執行 bash build.sh
+Windows 使用者請執行 build.bat
+
+執行後輸入 zh(中文樣板) 或 en(英文樣板) ，程式會自動新建一個 NTU 目錄。
+
+### 手動建立樣板
+避免自動化工具失效，這裡附上手動處理流程。
+
 請將 NTU_patch 的內容複製並覆蓋至 NCU 目錄。中英皆可（事實上中英設定在 config.tex 的 \lang 中，複製到任一目錄皆可）。
 config.tex 目前設定值為中文版本，英文論文使用者請將語系設為英文：
 
@@ -14,9 +24,6 @@ config.tex 目前設定值為中文版本，英文論文使用者請將語系設
 
 各子檔檔頭的 class=NCU_thesis 可以利用 change2NTUclass 快速修改為 class=NTU_thesis 。(目錄中已有相容性的 NCU_thesis 可以載入 NTU_thesis ，所以其實可以不改) 
 
-Linux 使用者請執行 bash change2NTUclass.bat 。
-
-Windows 使用者請將 tool 目錄下的 busybox.exe 複製至覆蓋完後的目錄，再執行（滑鼠點就對了）change2NTUclass.bat 即可修正。 
 
 
 ## 其餘資訊
