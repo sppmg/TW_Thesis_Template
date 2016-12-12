@@ -5,6 +5,7 @@
 
 ### 自動建立樣板
 Linux 使用者請執行 bash build.sh
+
 Windows 使用者請執行 build.bat
 
 執行後輸入 zh(中文樣板) 或 en(英文樣板) ，程式會自動新建一個 NTU 目錄。
@@ -14,14 +15,14 @@ Windows 使用者請執行 build.bat
 
 請將 NTU_patch 的內容複製並覆蓋至 NCU 目錄。中英皆可（事實上中英設定在 config.tex 的 \lang 中，複製到任一目錄皆可）。
 config.tex 目前設定值為中文版本，英文論文使用者請將語系設為英文：
-
+```
 \def\lang{en}
-
+```
 英文字體大小與行高，個人建議使用 12pt 以及 1.3x：
-
+```
 \def\baseFontSize{12pt}
 \def\baseLineStretch{1.3}
-
+```
 各子檔檔頭的 class=NCU_thesis 可以利用 change2NTUclass 快速修改為 class=NTU_thesis 。(目錄中已有相容性的 NCU_thesis 可以載入 NTU_thesis ，所以其實可以不改) 
 
 
