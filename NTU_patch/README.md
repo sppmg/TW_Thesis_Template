@@ -1,5 +1,5 @@
 # 台大論文樣板（patch）
-為了維護方便，台大版的僅附上與中央版有差異的檔案。
+為了維護方便，台大版的僅附上與中央版有差異的檔案。請透過內附的 build 工具建立完整樣板。
 
 ## 使用方法
 
@@ -23,8 +23,8 @@ config.tex 目前設定值為中文版本，英文論文使用者請將語系設
 \def\baseFontSize{12pt}
 \def\baseLineStretch{1.3}
 ```
-各子檔檔頭的 class=NCU_thesis 可以利用 change2NTUclass 快速修改為 class=NTU_thesis 。(目錄中已有相容性的 NCU_thesis 可以載入 NTU_thesis ，所以其實可以不改) 
 
+目錄中已有相容性的 NCU_thesis 可以載入 NTU_thesis ，所以各子檔檔頭的 class=NCU_thesis 不改沒關係。
 
 
 ## 其餘資訊
