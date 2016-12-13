@@ -15,5 +15,5 @@
 
 \fs{fontsize}
 \fs{fontsize}[baselineskip]
-
+\fs{fontsize}[baselinestretch]
 \showfont

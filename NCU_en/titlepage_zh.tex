@@ -3,7 +3,7 @@
 
 \def\fsUniversity{\fontsize{26}{31}\selectfont }
 \def\fsTitle{\fontsize{22}{26.4}\selectfont }
-\def\fsNames{\fontsize{16}{20}\selectfont }
+\def\fsNames{\fs{16}[1.5]}
 % --------define title page layout for thesis
 \sffamily % use sans font
 \newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
@@ -24,14 +24,14 @@
         {\ifx \logo\empty\vspace*{40mm}
         \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
         \fi}
-        {\fsNames
+        {\fsNames \renewcommand{\arraystretch}{1}
         \begin{tabular}{l@{：}l@{\quad}r}
-        研$\!$究$\!$生 & \author &       \\[1ex]
-        指導教授         & \mprof & 博士     \\[1ex]
-        \ifx \sprofi\empty
-        \else  共同指導 & \sprofi & 博士\fi \\[1ex]
-        \ifx \sprofii\empty
-        \else  & \sprofii & 博士 \fi
+        研$\!$究$\!$生 & \author  &     \\
+        指導教授       & \mprof   & 博士 \\
+        \ifx \sprofi\empty \else
+        共同指導       & \sprofi  & 博士 \\ \fi
+        \ifx \sprofii\empty \else
+                      & \sprofii & 博士 \\ \fi
         \end{tabular}\par}
         \vspace*{5ex}
         {\fsTitle {\degreedateZh} \par}

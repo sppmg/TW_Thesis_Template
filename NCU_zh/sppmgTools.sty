@@ -8,6 +8,7 @@
 \RequirePackage{xparse}
 \RequirePackage{tikz}
 \RequirePackage{eso-pic}
+% \RequirePackage{expl3}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        My tools
@@ -50,13 +51,35 @@
 
 
 % short command for fontsize. for easy read.
+% usage: \fs{fontsize}[baselineskip]  , unit = pt
+% if baselineskip < fontsize => multiple
+
+% need pgf / tikz
 \NewDocumentCommand\fs{m o}{
     \IfNoValueTF{#2}{
         \fontsize{#1}{#1}\selectfont
         }{
-        \fontsize{#1}{#2}\selectfont
+            \pgfmathparse{
+            ifthenelse(#2 < #1 , #1*1.2*#2 , #2)}
+            \fontsize{#1}{\pgfmathresult}\selectfont
         }
 }
+
+% LaTeX3 , work fine but need expl3 after 2012-05-08 
+% \ExplSyntaxOn
+% \NewDocumentCommand\fs{m o}{
+%     \IfNoValueTF{#2}{
+%         \fontsize{#1}{#1}\selectfont
+%         }{
+%             \fp_compare:nNnTF {#2} < {#1}{
+%                 \fontsize{#1}{\fp_eval:n {#1*1.2*#2} }\selectfont
+%             }{
+%                 \fontsize{#1}{#2}\selectfont
+%             }
+%         }
+% }
+% \ExplSyntaxOff
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Debug
