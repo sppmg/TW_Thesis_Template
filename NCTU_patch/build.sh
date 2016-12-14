@@ -1,7 +1,7 @@
 #!/bin/sh
 # windows use busybox sh build.sh
 
-university="NTU"
+university="NCTU"
 
 echo "I will build a integrated template for ${university}, which language you want?"
 read -p "zh / en > " lang

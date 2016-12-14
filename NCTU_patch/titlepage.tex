@@ -1,0 +1,67 @@
+\documentclass[class=NCU_thesis, crop=false, float=true]{standalone}
+
+\begin{document} 
+% \def\fsUniversityZh{\fontsize{18}{27}\selectfont }
+% \def\fsUniversityEn{\fontsize{16}{24}\selectfont }
+% \def\fsDeptEn{\fontsize{14}{21}\selectfont }
+% \def\fsTitle{\fontsize{18}{27}\selectfont }
+% \def\fsNames{\fontsize{18}{27}\selectfont }
+% --------define title page layout for thesis
+\sffamily
+% \rmfamily\CJKfamily{sf} % use roman font for en, kai(sf) for zh
+\newgeometry{top=2.0cm, bottom=2.0cm, inner=2cm, outer=2cm} % only for titlepage
+\begin{spacing}{1.0}
+\begin{titlepage}
+%     \null\vfill
+    \begin{center}
+        {\fs{16} {\titleZh} \par}
+        \vspace*{5mm}
+        {\fs{16} {\titleEn} \par}
+        \vspace*{30mm}
+        
+        {\fs{14}[1.5] \renewcommand{\arraystretch}{1}
+        \begin{tabularx}{\textwidth}{l@{：}lXl@{：}lX}
+        研$\!$究$\!$生 & \authorZh & &  Student & \authorEn & \\
+        指導教授       & \mprofZh  & &  Advisor  & \mprofEn & \\
+        \ifx \sprofiZh\empty\else  
+        共同指導 & \sprofiZh &  &                & \sprofiEn \\ \fi
+        \ifx \sprofiiZh\empty\else
+                      & \sprofiiZh & &   & \sprofiiEn \\ \fi
+        \end{tabularx}\par}
+        \vspace*{15mm} \vfill
+        
+        {\fs{14}[20]
+        國立交通大學 \par
+        \deptZh \par
+        \degreeZh 論文\par}
+        \vspace*{20mm} \vfill
+        
+        {\fs{14}[18] 
+        A Thesis \par
+        Submitted to \deptEn \par
+        \ifx \collegeEn\empty\else College of \collegeEn  \par \fi 
+        National Chiao Tung University \par
+        in partial Fulfillment of the Requirements \par
+        for the Degree of \par
+        \degreeEn \par
+        in \par
+        \vspace*{10mm} \vfill
+        
+        \deptEn 
+        \vspace*{10mm} \vfill
+        
+        \degreedateEn \par
+        \vspace*{10mm} \vfill
+        
+        Hsinchu, Taiwan, Republic of China \par
+        \vspace*{10mm} \vfill
+        \degreedateROC}
+    \end{center}
+\end{titlepage}
+\end{spacing}
+\restoregeometry
+\rmfamily % use main font
+%--------end of title page for thesis
+\cleardoublepage
+
+\end{document}

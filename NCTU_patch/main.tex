@@ -1,0 +1,63 @@
+% !TEX TS-program = xelatex
+% !BIB program = biber
+% !TEX encoding = UTF-8 Unicode
+
+% 使用手冊請見 TW_Thesis_Template wiki:
+% https://github.com/sppmg/TW_Thesis_Template/wiki
+
+% User guide in wiki of TW_Thesis_Template :
+% https://github.com/sppmg/TW_Thesis_Template/wiki
+
+\documentclass[]{NCU_thesis} % [draft] = don't load fig', showframe
+\usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
+
+\begin{document}
+    \frontmatter
+        \input{cover}       % 封面
+        \input{titlepage}   % 書名頁
+        \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
+            \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
+%         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
+%         \IfFileExists{letter_authorization.pdf}{
+%             \cleardoublepage        % 由下個右頁開始
+%             \includepdf{letter_authorization.pdf}}{}
+%         % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
+%         \IfFileExists{letter_publication_request.pdf}{
+%             \cleardoublepage
+%             \includepdf{letter_publication_request.pdf}}{}
+%         % 指導教授推薦書
+%         \IfFileExists{letter_recommendation.pdf}{
+%             \cleardoublepage
+%             \includepdf{letter_recommendation.pdf}}{}
+%         % 口試委員審定書
+%         \IfFileExists{letter_verification.pdf}{
+%             \cleardoublepage
+%             \includepdf{letter_verification.pdf}}{}
+%         \cleardoublepage
+        % 中英文論文摘要:內容應說明研究目的,資料來源,研究方法及研究結果等
+        \input{abstract_zh} % zh 中文摘要
+        \input{abstract_en} % en 英文摘要
+        \input{acknowledgements} % 誌謝(可略)
+            \cleardoublepage
+            \phantomsection
+            \addcontentsline{toc}{chapter}{目錄}    %手動將「目錄」字樣加入目錄
+        \tableofcontents        % 目錄
+        \listoffigures         % 圖目錄
+        \listoftables           % 表目錄
+        \input{abbreviation}    % 符號說明
+    \mainmatter
+        \input{chapter_introduction}    % 緒論
+        \input{chapter_method}          % 分析方法
+        \input{chapter_result}          % 實驗結果
+        \input{chapter_conclusion}      % 結論
+        \input{chapter_template_demo}
+    \backmatter          % book class 預設\backmatter 在\appendix 後面。因此.cls修改過\appendix 定義
+        \printbibliography[title = {參考文獻}, heading = bibnumbered]
+    \appendix
+        \input{appendix_device}
+        \input{appendix_solution}
+        \input{appendix_codes}
+%         \input{appendix_letters_NCU}
+    \backmatter 
+        \input{memoir}
+\end{document}
