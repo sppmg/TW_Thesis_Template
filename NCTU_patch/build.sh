@@ -20,7 +20,7 @@ cp -r ../NCU_$lang ../${university}_$lang
 cp -r ./* ../${university}_$lang
 cd ../${university}_$lang
 # change class name in every file
-find -name "*.tex" -exec sed -i '1 s/NCU_thesis/'${university}'_thesis/g' {} \;
+find -name "*.tex" -exec sed -i '/^\\documentclass/ s/NCU_thesis/'${university}'_thesis/g' {} \;
 # remove NCU only files. 
 rm titlepage_en.tex titlepage_zh.tex zh_hidden_warning.tex
 
