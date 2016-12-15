@@ -1,1 +1,1 @@
-..\tools\busybox sh build.sh
+..\tools\busybox.exe sh build.sh

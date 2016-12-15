@@ -1,7 +1,8 @@
 #!/bin/sh
-# windows use busybox sh build.sh
+# windows use busybox.exe sh build.sh
 
-university="NCTU"
+# University abbreviation from directory name NCU_...
+university=$(basename $(pwd) | cut -f 1 -d "_")
 
 echo "I will build a integrated template for ${university}, which language you want?"
 read -p "zh / en > " lang
@@ -19,8 +20,10 @@ echo "OK, building $lang version"
 cp -r ../NCU_$lang ../${university}_$lang
 cp -r ./* ../${university}_$lang
 cd ../${university}_$lang
+
 # change class name in every file
-find -name "*.tex" -exec sed -i '/^\\documentclass/ s/NCU_thesis/'${university}'_thesis/g' {} \;
+sed -i '/^\\documentclass/ s/NCU_thesis/'${university}'_thesis/g'  $(find -name "*.tex" -type f )
+
 # remove NCU only files. 
 rm titlepage_en.tex titlepage_zh.tex zh_hidden_warning.tex
 
