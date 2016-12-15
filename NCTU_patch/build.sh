@@ -24,17 +24,19 @@ cd ../${university}_$lang
 # change class name in every file
 sed -i '/^\\documentclass/ s/NCU_thesis/'${university}'_thesis/g'  $(find -name "*.tex" -type f )
 
-# remove NCU only files. 
-rm titlepage_en.tex titlepage_zh.tex zh_hidden_warning.tex
-
 if [ "$lang" = "en" ] ; then
-	sed -i '/lang/ s/zh/en/' config.tex
-# Disable Chinese for en avoid no Chinese font
-	sed -i '/disableChinese/ s/false/true/' config.tex
-	echo "Default disable Chinese for English template avoid no Chinese font, change setting in config.tex if you need Chinese."
-	sed -i '/baseFontSize/ s/14/12/' config.tex
-	sed -i '/baseLineStretch/ s/1.5/1.3/' config.tex
-	rm -rf compatibility
+    # remove NCU only files. 
+    rm titlepage_en.tex titlepage_zh.tex zh_hidden_warning.tex
+    
+    sed -i '/lang/ s/zh/en/' config.tex
+    # Disable Chinese for en avoid no Chinese font
+    sed -i '/disableChinese/ s/false/true/' config.tex
+    echo "Default disable Chinese for English template avoid no Chinese font, change setting in config.tex if you need Chinese."
+    sed -i '/baseFontSize/ s/14/12/' config.tex
+    sed -i '/baseLineStretch/ s/1.5/1.3/' config.tex
+    sed -i '/\\printbibliography/ s/title = .*,//' main.tex
+    rm -rf compatibility
 fi
 
+rm build.sh build.bat
 echo "Finish ! Enjoy ${university}_$lang LaTeX template by sppmg :D"

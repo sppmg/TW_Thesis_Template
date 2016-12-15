@@ -1,6 +1,6 @@
 \documentclass[class=NCU_thesis, crop=false]{standalone}
 \begin{document}
-
+\ifx\undefined\thispage\def\thispage{}\fi
 \fontsize{16}{25}\selectfont
 % --------define title page layout for thesis
 \sffamily % use sans font
@@ -11,13 +11,13 @@
         {\Huge\textbf{\thispage\ hidden now !!}\par}
     \end{center}
     \vspace*{30mm}
-    {\Huge 
+    {\LARGE 
     It avoid you get error because your computer no Chinese font, 
-    Please enable Chinese by set ``disableChinese'' to false in ``config.tex'' and  set ``titlepageLang'' value (to zh or en) to display this page.
-    if you don't have Chinese font, you can try ``cwTeX'' font. 
+    Please enable Chinese by set \mbox{``disableChinese''} to false in \mbox{``config.tex''} and  set \mbox{``titlepageLang''} value (to zh or en) to display this page.
+    if you don't have Chinese font, you can try \mbox{``cwTeX''} font. 
     (\url{https://github.com/l10n-tw/cwtex-q-fonts})\par
     (Even if your thesis is English, you still need a Chinese title and abstract.)\par}
-    \null\vfill
+    \vfill
 \end{titlepage}
 \restoregeometry
 \rmfamily % use main font

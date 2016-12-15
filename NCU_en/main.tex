@@ -10,18 +10,24 @@
 
 \documentclass[]{NCU_thesis} % [draft] = don't load fig'
 \usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
+% Check Chinese setting before \input file. Avoid get error because no Chinese font. (It's 4 en template only.)
+% Usage: \input{zh_file}[page info]
+\NewDocumentCommand\inputZh{m O{This Page}}{
+    \ifthenelse{\boolean{disableChinese} \OR \NOT \equal{\titlepageLang}{zh} \AND \NOT \equal{\titlepageLang}{en}}{
+        \def\thispage{#2}
+        \input{zh_hidden_warning}
+    }{
+        \input{#1}
+    }
+}
 
 \begin{document}
     \frontmatter
-        % Avoid get error because no Chinese font.
-        \ifthenelse{\boolean{disableChinese} \OR \NOT \equal{\titlepageLang}{zh} \AND \NOT \equal{\titlepageLang}{en}}{
-            \newcommand\thispage{Title page (cover)}
-            \input{zh_hidden_warning}
-        }{
-            \input{titlepage_\titlepageLang}        % Cover/Titlepage 封面/書名頁
-        }
+        \inputZh{titlepage_\titlepageLang}[Title page (cover)]        % Cover/Titlepage 封面/書名頁
         \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
             \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
+            
+        %%%%%%%%%%%% letters %%%%%%%%%%%%
         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
         \IfFileExists{letter_authorization.pdf}{
             \cleardoublepage        % 由下個右頁開始
@@ -39,18 +45,15 @@
             \cleardoublepage
             \includepdf{letter_verification.pdf}}{}
         \cleardoublepage
+        
+        %%%%%%%%%%%% Other frontmatter, eg,abstract %%%%%%%%%%%%
         % 中英文論文摘要:內容應說明研究目的,資料來源,研究方法及研究結果等
-        \ifthenelse{\boolean{disableChinese} \OR \NOT \equal{\titlepageLang}{zh} \AND \NOT \equal{\titlepageLang}{en}}{
-            \renewcommand\thispage{Chinese abstract}
-            \input{zh_hidden_warning}
-        }{
-            \input{abstract_zh}
-        }
+        \inputZh{abstract_zh}[Chinese abstract]
         \input{abstract_en} % English abstract
         \input{acknowledgements} % acknowledgements(option) 誌謝(可略)
             \cleardoublepage
             \phantomsection
-            \addcontentsline{toc}{chapter}{Contents}    % Add ``Contents'' to TOC
+            \addcontentsline{toc}{chapter}{\contentsname}    % Add ``Contents'' to TOC
         \tableofcontents        % Table Of Contents
         \listoffigures          % List Of Figures   圖目錄
         \listoftables           % List Of Tables    表目錄
@@ -68,10 +71,5 @@
         \input{appendix_solution}
         \input{appendix_codes}
         
-        \ifthenelse{\boolean{disableChinese} \OR \NOT \equal{\titlepageLang}{zh} \AND \NOT \equal{\titlepageLang}{en}}{
-            \renewcommand\thispage{Automatical write letters}
-            \input{zh_hidden_warning}
-        }{
-            \input{appendix_letters_NCU}
-        }
+        \inputZh{appendix_letters_NCU}[Automatical write letters]
 \end{document}
