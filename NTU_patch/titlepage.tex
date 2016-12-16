@@ -7,7 +7,10 @@
 \def\fsTitle{\fontsize{18}{27}\selectfont }
 \def\fsNames{\fs{18}[1.5] }
 % --------define title page layout for thesis
-\rmfamily\CJKfamily{sf} % use roman font for en, kai(sf) for zh
+\rmfamily
+\ifthenelse{\boolean{disableChinese}}{}{
+    \CJKfamily{sf} % use roman font for en, kai(sf) for zh
+}
 \newgeometry{top=4cm, bottom=3cm, inner=2cm, outer=2cm} % only for titlepage
 \begin{spacing}{1.0}
 \begin{titlepage}

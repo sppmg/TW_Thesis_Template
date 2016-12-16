@@ -79,6 +79,7 @@
 %        Command for NTU
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\ifthenelse{\boolean{disableChinese}}{}{
 % ---------------------- Vertical CJK ---------------------------
 % Vertical with fixed base line in a rotatebox box.
 % ref: http://tex.stackexchange.com/questions/11913/baseline-shift-with-fontspec
@@ -115,6 +116,7 @@
             }}%
 }
 }
+} % disableChinese
 
 % ---------------------- Watermark ---------------------------
 % Add logo to every page after this command.

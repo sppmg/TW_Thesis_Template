@@ -2,7 +2,7 @@
 # windows use busybox.exe sh build.sh
 
 # University abbreviation from directory name NCU_...
-university=$(basename $(pwd) | cut -f 1 -d "_")
+university=$(basename "$(pwd)" | cut -f 1 -d "_")
 
 echo "I will build a integrated template for ${university}, which language you want?"
 read -p "zh / en > " lang
