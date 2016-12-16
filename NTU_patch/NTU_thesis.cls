@@ -79,8 +79,8 @@
 %        Command for NTU
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifthenelse{\boolean{disableChinese}}{}{
 % ---------------------- Vertical CJK ---------------------------
+\ifthenelse{\boolean{disableChinese}}{}{
 % Vertical with fixed base line in a rotatebox box.
 % ref: http://tex.stackexchange.com/questions/11913/baseline-shift-with-fontspec
 \newCJKfontfamily{\vCJKFamily}[Vertical=RotatedGlyphs]{\CJKsansfont} %AR PL UMing TW}%{\CJKsfdefault}
@@ -89,34 +89,37 @@
 \def\vCJKBL{\let\CJKsymbol\vCJKShiftSymbol
              \let\CJKpunctsymbol\vCJKShiftSymbol} 
 \def\vCJK#1{\vCJKBL\vCJKFamily\rotatebox{270}{#1}} % Short macro to do all thing of vertical typing.
+}
+
 
 % ---------------------- Book spine ---------------------------
 % Add book spine in this page
 \newcommand{\addBookSpineThisPage}{
-\AddToShipoutPictureFG*{% 
-    \AtPageUpperLeft{%
-        \put(\LenToUnit{1.5mm},\LenToUnit{0mm}){\vCJK {
-	        \renewcommand{\arraystretch}{1}
-	        \setstretch{1}
-	        \begin{tabularx}{290mm}{lXcXcXcXrl} 
-	        \fs{12}國立台灣大學 & 
-	        \multirow{2}{*}{} &
-	        \multirow{2}{*}{\fs{12}\degreeZh 論文} &
-	        \multirow{2}{*}{} &
-	        \multirow{2}{*}{\fs{14}\title} & 
-	        \multirow{2}{*}{} &
-	        \multirow{2}{*}{\fs{14}\author \quad 撰} & 
-	        \multirow{2}{*}{} &
-	        \multirow{2}{*}{\rotatebox[origin=r]{90}{\fs{14}\degreeyearROC}} &
-	        \multirow{2}{*}{\raisebox{-0.6em}{\rotatebox[origin=r]{90}{\fs{14}\degreesemesterROC}}} \\ 
-	        \fs{12}\deptZh   & & & & & & & & & \\ % 
-	        \end{tabularx} 
+    \ifthenelse{\boolean{disableChinese}}{}{
+        \AddToShipoutPictureFG*{% 
+            \AtPageUpperLeft{%
+                \put(\LenToUnit{1.5mm},\LenToUnit{0mm}){\vCJK {
+                    \renewcommand{\arraystretch}{1}
+                    \setstretch{1}
+                    \begin{tabularx}{290mm}{lXcXcXcXrl} 
+                    \fs{12}國立台灣大學 & 
+                    \multirow{2}{*}{} &
+                    \multirow{2}{*}{\fs{12}\degreeZh 論文} &
+                    \multirow{2}{*}{} &
+                    \multirow{2}{*}{\fs{14}\title} & 
+                    \multirow{2}{*}{} &
+                    \multirow{2}{*}{\fs{14}\author \quad 撰} & 
+                    \multirow{2}{*}{} &
+                    \multirow{2}{*}{\rotatebox[origin=r]{90}{\fs{14}\degreeyearROC}} &
+                    \multirow{2}{*}{\raisebox{-0.6em}{\rotatebox[origin=r]{90}{\fs{14}\degreesemesterROC}}} \\ 
+                    \fs{12}\deptZh   & & & & & & & & & \\ % 
+                    \end{tabularx} 
+                }
+                \vrule
+            }} % 
         }
-        \vrule
-            }}%
-}
-}
-} % disableChinese
+    }% disableChinese
+} 
 
 % ---------------------- Watermark ---------------------------
 % Add logo to every page after this command.
