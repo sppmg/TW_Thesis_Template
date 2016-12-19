@@ -15,7 +15,7 @@
 | 國立台灣大學          |  NTU   | 中(zh), 英(en) | patch
 | 國立交通大學          | NCTU   | 中(zh), 英(en) | patch
 
-**上表中， patch 表示為補充檔，可經由內附工具(build.sh/build.bat)產生完整樣板。細節見[Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki)中的說明。**
+**上表中， patch 表示為補充檔，可經由內附工具(build.sh/build.bat)產生完整樣板。細節見[Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki/beginning#patch-%E7%89%88%E6%A8%A3%E6%9D%BF%E4%B9%8B-buildsh-%E5%B7%A5%E5%85%B7%E8%A7%A3%E8%AA%AA)中的說明。**
 
 ## 快速使用手冊
 見本專案的 [Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki) 。
