@@ -28,20 +28,13 @@ config.tex 目前設定值為中文版本，英文論文使用者請將語系設
 
 
 ## 其餘資訊
-交大沒有規定要附上書脊，所以我這裡也不放。我相信學校附近的影印店比我專業的多 :D ，而且我不知道你做了書脊他們是如何使用。
+交大沒有規定要附上書脊，所以我這裡也不放。我相信學校附近的影印店比我專業的多 :D ，而且我不知道你做了書脊他們會如何使用。
 
 如果仍然希望自製書脊者，請參考台大版(NTU_patch)的製作方式。
 
-<!-- （書脊寬度和你的紙本厚度有關） -->
+### 其他網友樣板
 
-<!-- todo
+[Po-haoHuang](https://github.com/Po-haoHuang/nctu-thesis)
 
-更動列表:
+基於[tzhuan的台大版](https://github.com/tzhuan/ntu-thesis) 及其他網友改進而成的交大版。
 
-- config.tex
-- cover.tex
-- titlepage.tex
-memoir
-NCU_thesis.cls
-
-cover.tex titlepage.tex 均已完成-->

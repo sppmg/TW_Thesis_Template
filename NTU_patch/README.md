@@ -39,6 +39,13 @@ config.tex 目前設定值為中文版本，英文論文使用者請將語系設
 詳細資訊請參考教學或專案wiki。
 
 ## 其餘資訊
+### 其他網友樣板
+
+[tzhuan](https://github.com/tzhuan/ntu-thesis)
+
+使用 XeLaTeX + BibTeX ，提供 Makefile，可用 Gnu make 方便的編譯處理。
+Makefile 內使用 pdftk 進行加密，須要加密者請參考此檔(其[wiki](https://github.com/tzhuan/ntu-thesis/wiki) 亦包含參數說明。 )。
+
 ### 校方論文服務（含格式範本、浮水印、上傳手冊等）
 (http://etds.lib.ntu.edu.tw/etdsystem/submit/submitLogin)
 

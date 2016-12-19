@@ -11,17 +11,17 @@
 |   中文校名     | 英文縮寫/目錄 | 支援語系 | 說明 |
 | ------------- | ------------- | ------- | ------------- |
 | 國立中央大學          | NCU    | 中(zh), 英(en) | 為其餘學校的基礎樣板。
-| 國立臺灣師範大學      | NTNU   | 中(zh), 英(en) | 與中央版完全相同，請自行修改校名（如titlepage.tex 內）。
+| 國立臺灣師範大學      | NTNU   | 中(zh), 英(en) | 與中央版完全相同，請自行修改校名（如 titlepage.tex 內）。
 | 國立台灣大學          |  NTU   | 中(zh), 英(en) | patch
 | 國立交通大學          | NCTU   | 中(zh), 英(en) | patch
 
-**上表中， patch 表示為補充檔，可經由內附工具覆蓋至 NCU 版來產生完整樣板。中英文風格由 config.tex \lang 變數控制。**
+**上表中， patch 表示為補充檔，可經由內附工具(build.sh/build.bat)產生完整樣板。細節見[Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki)中的說明。**
 
 ## 快速使用手冊
-將使用專案的 [Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki)做簡易說明。
+見本專案的 [Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki) 。
 
-## 重要版本紀錄
-這裡紀錄一些版本變化的遷移資訊。
+## 版本遷移資訊
+這裡紀錄一些版本變化的遷移資訊供舊版使用者遷移至新版本使用。
 
 | 版本/日期     | 資訊 |
 | ------------- | ------------- |
