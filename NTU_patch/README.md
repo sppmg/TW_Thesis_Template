@@ -2,29 +2,9 @@
 為了維護方便，台大版的僅附上與中央版有差異的檔案。請透過內附的 build 工具建立完整樣板。
 
 ## 使用方法
+見本專案的 [Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki) 。
 
-### 自動建立樣板
-Linux 使用者請執行 bash build.sh
-
-Windows 使用者請執行 build.bat
-
-執行後輸入 zh(中文樣板) 或 en(英文樣板) ，程式會自動新建一個 NTU 目錄。
-
-### 手動建立樣板
-避免自動化工具失效，這裡附上手動處理流程。
-
-請將 NTU_patch 的內容複製並覆蓋至 NCU 目錄。中英皆可（事實上中英設定在 config.tex 的 \lang 中，複製到任一目錄皆可）。
-config.tex 目前設定值為中文版本，英文論文使用者請將語系設為英文：
-```
-\def\lang{en}
-```
-英文字體大小與行高，個人建議使用 12pt 以及 1.3x：
-```
-\def\baseFontSize{12pt}
-\def\baseLineStretch{1.3}
-```
-
-目錄中已有相容性的 NCU_thesis 可以載入 NTU_thesis ，所以各子檔檔頭的 class=NCU_thesis 不改沒關係。
+或是你想從[無腦手冊](https://github.com/sppmg/TW_Thesis_Template/wiki/%E7%84%A1%E8%85%A6%E6%89%8B%E5%86%8A)開始。
 
 ## 論文相關說明
 
@@ -45,6 +25,8 @@ config.tex 目前設定值為中文版本，英文論文使用者請將語系設
 
 使用 XeLaTeX + BibTeX ，提供 Makefile，可用 Gnu make 方便的編譯處理。
 Makefile 內使用 pdftk 進行加密，須要加密者請參考此檔(其[wiki](https://github.com/tzhuan/ntu-thesis/wiki) 亦包含參數說明。 )。
+
+其餘見[同好連結](https://github.com/sppmg/TW_Thesis_Template/wiki/%E5%90%8C%E5%A5%BD%E9%80%A3%E7%B5%90)
 
 ### 校方論文服務（含格式範本、浮水印、上傳手冊等）
 (http://etds.lib.ntu.edu.tw/etdsystem/submit/submitLogin)
