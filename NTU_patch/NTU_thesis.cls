@@ -2,7 +2,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{NTU_thesis}[2016/12/11 by sppmg]
 % pass no defined option to book class.
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{NCU_thesis_extbook}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{thesis_base}}
 % terminates the option processing.
 \ProcessOptions\relax
 
@@ -49,7 +49,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Load base class
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\LoadClass{NCU_thesis_extbook}
+\LoadClass{thesis_base}
 
 %%%%% Load additional packages and commands.
 

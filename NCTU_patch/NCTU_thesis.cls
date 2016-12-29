@@ -2,7 +2,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{NCTU_thesis}[2016/11/18 by sppmg]
 % pass no defined option to book class.
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{NCU_thesis_extbook}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{thesis_base}}
 % terminates the option processing.
 \ProcessOptions\relax
 
@@ -10,7 +10,7 @@
 %        Load base class
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\LoadClass{NCU_thesis_extbook}
+\LoadClass{thesis_base}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Redefine header of abstract
@@ -42,8 +42,10 @@
              & \sprofiEn  &  &           &  \sprofiEn  \\ \fi
     \ifx \sprofiiEn\empty\else
              & \sprofiiEn &  &           &  \sprofiiEn \\ \fi
-    \end{tabularx}\par }
+    \end{tabularx}\par
+    }
     \vspace*{1em}
+    
     \deptEn \par
     National Chiao Tung University \par
 }
