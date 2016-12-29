@@ -66,7 +66,7 @@
 
 %%%%% style of fonts and line stretch | 字體大小風格及行距 %%%%%
 % Base font
-\def\baseFontSize{12pt} % allowed: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+\def\baseFontSize{12pt} % valid: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
 \def\baseLineStretch{1.3}
 % Bibliography
 \def\bibFontStyle{\small}
@@ -85,6 +85,8 @@
 % todonotes font style set by textsize option when package loading, see cls. default footnotesize
 
 %%%%% Style of titles | 標題風格 %%%%%
+\def\titlepageFontFamily{\sffamily}
+% set "\rmfamily\CJKfamily{sf}" to mix rm for English and sf(default Kai) for CJK, see wiki on TW_Thesis_Template.
 \def\abstractHeaderStyle{\sffamily\Large} % Information on abstract, cls default use \centering
 
 \def\chapterTitleNumStyle{\sffamily\LARGE\bfseries} % Number of chapter, only for en

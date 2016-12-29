@@ -5,7 +5,7 @@
 \def\fsTitle{\fontsize{22}{26.4}\selectfont }
 \def\fsNames{\fontsize{16}{20}\selectfont }
 % --------define title page layout for thesis
-\sffamily % use sans font
+\titlepageFontFamily % set in config.tex
 \newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
 \begin{spacing}{1.0}
 \begin{titlepage}
@@ -27,11 +27,11 @@
         {\fs{18}[1.5] \renewcommand{\arraystretch}{1}
         \begin{tabularx}{\textwidth}{l@{：}l@{\quad}rX}
         研$\!$究$\!$生 & \authorZh &         &   \\
-        指導教授         & \mprofZh & 教授    &   \\
+        指導教授        & \mprofZh  & 教授    &   \\
         \ifx \sprofiZh\empty
         \else  共同指導 & \sprofiZh & 教授    &   \\ \fi
         \ifx \sprofiiZh\empty
-        \else  & \sprofiiZh & 教授 \\ \fi
+        \else          & \sprofiiZh & 教授   &   \\ \fi
         \end{tabularx}\par}
         \vfill 
         {\fs{18} \textbf{\degreedateROC} \par}
@@ -45,7 +45,7 @@
 \end{titlepage}
 \end{spacing}
 \restoregeometry
-\rmfamily % use main font
+\normalfont % use main font
 %--------end of title page for thesis
 \cleardoublepage
 \end{document}

@@ -7,8 +7,7 @@
 % \def\fsTitle{\fontsize{18}{27}\selectfont }
 % \def\fsNames{\fontsize{18}{27}\selectfont }
 % --------define title page layout for thesis
-\sffamily
-% \rmfamily\CJKfamily{sf} % use roman font for en, kai(sf) for zh
+\titlepageFontFamily % set in config.tex
 \newgeometry{top=2.0cm, bottom=2.0cm, inner=2cm, outer=2cm} % only for titlepage
 \begin{spacing}{1.0}
 \begin{titlepage}
@@ -20,9 +19,9 @@
         \vspace*{30mm}
         
         {\fs{14}[1.5] \renewcommand{\arraystretch}{1}
-        \begin{tabularx}{\textwidth}{l@{：}lXl@{：}lX}
-        研$\!$究$\!$生 & \authorZh & &  Student & \authorEn & \\
-        指導教授       & \mprofZh  & &  Advisor  & \mprofEn & \\
+        \begin{tabularx}{\textwidth}{l@{：}lXl@{：}l}
+        研$\!$究$\!$生 & \authorZh & &  Student & \authorEn  \\
+        指導教授       & \mprofZh  & &  Advisor  & \mprofEn  \\
         \ifx \sprofiZh\empty\else  
         共同指導 & \sprofiZh &  &                & \sprofiEn \\ \fi
         \ifx \sprofiiZh\empty\else
@@ -60,7 +59,7 @@
 \end{titlepage}
 \end{spacing}
 \restoregeometry
-\rmfamily % use main font
+\normalfont % use main font
 %--------end of title page for thesis
 \cleardoublepage
 

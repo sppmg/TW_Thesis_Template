@@ -42,9 +42,8 @@
              & \sprofiEn  &  &           &  \sprofiEn  \\ \fi
     \ifx \sprofiiEn\empty\else
              & \sprofiiEn &  &           &  \sprofiiEn \\ \fi
-    \end{tabularx}\par
-    }
-    \vspace*{1em}
+    \end{tabularx}\par }
+    \vspace*{1.5em}
     
     \deptEn \par
     National Chiao Tung University \par

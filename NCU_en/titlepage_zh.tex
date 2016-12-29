@@ -5,7 +5,7 @@
 \def\fsTitle{\fontsize{22}{26.4}\selectfont }
 \def\fsNames{\fs{16}[1.5]}
 % --------define title page layout for thesis
-\sffamily % use sans font
+\titlepageFontFamily % set in config.tex
 \newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
 \begin{spacing}{1.0}
 \begin{titlepage}
@@ -44,7 +44,7 @@
 \end{titlepage}
 \end{spacing}
 \restoregeometry
-\rmfamily % use main font
+\normalfont % use main font
 %--------end of title page for thesis
 \cleardoublepage
 \end{document}
