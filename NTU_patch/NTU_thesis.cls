@@ -56,6 +56,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Change setting for NTU
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ---------------------- Margin of content ---------------------------
+\geometry{top=3cm, bottom=2cm, inner=3cm, outer=3cm}
 
 % ---------------------- Chapter title style ---------------------------
 \ifzh{
