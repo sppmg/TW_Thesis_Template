@@ -29,12 +29,11 @@ MiKTeX 使用者請一定要閱讀 [MiKTeX 注意事項](https://github.com/sppm
 ## 版本遷移資訊
 這裡紀錄一些版本間的遷移資訊供舊版使用者遷移至新版本使用。各版本修改資訊見[Change Log](https://github.com/sppmg/TW_Thesis_Template/blob/master/CHANGELOG.md)。
 
-
 | 版本/日期     | 資訊 |
 | ------------- | ------------- |
 | v1.5 (2016-10-27)    | 各tex檔標頭稍改，\\chapter直接移入新版即可。 bib檔引入位置修正。之前置於config.tex是錯的。 |
 | v1.6 (2016-11-30)    | 中英文共用同一份cls檔，因此英文版的tex檔標頭由NCU_thesis_en.cls 改為 NCU_thesis.cls。 英文版的compatibility 目錄中含有一個 NCU_thesis_en.cls ，舊有使用者可以將其複製至主檔目錄，即可使用新版cls而不須修改tex檔。|
-| v1.7 (2016-12-30)    | 相容v1.6 |
+| v1.7 (2017-01-07)    | 相容v1.6 |
 
 
 
