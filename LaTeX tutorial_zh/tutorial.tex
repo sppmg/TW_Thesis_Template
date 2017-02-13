@@ -1068,7 +1068,7 @@ BibLaTeX與 BibTeX 非常類似。首先你要有一個 BibLaTeX 的資料庫，
 其引用標記使用數字``[1]''，且列表順序照文內出現順序，也就是隱含了\verb| citestyle=numeric-comp, sorting=none|這兩個選項。理工論文通常使用這樣的設定即可，但文組論文據說較習慣使用作者名來標記和排序，可以在選項處加上\verb|citestyle=authoryear-comp, sorting=nyt|。\textbf{（樣板使用者可以在config.tex中設定bibStyleNameYear為true。）}
 其他風格或是排序方法請自行參考套件手冊並自行於cls檔中修改。
 \footnote{排序方法還有依作者字母排序，也有相應的CJK排序。}
-\footnote{ShareLaTeX 有一個 BibLaTeX 風格列表預覽  https://www.sharelatex.com/learn/Biblatex\_bibliography\_styles}
+\footnote{ShareLaTeX 有一個 BibLaTeX 風格列表預覽  \url{https://www.sharelatex.com/learn/Biblatex\_bibliography\_styles}}
 
 編譯方面與BibTeX類似，一樣須要多執行一次編譯動作，只不過中間換成biber。也就是說至少要經過 xelatex tex $\rightarrow$ biber tex $\rightarrow$ xelatex tex 三個動作。tex附檔名(.tex)不用加。
 

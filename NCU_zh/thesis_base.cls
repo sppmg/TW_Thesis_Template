@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{NCU_thesis_extbook}[2016/11/18 by sppmg]
+\ProvidesClass{thesis_base}[2017/02/13 by sppmg]
 % pass no defined option to book class.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extbook}}
 % terminates the option processing.
@@ -21,7 +21,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ifx\undefined\configured
     % --------- Define option for config.tex ----------
-    \provideboolean{publish} % publish ? Set true before publish. 發怖前設true
+    \provideboolean{publish} % publish ? Set true before publish. 發佈前設true
     \provideboolean{disableChinese} % Disable chinese, for English user.
     \provideboolean{printcopyright} % print copyright text on titlepage or cover.
     \provideboolean{pdfLinkBoxDisplay} % Draw box on link in the pdf viewer.
@@ -437,9 +437,9 @@
 % \RequirePackage[nottoc,numbib]{tocbibind} % add bibliography to TOC, not require for biblatex
 %\renewcommand{\tocbibname}{參考文獻} % no effect
 \ifthenelse{\boolean{bibStyleNameYear}}{
-    \RequirePackage[backend=biber,style=nature, citestyle=authoryear-comp, sorting=nyt]{biblatex}
+    \RequirePackage[backend=biber,style=ieee, citestyle=authoryear-comp, sorting=nyt]{biblatex}
 }{
-    \RequirePackage[backend=biber,style=nature]{biblatex} 
+    \RequirePackage[backend=biber,style=ieee]{biblatex}
     % use biblatex and sort by citation order
 }
 % http://tex.stackexchange.com/questions/51434/biblatex-citation-order
@@ -562,14 +562,16 @@ pdfkeywords={\keywordsZh,\ \keywordsEn}
 %   \crefname{environmentname}{singular}{plural}, to be used mid-sentence
 %   \Crefname{environmentname}{singular}{plural}, to be used at the beginning of a sentence
 \ifzh{
-\crefname{figure}{圖}{圖}
-\crefname{table}{表}{表}
-\Crefname{figure}{圖}{圖}
-\Crefname{table}{表}{表}
-\crefname{section}{章節}{章節}
-\Crefname{section}{章節}{章節}
+\crefname{figure}{\figurename}{\figurename}
+\Crefname{figure}{\figurename}{\figurename}
+\crefname{table}{\tablename}{\tablename}
+\Crefname{table}{\tablename}{\tablename}
 \crefname{equation}{式}{式}
 \Crefname{equation}{式}{式}
+\crefname{section}{章節}{章節}
+\Crefname{section}{章節}{章節}
+\crefname{appendix}{\appendixname}{\appendixname}
+\Crefname{appendix}{\appendixname}{\appendixname}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
