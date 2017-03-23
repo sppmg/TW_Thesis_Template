@@ -5,9 +5,11 @@
 <!-- - sppmgTool.sty 新增  指令 -->
 - 修正 \cref 引用 appendix 章節之文字。（加 \crefname{appendix}{附錄}{附錄}）
 - thesis_base.cls 預設文獻風格由 nature 改為 ieee。
-- NTU 版依校方要求增加學院名(直接設定於 config.tex 原有的 \def\deptZh 與 \def\deptEn)。
-- NTU 版依校方要求去除封面書脊設定（main.tex 註解相關指令）、封面不含DOI與浮水印。
-- NTU 版書脊之年月資訊更正：學年 -> 口試通過年、學期 -> 口試通過月。
+- NTU 版依校方要求進行微調
+    - 增加學院名(直接設定於 config.tex 原有的 \def\deptZh 與 \def\deptEn)。
+    - 去除封面書脊設定（main.tex 註解相關指令）、封面不含 DOI 與浮水印。
+    - 書脊檔(bookspine.tex)之年月資訊更正：學年 -> 口試通過年、學期 -> 口試通過月。
+- 新增 tools/toc2txt.tex 用於轉換目錄檔 main.toc 為簡單文字檔。
 
 
 ## v1.7 (2017-01-07)

@@ -1,0 +1,57 @@
+% This tex help you produce plain TOC text file. It's modify gernot's post
+% http://tex.stackexchange.com/a/346679/111676
+% It will read TOC file (default is main.toc) and produce main.txt.
+% You must use ``-interaction=nonstopmode'' for latex option, so it will give you TOC even if there are some ``Undefined control sequence''.
+
+\newcommand\toc{main} % <<< Replace myfile with the name of your tex/toc file (without extension)
+\documentclass{article}
+\newwrite\txtfile
+\immediate\openout\txtfile=\toc_toc.txt
+\renewcommand\numberline[1]{#1 }
+\def\levelChapter{chapter}
+\def\levelSection{section}
+\def\levelSubsection{subsection}
+\def\levelSubsubsection{subsubsectionsection}
+\def\levelParagraph{paragraph}
+\def\levelSubparagraph{subparagraph}
+
+\def\indention{\space\space} % set indention.
+
+\def\pageformat#1{(p.#1)} % set your page number styly, #1 will replace to page number.
+
+\renewcommand\contentsline[3]%
+  {\def\tmp{#1}%
+   \ifx\tmp\levelChapter
+     \immediate\write\txtfile{#2 \pageformat{#3}}%
+   \else
+     \ifx\tmp\levelSection
+       \immediate\write\txtfile{\indention #2 \pageformat{#3}}%
+     \else
+       \ifx\tmp\levelSubsection
+         \immediate\write\txtfile{\indention\indention #2 \pageformat{#3}}%
+       \else
+         \ifx\tmp\levelSubsubsection
+            \immediate\write\txtfile{\indention\indention\indention #2 \pageformat{#3}}%
+          \else
+            \ifx\tmp\levelParagraph
+              \immediate\write\txtfile{\indention\indention\indention\indention #2 \pageformat{#3}}%
+            \else
+              \ifx\tmp\levelSubparagraph
+                \immediate\write\txtfile{\indention\indention\indention\indention\indention #2 \pageformat{#3}}%
+              \fi
+            \fi
+          \fi
+       \fi
+     \fi
+   \fi
+  }
+\begin{document}
+\centering \huge
+You plain text TOC in the ``\toc.txt'' .
+
+Please ignore this PDF.
+
+\tiny
+\input{\toc.toc}
+
+\end{document}
