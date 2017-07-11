@@ -320,8 +320,8 @@
 
 % \titlecontents{section}[left (to margin)]
 %     {above} % 數字到文字框(頁)邊
-%     {before with labal (\chapter{})}
-%     {before without labal (\chapter*{})}
+%     {before with label (\chapter{})}
+%     {before without label (\chapter*{})}
 %     {filler}[after]
 % 僅接受定義當下值，後面要改須重使用 \titlecontents
 % 這裡使用 \makebox 拉開標號至標題文字間距。
