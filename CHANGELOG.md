@@ -14,6 +14,7 @@
 - 修正 NTU 名稱（台 -> 臺）。
 - 修正 author 範例（加句點 :D ）
 - 修復書脊文字旋轉(RawFeature=vertical)
+- tools 加入 unix2dos4toc.bat
 
 
 ## v1.7 (2017-01-07)
