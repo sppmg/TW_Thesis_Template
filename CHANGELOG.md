@@ -10,6 +10,9 @@
     - 去除封面書脊設定（main.tex 註解相關指令）、封面不含 DOI 與浮水印。
     - 書脊檔(bookspine.tex)之年月資訊更正：學年 -> 口試通過年、學期 -> 口試通過月。
 - 新增 tools/toc2txt.tex 用於轉換目錄檔 main.toc 為簡單文字檔。
+- 修正 NTU 名稱（台 -> 臺）。
+- 修正 author 範例（加句點 :D ）
+- 修復書脊文字旋轉(RawFeature=vertical)
 
 
 ## v1.7 (2017-01-07)

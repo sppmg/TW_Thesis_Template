@@ -8,10 +8,10 @@
 \def\OS{linux} % 
 \def\deptZh    {物理研究所}
 \def\degreeZh  {碩士} % 碩士/博士
-\def\titleZh   {台灣大學LaTeX論文樣板(中文)}   % Chinese title
+\def\titleZh   {臺灣大學LaTeX論文樣板(中文)}   % Chinese title
 \def\title     {\titleZh} % Main title, default Chinese title
-\def\authorZh  {君の名は}
-\def\authorEn  {Your name}
+\def\authorZh  {君の名は。}
+\def\authorEn  {Your name.}
 \def\author    {\authorZh} % Choose one When only use one name.(book spine using.)
 \def\degreeyearROC{106} % year of ROC 口試年份
 \def\degreemonth{1} % month 口試月份
@@ -63,7 +63,7 @@
 % ---------------------- Vertical CJK ---------------------------
 % Vertical with fixed base line in a rotatebox box.
 % ref: http://tex.stackexchange.com/questions/11913/baseline-shift-with-fontspec
-\newCJKfontfamily{\vCJKFamily}[Vertical=RotatedGlyphs]{\CJKmainfont} %AR PL UMing TW}%{\CJKsfdefault}
+\newCJKfontfamily{\vCJKFamily}[Vertical=RotatedGlyphs,RawFeature=vertical]{\CJKmainfont} %AR PL UMing TW}%{\CJKsfdefault}
 % Fix base line of Vertical CJK
 \def\vCJKShiftSymbol#1{\raise.35em\hbox{#1}}
 \def\vCJKBL{\let\CJKsymbol\vCJKShiftSymbol

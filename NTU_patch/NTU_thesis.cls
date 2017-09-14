@@ -104,7 +104,7 @@
                     \renewcommand{\arraystretch}{1}
                     \setstretch{1}
                     \begin{tabularx}{290mm}{lXcXcXcXrl} 
-                    \fs{12}國立台灣大學 & 
+                    \fs{12}國立臺灣大學 & 
                     \multirow{2}{*}{} &
                     \multirow{2}{*}{\fs{12}\degreeZh 論文} &
                     \multirow{2}{*}{} &
