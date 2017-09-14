@@ -1,7 +1,8 @@
 # Change Log | 版本紀錄
 不同於首頁（README.md）的遷移資訊僅說明版本間的轉移，這裡提供各發佈版的更動。（此檔於 2016-12-30 補上。舊版僅概略描述，詳細變動請參考 git log ）
 
-## v1.8 (2017-XX-XX)
+
+## v1.7.1 (2017-09-14)
 <!-- - sppmgTool.sty 新增  指令 -->
 - 修正 \cref 引用 appendix 章節之文字。（加 \crefname{appendix}{附錄}{附錄}）
 - thesis_base.cls 預設文獻風格由 nature 改為 ieee。
