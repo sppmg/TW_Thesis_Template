@@ -1,5 +1,8 @@
 # The LaTeX Template for TW Thesis 台灣碩博士 LaTeX 論文樣板
 
+![XeLaTeX](https://img.shields.io/badge/TeX-XeLaTeX-orange.svg)
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/sppmg)
+
 這個專案的目的是希望台灣的研究生可以快速上手 LaTeX（尤其是使用中文撰寫），讓寫論文的時間完整的用在內容上。除了提供中文樣板讓使用者直接修改之外，同時提供一個簡易 LaTeX 教學，*教學檔原始碼也是樣板的最佳範例*。教學內容主要但不限於論文樣板範圍，一般 LaTeX 學習者亦歡迎參考使用。
 
 建議至少花15分鐘快速瀏覽過教學。不懂沒關係，至少知道 LaTeX 有哪些功能、要到哪裡找。瀏覽一遍只要15分鐘，不知道好用功能可以浪費你好幾天。
