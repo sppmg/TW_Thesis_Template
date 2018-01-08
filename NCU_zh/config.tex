@@ -1,11 +1,10 @@
 %%%%% build setting | 編譯設定 %%%%%
 \setboolean{publish}{false} % {true}/{false} Set true before publish. 發佈前設true
-% draft option will not load figure, so reduce compile time.
-%   add to class option in main.tex ( \documentclass[draft] )
-\def\lang{zh} % zh/en Set main language.
-\setboolean{disableChinese}{false} % {true}/{false} Disable chinese, for English user.
+\def\lang{zh} % {zh}/{en} Set main language.
+\setboolean{disableChinese}{false} % {true}/{false} Disable Chinese, for English user who don't have Chinese fonts.
 
-\synctex=1 % Enable SyncTeX
+\synctex=1 % Enable SyncTeX.
+
 
 %%%%% Information of your document. | 定義文件資訊 %%%%%
 \def\deptshort {物理}
@@ -19,8 +18,8 @@
 \def\author    {君の名は。}
 \def\mprof     {你的指導教授}
 \def\sprofi    {你的共同指導} % 共同指導 1
-\def\sprofii   {}      % 共同指導 2                  
-\def\degreedate{中~華~民~國~一百零五~年~六~月}
+\def\sprofii   {}      % 共同指導 2
+\def\degreedate{中~華~民~國~一百零七~年~六~月}
 \def\copyyear  {2012-2013}
 
 \setboolean{printcopyright}{false} % {true}/{false} print copyright text on titlepage or cover.
@@ -29,12 +28,30 @@
 \def\keywordsEn{Keyword, Thesis, Template, Graduate me}
 
 
+%%%%% Set letters filename | 設定插入文件 %%%%%
+% This setting for main.tex default letters.
+% It will not insert PDF if file non-exist or empty .
+% 此為 main.tex 預設插入之 PDF，檔案不存在或空白則不插入。
 
-%%%%%% set OS | 設定作業系統 %%%%%
-% Will overwrite \OS if your latex compile parameter has ``-shell-escape''(Texstudio default enable).
-\def\OS{linux} % {linux}/{win}, only effect auto select CJK font.(CJK means Chinese, Japanese, and Korean)
+% 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
+\def\letterAuth  {letter_authorization.pdf}
+% 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
+\def\letterPubReq{letter_publication_request.pdf}
+% 指導教授推薦書
+\def\letterRecom {letter_recommendation.pdf}
+% 口試委員審定書
+\def\letterVerif {letter_verification.pdf}
 
-%%%%%% set font | 設定中英文字型 %%%%%
+
+%%%%% Set OS | 設定作業系統 %%%%%
+% It will overwrite \OS if your LaTeX compile parameter has ``-shell-escape''(Texstudio default enable).
+% Linux user: keep setting or add ``-shell-escape'' .
+% Mac OS X user: Set to mac or add ``-shell-escape'' .
+% Windows user: Don't  need change setting.
+\def\OS{linux} % {linux}/{mac}/{win}, only effect auto select CJK font.(CJK means Chinese, Japanese, and Korean)
+
+
+%%%%% set font | 設定中英文字型 %%%%%
 % keep empty for default font. CJK font must set OS for auto select.
 % Setting by name of font(English will be better) or font filename.
 % Linux 利用指令 fc-list :lang=zh 來查詢可以用的字體名稱。
@@ -46,27 +63,12 @@
 \def\CJKsansfont{}
 \def\CJKmonofont{}
 
-%%%%% depth | 文獻列表風格 %%%%%
-\setboolean{bibStyleNameYear}{false} % {true}/{false} true for use name,year to sort and cite.(If you want use custom option in .cls, set false here. )
 
-%%%%% depth | 章節深度 %%%%%
-% LaTeX 預設2，chapter == 0。
-\def\secNumDepth{4} % 設定章節標題給予數字標號的深度, \paragraph == 4。
-\def\tocDepth{2}    % 目錄顯示層級，\subsection == 2。
-
-%%%%% style of toc and titles | 目錄及章節風格 %%%%%
-% see tutorial. (0 -> original)
-\def\tocStyleAlign{0}           % 0/1
-\def\tocStyleChapter{1}         % 0/1/2
-\def\titleStyle{0}              % 0/1 
-    \def\indentBlockSSS{0mm}    % indent \subsubsection{} 
-    \def\indentBlockPar{0mm}    % indent \paragraph{}
-    \def\indentBlockSPar{0mm}   % indent \subparagraph{}
-
-%%%%% style of fonts and line stretch | 字體大小風格及行距 %%%%%
+%%%%% Style of fonts and line stretch | 字體大小風格及行距 %%%%%
 % Base font
-\def\baseFontSize{14pt} % valid: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
-\def\baseLineStretch{1.5}
+\def\baseFontSize{14pt} % Valid: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+\def\baseLineStretch{1.5} % 行距(倍數)
+\def\fakeBoldFactor{2} % 假粗體粗度。(Only affect CJK font.)
 % Bibliography
 \def\bibFontStyle{\small}
 \def\bibLineStretch{1.2}
@@ -81,7 +83,22 @@
 \def\pageHeaderStyle{\sffamily\itshape\footnotesize}
 \def\pageFooterStyle{\sffamily\footnotesize}
 % listing font style set by basicstyle in \lstdefinestyle, see macro_preamble.tex
-% todonotes font style set by textsize option when package loading, see cls. default footnotesize
+% todonotes font style set by textsize option when package loading, see thesis_base.cls . default \footnotesize
+
+
+%%%%% Really blank page | 純白空白頁 %%%%%
+\setboolean{reallyBlankPage}{false} % {true}/{false} true for use  really blank pages between chapters. 
+
+
+%%%%% Bibliography list style | 文獻列表風格 %%%%%
+\setboolean{bibStyleNameYear}{false} % {true}/{false} true for use name,year to sort and cite.(If you want use custom option in .cls, set false here. )
+
+
+%%%%% Depth of sectioning | 章節深度 %%%%%
+% LaTeX default 2，chapter == 0。
+\def\secNumDepth{4} % Numbering of sectioning title. 設定章節標題給予數字標號的深度, \paragraph == 4。
+\def\tocDepth{2}    % Depth of TOC. 目錄顯示層級，\subsection == 2。
+
 
 %%%%% Style of titles | 標題風格 %%%%%
 \def\titlepageFontFamily{\sffamily}
@@ -96,6 +113,17 @@
 \def\paragraphTitleStyle    {\sffamily\normalsize\bfseries}
 \def\subparagraphTitleStyle {\sffamily\normalsize\bfseries}
 
+
+%%%%% Style of toc and titles | 目錄及章節風格 %%%%%
+% see tutorial. (0 -> original)
+\def\tocStyleAlign{0}           % 0/1
+\def\tocStyleChapter{1}         % 0/1/2
+\def\titleStyle{0}              % 0/1 
+    \def\indentBlockSSS{0mm}    % indent \subsubsection{} 
+    \def\indentBlockPar{0mm}    % indent \paragraph{}
+    \def\indentBlockSPar{0mm}   % indent \subparagraph{}
+
+
 %%%%% Misc | 雜項 %%%%%
 \setboolean{pdfLinkBoxDisplay}{true} % {true}/{false} ,Draw a box on the link. It only display in pdf viewer, not on paper.
-\def\fakeBoldFactor{2} % 假粗體粗度。(Only affect CJK font.)
+

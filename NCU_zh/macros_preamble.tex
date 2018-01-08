@@ -3,17 +3,24 @@
 % If your package need load aftre hyperref (to get link function), 
 % please load in main.tex by \usepackage{package}
 % Use \RequirePackage{package} in this file to load package.
+
+% blindtext is used to generating dummy text for testing.
+% see https://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/
+% \RequirePackage{blindtext}
 % --------------------------------------------------
-\addbibresource{demo.bib} % add your bib file here
+
+% Add your bib file here, one \addbibresource one file.
+\addbibresource{demo.bib}
 
 
 
-% for todo colors(ref: http://tex.stackexchange.com/questions/9796/how-to-add-todo-notes?noredirect=1)
+% for todo colors(ref: https://tex.stackexchange.com/a/178806)
 \NewDocumentCommand{\todoUnsure}{O{} +m}{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
 \NewDocumentCommand{\todoChange}{O{} +m}{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
 \NewDocumentCommand{\todoInfo}{O{} +m}{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
 \NewDocumentCommand{\todoImprovement}{O{} +m}{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \NewDocumentCommand{\todoThiswillnotshowUnsure}{O{} +m}{\todo[disable,#1]{#2}}
+
 
 % A example for define unit command.
 \providecommand{\temp}[1]{$\SI{#1}{\degreeCelsius}$}
@@ -25,7 +32,9 @@
 
 \providecommand{\abs}[1]{\lvert #1 \rvert } % Required package: amsmath
 
+
 %%%%%%%% for codes %%%%%%%%%
+% see https://www.sharelatex.com/learn/Code_listing
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}

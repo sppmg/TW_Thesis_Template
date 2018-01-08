@@ -9,6 +9,11 @@
 %        LaTeX tools
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\RequirePackage{iftex}  % Check using TeX en­gine.(Only XeTeX.)
+\ifXeTeX\else
+    \ClassError{TW_Thesis_Template}{XeTeX is required.}{Please use XeLaTeX to compile this document.}
+\fi
+
 \RequirePackage{ifthen}
 \RequirePackage{etoolbox}
 \RequirePackage{ifplatform}  % only for auto select CJK font.
@@ -25,8 +30,9 @@
     \provideboolean{disableChinese} % Disable chinese, for English user.
     \provideboolean{printcopyright} % print copyright text on titlepage or cover.
     \provideboolean{pdfLinkBoxDisplay} % Draw box on link in the pdf viewer.
-    \provideboolean{bibStyleNameYear} % bibliography use name,year to sort and cite.
-
+    \provideboolean{bibStyleNameYear} % Bibliography use name,year to sort and cite.
+    \provideboolean{reallyBlankPage} % Really blank pages between chapters
+    
     % --------- Load config.tex ----------
     \IfFileExists{./config.tex}{\input{./config.tex}\gdef\configured{}}{} % search only in the current directory use ./file
 
@@ -81,9 +87,11 @@
 % (Texstudio may default use -shell-escape)
 \iflinux
     \def\OS{linux}
+\else\ifmacosx
+    \def\OS{mac}
 \else\ifwindows
     \def\OS{win}
-\fi\fi
+\fi\fi\fi
 % --------- English ----------
 \ifx\mainfont\empty\else
     \setmainfont{\mainfont}
@@ -98,43 +106,35 @@
 \ifthenelse{\boolean{disableChinese}}{}{
     \ifx\CJKmainfont\empty
         \ifthenelse{\equal{\OS}{linux}}{
-            % linux os
             \def\CJKmainfont{AR PL UMing TW}  % 明體
         }{
-            \ifthenelse{\equal{\OS}{win}}{
-                % win os
-                \def\CJKmainfont{MingLiU}  % MingLiU == 細明體
+            \ifthenelse{\equal{\OS}{mac}}{
+                \def\CJKmainfont{LiSong Pro}  % 儷宋 Pro (明體)
             }{
-                % set macos later
-        }}
+                \ifthenelse{\equal{\OS}{win}}{
+                    \def\CJKmainfont{MingLiU}  % 細明體
+                }{
+        }}}
     \fi
     \setCJKmainfont{\CJKmainfont}
     %%%
     \ifx\CJKsansfont\empty
         \ifthenelse{\equal{\OS}{linux}}{
-            % linux os
             \def\CJKsansfont{AR PL UKai TW}  % 楷體
         }{
-            \ifthenelse{\equal{\OS}{win}}{
-                % win os
-                \def\CJKsansfont{DFKai-SB}  % DFKai-SB == 標楷體
+            \ifthenelse{\equal{\OS}{mac}}{
+                \def\CJKsansfont{Kaiti TC Regular}  % 楷體-繁
             }{
-                % set macos later
-        }}
+                \ifthenelse{\equal{\OS}{win}}{
+                    \def\CJKsansfont{DFKai-SB}  % 標楷體
+                }{
+        }}}
     \fi
     \setCJKsansfont{\CJKsansfont}
     %%%
     \ifx\CJKmonofont\empty
-        \ifthenelse{\equal{\OS}{linux}}{
-            % linux os
-            \edef\CJKmonofont{\CJKmainfont} % 明體
-        }{
-            \ifthenelse{\equal{\OS}{win}}{
-                % win os
-                \edef\CJKmonofont{\CJKmainfont}  % MingLiU == 細明體
-            }{
-                % set macos later
-        }}
+        % 無論何種OS均設為 \CJKmainfont
+        \edef\CJKmonofont{\CJKmainfont}
     \fi
     \setCJKmonofont{\CJKmonofont}
 }
@@ -405,6 +405,17 @@
     \renewcommand{\footrulewidth}{0pt}
 }
 
+% Really blank pages between chapters
+% ref: http://www.tex.ac.uk/FAQ-reallyblank.html
+\ifthenelse{\boolean{reallyBlankPage}}{
+    \let\origdoublepage\cleardoublepage
+    \newcommand{\clearemptydoublepage}{%
+    \clearpage
+    {\thispagestyle{empty}\origdoublepage}%
+    }
+    \let\cleardoublepage\clearemptydoublepage
+}{}
+
 % ---------------------- appendix title, header & TOC ---------------------------
 % 修改附錄的章格式，因為附錄使用字母A,B,C所以要另外定義。這裡使用etoolbox 附加指令到\appendix。
 \apptocmd{\appendix}{
@@ -496,7 +507,7 @@
 \DeclareSIUnit\molar{\mole\per\cubic\deci\metre}
 \DeclareSIUnit\Molar{\textsc{m}}
 
-\RequirePackage[version=3]{mhchem} % usage \ce{KH2PO4}
+\RequirePackage[version=4]{mhchem} % usage \ce{KH2PO4}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           Misc

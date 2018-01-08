@@ -8,7 +8,11 @@
 % User guide in wiki of TW_Thesis_Template :
 % https://github.com/sppmg/TW_Thesis_Template/wiki
 
-\documentclass[]{NCU_thesis} % [draft] = don't load fig', showframe
+\documentclass[]{NCU_thesis} % \documentclass[option1, option2, ...]
+% Helpful options: 
+% draft = Don't load figure ,reduce compile time.
+% showframe = show document margins.
+% colorgrid = show colored coordinate.
 \usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
 
 \begin{document}
@@ -18,22 +22,23 @@
             \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
             
         %%%%%%%%%%%% letters %%%%%%%%%%%%
+        % Set file name in config.tex
         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
-        \IfFileExists{letter_authorization.pdf}{
+        \IfFileExists{\letterAuth}{
             \cleardoublepage        % 由下個右頁開始
-            \includepdf{letter_authorization.pdf}}{}
+            \includepdf{\letterAuth}}{}
         % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
-        \IfFileExists{letter_publication_request.pdf}{
+        \IfFileExists{\letterPubReq}{
             \cleardoublepage
-            \includepdf{letter_publication_request.pdf}}{}
+            \includepdf{\letterPubReq}}{}
         % 指導教授推薦書
-        \IfFileExists{letter_recommendation.pdf}{
+        \IfFileExists{\letterRecom}{
             \cleardoublepage
-            \includepdf{letter_recommendation.pdf}}{}
+            \includepdf{\letterRecom}}{}
         % 口試委員審定書
-        \IfFileExists{letter_verification.pdf}{
+        \IfFileExists{\letterVerif}{
             \cleardoublepage
-            \includepdf{letter_verification.pdf}}{}
+            \includepdf{\letterVerif}}{}
         \cleardoublepage
         
         %%%%%%%%%%%% Other frontmatter, eg,abstract %%%%%%%%%%%%
@@ -45,7 +50,7 @@
             \phantomsection
             \addcontentsline{toc}{chapter}{\contentsname}    %手動將「目錄」字樣加入目錄
         \tableofcontents        % 目錄
-        \listoffigures         % 圖目錄
+        \listoffigures          % 圖目錄
         \listoftables           % 表目錄
         \input{abbreviation}    % 符號說明
     \mainmatter
