@@ -43,11 +43,19 @@
 \def\letterVerif {letter_verification.pdf}
 
 
+%%%%% Bibliography | 文獻列表 %%%%%
+\def\bibManType{2} % {0}/{1}/{2} 0 = Embedded, 1 = BibTeX, 2 = biber / BibLaTeX
+\def\bibStyle{ieee} % Default ``ieee'' with BibLaTeX. If you use BibTeX change to ``ieeetr''.
+% BibLaTeX ref: https://www.sharelatex.com/learn/Biblatex_bibliography_styles
+% BibTeX ref: https://www.sharelatex.com/learn/Bibtex_bibliography_styles
+\setboolean{bibStyleNameYear}{false} % {true}/{false} true for use name,year to sort and cite.(If you want use custom option in .cls, set false here. )
+
+
 %%%%% Set OS | 設定作業系統 %%%%%
 % It will overwrite \OS if your LaTeX compile parameter has ``-shell-escape''(Texstudio default enable).
-% Linux user: keep setting or add ``-shell-escape'' .
-% Mac OS X user: Set to mac or add ``-shell-escape'' .
-% Windows user: Don't  need change setting.
+% Linux user: keep setting or add ``-shell-escape'' to compiler.
+% Mac OS X user: Set to mac or add ``-shell-escape'' to compiler.
+% Windows user: Don't need change setting.
 \def\OS{linux} % {linux}/{mac}/{win}, only effect auto select CJK font.(CJK means Chinese, Japanese, and Korean)
 
 
@@ -55,7 +63,7 @@
 % keep empty for default font. CJK font must set OS for auto select.
 % Setting by name of font(English will be better) or font filename.
 % Linux 利用指令 fc-list :lang=zh 來查詢可以用的字體名稱。
-% Windows 使用內建字型管理查詢。
+% Windows 使用內建字型管理查詢。建議填英文字型名稱。
 \def\mainfont   {} % default use Latin Modern Roman (lmodern pkg.)
 \def\sansfont   {}
 \def\monofont   {}
@@ -90,10 +98,6 @@
 \setboolean{reallyBlankPage}{false} % {true}/{false} true for use  really blank pages between chapters. 
 
 
-%%%%% Bibliography list style | 文獻列表風格 %%%%%
-\setboolean{bibStyleNameYear}{false} % {true}/{false} true for use name,year to sort and cite.(If you want use custom option in .cls, set false here. )
-
-
 %%%%% Depth of sectioning | 章節深度 %%%%%
 % LaTeX default 2，chapter == 0。
 \def\secNumDepth{4} % Numbering of sectioning title. 設定章節標題給予數字標號的深度, \paragraph == 4。
@@ -126,4 +130,3 @@
 
 %%%%% Misc | 雜項 %%%%%
 \setboolean{pdfLinkBoxDisplay}{true} % {true}/{false} ,Draw a box on the link. It only display in pdf viewer, not on paper.
-

@@ -444,19 +444,28 @@
 \RequirePackage{setspace} % for setstretch
 \setstretch{\baseLineStretch} % 行距
 
-% bibliography use biber(external program) and biblatex(package)
-% \RequirePackage[nottoc,numbib]{tocbibind} % add bibliography to TOC, not require for biblatex
-%\renewcommand{\tocbibname}{參考文獻} % no effect
-\ifthenelse{\boolean{bibStyleNameYear}}{
-    \RequirePackage[backend=biber,style=ieee, citestyle=authoryear-comp, sorting=nyt]{biblatex}
-}{
-    \RequirePackage[backend=biber,style=ieee]{biblatex}
-    % use biblatex and sort by citation order
-}
-% http://tex.stackexchange.com/questions/51434/biblatex-citation-order
-% use \addbibresource{bib.bib} in preamble
-% \defbibheading{\bibname} % biblatex use \defbibheading
-\def\bibfont{\bibFontStyle\setstretch{\bibLineStretch}}
+\ifcase \bibManType
+    % 0 == Embedded
+    \RequirePackage[nottoc,numbib]{tocbibind} % add bibliography to TOC.
+\or
+    % 1 == BibTeX
+    \RequirePackage[nottoc,numbib]{tocbibind} % add bibliography to TOC.
+%     \renewcommand{\tocbibname}{參考文獻} % Need tocbibind pkg , auto get \bibname
+\or
+    % 2 == biber / BibLaTeX
+    % Add bibliography by \addbibresource{bibfile.bib} in macros_preamble.tex
+    \ifthenelse{\boolean{bibStyleNameYear}}{
+        \RequirePackage[backend=biber,style=ieee, citestyle=authoryear-comp, sorting=nyt]{biblatex}
+        % sorting see doc or https://tex.stackexchange.com/a/51439
+    }{
+        \RequirePackage[backend=biber,style=ieee]{biblatex}
+        % use biblatex and sort by citation order
+    }
+    \def\bibfont{\bibFontStyle\setstretch{\bibLineStretch}} % font setting of BibLaTeX
+    % BibLaTeX no need tocbibind 
+    % \bibname and \refname can't work with BibLaTeX, so use option of \printbibliography.
+\fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        figure & float env.
@@ -560,10 +569,10 @@
 % http://tex.stackexchange.com/questions/44088/when-do-i-need-to-invoke-phantomsection
 % PDF Metadata with hyperref in LaTeX  https://www.karlrupp.net/2016/01/pdf-metadata-in-latex-documents/
 \hypersetup{
-pdftitle={\title},
-pdfsubject={\ifx\subtitle\empty\title\else\subtitle\fi},
-pdfauthor={\author},
-pdfkeywords={\keywordsZh,\ \keywordsEn}
+    pdftitle={\title},
+    pdfsubject={\ifx\subtitle\empty\title\else\subtitle\fi},
+    pdfauthor={\author},
+    pdfkeywords={\keywordsZh,\ \keywordsEn}
 }
 \ifthenelse{\boolean{pdfLinkBoxDisplay}}{}{
     \hypersetup{pdfborder = {0 0 0 0}} } % 0 -> Don't draw box on link in the pdf
@@ -573,16 +582,16 @@ pdfkeywords={\keywordsZh,\ \keywordsEn}
 %   \crefname{environmentname}{singular}{plural}, to be used mid-sentence
 %   \Crefname{environmentname}{singular}{plural}, to be used at the beginning of a sentence
 \ifzh{
-\crefname{figure}{\figurename}{\figurename}
-\Crefname{figure}{\figurename}{\figurename}
-\crefname{table}{\tablename}{\tablename}
-\Crefname{table}{\tablename}{\tablename}
-\crefname{equation}{式}{式}
-\Crefname{equation}{式}{式}
-\crefname{section}{章節}{章節}
-\Crefname{section}{章節}{章節}
-\crefname{appendix}{\appendixname}{\appendixname}
-\Crefname{appendix}{\appendixname}{\appendixname}
+    \crefname{figure}{\figurename}{\figurename}
+    \Crefname{figure}{\figurename}{\figurename}
+    \crefname{table}{\tablename}{\tablename}
+    \Crefname{table}{\tablename}{\tablename}
+    \crefname{equation}{式}{式}
+    \Crefname{equation}{式}{式}
+    \crefname{section}{章節}{章節}
+    \Crefname{section}{章節}{章節}
+    \crefname{appendix}{\appendixname}{\appendixname}
+    \Crefname{appendix}{\appendixname}{\appendixname}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

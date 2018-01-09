@@ -13,14 +13,16 @@
 % draft = Don't load figure ,reduce compile time.
 % showframe = show document margins.
 % colorgrid = show colored coordinate.
-\usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
+\usepackage[subpreambles]{standalone} % standalone class setting in config.tex
+% Option ``subpreambles'' enable sub-tex's preambles when compile main tex. (pkg default disable)
+% sppmg think it's still some problem (e.g. \addbibresource will faild ), recommend move all subpreambles to ``macros_preamble.tex`` or here (preamble of main.tex).
 
 \begin{document}
     \frontmatter
         \input{titlepage}        % 封面/書名頁
         \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
             \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
-            
+
         %%%%%%%%%%%% letters %%%%%%%%%%%%
         % Set file name in config.tex
         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
@@ -60,7 +62,7 @@
         \input{chapter_conclusion}      % 結論
         \input{chapter_template_demo}
     \backmatter          % book class 預設\backmatter 在\appendix 後面。因此.cls修改過\appendix 定義
-        \printbibliography[title = {參考文獻}, heading = bibnumbered]
+        \input{bibliography}
     \appendix
         \input{appendix_device}
         \input{appendix_solution}
