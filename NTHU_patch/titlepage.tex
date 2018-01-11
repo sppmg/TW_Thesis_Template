@@ -1,0 +1,60 @@
+\documentclass[class=NTHU_thesis, crop=false, float=true]{standalone}
+\begin{document}
+
+\def\fsUniversity{\fs{24}[1.5]}
+\def\fsTitle{\fs{20}[1.5]}
+\def\fsNames{\fs{18}[1.5]}
+
+\def\mcShift{\hspace{-6.0pt}} % It's for align non-multicolumn cell .
+% --------define title page layout for thesis
+\titlepageFontFamily % set in config.tex
+\newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
+\begin{spacing}{1.0}
+\begin{titlepage}
+    \null\vfill
+    \begin{center}
+        {\fsUniversity 國\quad 立\quad 清\quad 華\quad 大\quad 學} \par
+        \vspace*{5mm}
+        
+        {\fsTitle {\degree}論文\par}
+        \vspace*{20mm}
+        
+        {\fsTitle {\title} \par}
+        \vspace*{5mm}
+        
+        {\fsTitle {\subtitle} \par}
+        \vspace*{10mm}
+        
+        {\ifx \logo\empty\vspace*{30mm}
+        \else \includegraphics[height=30mm]{\logo} \par
+        \fi}
+        \vfill
+        
+        {\fsNames \renewcommand{\arraystretch}{1}
+        \begin{tabular}{l@{：}l@{\quad}l@{\quad}l}
+        系\qquad 所    & \multicolumn{3}{l}{\mcShift \dept}      \\
+        學\qquad 號    & \multicolumn{3}{l}{\mcShift \studentID} \\
+        研\enspace 究\enspace 生 & \authorZh & & (\authorEn)    \\
+        指導教授        & \mprof    & 博士 & (Prof. \mprofEn   ) \\
+        \ifx \sprofi\empty \else
+        共同指導       & \sprofi    & 博士 & (Prof. \sprofiEn  ) \\ \fi
+        \ifx \sprofii\empty \else
+                      & \sprofii   & 博士 & (Prof. \sprofiiEn ) \\ \fi
+        \end{tabular}\par}
+        \vspace*{5ex}
+        
+        {\fsTitle {\degreedate} \par}
+        \vspace*{2ex}
+        
+        \ifthenelse{\boolean{printcopyright}}
+        {{{版權所有\copyright\ \author\ \quad \copyyear} \par}}
+        {}
+    \end{center}
+    \null\vfill
+\end{titlepage}
+\end{spacing}
+\restoregeometry
+\normalfont % use main font
+%--------end of title page for thesis
+\cleardoublepage
+\end{document}
