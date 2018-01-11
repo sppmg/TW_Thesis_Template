@@ -13,17 +13,23 @@
     \begin{center}
         {\fsUniversity\textbf{National Central University}\par}
         \vspace*{30mm}
+        
         {\fsTitle {\dept} \par}
         \vspace*{2ex}
+        
         {\fsTitle {\degree}\ Thesis\par}
         \vspace*{20mm}
+        
         {\fsTitle {\title} \par}
         \vspace*{5mm}
+        
         {\fsTitle {\subtitle} \par}
         \vspace*{10mm}
+        
         {\ifx \logo\empty\vspace*{40mm}
         \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
         \fi}
+    
         {\fsNames \renewcommand{\arraystretch}{1}
         \begin{tabular}{l@{：}l}
         Student  & \author         \\
@@ -34,11 +40,12 @@
                  & Prof. \sprofii  \\ \fi
         \end{tabular}\par}
         \vspace*{5ex}
+        
         {\fsTitle {\degreedateEn} \par}
         \vspace*{2ex}
+        
         \ifthenelse{\boolean{printcopyright}}
         {{{Copyright\copyright\ \author\ \copyyear} \par}}
-        {\hspace{5cm}}
     \end{center}
     \null\vfill
 \end{titlepage}

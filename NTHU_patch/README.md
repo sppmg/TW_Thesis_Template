@@ -10,6 +10,8 @@
 
 圖書館比教務處多了一些規定，請參考：[圖書館說明](http://www.lib.nthu.edu.tw/ETD/doc3.htm)
 
+封面樣式參考[註冊組](http://registra.web.nthu.edu.tw/files/13-1086-5155.php)
+
 ### 匯出摘要
 
 直接單獨編譯 `abstract_*.tex` 即可。（注意編輯器可能會自動改編譯主文件）

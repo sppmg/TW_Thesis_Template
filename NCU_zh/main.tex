@@ -12,10 +12,10 @@
 % Helpful options: 
 % draft = Don't load figure ,reduce compile time.
 % showframe = show document margins.
-% colorgrid = show colored coordinate.
+% colorgrid = show colored coordinate. (by eso-pic pkg.)
 \usepackage[subpreambles]{standalone} % standalone class setting in config.tex
 % Option ``subpreambles'' enable sub-tex's preambles when compile main tex. (pkg default disable)
-% sppmg think it's still some problem (e.g. \addbibresource will faild ), recommend move all subpreambles to ``macros_preamble.tex`` or here (preamble of main.tex).
+% sppmg think it's still some problem (e.g. \addbibresource will faild ), recommend move all subpreambles to ``macros_preamble.tex``
 
 \begin{document}
     \frontmatter
@@ -26,9 +26,9 @@
         %%%%%%%%%%%% letters %%%%%%%%%%%%
         % Set file name in config.tex
         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
-        \IfFileExists{\letterAuth}{
+        \IfFileExists{\letterAuthEl}{
             \cleardoublepage        % 由下個右頁開始
-            \includepdf{\letterAuth}}{}
+            \includepdf{\letterAuthEl}}{}
         % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
         \IfFileExists{\letterPubReq}{
             \cleardoublepage

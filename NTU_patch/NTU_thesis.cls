@@ -1,6 +1,6 @@
 % This class is a patch to NCU class.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{NTU_thesis}[2016/12/11 by sppmg]
+\ProvidesClass{NTU_thesis}[2018/01/11 by sppmg]
 % pass no defined option to book class.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{thesis_base}}
 % terminates the option processing.
@@ -23,14 +23,15 @@
     \provideboolean{printcopyright} % print copyright text on titlepage or cover.
     \provideboolean{pdfLinkBoxDisplay} % Draw box on link in the pdf viewer.
     \provideboolean{bibStyleNameYear} % bibliography use name,year to sort and cite.
-
+    \provideboolean{reallyBlankPage} % Really blank pages between chapters
+    
     % --------- Load config.tex ----------
     \IfFileExists{./config.tex}{\input{./config.tex}\gdef\configured{}}{} % search only in the current directory use ./file
 
     % Easy check Chinese sitting. It will not disable Chinese font.
     % Usage: \ifzh{zh}{non-zh} or \ifzh{zh}
     \ProvideDocumentCommand{\ifzh}{+m +G{}}{
-    \ifthenelse{\NOT \boolean{disableChinese} \AND \equal{\lang}{zh}}{#1}{#2}
+        \ifthenelse{\NOT \boolean{disableChinese} \AND \equal{\lang}{zh}}{#1}{#2}
     } 
 \fi
 
@@ -85,7 +86,7 @@
 \ifthenelse{\boolean{disableChinese}}{}{
 % Vertical with fixed base line in a rotatebox box.
 % ref: http://tex.stackexchange.com/questions/11913/baseline-shift-with-fontspec
-\newCJKfontfamily{\vCJKFamily}[Vertical=RotatedGlyphs]{\CJKsansfont} %AR PL UMing TW}%{\CJKsfdefault}
+\newCJKfontfamily{\vCJKFamily}[Vertical=RotatedGlyphs]{\CJKsansfont}
 % Fix base line of Vertical CJK
 \def\vCJKShiftSymbol#1{\raise.35em\hbox{#1}}
 \def\vCJKBL{\let\CJKsymbol\vCJKShiftSymbol
@@ -123,32 +124,6 @@
     }% disableChinese
 } 
 
-% ---------------------- Watermark ---------------------------
-% Add logo to every page after this command.
-\RequirePackage{background}
-\SetBgContents{}
-\newcommand{\startWatermark}{
-\ifx\watermark\empty\else
-\SetBgContents{\includegraphics{\watermark}} % need a watermark
-\SetBgAngle{0}   % rotate
-\SetBgScale{0.5}  % scale
-% Real shift is 0.5 of setting.
-\SetBgHshift{123.5mm} % x=0 for center, (210/2-25-73/4)*2
-\SetBgVshift{210.5mm} % y=0 for center, (297/2-25-73/4)*2
-% Image size = 73mm^2, scale 0.5 -> 73/4 for center to edge.
-% A4 paper = 210mm*297mm -> /2 for center to edge.
-% Real shift is 0.5 of setting, so *2.
-\SetBgOpacity{0.5}
-
-% Another method by eso-pic package, but opacity will faild in first image.
-%\AddToShipoutPictureBG{%
-%    \AtPageUpperLeft{%
-%        \makebox[\paperwidth][r]{
-%                \put(\LenToUnit{-4.325cm},\LenToUnit{-4.325cm}){\tikz[overlay] \node[opacity=0.1,inner sep=0pt] {\includegraphics[scale=0.5]{watermark.pdf}};}% image = 7.3cm^2 -> 7.3/4+2.5=4.325
-%        }
-%    }%
-%}
-\fi}
 
 % ---------------------- DOI ---------------------------
 % Add DOI to every page after this command.

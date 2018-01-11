@@ -14,7 +14,7 @@
 \def\titleEn   {NCU LaTeX Thesis Template(Chinese)} % English title
 \def\title     {\titleZh} % Main title, default Chinese title
 \def\subtitle  {\titleEn} % Subtitle, default English title, empty allowed.
-\def\logo      {}   % 填入校徽檔名。中央無校徽在封面，維持空白可除去校徽
+\def\logo      {}   % logo on titlepage. Watermark see below. 中央無校徽在封面
 \def\author    {君の名は。}
 \def\mprof     {你的指導教授}
 \def\sprofi    {你的共同指導} % 共同指導 1
@@ -33,8 +33,8 @@
 % It will not insert PDF if file non-exist or empty .
 % 此為 main.tex 預設插入之 PDF，檔案不存在或空白則不插入。
 
-% 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
-\def\letterAuth  {letter_authorization.pdf}
+% 碩博士論文電子檔授權書 Authorization Letter (for electronic)
+\def\letterAuthEl{letter_authorization.pdf}
 % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
 \def\letterPubReq{letter_publication_request.pdf}
 % 指導教授推薦書
@@ -59,8 +59,8 @@
 \def\OS{linux} % {linux}/{mac}/{win}, only effect auto select CJK font.(CJK means Chinese, Japanese, and Korean)
 
 
-%%%%% set font | 設定中英文字型 %%%%%
-% keep empty for default font. CJK font must set OS for auto select.
+%%%%% Set font | 設定中英文字型 %%%%%
+% Keep empty for default font. CJK font must set OS for auto select.
 % Setting by name of font(English will be better) or font filename.
 % Linux 利用指令 fc-list :lang=zh 來查詢可以用的字體名稱。
 % Windows 使用內建字型管理查詢。建議填英文字型名稱。
@@ -99,7 +99,7 @@
 
 
 %%%%% Depth of sectioning | 章節深度 %%%%%
-% LaTeX default 2，chapter == 0。
+% LaTeX default 2，chapter == 0
 \def\secNumDepth{4} % Numbering of sectioning title. 設定章節標題給予數字標號的深度, \paragraph == 4。
 \def\tocDepth{2}    % Depth of TOC. 目錄顯示層級，\subsection == 2。
 
@@ -126,6 +126,22 @@
     \def\indentBlockSSS{0mm}    % indent \subsubsection{} 
     \def\indentBlockPar{0mm}    % indent \paragraph{}
     \def\indentBlockSPar{0mm}   % indent \subparagraph{}
+
+
+%%%%% Watermark | 浮水印 %%%%%
+% Add a watermark to every page after \startWatermark .
+% It will search (image) filename in figures folder.
+
+% Package (\wmMethod) bug / disadvantages:
+% background: Background failed in \includepdf page.
+% eso-pic: Opacity failed in first image.
+\def\wmContent{} % 圖檔名或文字 | image filename or text.(中央不用加)
+\def\wmMethod{1} % {0}/{1} 0 == background pkg. , 1 == eso-pic pkg.
+\def\wmScale{1}                 % 縮放比
+\def\wmOpacity{1}               % 透明度
+\def\wmShiftFromCenterX{0mm}    % 圖片中心相對紙張中心垂直位移
+\def\wmShiftFromCenterY{0mm}    % 圖片中心相對紙張中心水平位移
+\def\wmAngle{0}                 % 旋轉角度
 
 
 %%%%% Misc | 雜項 %%%%%

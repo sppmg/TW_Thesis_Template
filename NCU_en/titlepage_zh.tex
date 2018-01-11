@@ -13,20 +13,26 @@
     \begin{center}
         {\fsUniversity\textbf{國\quad 立\quad 中\quad 央\quad 大\quad 學}\par}
         \vspace*{20mm}
+        
         {\fsTitle {\dept} \par}
         \vspace*{1ex}
+        
         {\fsTitle {\degree}論文\par}
         \vspace*{20mm}
+        
         {\fsTitle {\title} \par}
         \vspace*{5mm}
+        
         {\fsTitle {\subtitle} \par}
         \vspace*{10mm}
+        
         {\ifx \logo\empty\vspace*{40mm}
         \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
         \fi}
+    
         {\fsNames \renewcommand{\arraystretch}{1}
         \begin{tabular}{l@{：}l@{\quad}r}
-        研$\!$究$\!$生 & \author  &     \\
+        研\enspace 究\enspace 生 & \author  &     \\
         指導教授       & \mprof   & 博士 \\
         \ifx \sprofi\empty \else
         共同指導       & \sprofi  & 博士 \\ \fi
@@ -34,11 +40,12 @@
                       & \sprofii & 博士 \\ \fi
         \end{tabular}\par}
         \vspace*{5ex}
+        
         {\fsTitle {\degreedateZh} \par}
         \vspace*{2ex}
+        
         \ifthenelse{\boolean{printcopyright}}
         {{{版權所有\copyright\ \author\ \copyyear} \par}}
-        {\hspace{5cm}}
     \end{center}
     \null\vfill
 \end{titlepage}

@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{thesis_base}[2017/02/13 by sppmg]
+\ProvidesClass{thesis_base}[2018/01/11 by sppmg]
 % pass no defined option to book class.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extbook}}
 % terminates the option processing.
@@ -8,6 +8,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        LaTeX tools
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{iftex}  % Check using TeX en­gine.(Only XeTeX.)
+\ifXeTeX\else
+    \ClassError{TW_Thesis_Template}{XeTeX is required.}{Please use XeLaTeX to compile this document.}
+\fi
 
 \RequirePackage{ifthen}
 \RequirePackage{etoolbox}
@@ -25,8 +30,9 @@
     \provideboolean{disableChinese} % Disable chinese, for English user.
     \provideboolean{printcopyright} % print copyright text on titlepage or cover.
     \provideboolean{pdfLinkBoxDisplay} % Draw box on link in the pdf viewer.
-    \provideboolean{bibStyleNameYear} % bibliography use name,year to sort and cite.
-
+    \provideboolean{bibStyleNameYear} % Bibliography use name,year to sort and cite.
+    \provideboolean{reallyBlankPage} % Really blank pages between chapters
+    
     % --------- Load config.tex ----------
     \IfFileExists{./config.tex}{\input{./config.tex}\gdef\configured{}}{} % search only in the current directory use ./file
 
@@ -81,9 +87,11 @@
 % (Texstudio may default use -shell-escape)
 \iflinux
     \def\OS{linux}
+\else\ifmacosx
+    \def\OS{mac}
 \else\ifwindows
     \def\OS{win}
-\fi\fi
+\fi\fi\fi
 % --------- English ----------
 \ifx\mainfont\empty\else
     \setmainfont{\mainfont}
@@ -98,43 +106,35 @@
 \ifthenelse{\boolean{disableChinese}}{}{
     \ifx\CJKmainfont\empty
         \ifthenelse{\equal{\OS}{linux}}{
-            % linux os
             \def\CJKmainfont{AR PL UMing TW}  % 明體
         }{
-            \ifthenelse{\equal{\OS}{win}}{
-                % win os
-                \def\CJKmainfont{MingLiU}  % MingLiU == 細明體
+            \ifthenelse{\equal{\OS}{mac}}{
+                \def\CJKmainfont{LiSong Pro}  % 儷宋 Pro (明體)
             }{
-                % set macos later
-        }}
+                \ifthenelse{\equal{\OS}{win}}{
+                    \def\CJKmainfont{MingLiU}  % 細明體
+                }{
+        }}}
     \fi
     \setCJKmainfont{\CJKmainfont}
     %%%
     \ifx\CJKsansfont\empty
         \ifthenelse{\equal{\OS}{linux}}{
-            % linux os
             \def\CJKsansfont{AR PL UKai TW}  % 楷體
         }{
-            \ifthenelse{\equal{\OS}{win}}{
-                % win os
-                \def\CJKsansfont{DFKai-SB}  % DFKai-SB == 標楷體
+            \ifthenelse{\equal{\OS}{mac}}{
+                \def\CJKsansfont{Kaiti TC Regular}  % 楷體-繁
             }{
-                % set macos later
-        }}
+                \ifthenelse{\equal{\OS}{win}}{
+                    \def\CJKsansfont{DFKai-SB}  % 標楷體
+                }{
+        }}}
     \fi
     \setCJKsansfont{\CJKsansfont}
     %%%
     \ifx\CJKmonofont\empty
-        \ifthenelse{\equal{\OS}{linux}}{
-            % linux os
-            \edef\CJKmonofont{\CJKmainfont} % 明體
-        }{
-            \ifthenelse{\equal{\OS}{win}}{
-                % win os
-                \edef\CJKmonofont{\CJKmainfont}  % MingLiU == 細明體
-            }{
-                % set macos later
-        }}
+        % 無論何種OS均設為 \CJKmainfont
+        \edef\CJKmonofont{\CJKmainfont}
     \fi
     \setCJKmonofont{\CJKmonofont}
 }
@@ -405,6 +405,17 @@
     \renewcommand{\footrulewidth}{0pt}
 }
 
+% Really blank pages between chapters
+% ref: http://www.tex.ac.uk/FAQ-reallyblank.html
+\ifthenelse{\boolean{reallyBlankPage}}{
+    \let\origdoublepage\cleardoublepage
+    \newcommand{\clearemptydoublepage}{%
+    \clearpage
+    {\thispagestyle{empty}\origdoublepage}%
+    }
+    \let\cleardoublepage\clearemptydoublepage
+}{}
+
 % ---------------------- appendix title, header & TOC ---------------------------
 % 修改附錄的章格式，因為附錄使用字母A,B,C所以要另外定義。這裡使用etoolbox 附加指令到\appendix。
 \apptocmd{\appendix}{
@@ -433,19 +444,28 @@
 \RequirePackage{setspace} % for setstretch
 \setstretch{\baseLineStretch} % 行距
 
-% bibliography use biber(external program) and biblatex(package)
-% \RequirePackage[nottoc,numbib]{tocbibind} % add bibliography to TOC, not require for biblatex
-%\renewcommand{\tocbibname}{參考文獻} % no effect
-\ifthenelse{\boolean{bibStyleNameYear}}{
-    \RequirePackage[backend=biber,style=ieee, citestyle=authoryear-comp, sorting=nyt]{biblatex}
-}{
-    \RequirePackage[backend=biber,style=ieee]{biblatex}
-    % use biblatex and sort by citation order
-}
-% http://tex.stackexchange.com/questions/51434/biblatex-citation-order
-% use \addbibresource{bib.bib} in preamble
-% \defbibheading{\bibname} % biblatex use \defbibheading
-\def\bibfont{\bibFontStyle\setstretch{\bibLineStretch}}
+\ifcase \bibManType
+    % 0 == Embedded
+    \RequirePackage[nottoc,numbib]{tocbibind} % add bibliography to TOC.
+\or
+    % 1 == BibTeX
+    \RequirePackage[nottoc,numbib]{tocbibind} % add bibliography to TOC.
+%     \renewcommand{\tocbibname}{參考文獻} % Need tocbibind pkg , auto get \bibname
+\or
+    % 2 == biber / BibLaTeX
+    % Add bibliography by \addbibresource{bibfile.bib} in macros_preamble.tex
+    \ifthenelse{\boolean{bibStyleNameYear}}{
+        \RequirePackage[backend=biber,style=ieee, citestyle=authoryear-comp, sorting=nyt]{biblatex}
+        % sorting see doc or https://tex.stackexchange.com/a/51439
+    }{
+        \RequirePackage[backend=biber,style=ieee]{biblatex}
+        % use biblatex and sort by citation order
+    }
+    \def\bibfont{\bibFontStyle\setstretch{\bibLineStretch}} % font setting of BibLaTeX
+    % BibLaTeX no need tocbibind 
+    % \bibname and \refname can't work with BibLaTeX, so use option of \printbibliography.
+\fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        figure & float env.
@@ -472,6 +492,76 @@
 \let\Oldsubsubsection\subsubsection
 \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
 
+% --------------------- graphics ----------------------------
+% creating graphics programmatically
+\RequirePackage{tikz}
+
+% --------------------- watermark ----------------------------
+% 浮水印及自動填單
+\RequirePackage{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
+
+% Add logo to every page after \startWatermark.
+% Package (\wmMethod) bug / disadvantages:
+% background: Background failed in \includepdf page.
+% eso-pic: Opacity failed in first image.
+\ifx\watermark\empty\else
+    \IfFileExists{./figures/\wmContent}{
+        \def\realWmContent{\includegraphics{\wmContent}}
+    }{
+        \def\realWmContent{\wmContent}
+    }
+\fi
+
+\ifcase \wmMethod
+    % 0 == background package 
+    \ifx\watermark\empty\else
+        \RequirePackage{background}
+        \SetBgContents{} % Clean default BgContents (before \startWatermark).
+        
+        % background package use xshift of node in tikzpicture with scale,
+        % So shift also scaled. here define ``length'' type variable because
+        % need calculate : ShiftFromCenter / Scale
+        \newlength{\wmBgShiftFromCenterX}
+        \setlength{\wmBgShiftFromCenterX}{\wmShiftFromCenterX}
+        \newlength{\wmBgShiftFromCenterY}
+        \setlength{\wmBgShiftFromCenterY}{\wmShiftFromCenterY}
+    \fi
+    
+    \newcommand\startWatermark{
+        \ifx\watermark\empty\else
+            \SetBgContents{\realWmContent} % need a watermark
+            \SetBgAngle{\wmAngle}  % rotate
+            \SetBgScale{\wmScale}  % scale
+            \SetBgHshift{\wmBgShiftFromCenterX/\wmScale} % x=0 for center
+            \SetBgVshift{\wmBgShiftFromCenterY/\wmScale} % y=0 for center
+            \SetBgOpacity{\wmOpacity}
+        \fi
+    }
+    
+\or
+    % 1 == eso-pic package, 
+    % \RequirePackage{eso-pic} % Readey in above.
+    \newcommand{\startWatermark}{
+        \ifx\watermark\empty\else
+            \AddToShipoutPictureBG{%
+                \AtPageCenter{%
+                    \put(
+                        \LenToUnit{\wmShiftFromCenterX},
+                        \LenToUnit{\wmShiftFromCenterY}
+                    ){
+                        \tikz[overlay] 
+                            \node[opacity=\wmOpacity, inner sep=0pt, rotate=\wmAngle, scale=\wmScale] {
+                                \realWmContent
+                            };
+                    }
+                }
+           }
+        \fi
+    }
+        
+\fi
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Table
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -496,7 +586,7 @@
 \DeclareSIUnit\molar{\mole\per\cubic\deci\metre}
 \DeclareSIUnit\Molar{\textsc{m}}
 
-\RequirePackage[version=3]{mhchem} % usage \ce{KH2PO4}
+\RequirePackage[version=4]{mhchem} % usage \ce{KH2PO4}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           Misc
@@ -517,13 +607,6 @@
 \RequirePackage{listingsutf8} % for program source.
 \newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
 \lstinputpath{./codes/}
-
-% --------------------- graphics ----------------------------
-% creating graphics programmatically
-\RequirePackage{tikz}
-
-% 浮水印及自動填單
-\RequirePackage{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
 
 % --------------------- Break long url ----------------------------
 % Break long url. Only for break, \url{} from hyperref package. bibliography url can break without this package.
@@ -549,10 +632,10 @@
 % http://tex.stackexchange.com/questions/44088/when-do-i-need-to-invoke-phantomsection
 % PDF Metadata with hyperref in LaTeX  https://www.karlrupp.net/2016/01/pdf-metadata-in-latex-documents/
 \hypersetup{
-pdftitle={\title},
-pdfsubject={\ifx\subtitle\empty\title\else\subtitle\fi},
-pdfauthor={\author},
-pdfkeywords={\keywordsZh,\ \keywordsEn}
+    pdftitle={\title},
+    pdfsubject={\ifx\subtitle\empty\title\else\subtitle\fi},
+    pdfauthor={\author},
+    pdfkeywords={\keywordsZh,\ \keywordsEn}
 }
 \ifthenelse{\boolean{pdfLinkBoxDisplay}}{}{
     \hypersetup{pdfborder = {0 0 0 0}} } % 0 -> Don't draw box on link in the pdf
@@ -562,16 +645,16 @@ pdfkeywords={\keywordsZh,\ \keywordsEn}
 %   \crefname{environmentname}{singular}{plural}, to be used mid-sentence
 %   \Crefname{environmentname}{singular}{plural}, to be used at the beginning of a sentence
 \ifzh{
-\crefname{figure}{\figurename}{\figurename}
-\Crefname{figure}{\figurename}{\figurename}
-\crefname{table}{\tablename}{\tablename}
-\Crefname{table}{\tablename}{\tablename}
-\crefname{equation}{式}{式}
-\Crefname{equation}{式}{式}
-\crefname{section}{章節}{章節}
-\Crefname{section}{章節}{章節}
-\crefname{appendix}{\appendixname}{\appendixname}
-\Crefname{appendix}{\appendixname}{\appendixname}
+    \crefname{figure}{\figurename}{\figurename}
+    \Crefname{figure}{\figurename}{\figurename}
+    \crefname{table}{\tablename}{\tablename}
+    \Crefname{table}{\tablename}{\tablename}
+    \crefname{equation}{式}{式}
+    \Crefname{equation}{式}{式}
+    \crefname{section}{章節}{章節}
+    \Crefname{section}{章節}{章節}
+    \crefname{appendix}{\appendixname}{\appendixname}
+    \Crefname{appendix}{\appendixname}{\appendixname}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

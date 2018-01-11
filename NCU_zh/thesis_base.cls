@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{thesis_base}[2017/02/13 by sppmg]
+\ProvidesClass{thesis_base}[2018/01/11 by sppmg]
 % pass no defined option to book class.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extbook}}
 % terminates the option processing.
@@ -492,6 +492,76 @@
 \let\Oldsubsubsection\subsubsection
 \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
 
+% --------------------- graphics ----------------------------
+% creating graphics programmatically
+\RequirePackage{tikz}
+
+% --------------------- watermark ----------------------------
+% 浮水印及自動填單
+\RequirePackage{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
+
+% Add logo to every page after \startWatermark.
+% Package (\wmMethod) bug / disadvantages:
+% background: Background failed in \includepdf page.
+% eso-pic: Opacity failed in first image.
+\ifx\watermark\empty\else
+    \IfFileExists{./figures/\wmContent}{
+        \def\realWmContent{\includegraphics{\wmContent}}
+    }{
+        \def\realWmContent{\wmContent}
+    }
+\fi
+
+\ifcase \wmMethod
+    % 0 == background package 
+    \ifx\watermark\empty\else
+        \RequirePackage{background}
+        \SetBgContents{} % Clean default BgContents (before \startWatermark).
+        
+        % background package use xshift of node in tikzpicture with scale,
+        % So shift also scaled. here define ``length'' type variable because
+        % need calculate : ShiftFromCenter / Scale
+        \newlength{\wmBgShiftFromCenterX}
+        \setlength{\wmBgShiftFromCenterX}{\wmShiftFromCenterX}
+        \newlength{\wmBgShiftFromCenterY}
+        \setlength{\wmBgShiftFromCenterY}{\wmShiftFromCenterY}
+    \fi
+    
+    \newcommand\startWatermark{
+        \ifx\watermark\empty\else
+            \SetBgContents{\realWmContent} % need a watermark
+            \SetBgAngle{\wmAngle}  % rotate
+            \SetBgScale{\wmScale}  % scale
+            \SetBgHshift{\wmBgShiftFromCenterX/\wmScale} % x=0 for center
+            \SetBgVshift{\wmBgShiftFromCenterY/\wmScale} % y=0 for center
+            \SetBgOpacity{\wmOpacity}
+        \fi
+    }
+    
+\or
+    % 1 == eso-pic package, 
+    % \RequirePackage{eso-pic} % Readey in above.
+    \newcommand{\startWatermark}{
+        \ifx\watermark\empty\else
+            \AddToShipoutPictureBG{%
+                \AtPageCenter{%
+                    \put(
+                        \LenToUnit{\wmShiftFromCenterX},
+                        \LenToUnit{\wmShiftFromCenterY}
+                    ){
+                        \tikz[overlay] 
+                            \node[opacity=\wmOpacity, inner sep=0pt, rotate=\wmAngle, scale=\wmScale] {
+                                \realWmContent
+                            };
+                    }
+                }
+           }
+        \fi
+    }
+        
+\fi
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Table
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -537,13 +607,6 @@
 \RequirePackage{listingsutf8} % for program source.
 \newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
 \lstinputpath{./codes/}
-
-% --------------------- graphics ----------------------------
-% creating graphics programmatically
-\RequirePackage{tikz}
-
-% 浮水印及自動填單
-\RequirePackage{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
 
 % --------------------- Break long url ----------------------------
 % Break long url. Only for break, \url{} from hyperref package. bibliography url can break without this package.

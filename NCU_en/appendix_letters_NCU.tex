@@ -1,26 +1,32 @@
 \documentclass[class=NCU_thesis, crop=false]{standalone}
 
 \begin{document}
-\chapter{Automatical write letters}
-Here try to add some information to latters.(Now only support master Chinese letters)
+\chapter{Letters bot}
 
-這裡試著幫各位自動填入部份資訊，其餘打勾、日期請手寫。有字體大小不符、位置歪掉等問題的話，請修改 appendix\_letter\_NCU.tex後直接編譯生成文件。
+Here try to insert some information automatically.
+If you need change font size or position, modify appendix\_letter\_NCU.tex and compile this single tex file.
 
-appendix\_letter\_NCU.tex中，每個句子（文字項目）都是獨立的大小與位置。 大小可由\textbackslash{}ffs，調整。
-\footnote{\textbackslash{}ffs 使用 \textbackslash{}fontsize 做無級調整，並固定單行高度。 }
-位置可由\textbackslash{}placetextbox 調整。語法如下：
+In appendix\_letter\_NCU.tex, you will see \textbackslash{}placetextbox for every string.
 \begin{lstlisting}[style=LatexStyle,caption={}]
 \placetextbox{x(mm)}{y(mm)}
 \end{lstlisting}
-單位使用mm ，(0,0)位於左下角。建議調整時將``grid''加入documentclass選項。（加入子檔的即可）
+
+The unit is mm , origin at bottom left. I recommend add ``colorgrid'' option to \textbackslash{}documentclass  e.g. In this tex file:
+
 \begin{lstlisting}[style=LatexStyle,caption={}]
-\documentclass[class=NCU_thesis, crop=false, grid]{standalone}
+\documentclass[class=NCU_thesis, crop=false, colorgrid]{standalone}
 \end{lstlisting}
-grid 將顯示格線（一小格是\SI{5}{\milli\metre}）。
+
+``colorgrid'' will display a grid with mm unit. 
 
 \begin{center}
-{ \noindent\color{red}\bfseries\Large 目前僅提供碩士論文所需的中文文件}
+{ \noindent\color{red}\bfseries\Large NCU 中文文件位於 NCU\_zh}
 \end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define local variable (e.g. cover use main \title == \titleZh but letters use \titleEn )
+
+\def\title{\titleEn}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
@@ -28,38 +34,38 @@ grid 將顯示格線（一小格是\SI{5}{\milli\metre}）。
 \sffamily
 % ------------------------------
 
-% % 碩博士論文電子檔授權書
-\IfFileExists{letter_authorization.pdf}{
+% 碩博士論文電子檔授權書
+\IfFileExists{\letterAuthEl}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{100}{120}{\fs{17}\title}%
-                            \placetextbox{95}{109}{\fs{17}\mprof}%
-                            \placetextbox{69}{98}{\fs{17}\deptshort} }]%
-{letter_authorization.pdf}}{}
+\includepdf[pagecommand={   \placetextbox{115}{87}{\fs{14}\title}%
+                            \placetextbox{100}{81}{\fs{14}\mprof}%
+                            \placetextbox{85}{70}{\fs{14}\deptshort} }]%
+{\letterAuthEl}}{}
 
 % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
-\IfFileExists{letter_publication_request.pdf}{
+\IfFileExists{\letterPubReq}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{128}{270}{\fs{17}\author}%
-                            \placetextbox{70}{258}{\fs{17}\deptshort}%
-                            \placetextbox{100}{233}{\fs{17}\title}%
-                            \placetextbox{90}{219.3}{\fs{17}\mprof} }]%
-{letter_publication_request.pdf}}{}
+\includepdf[pagecommand={   \placetextbox{128}{270}{\fs{14}\author}%
+                            \placetextbox{70}{258}{\fs{14}\deptshort}%
+                            \placetextbox{100}{231}{\fs{14}\title}%
+                            \placetextbox{90}{218.3}{\fs{14}\mprof} }]%
+{\letterPubReq}}{}
 
 % 指導教授推薦書
-\IfFileExists{letter_recommendation.pdf}{
+\IfFileExists{\letterRecom}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{50}{159}{\fs{22}\deptshort}%
-                            \placetextbox{118}{159}{\fs{22}\author}%
-                            \placetextbox{105}{144}{\fs{22}\title}}%
-]{letter_recommendation.pdf}}{}
+\includepdf[pagecommand={   \placetextbox{75}{204}{\fs{16}\deptshort}%
+                            \placetextbox{90}{218}{\fs{16}\author}%
+                            \placetextbox{105}{192}{\fs{16}\title}}%
+]{\letterRecom}}{}
 
 % 口試委員審定書
-\IfFileExists{letter_verification.pdf}{
+\IfFileExists{\letterVerif}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{63}{200.5}{\fs{22}\deptshort}%
-                            \placetextbox{145}{200.5}{\fs{22}\author}%
-                            \placetextbox{100}{170}{\fs{22}\title}}%
-]{letter_verification.pdf}}{}
+\includepdf[pagecommand={   \placetextbox{75}{184}{\fs{16}\deptshort}%
+                            \placetextbox{91}{200}{\fs{16}\author}%
+                            \placetextbox{100}{170}{\fs{16}\title}}%
+]{\letterVerif}}{}
 
 % ------------------------------
 \pagestyle{fancy}

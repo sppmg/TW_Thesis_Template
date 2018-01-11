@@ -1,6 +1,6 @@
 % This class is a link to real class.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{NCTU_thesis}[2016/11/18 by sppmg]
+\ProvidesClass{NCTU_thesis}[2018/01/11 by sppmg]
 % pass no defined option to book class.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{thesis_base}}
 % terminates the option processing.

@@ -70,8 +70,8 @@
 \def\OS{linux} % {linux}/{mac}/{win}, only effect auto select CJK font.(CJK means Chinese, Japanese, and Korean)
 
 
-%%%%% set font | 設定中英文字型 %%%%%
-% keep empty for default font. CJK font must set OS for auto select.
+%%%%% Set font | 設定中英文字型 %%%%%
+% Keep empty for default font. CJK font must set OS for auto select.
 % Setting by name of font(English will be better) or font filename.
 % Linux 利用指令 fc-list :lang=zh 來查詢可以用的字體名稱。
 % Windows 使用內建字型管理查詢。建議填英文字型名稱。
@@ -110,7 +110,7 @@
 
 
 %%%%% Depth of sectioning | 章節深度 %%%%%
-% LaTeX default 2，chapter == 0。
+% LaTeX default 2，chapter == 0
 \def\secNumDepth{4} % Numbering of sectioning title. 設定章節標題給予數字標號的深度, \paragraph == 4。
 \def\tocDepth{2}    % Depth of TOC. 目錄顯示層級，\subsection == 2。
 
@@ -140,17 +140,19 @@
 
 
 %%%%% Watermark | 浮水印 %%%%%
-% Add logo to every page after \startWatermark .
+% Add a watermark to every page after \startWatermark .
+% It will search (image) filename in figures folder.
+
 % Package (\wmMethod) bug / disadvantages:
 % background: Background failed in \includepdf page.
 % eso-pic: Opacity failed in first image.
-\def\watermark {nthu-logo.pdf}  % 浮水印檔名
+\def\wmContent{nthu-logo.pdf} % 圖檔名或文字 | image filename or text.
 \def\wmMethod{1} % {0}/{1} 0 == background pkg. , 1 == eso-pic pkg.
-\def\wmScale{1}                 % 縮放比
-\def\wmOpacity{1}               % 透明度
-\def\wmShiftFromCenterX{0mm}    % 圖片中心相對紙張中心垂直位移
-\def\wmShiftFromCenterY{0mm}    % 圖片中心相對紙張中心水平位移
-\def\wmAngle{0}                 % 旋轉角度
+\def\wmScale{1}               % 縮放比
+\def\wmOpacity{1}             % 透明度
+\def\wmShiftFromCenterX{0mm}  % 圖片中心相對紙張中心垂直位移
+\def\wmShiftFromCenterY{0mm}  % 圖片中心相對紙張中心水平位移
+\def\wmAngle{0}               % 旋轉角度
 
 
 %%%%% Misc | 雜項 %%%%%

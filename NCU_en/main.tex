@@ -8,8 +8,15 @@
 % User guide in wiki of TW_Thesis_Template :
 % https://github.com/sppmg/TW_Thesis_Template/wiki
 
-\documentclass[]{NCU_thesis} % [draft] = don't load fig'
-\usepackage[subpreambles=true]{standalone} % standalone class setting in config.tex ,``subpreambles=false'' disable sub-tex's preambles(pkg default)
+\documentclass[]{NCU_thesis} % \documentclass[option1, option2, ...]
+% Helpful options: 
+% draft = Don't load figure ,reduce compile time.
+% showframe = show document margins.
+% colorgrid = show colored coordinate. (by eso-pic pkg.)
+\usepackage[subpreambles]{standalone} % standalone class setting in config.tex
+% Option ``subpreambles'' enable sub-tex's preambles when compile main tex. (pkg default disable)
+% sppmg think it's still some problem (e.g. \addbibresource will faild ), recommend move all subpreambles to ``macros_preamble.tex``
+
 % Check Chinese setting before \input file. Avoid get error because no Chinese font. (It's 4 en template only.)
 % Usage: \input{zh_file}[page info]
 \NewDocumentCommand\inputZh{m O{This Page}}{
@@ -28,22 +35,23 @@
             \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
             
         %%%%%%%%%%%% letters %%%%%%%%%%%%
+        % Set file name in config.tex
         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
-        \IfFileExists{letter_authorization.pdf}{
+        \IfFileExists{\letterAuthEl}{
             \cleardoublepage        % 由下個右頁開始
-            \includepdf{letter_authorization.pdf}}{}
-        % 碩博士紙本論文延後公開/下架申請書(可略)。 Publication request (option)
-        \IfFileExists{letter_publication_request.pdf}{
+            \includepdf{\letterAuthEl}}{}
+        % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
+        \IfFileExists{\letterPubReq}{
             \cleardoublepage
-            \includepdf{letter_publication_request.pdf}}{}
+            \includepdf{\letterPubReq}}{}
         % 指導教授推薦書
-        \IfFileExists{letter_recommendation.pdf}{
+        \IfFileExists{\letterRecom}{
             \cleardoublepage
-            \includepdf{letter_recommendation.pdf}}{}
+            \includepdf{\letterRecom}}{}
         % 口試委員審定書
-        \IfFileExists{letter_verification.pdf}{
+        \IfFileExists{\letterVerif}{
             \cleardoublepage
-            \includepdf{letter_verification.pdf}}{}
+            \includepdf{\letterVerif}}{}
         \cleardoublepage
         
         %%%%%%%%%%%% Other frontmatter, eg,abstract %%%%%%%%%%%%
@@ -65,7 +73,7 @@
         \input{chapter_conclusion}      % conclusion    結論
         \input{chapter_template_demo}   % some demo
     \backmatter          % book class 預設\backmatter 在\appendix 後面。因此.cls修改過\appendix 定義
-        \printbibliography[heading = bibnumbered]
+        \input{bibliography}
     \appendix
         \input{appendix_device}
         \input{appendix_solution}

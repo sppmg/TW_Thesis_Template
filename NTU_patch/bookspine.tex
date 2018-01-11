@@ -4,8 +4,6 @@
 %        info
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\CJKmainfont{} % font, default use kai
-\def\OS{linux} % 
 \def\deptZh    {物理研究所}
 \def\degreeZh  {碩士} % 碩士/博士
 \def\titleZh   {臺灣大學LaTeX論文樣板(中文)}   % Chinese title
@@ -13,12 +11,20 @@
 \def\authorZh  {君の名は。}
 \def\authorEn  {Your name.}
 \def\author    {\authorZh} % Choose one When only use one name.(book spine using.)
-\def\degreeyearROC{106} % year of ROC 口試年份
-\def\degreemonth{1} % month 口試月份
+\def\degreeyearROC{107} % year of ROC 年份
+\def\degreemonth{6} % month 月份
+
+\def\OS{linux} % {linux}/{mac}/{win}
+\def\CJKmainfont{} % font, default use kai
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Pkg. and setting
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{iftex}  % Check using TeX en­gine.(Only XeTeX.)
+\ifXeTeX\else
+    \ClassError{TW_Thesis_Template}{XeTeX is required.}{Please use XeLaTeX to compile this document.}
+\fi
 
 \usepackage{ifplatform}
 \usepackage{ifthen}
@@ -31,26 +37,36 @@
 \usepackage[paperwidth=20mm,paperheight=297mm, margin=0.5mm,ignoreall]{geometry}
 \usepackage{multirow}
 \usepackage{tabularx}
-\usepackage{eso-pic}
 
-% ---------------------- Font ---------------------------
+
+%%%%%%%%%%% Auto select font %%%%%%%%%%%%%%
+% Use ifplatform package to determine OS and overwrite \OS.
+% It's need option ``-shell-escape'' to XeLaTeX.
+% If no this option , It's only determine windows.
+% (Texstudio may default use -shell-escape)
 \iflinux
     \def\OS{linux}
+\else\ifmacosx
+    \def\OS{mac}
 \else\ifwindows
     \def\OS{win}
-\fi\fi
+\fi\fi\fi
+
+% --------- Chinese ----------
 \ifx\CJKmainfont\empty
     \ifthenelse{\equal{\OS}{linux}}{
-        % linux os
-        \def\CJKmainfont{AR PL UKai TW}  % 楷體
+        \def\CJKmainfont{AR PL UMing TW}  % 明體
     }{
-        \ifthenelse{\equal{\OS}{win}}{
-            % win os
-            \def\CJKmainfont{DFKai-SB}  % DFKai-SB == 標楷體
+        \ifthenelse{\equal{\OS}{mac}}{
+            \def\CJKmainfont{LiSong Pro}  % 儷宋 Pro (明體)
         }{
-            % set macos later
-    }}
+            \ifthenelse{\equal{\OS}{win}}{
+                \def\CJKmainfont{MingLiU}  % 細明體
+            }{
+    }}}
 \fi
+\setCJKmainfont{\CJKmainfont}
+
 
 \NewDocumentCommand\fs{m o}{
     \IfNoValueTF{#2}{
@@ -78,7 +94,7 @@
             \renewcommand{\arraystretch}{1}
 %             \setstretch{1}
             \begin{tabularx}{280mm}{lXcXcXcXrl} 
-            \fs{12}國立台灣大學 & 
+            \fs{12}國立臺灣大學 & 
             \multirow{2}{*}{} &
             \multirow{2}{*}{\fs{12}\degreeZh 論文} &
             \multirow{2}{*}{} &

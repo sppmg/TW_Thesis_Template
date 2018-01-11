@@ -1,0 +1,43 @@
+% This file has 3 types bibliography management, 
+% \bibManType in config.tex choose it.
+% 0. Embedded: write \bibitem in {thebibliography} environment.
+% 1. BibTeX: Change bib files in \bibliography{}
+% 2. biber / BibLaTeX: Add bibliography by \addbibresource{bibfile.bib} in macros_preamble.tex
+
+\documentclass[class=NCU_thesis, crop=false]{standalone}
+
+\begin{document}
+
+\ifcase \bibManType 
+    % 0 == Embedded %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    {\bibFontStyle\setstretch{\bibLineStretch}
+    \begin{thebibliography}{99}
+
+    \bibitem{cite_key_1}
+        bibliography item detail.
+
+    \bibitem{_sppmg/tw_thesis_template_????}
+        TW\_Thesis\_Template,
+        sppmg,
+        \url{https://github.com/sppmg/TW_Thesis_Template},
+        Embedded bibliography demo.
+
+    \end{thebibliography}
+    }
+    
+\or
+    % 1 == BibTeX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \bibliographystyle{\bibStyle}
+    {\bibFontStyle\setstretch{\bibLineStretch}
+        \bibliography{demo} % {sample_1,sample_2,...,sample_n}
+        % Note the lack of whitespace between the commas and the next bib file.
+    }
+\or
+
+    % 2 == biber / BibLaTeX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \printbibliography[heading = bibnumbered]
+\fi
+
+
+
+\end{document}
