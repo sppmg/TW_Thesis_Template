@@ -272,7 +272,8 @@
     \def\tocStyleChapterFiller{\bfseries\hfill\contentspage}
     \def\tocStyleChapterAbove{\addvspace{1em}}
     \def\tocStyleChapterAboveApp{\tocStyleChapterAbove} % appendix same
-    \def\tocStyleChapterFont{\bfseries}  
+    \def\tocStyleChapterFontFM{}
+    \def\tocStyleChapterFont{\bfseries}
 \or
     % \tocStyleChapter == 1 向上間距(至 \mainmatter 才增加)、粗體、無點線
     \def\tocStyleChapterFiller{\bfseries\hfill\contentspage}
@@ -291,6 +292,7 @@
     \def\tocStyleChapterFiller{\titlerule*[0.4pc]{.}\contentspage}
     \def\tocStyleChapterAbove{}
     \def\tocStyleChapterAboveApp{\tocStyleChapterAbove} % appendix same
+    \def\tocStyleChapterFontFM{}
     \def\tocStyleChapterFont{}
 \fi
 
@@ -327,8 +329,8 @@
 % 這裡使用 \makebox 拉開標號至標題文字間距。
 \titlecontents{chapter}[\tocNumSpaceC@Before] 
 {\tocStyleChapterAbove}
-{\tocStyleChapterFont\makebox[\tocNumSpaceC@Total][l]{\thecontentslabel@chapter}}
-{\tocStyleChapterFont}
+{\tocStyleChapterFont\tocStyleChapterFontFM\makebox[\tocNumSpaceC@Total][l]{\thecontentslabel@chapter}}
+{\tocStyleChapterFont\tocStyleChapterFontFM}
 {\tocStyleChapterFiller}
 % ----------------------------
 \titlecontents{section}[\tocNumSpaceS@Before]

@@ -1,7 +1,7 @@
 %%%%% build setting | 編譯設定 %%%%%
 \setboolean{publish}{false} % {true}/{false} Set true before publish. 發怖前設true
 \def\lang{en} % {zh}/{en} Set main language.
-\setboolean{disableChinese}{false} % {true}/{false} Disable chinese, for English user who don't have Chinese fonts.
+\setboolean{disableChinese}{true} % {true}/{false} Disable chinese, for English user who don't have Chinese fonts.
 \def\titlepageLang{zh} % {zh}/{en}/{} Choose language for titlepage (zh -> Chinese / en -> English / {} -> hide titlepage and disable chinese font)
 \synctex=1 % Enable SyncTeX
 
@@ -122,6 +122,7 @@
 % see tutorial. (0 -> original)
 \def\tocStyleAlign{0}           % 0/1
 \def\tocStyleChapter{1}         % 0/1/2
+\def\tocStyleChapterFontFM{}    % {\itshape} etc. TOC chapter addition style to frontmatter. Only affect in \tocStyleChapter{1} .
 \def\titleStyle{0}              % 0/1 
     \def\indentBlockSSS{0mm}    % indent \subsubsection{} 
     \def\indentBlockPar{0mm}    % indent \paragraph{}
