@@ -3,7 +3,9 @@
 ![XeLaTeX](https://img.shields.io/badge/TeX-XeLaTeX-orange.svg)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/sppmg)
 
-這個專案的目的是希望台灣的研究生可以快速上手 LaTeX（尤其是使用中文撰寫），讓寫論文的時間完整的用在內容上。除了提供中文樣板讓使用者直接修改之外，同時提供一個簡易 LaTeX 教學，*教學檔原始碼也是樣板的最佳範例*。教學內容主要但不限於論文樣板範圍，一般 LaTeX 學習者亦歡迎參考使用。
+這個專案的目的是希望台灣的研究生可以快速上手 LaTeX（尤其是使用中文撰寫），讓寫論文的時間完整的用在內容上。
+
+除了提供中文樣板讓使用者直接修改之外，同時提供一個簡易 [LaTeX 教學](https://github.com/sppmg/LaTeX_tutorial_for_thesis)，*教學檔原始碼也是樣板的最佳範例*。教學內容主要但不限於論文樣板範圍，一般 LaTeX 學習者亦歡迎參考使用。
 
 建議至少花15分鐘快速瀏覽過教學。不懂沒關係，至少知道 LaTeX 有哪些功能、要到哪裡找。瀏覽一遍只要15分鐘，不知道好用功能可以浪費你好幾天。
 *（學弟妹們！不要再手打圖表編號了啊!!）*
@@ -39,11 +41,25 @@
 若想嘗鮮可以切換 `Branch:develop` 後下載專案。不過我通常 `develop` 只在大改時才會有短時間和 `master` 有差異，普通使用者用 `master` 或 `releases` 即可。
 
 
-## 快速使用手冊
+## 使用說明
+
+本專案說明分為下列 3 種
+
+### 單純的使用手冊 
 見本專案的 [Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki) 。
 MiKTeX 使用者請一定要閱讀 [MiKTeX 注意事項](https://github.com/sppmg/TW_Thesis_Template/wiki/MiKTeX-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85)。
 
-另外對於各校特有的說明放在其目錄下的 `README.md` 。
+### 各校樣式說明 
+對於各校特有的說明放在其目錄下的 `README.md` (github 進入其目錄即可看到網頁呈現結果)。
+
+### 教學手冊
+包含詳細的 LaTeX 資訊，由軟體安裝到基礎 LaTeX 教學。即使不足以讓你成為大師，至少也能帶你入門。
+亦有部份章節敘述樣板設定及使用方式。
+
+此手冊使用 NCU_zh 作為基底，因此也是一個現成的 LaTeX 範例。
+
+目前教學手冊獨立為一個專案，請移駕 https://github.com/sppmg/LaTeX_tutorial_for_thesis
+
 
 ## 回饋
 使用上有問題或建議請回饋到 Issues 分頁。非中央版使用者若發生「格式不符」情況請於 Issues 提出修正建議（通過審核也請告知）。

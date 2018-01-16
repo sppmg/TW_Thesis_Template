@@ -9,6 +9,7 @@
   - 章間頁可選用純白頁（不含頁首頁尾）。
   - 支援自動選用 Mac 字型 （Thanks [borting](https://github.com/borting/nctu-thesis/) ）
   - 文獻支援三種插入方法，由 config.tex 簡單切換。
+  - 目錄支援 `frontmatter` 區段使用不同字體風格。
   - 附上中大中英文件，並加入英文文件之自動填單。（文件於 2018-01-11 確認與校方一致）
   - 非 XeLaTeX 錯誤訊息。
   - 於 `macros_preamble.tex` 附上已註解的 `blindtext` 、 `glossaries` 套件，解註後使用。
