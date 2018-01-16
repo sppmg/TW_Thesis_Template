@@ -1,6 +1,25 @@
 # Change Log | 版本紀錄
 不同於首頁（README.md）的遷移資訊僅說明版本間的轉移，這裡提供各發佈版的更動。（此檔於 2016-12-30 補上。舊版僅概略描述，詳細變動請參考 git log ）
 
+## v1.8 (2018-0?-??)
+
+- 新增功能
+  - 支援清大樣式
+  - 支援(多頁)浮水印。
+  - 章間頁可選用純白頁（不含頁首頁尾）。
+  - 支援自動選用 Mac 字型 （Thanks [borting](https://github.com/borting/nctu-thesis/) ）
+  - 文獻支援三種插入方法，由 config.tex 簡單切換。
+  - 附上中大中英文件，並加入英文文件之自動填單。（文件於 2018-01-11 確認與校方一致）
+  - 非 XeLaTeX 錯誤訊息。
+  - 於 `macros_preamble.tex` 附上已註解的 `blindtext` 、 `glossaries` 套件，解註後使用。
+
+- 修改
+  - 開發環境升級至 Tex Live 2016 ，舊的 TeX 發行版將不再特別支援。
+  - mhchem 套件之語法版號 3 -> 4 (2012 不支援)
+  - `macros_preamble.tex` 新增 `\macrosAfterHyperref` 用於放置須於 `hyperref` 套件之後載入的指令。此後建議所有導言區內容均移入 `macros_preamble.tex`
+  - 教學檔移出成獨立專案。
+
+- 移除 `NCU_en/compatibility/` (舊版之相容性檔案，已不需要)
 
 ## v1.7.1 (2017-09-14)
 <!-- - sppmgTool.sty 新增  指令 -->

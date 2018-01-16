@@ -29,23 +29,23 @@
             
 %         %%%%%%%%%%%% letters %%%%%%%%%%%%
 %         % Set file name in config.tex
-%         % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
-%         \IfFileExists{\letterAuthEl}{
-%             \cleardoublepage        % 由下個右頁開始
-%             \includepdf{\letterAuthEl}}{}
-%         % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
-%         \IfFileExists{\letterPubReq}{
-%             \cleardoublepage
-%             \includepdf{\letterPubReq}}{}
-%         % 指導教授推薦書
-%         \IfFileExists{\letterRecom}{
-%             \cleardoublepage
-%             \includepdf{\letterRecom}}{}
-%         % 口試委員審定書
-%         \IfFileExists{\letterVerif}{
-%             \cleardoublepage
-%             \includepdf{\letterVerif}}{}
-%         \cleardoublepage
+        % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
+        \IfFileExists{\letterAuthEl}{
+            \cleardoublepage        % 由下個右頁開始
+            \includepdf{\letterAuthEl}}{}
+        % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
+        \IfFileExists{\letterPubReq}{
+            \cleardoublepage
+            \includepdf{\letterPubReq}}{}
+        % 指導教授推薦書
+        \IfFileExists{\letterRecom}{
+            \cleardoublepage
+            \includepdf{\letterRecom}}{}
+        % 口試委員審定書
+        \IfFileExists{\letterVerif}{
+            \cleardoublepage
+            \includepdf{\letterVerif}}{}
+        \cleardoublepage
 
         %%%%%%%%%%%% Other frontmatter, eg,abstract %%%%%%%%%%%%
         % 中英文論文摘要:內容應說明研究目的,資料來源,研究方法及研究結果等

@@ -35,7 +35,7 @@
 
 \setboolean{printcopyright}{false} % {true}/{false} print copyright text on titlepage or cover.
 
-\def\keywordsZh{關鍵字, 論文, 樣板, 讓我畢業} % don't use \def\keywords
+\def\keywordsZh{關鍵字, 論文, 樣板, 讓我畢業}
 \def\keywordsEn{Keyword, Thesis, Template, Graduate me}
 
 
@@ -43,15 +43,17 @@
 % This setting for main.tex default letters.
 % It will not insert PDF if file non-exist or empty .
 % 此為 main.tex 預設插入之 PDF，檔案不存在或空白則不插入。
+% 臺大似乎只要附上審定書即可，請於 ``\letterVerif'' 填入檔名
+% 如欲插入其他文書或調整順序請修改 
 
 % 碩博士論文電子檔授權書 Authorization Letter (for electronic)
-\def\letterAuthEl{letter_authorization.pdf}
+\def\letterAuthEl{} % {letter_authorization.pdf}
 % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
-\def\letterPubReq{letter_publication_request.pdf}
+\def\letterPubReq{} % {letter_publication_request.pdf}
 % 指導教授推薦書
-\def\letterRecom {letter_recommendation.pdf}
+\def\letterRecom {} % {letter_recommendation.pdf}
 % 口試委員審定書
-\def\letterVerif {letter_verification.pdf}
+\def\letterVerif {} % {letter_verification.pdf}
 
 
 %%%%% Bibliography | 文獻列表 %%%%%

@@ -1,17 +1,26 @@
 % This file is common preamble region, 
 % it will load in .cls, before hyperref and cleveref package. 
-% If your package need load aftre hyperref (to get link function), 
-% please load in main.tex by \usepackage{package}
-% Use \RequirePackage{package} in this file to load package.
+% If your package need load after ``hyperref'' (to get link function), 
+% please write in ``\def\macrosAfterHyperref''
+% Note: Use \RequirePackage{package} in this file to load package.
+% Use \usepackage{package} in preamble of each other tex .
 % --------------------------------------------------
-
 % blindtext is used to generating dummy text for testing.
 % see https://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/
 % \RequirePackage{blindtext}
 
 
-% If you use BibLaTeX for bibliography, use \addbibresource inside below block.
-% If you use BibTeX for bibliography, set \bibliography in bibliography.tex
+% Load packages after ``hyperref''
+\def\macrosAfterHyperref{
+    % demo , uncomment below 2 lines for use ``glossaries'' with link.
+%     \RequirePackage[toc]{glossaries}
+%     \makeglossaries
+}
+
+
+% Bibliography management.
+% If you use BibLaTeX , use \addbibresource inside below \ifnum block.
+% If you use BibTeX , set \bibliography in bibliography.tex
 \ifnum \bibManType=2
     % 2 == biber / BibLaTeX
     % Add your bib file here, one \addbibresource one file.

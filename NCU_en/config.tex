@@ -13,7 +13,7 @@
 \def\titleEn   {NCU Thesis Template(English)} % English title
 \def\title     {\titleZh} % Main title, default Chinese title
 \def\subtitle  {\titleEn} % Subtitle, default English title, empty allowed.
-\def\logo      {}   % logo on titlepage. Watermark see below. NCU no logo on cover/titlepage.
+\def\logo      {}   % logo on titlepage. Watermark see below. NCU no logo on cover/titlepage. If you still want insert logo, use ``logo-NCU.jpg''
 \def\author    {Your Name.}
 \def\mprof     {Your committee }
 \def\sprofi    {Committee member} % 共同指導 1
@@ -24,7 +24,7 @@
 
 \setboolean{printcopyright}{false} % {true}/{false} print copyright text on titlepage or cover.
 
-\def\keywordsZh{關鍵字, 論文, 樣板, 讓我畢業} % don't use \def\keywords
+\def\keywordsZh{關鍵字, 論文, 樣板, 讓我畢業}
 \def\keywordsEn{Keyword, Thesis, Template, Graduate me}
 
 
@@ -135,7 +135,7 @@
 % Package (\wmMethod) bug / disadvantages:
 % background: Background failed in \includepdf page.
 % eso-pic: Opacity failed in first image.
-\def\wmContent{} % 圖檔名或文字 | image filename or text.(NCU not required)
+\def\wmContent{} % 圖檔名或文字 | image filename or text.(NCU not required, but if you still want insert logo, use ``logo-NCU.jpg'')
 \def\wmMethod{1} % {0}/{1} 0 == background pkg. , 1 == eso-pic pkg.
 \def\wmScale{1}                 % 縮放比
 \def\wmOpacity{1}               % 透明度

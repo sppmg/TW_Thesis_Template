@@ -1,12 +1,12 @@
 % This class is a link to real class.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{NTHU_thesis}[2018/01/11 by sppmg]
+\ProvidesClass{NCU_thesis}[2018/01/11 by sppmg]
 % pass no defined option to book class.
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{thesis_base}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{NTHU_thesis}}
 % terminates the option processing.
 \ProcessOptions\relax
 % Load base class
-\LoadClass{thesis_base}
+\LoadClass{NTHU_thesis}
 %%%%% Load additional packages and commands.
 
 \endinput % this must be the last command.

@@ -657,6 +657,9 @@
     \Crefname{appendix}{\appendixname}{\appendixname}
 }
 
+% Load packages after ``hyperref'' from ``macros_preamble.tex''
+\macrosAfterHyperref
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        My tools
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

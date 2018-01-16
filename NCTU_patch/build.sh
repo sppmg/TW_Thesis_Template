@@ -34,8 +34,7 @@ if [ "$lang" = "en" ] ; then
     echo "Default disable Chinese for English template avoid no Chinese font, change setting in config.tex if you need Chinese."
     sed -i '/baseFontSize/ s/14/12/' config.tex
     sed -i '/baseLineStretch/ s/1.3/1.5/' config.tex
-    sed -i '/\\printbibliography/ s/title = .*,//' main.tex
-    rm -rf compatibility
+    sed -i '/\\printbibliography/ s/title = .*,//' bibliography.tex
 fi
 
 rm build.sh build.bat

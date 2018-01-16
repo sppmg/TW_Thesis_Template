@@ -11,7 +11,7 @@ In appendix\_letter\_NCU.tex, you will see \textbackslash{}placetextbox for ever
 \placetextbox{x(mm)}{y(mm)}
 \end{lstlisting}
 
-The unit is mm , origin at bottom left. I recommend add ``colorgrid'' option to \textbackslash{}documentclass  e.g. In this tex file:
+The unit is mm , origin at bottom left. I recommend add ``colorgrid'' option to ``\textbackslash{}documentclass'' for positioning. e.g. In this tex file (appendix\_letter\_NCU.tex):
 
 \begin{lstlisting}[style=LatexStyle,caption={}]
 \documentclass[class=NCU_thesis, crop=false, colorgrid]{standalone}
@@ -24,7 +24,7 @@ The unit is mm , origin at bottom left. I recommend add ``colorgrid'' option to 
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Define local variable (e.g. cover use main \title == \titleZh but letters use \titleEn )
+% Define local variable (e.g. cover use \titleZh for \title but letters use \titleEn )
 
 \def\title{\titleEn}
 
@@ -45,8 +45,8 @@ The unit is mm , origin at bottom left. I recommend add ``colorgrid'' option to 
 % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
 \IfFileExists{\letterPubReq}{
 \cleardoublepage\thispagestyle{empty}
-\includepdf[pagecommand={   \placetextbox{128}{270}{\fs{14}\author}%
-                            \placetextbox{70}{258}{\fs{14}\deptshort}%
+\includepdf[pagecommand={   \placetextbox{128}{269}{\fs{14}\author}%
+                            \placetextbox{70}{255}{\fs{14}\deptshort}%
                             \placetextbox{100}{231}{\fs{14}\title}%
                             \placetextbox{90}{218.3}{\fs{14}\mprof} }]%
 {\letterPubReq}}{}
