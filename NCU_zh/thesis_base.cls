@@ -171,6 +171,12 @@
 \RequirePackage{indentfirst} % 章節首行縮排
 % \setcounter{secnumdepth}{3}  % 顯示至\subsubsection 的標號，LaTeX 預設2 , move to config.tex
 
+% Use 0.1 format in \frontmatter (chapter == 0 )
+% It's modify book.cls which disable chapter when chapter <= 0'
+\renewcommand\theequation{\thechapter.\@arabic\c@equation}
+\renewcommand\thefigure  {\thechapter.\@arabic\c@figure}
+\renewcommand\thetable   {\thechapter.\@arabic\c@table}
+
 % ---------------------- Packages for title and TOC ---------------------------
 \RequirePackage{titlesec}
 \RequirePackage{titletoc}
