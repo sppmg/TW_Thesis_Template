@@ -18,9 +18,10 @@
   - 開發環境升級至 Tex Live 2016 ，舊的 TeX 發行版將不再特別支援。
   - mhchem 套件之語法版號 3 -> 4 (2012 不支援)
   - `macros_preamble.tex` 新增 `\macrosAfterHyperref` 用於放置須於 `hyperref` 套件之後載入的指令。此後建議所有導言區內容均移入 `macros_preamble.tex`
+  - `\frontmatter` 中所有圖、表、方程的編號顯示成 `0.1` 的格式(原 `book.cls` 設定為當 chapter <= 0 時不顯示 `章.`)
   - `config.tex` 重排順序。
   - 變數更名：
-    `config.tex`: `\titleStyle` -> `\titleNumStyle`
+    -`config.tex`: `\titleStyle` -> `\titleNumStyle`
   - 教學檔移出成獨立專案。
 
 - 移除 `NCU_en/compatibility/` (舊版之相容性檔案，已不需要)
