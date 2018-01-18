@@ -72,7 +72,7 @@ MiKTeX 使用者請一定要閱讀 [MiKTeX 注意事項](https://github.com/sppm
 
 | 版本/日期          | 資訊 |
 | ----------------- | ------------- |
-| v1.8 (2018-01-18) | 相對於 v1.7 / v1.7.1 ，因基礎（共用）樣板新增功能，舊使用者須放上新的 `config.tex` ，請手動將相關資訊移入新版設定檔中。新 `config.tex` 對部份舊設定值順序略有調整，這點非常抱歉！其餘檔案基本上可以不用修正，直接將修改過的 chapter, appendix, macro_* 等移入即可。另外 `main.tex` 目錄(TOC)已在樣板中設置自動加入目錄，請將舊版 `main.tex` 的 `\addcontentsline{toc}` 等三行移除。|
+| v1.8 (2018-01-18) | 相對於 `v1.7` / `v1.7.1` ，因基礎（共用）樣板新增功能，舊使用者須放上新的 `config.tex` ，請手動將相關資訊移入新版設定檔中。新 `config.tex` 對部份舊設定值順序略有調整，這點非常抱歉！其餘檔案基本上可以不用修正，直接將修改過的 chapter, appendix, macro_* 等移入即可。另外 `main.tex` 目錄(TOC)已在樣板中設置自動加入目錄，請將舊版 `main.tex` 的 `\addcontentsline{toc}` 等三行移除。|
 | v1.7 (2017-01-07) | 相容v1.6 |
 | v1.6 (2016-11-30) | 中英文共用同一份cls檔，因此英文版的tex檔標頭由NCU_thesis_en.cls 改為 `NCU_thesis.cls`。 英文版的 compatibility 目錄中含有一個 `NCU_thesis_en.cls` ，舊有使用者可以將其複製至主檔目錄，即可使用新版cls而不須修改tex檔。|
 | v1.5 (2016-10-27) | 各tex檔標頭稍改，\\chapter直接移入新版即可。 bib檔引入位置修正。之前置於`config.tex`是錯的。 |

@@ -157,9 +157,9 @@
     %\renewcommand{\refname}{參考資料} % book class no \refname
     \renewcommand{\bibname}{參考文獻} % biblatex need setting by \defbibheading 
     \renewcommand{\appendixname}{附錄}
-    \renewcommand\contentsname{目錄}
-    \renewcommand\listfigurename{圖目錄}
-    \renewcommand\listtablename{表目錄}
+    \renewcommand{\contentsname}{目錄}
+    \renewcommand{\listfigurename}{圖目錄}
+    \renewcommand{\listtablename}{表目錄}
     % \cref setting in the last .
 }
 
@@ -175,10 +175,11 @@
 % \setcounter{secnumdepth}{3}  % 顯示至\subsubsection 的標號，LaTeX 預設2 , move to config.tex
 
 % Use 0.1 format in \frontmatter (chapter == 0 )
-% It's modify book.cls which disable chapter when chapter <= 0'
-\renewcommand\theequation{\thechapter.\@arabic\c@equation}
-\renewcommand\thefigure  {\thechapter.\@arabic\c@figure}
-\renewcommand\thetable   {\thechapter.\@arabic\c@table}
+% The book.cls disable ``\thechapter.'' when chapter <= 0'
+\renewcommand{\theequation} {\thechapter.\arabic{equation}}
+\renewcommand{\thefigure}   {\thechapter.\arabic{figure}}
+\renewcommand{\thetable}    {\thechapter.\arabic{table}}
+
 
 % ---------------------- Packages for title and TOC ---------------------------
 \RequirePackage{titlesec}
