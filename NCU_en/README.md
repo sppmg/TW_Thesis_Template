@@ -8,6 +8,12 @@ Or start from [brainless](https://github.com/sppmg/TW_Thesis_Template/wiki/%E7%8
 
 ## Information about thesis
 
+### Insert letters
+
+Already include Chinese, English letters . It's download from NCU in 2018-01-09.
+
+NCU version has a chapter can produce letters with your thesis information, just need setting in the `config.tex`.
+
 ### Spine of book
 If you need spine of book, please refer NTU_patch.
 
