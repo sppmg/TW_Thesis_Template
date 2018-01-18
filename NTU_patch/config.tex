@@ -72,6 +72,10 @@
 \def\OS{linux} % {linux}/{mac}/{win}, only effect auto select CJK font.(CJK means Chinese, Japanese, and Korean)
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Font size or style | 字體大小、風格
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%% Set font | 設定中英文字型 %%%%%
 % Keep empty for default font. CJK font must set OS for auto select.
 % Setting by name of font(English will be better) or font filename.
@@ -107,16 +111,6 @@
 % todonotes font style set by textsize option when package loading, see thesis_base.cls . default \footnotesize
 
 
-%%%%% Really blank page | 純白空白頁 %%%%%
-\setboolean{reallyBlankPage}{false} % {true}/{false} true for use  really blank pages between chapters. 
-
-
-%%%%% Depth of sectioning | 章節深度 %%%%%
-% LaTeX default 2，chapter == 0
-\def\secNumDepth{4} % Numbering of sectioning title. 設定章節標題給予數字標號的深度, \paragraph == 4。
-\def\tocDepth{2}    % Depth of TOC. 目錄顯示層級，\subsection == 2。
-
-
 %%%%% Style of titles | 標題風格 %%%%%
 \def\abstractHeaderStyle{\sffamily\Large} % Information on abstract, cls default use \centering
 
@@ -128,17 +122,24 @@
 \def\paragraphTitleStyle    {\sffamily\normalsize\bfseries}
 \def\subparagraphTitleStyle {\sffamily\normalsize\bfseries}
 
-
-%%%%% Style of toc and titles | 目錄及章節風格 %%%%%
-% see tutorial. (0 -> original)
-\def\tocStyleAlign{0}           % 0/1
-\def\tocStyleChapter{1}         % 0/1/2
-\def\tocStyleChapterFontFM{}    % {\itshape} etc. TOC chapter addition style to frontmatter. Only affect in \tocStyleChapter{1} .
+% Section numbering
+\def\secNumDepth{4} % Depth of section Numbering. 設定章節標題給予數字標號的深度, \paragraph == 4
 \def\titleStyle{0}              % 0/1 
     \def\indentBlockSSS{0mm}    % indent \subsubsection{} 
     \def\indentBlockPar{0mm}    % indent \paragraph{}
     \def\indentBlockSPar{0mm}   % indent \subparagraph{}
 
+
+%%%%% Style of TOC | 目錄風格 %%%%%
+\def\tocDepth{2}    % Depth of TOC. 目錄顯示層級，\subsection == 2
+\def\tocStyleAlign{0}           % 0/1 see tutorial. (0 -> original)
+\def\tocStyleChapter{1}         % 0/1/2
+\def\tocStyleChapterFontFM{}    % {\itshape} etc. TOC chapter addition style to frontmatter. Only affect in \tocStyleChapter{1} .
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Pages style | 頁面風格
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% Watermark | 浮水印 %%%%%
 % Add a watermark to every page after \startWatermark .
@@ -159,6 +160,10 @@
 % require scale = 0.5 , image corner at 25mm from papers upper right.
 % So shift = upper right(.5\paperwidth / .5\paperheight) 
 %     - 73mm(img width) * 0.5(scale) / 2(half width) + 25mm
+
+
+%%%%% Really blank page | 純白空白頁 %%%%%
+\setboolean{reallyBlankPage}{false} % {true}/{false} true for use  really blank pages between chapters. 
 
 
 %%%%% Misc | 雜項 %%%%%
