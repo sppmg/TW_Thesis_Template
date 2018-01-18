@@ -24,6 +24,9 @@
     \provideboolean{pdfLinkBoxDisplay} % Draw box on link in the pdf viewer.
     \provideboolean{bibStyleNameYear} % bibliography use name,year to sort and cite.
     \provideboolean{reallyBlankPage} % Really blank pages between chapters
+    \provideboolean{tocEntryToToc} % Add TOC entry to TOC
+    \provideboolean{lofEntryToToc} % Add LOF entry to TOC
+    \provideboolean{lotEntryToToc} % Add LOT entry to TOC
     
     % --------- Load config.tex ----------
     \IfFileExists{./config.tex}{\input{./config.tex}\gdef\configured{}}{} % search only in the current directory use ./file
