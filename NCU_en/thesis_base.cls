@@ -243,7 +243,7 @@
 % http://tex.stackexchange.com/questions/59726/change-size-of-section-subsection-subsubsection-paragraph-and-subparagraph-ti
 \titleformat*{\section}{\sectionTitleStyle}
 \titleformat*{\subsection}{\subsectionTitleStyle}
-\ifcase \titleStyle
+\ifcase \titleNumStyle
     \titleformat*{\subsubsection}{\subsubsectionTitleStyle}
     \titleformat*{\paragraph}{\paragraphTitleStyle}
 \or
