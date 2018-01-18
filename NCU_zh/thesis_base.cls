@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{thesis_base}[2018/01/11 by sppmg]
+\ProvidesClass{thesis_base}[2018/01/18 by sppmg]
 % pass no defined option to book class.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extbook}}
 % terminates the option processing.
