@@ -36,7 +36,7 @@
 
 基本上只要是 `Branch:master` 均為穩定版。直接按綠色 `Clone or download` 下載整個專案即可。
 
-若要特定發怖版號可以至 [releases](https://github.com/sppmg/TW_Thesis_Template/releases)
+若要特定發佈版號可以至 [releases](https://github.com/sppmg/TW_Thesis_Template/releases)
 
 若想嘗鮮可以切換 `Branch:develop` 後下載專案。不過我通常 `develop` 只在大改時才會有短時間和 `master` 有差異，普通使用者用 `master` 或 `releases` 即可。
 
