@@ -13,6 +13,7 @@
   - 附上中大中英文件，並加入英文文件之自動填單。（文件於 2018-01-11 確認與校方一致）
   - 非 XeLaTeX 錯誤訊息。
   - 於 `macros_preamble.tex` 附上已註解的 `blindtext` 、 `glossaries` 套件，解註後使用。
+  - `\tableofcontents`, `\listoffigures`, `\listoftables` 可由 `config.tex` 切換自動加入目錄頁。（不再需要於 `main.tex` 手動加入指令，因此 `main.tex` 同步移除相關指令。）
 
 - 修改
   - 開發環境升級至 Tex Live 2016 ，舊的 TeX 發行版將不再特別支援。

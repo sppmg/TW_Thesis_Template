@@ -32,6 +32,9 @@
     \provideboolean{pdfLinkBoxDisplay} % Draw box on link in the pdf viewer.
     \provideboolean{bibStyleNameYear} % Bibliography use name,year to sort and cite.
     \provideboolean{reallyBlankPage} % Really blank pages between chapters
+    \provideboolean{tocEntryToToc} % Add TOC entry to TOC
+    \provideboolean{lofEntryToToc} % Add LOF entry to TOC
+    \provideboolean{lotEntryToToc} % Add LOT entry to TOC
     
     % --------- Load config.tex ----------
     \IfFileExists{./config.tex}{\input{./config.tex}\gdef\configured{}}{} % search only in the current directory use ./file
@@ -444,6 +447,33 @@
 \definecolor{mygreen}{RGB}{28,172,0} 
 \definecolor{mylilas}{RGB}{170,55,241}
 \definecolor{OliveGreen}{rgb}{0,0.6,0} % for todonotes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        TOC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Auto add \contentsname to TOC, similar to \listfigurename, \listtablename
+\ifthenelse{\boolean{tocEntryToToc}}{
+    \preto{\tableofcontents}{
+        \cleardoublepage
+        \phantomsection
+        \addcontentsline{toc}{chapter}{\contentsname}
+    }
+}{}
+\ifthenelse{\boolean{lofEntryToToc}}{
+    \preto{\listoffigures}{
+        \cleardoublepage
+        \phantomsection
+        \addcontentsline{toc}{chapter}{\listfigurename}
+    }
+}{}
+\ifthenelse{\boolean{lotEntryToToc}}{
+    \preto{\listoftables}{
+        \cleardoublepage
+        \phantomsection
+        \addcontentsline{toc}{chapter}{\listtablename}
+    }
+}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Text & bibliography

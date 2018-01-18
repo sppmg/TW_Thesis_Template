@@ -140,7 +140,6 @@
 \def\tocStyleChapterFontFM{}    % {\itshape} etc. TOC chapter addition style to frontmatter. Only affect in \tocStyleChapter{1} .
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    Pages style | 頁面風格
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -165,5 +164,16 @@
 \setboolean{reallyBlankPage}{false} % {true}/{false} true for use  really blank pages between chapters. 
 
 
-%%%%% Misc | 雜項 %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Misc | 雜項
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% TOC (Table Of Contents) | 目錄 %%%%%
+% Add TOC/LOF/LOT entry to TOC
+\setboolean{tocEntryToToc}{true} % {true}/{false}, Table Of Contents
+\setboolean{lofEntryToToc}{false} % {true}/{false}, List Of Figures
+\setboolean{lotEntryToToc}{false} % {true}/{false}, List Of Tables
+
+
+%%%%% PDF %%%%%
 \setboolean{pdfLinkBoxDisplay}{true} % {true}/{false} ,Draw a box on the link. It only display in pdf viewer, not on paper.

@@ -59,9 +59,9 @@
         \inputZh{abstract_zh}[Chinese abstract]
         \input{abstract_en} % English abstract
         \input{acknowledgements} % acknowledgements(option) 誌謝(可略)
-            \cleardoublepage
-            \phantomsection
-            \addcontentsline{toc}{chapter}{\contentsname}    % Add ``Contents'' to TOC
+
+        % Original book class doesn't add TOC,LOF,LOT to Contents
+        % This template can switch auto add entry in config.tex
         \tableofcontents        % Table Of Contents
         \listoffigures          % List Of Figures   圖目錄
         \listoftables           % List Of Tables    表目錄
