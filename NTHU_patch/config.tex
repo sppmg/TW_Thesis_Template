@@ -19,15 +19,9 @@
 \def\authorZh  {君の名は。}
 \def\authorEn  {Your name.}
 \def\author    {\authorZh} % Choose one When only use one name.(book spine using.)
-\def\mprofZh   {你的指導教授} % Chinese name
-\def\sprofiZh  {你的共同指導} % 共同指導 1
-\def\sprofiiZh {}           % 共同指導 2
-\def\mprofEn   {Your committee}   % Engilsh name
-\def\sprofiEn  {Committee member} % 共同指導 1
-\def\sprofiiEn {}                 % 共同指導 2
-\edef\mprof    {\mprofZh} % Choose one When only use one name.
-\edef\sprofi   {\sprofiZh}
-\edef\sprofii  {\sprofiiZh}
+% \profs is professor's comma separated list. First is advisor , comma use ``{,}''
+\def\profsZh   {你的指導教授, 你的共同指導, 可再加更多人\dots, 英文逗號示範} 
+\def\profsEn   {Your advisor, Committee member, More member\dots , ZUO{,} GONG-DE}
 \def\degreedate{中~華~民~國~ \zhdigits{107} ~年~六~月} % NTHU demo use O not 零
 \def\copyyear  {2012-2013}
 

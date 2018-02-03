@@ -24,8 +24,16 @@ The unit is mm , origin at bottom left. I recommend add ``colorgrid'' option to 
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Define local variable (e.g. cover use \titleZh for \title but letters use \titleEn )
+% define \mprof 
+\ExplSyntaxOn
+    % Copy prof. list from config.tex
+    \clist_gclear_new:N \g_sppmg_profs_cl
+    \clist_gset:NV \g_sppmg_profs_cl \profs
+    \clist_gpop:NNTF \g_sppmg_profs_cl \l_tmpa_tl {}{ \tl_clear:N \l_tmpa_tl}
+    \cs_gset_eq:NN \mprof \l_tmpa_tl
+\ExplSyntaxOff
 
+% Define local variable (e.g. cover use \titleZh for \title but letters use \titleEn )
 \def\title{\titleEn}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
