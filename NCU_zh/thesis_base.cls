@@ -494,10 +494,10 @@
     % 2 == biber / BibLaTeX
     % Add bibliography by \addbibresource{bibfile.bib} in macros_preamble.tex
     \ifthenelse{\boolean{bibStyleNameYear}}{
-        \RequirePackage[backend=biber,style=ieee, citestyle=authoryear-comp, sorting=nyt]{biblatex}
+        \RequirePackage[backend=biber,style=\bibStyle, citestyle=authoryear-comp, sorting=nyt]{biblatex}
         % sorting see doc or https://tex.stackexchange.com/a/51439
     }{
-        \RequirePackage[backend=biber,style=ieee]{biblatex}
+        \RequirePackage[backend=biber,style=\bibStyle]{biblatex}
         % use biblatex and sort by citation order
     }
     \def\bibfont{\bibFontStyle\setstretch{\bibLineStretch}} % font setting of BibLaTeX

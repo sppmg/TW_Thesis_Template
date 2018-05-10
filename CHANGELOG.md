@@ -9,6 +9,9 @@
   - 修正原始交大版摘要頭的教授列表。
   - 因應教授姓名輸入方式之改變，新增 `\profs` (`\profsZh` / `\profsEn`)，刪除原有的 `\mprof`、`\sprofi`、`\sprofii` (`*Zh` / `*En`)
 
+  修正
+  - config.tex 中的 `\bibStyle` 未正確設定至 `thesis_base.cls`，導致無效。
+
 ## v1.8 (2018-01-18)
 
 - 新增功能
