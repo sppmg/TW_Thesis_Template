@@ -1,0 +1,176 @@
+%%%%% build setting | 編譯設定 %%%%%
+\setboolean{publish}{false} % {true}/{false} Set true before publish. 發佈前設true
+\def\lang{zh} % {zh}/{en} Set main language.
+\setboolean{disableChinese}{false} % {true}/{false} Disable Chinese, for English user who don't have Chinese fonts.
+
+\synctex=1 % Enable SyncTeX.
+
+
+%%%%% Information of your document. | 定義文件資訊 %%%%%
+\def\collegeZh {理學院}
+\def\collegeEn {College of Science}
+\def\deptshort {物理}
+\def\deptZh    {物理研究所}%XX學系XXX碩士班(請參考「中央大學學位論文撰寫體例參考」附錄)
+\def\deptEn    {Department of Physics}
+\def\degreeZh  {碩士} % 碩士/博士
+\def\degreeEn  {Master} % Master/PHD? | Master thesis/Doctoral dissertation
+\def\titleZh   {暨南大學LaTeX論文樣板(中文)}   % Chinese title
+\def\titleEn   {NCNU LaTeX Thesis Template(Chinese)} % English title
+\def\title     {\titleZh} % Main title, default Chinese title
+\def\subtitle  {\titleEn} % Subtitle, default English title, empty allowed.
+\def\logo      {}   % logo on titlepage. Watermark see below. 中央無校徽在封面。若你想加，樣板已附上，填入 ``logo-NCU.jpg'' 即可
+\def\authorZh  {君の名は。}
+\def\authorEn  {Your name.}
+\def\author    {\authorZh} % Choose one When only use one name.(book spine using.)
+% \profs is professor's comma separated list. First is advisor , comma use ``{,}''
+\def\profsZh   {你的指導教授, 你的共同指導, 英文逗號示範} 
+\def\profsEn   {Your advisor, Committee member, ZUO{,} GONG-DE}
+\edef\profs    {\profsZh}   % note, must use \edef -> expand now!
+\def\author    {君の名は。}
+\def\degreedateROC{中~華~民~國~一百零七~年~六~月}
+\def\degreeyearEn {2018}
+\def\degreeyearROC{107} % year of ROC
+\def\degreemonth  {06} % MM , use 06 not 6
+\def\copyyear  {2012-2013}
+
+\setboolean{printcopyright}{false} % {true}/{false} print copyright text on titlepage or cover.
+
+\def\keywordsZh{關鍵字, 論文, 樣板, 讓我畢業}
+\def\keywordsEn{Keyword, Thesis, Template, Graduate me}
+
+
+%%%%% Set letters filename | 設定插入文件 %%%%%
+% This setting for main.tex default letters.
+% It will not insert PDF if file non-exist or empty .
+% 此為 main.tex 預設插入之 PDF，檔案不存在或空白則不插入。
+
+% 碩博士論文電子檔授權書 Authorization Letter (for electronic)
+\def\letterAuthEl{letter_authorization.pdf}
+% 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
+\def\letterPubReq{letter_publication_request.pdf}
+% 指導教授推薦書
+\def\letterRecom {letter_recommendation.pdf}
+% 口試委員審定書
+\def\letterVerif {letter_verification.pdf}
+
+
+%%%%% Bibliography | 文獻列表 %%%%%
+\def\bibManType{2} % {0}/{1}/{2} 0 = Embedded, 1 = BibTeX, 2 = biber / BibLaTeX
+\def\bibStyle{ieee} % Default ``ieee'' with BibLaTeX. If you use BibTeX change to ``ieeetr''.
+% BibLaTeX ref: https://www.sharelatex.com/learn/Biblatex_bibliography_styles
+% BibTeX ref: https://www.sharelatex.com/learn/Bibtex_bibliography_styles
+\setboolean{bibStyleNameYear}{false} % {true}/{false} true for use name,year to sort and cite.(If you want use custom option in .cls, set false here. )
+
+
+%%%%% Set OS | 設定作業系統 %%%%%
+% It will overwrite \OS if your LaTeX compile parameter has ``-shell-escape''(Texstudio default enable).
+% Linux user: keep setting or add ``-shell-escape'' to compiler.
+% Mac OS X user: Set to mac or add ``-shell-escape'' to compiler.
+% Windows user: Don't need change setting.
+\def\OS{linux} % {linux}/{mac}/{win}, only effect auto select CJK font.(CJK means Chinese, Japanese, and Korean)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Font size or style | 字體大小、風格
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Set font | 設定中英文字型 %%%%%
+% Keep empty for default font. CJK font must set OS for auto select.
+% Setting by name of font(English will be better) or font filename.
+% Linux 利用指令 fc-list :lang=zh 來查詢可以用的字體名稱。
+% Windows 使用內建字型管理查詢。建議填英文字型名稱。
+\def\mainfont   {} % default use Latin Modern Roman (lmodern pkg.)
+\def\sansfont   {}
+\def\monofont   {}
+\def\CJKmainfont{}
+\def\CJKsansfont{}
+\def\CJKmonofont{}
+
+
+%%%%% Style of fonts and line stretch | 字體大小風格及行距 %%%%%
+% Base font
+\def\baseFontSize{12pt} % Valid: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+\def\baseLineStretch{1.5} % 行距(倍數)
+\def\fakeBoldFactor{2} % 假粗體粗度。(Only affect CJK font.)
+% Bibliography
+\def\bibFontStyle{\small}
+\def\bibLineStretch{1.2}
+% Table
+\def\floatFontStyle{\small} % content of table
+\def\tableLineStretch{1.2}
+% Caption
+\def\captionFontStyle{\small}
+\def\subcaptionFontStyle{\footnotesize}
+\def\captionLineStretch{1.2}
+% Page
+\def\pageHeaderStyle{\sffamily\itshape\footnotesize}
+\def\pageFooterStyle{\sffamily\footnotesize}
+% listing font style set by basicstyle in \lstdefinestyle, see macro_preamble.tex
+% todonotes font style set by textsize option when package loading, see thesis_base.cls . default \footnotesize
+
+
+%%%%% Style of titles | 標題風格 %%%%%
+\def\titlepageFontFamily{\sffamily}
+% set "\rmfamily\CJKfamily{sf}" to mix rm for English and sf(default Kai) for CJK, see wiki on TW_Thesis_Template.
+\def\abstractHeaderStyle{\sffamily\Large} % Information on abstract, cls default use \centering
+
+\def\chapterTitleNumStyle   {\sffamily\LARGE\bfseries} % Number of chapter, only for en
+\def\chapterTitleStyle      {\sffamily\huge\bfseries} % cls default use \centering for zh
+\def\sectionTitleStyle      {\sffamily\Large\bfseries}
+\def\subsectionTitleStyle   {\sffamily\large\bfseries}
+\def\subsubsectionTitleStyle{\sffamily\normalsize\bfseries}
+\def\paragraphTitleStyle    {\sffamily\normalsize\bfseries}
+\def\subparagraphTitleStyle {\sffamily\normalsize\bfseries}
+
+% Section numbering
+\def\secNumDepth{4} % Depth of section Numbering. 設定章節標題給予數字標號的深度, \paragraph == 4
+\def\titleNumStyle{0}              % 0/1 
+    \def\indentBlockSSS{0mm}    % indent \subsubsection{} 
+    \def\indentBlockPar{0mm}    % indent \paragraph{}
+    \def\indentBlockSPar{0mm}   % indent \subparagraph{}
+
+
+%%%%% Style of TOC | 目錄風格 %%%%%
+\def\tocDepth{2}    % Depth of TOC. 目錄顯示層級，\subsection == 2
+\def\tocStyleAlign{0}           % 0/1 see tutorial. (0 -> original)
+\def\tocStyleChapter{1}         % 0/1/2
+\def\tocStyleChapterFontFM{}    % {\itshape} etc. TOC chapter addition style to frontmatter. Only affect in \tocStyleChapter{1} .
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Pages style | 頁面風格
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Watermark | 浮水印 %%%%%
+% Add a watermark to every page after \startWatermark .
+% It will search (image) filename in figures folder.
+
+% Package (\wmMethod) bug / disadvantages:
+% background: Background failed in \includepdf page.
+% eso-pic: Opacity failed in first image.
+\def\wmContent{} % 圖檔名或文字 | image filename or text.(中央不用加，若你想加，樣板已附上，填入 ``logo-NCU.jpg'' 即可)
+\def\wmMethod{1} % {0}/{1} 0 == background pkg. , 1 == eso-pic pkg.
+\def\wmScale{1}                 % 縮放比
+\def\wmOpacity{1}               % 透明度
+\def\wmShiftFromCenterX{0mm}    % 圖片中心相對紙張中心垂直位移
+\def\wmShiftFromCenterY{0mm}    % 圖片中心相對紙張中心水平位移
+\def\wmAngle{0}                 % 旋轉角度
+
+
+%%%%% Really blank page | 純白空白頁 %%%%%
+\setboolean{reallyBlankPage}{false} % {true}/{false} true for use  really blank pages between chapters. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Misc | 雜項
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% TOC (Table Of Contents) | 目錄 %%%%%
+% Add TOC/LOF/LOT entry to TOC
+\setboolean{tocEntryToToc}{true} % {true}/{false}, Table Of Contents
+\setboolean{lofEntryToToc}{false} % {true}/{false}, List Of Figures
+\setboolean{lotEntryToToc}{false} % {true}/{false}, List Of Tables
+
+
+%%%%% PDF %%%%%
+\setboolean{pdfLinkBoxDisplay}{true} % {true}/{false} ,Draw a box on the link. It only display in pdf viewer, not on paper.
