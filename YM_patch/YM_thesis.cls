@@ -56,4 +56,26 @@
 \LoadClass{thesis_base}
 %%%%% Load additional packages and commands.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Change setting for NTU
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------- Chapter title style ---------------------------
+\ifzh{
+    \patchcmd{\@makechapterhead}
+    {\zhnumber{\thechapter}、\makebox[0.5em]{}}
+    {第\zhnumber{\thechapter}章\makebox[0.5em]{}}{}{}
+}
+% ---------------------- Page header ---------------------------
+\ifzh{
+    % \mainmatter
+    \patchcmd{\chaptermark}
+    {\zhnumber{\thechapter}、}
+    {第\zhnumber{\thechapter}章}{}{}
+    % \appendix
+    \patchcmd{\chaptermark}
+    {\thechapter、}
+    {附錄\thechapter\enspace}{}{}
+}
+
 \endinput % this must be the last command.
