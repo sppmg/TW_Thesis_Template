@@ -21,6 +21,7 @@
 | 國立交通大學      | NCTU   | ? | patch
 | 國立清華大學      | NTHU   | ? | patch
 | 國立暨南國際大學  | NCNU   | ? | patch
+| 國立陽明大學      | YM     | ? | patch
 
 - **上表中， patch 表示為補充檔，可經由內附工具(build.sh/build.bat)產生完整樣板。細節見[Wiki](https://github.com/sppmg/TW_Thesis_Template/wiki/%E5%88%9D%E7%B4%9A%E6%89%8B%E5%86%8A#patch-%E7%89%88%E6%A8%A3%E6%9D%BF%E4%BD%BF%E7%94%A8%E8%AA%AA%E6%98%8E)中的說明。**
 
