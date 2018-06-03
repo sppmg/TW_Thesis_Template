@@ -503,6 +503,12 @@
     \def\bibfont{\bibFontStyle\setstretch{\bibLineStretch}} % font setting of BibLaTeX
     % BibLaTeX no need tocbibind 
     % \bibname and \refname can't work with BibLaTeX, so use option of \printbibliography.
+    
+    % Add style dependent packages and setting.
+    \ifthenelse{\equal{\bibStyle}{apa}}{
+        \RequirePackage{csquotes}
+        \DeclareLanguageMapping{english}{american-apa}
+    }{}
 \fi
 
 
