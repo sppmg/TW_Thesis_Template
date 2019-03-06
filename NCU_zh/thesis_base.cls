@@ -130,6 +130,8 @@
             }{
                 \ifthenelse{\equal{\OS}{win}}{
                     \def\CJKsansfont{DFKai-SB}  % 標楷體
+                    \xeCJKDeclareSubCJKBlock{cjkO}{ `〇 } % 標楷體缺此字，issue #4 
+                    \setCJKfallbackfamilyfont{cjkO}{MingLiU}
                 }{
         }}}
     \fi
@@ -146,11 +148,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Chinese, for document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\ifzh{
+\ifthenelse{\boolean{disableChinese}}{}{
     \RequirePackage{zhnumber} % Translate number to Chinese number.
-    
-    % 中文化變數
+}
+
+\ifzh{% 中文化變數
     \renewcommand{\chaptername}{章}
     \renewcommand{\figurename}{圖}
     \renewcommand{\tablename}{表}
