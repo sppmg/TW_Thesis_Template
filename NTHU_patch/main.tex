@@ -8,17 +8,19 @@
 % User guide in wiki of TW_Thesis_Template :
 % https://github.com/sppmg/TW_Thesis_Template/wiki
 
-\documentclass[]{NTHU_thesis} % \documentclass[option1, option2, ...]
+\documentclass[openany]{NTHU_thesis} % \documentclass[option1, option2, ...]
 % Helpful options: 
 % draft = Don't load figure ,reduce compile time.
 % showframe = show document margins.
 % colorgrid = show colored coordinate. (by eso-pic pkg.)
+% openany: see issue #5, NTHU not allow blank page, so add this option to allow chapter start in left side,
 \usepackage[subpreambles]{standalone} % standalone class setting in config.tex
 % Option ``subpreambles'' enable sub-tex's preambles when compile main tex. (pkg default disable)
 % sppmg think it's still some problem (e.g. \addbibresource will faild ), recommend move all subpreambles to ``macros_preamble.tex``
 
 \begin{document}
     \frontmatter
+        \input{titlepage}       % 封面/書名頁
         \startWatermark         % 由此開始每頁浮水印
         \input{titlepage}       % 封面/書名頁
         \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.

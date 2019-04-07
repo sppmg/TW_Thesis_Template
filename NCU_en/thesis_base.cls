@@ -146,6 +146,18 @@
 %%%%%%%%%%%% Auto select font end %%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Change default command behaver
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------- Disable \cleardoublepage in openany ---------------------------
+% Disable \cleardoublepage in openany because TOC will use
+% \cleardoublepage even set openany.
+% And people maybe no need this in openany.
+\if@openright\else
+    \let\cleardoublepage\clearpage
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Chinese, for document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ifthenelse{\boolean{disableChinese}}{}{
@@ -517,10 +529,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        figure & float env.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --------------------- graphics ----------------------------
+% creating graphics programmatically
+\RequirePackage{tikz} % To avoid transparent problem in 1st page, it must load before ``pdfpages''.
 
 \RequirePackage{graphicx} % include graphics
 \graphicspath{ {./figures/} {../figures/} } % add path
+
 \RequirePackage{pdfpages} % Insert PDF file by  \includepdf[pages={1,3,5}]{myfile.pdf}
+
+% --------------------- float env. ----------------------------
 \RequirePackage[format=hang]{caption}
 \RequirePackage{subcaption}  % subfigure
 \captionsetup{subrefformat=parens} % \subref style is (a)
@@ -539,10 +557,6 @@
 \let\Oldsubsubsection\subsubsection
 \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
 
-% --------------------- graphics ----------------------------
-% creating graphics programmatically
-\RequirePackage{tikz}
-
 % --------------------- watermark ----------------------------
 % 浮水印及自動填單
 \RequirePackage{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
@@ -551,7 +565,7 @@
 % Package (\wmMethod) bug / disadvantages:
 % background: Background failed in \includepdf page.
 % eso-pic: Opacity failed in first image.
-\ifx\watermark\empty\else
+\ifx\wmContent\empty\else
     \IfFileExists{./figures/\wmContent}{
         \def\realWmContent{\includegraphics{\wmContent}}
     }{
@@ -561,7 +575,7 @@
 
 \ifcase \wmMethod
     % 0 == background package 
-    \ifx\watermark\empty\else
+    \ifx\wmContent\empty\else
         \RequirePackage{background}
         \SetBgContents{} % Clean default BgContents (before \startWatermark).
         
@@ -575,7 +589,7 @@
     \fi
     
     \newcommand\startWatermark{
-        \ifx\watermark\empty\else
+        \ifx\wmContent\empty\else
             \SetBgContents{\realWmContent} % need a watermark
             \SetBgAngle{\wmAngle}  % rotate
             \SetBgScale{\wmScale}  % scale
@@ -589,7 +603,7 @@
     % 1 == eso-pic package, 
     % \RequirePackage{eso-pic} % Readey in above.
     \newcommand{\startWatermark}{
-        \ifx\watermark\empty\else
+        \ifx\wmContent\empty\else
             \AddToShipoutPictureBG{%
                 \AtPageCenter{%
                     \put(
