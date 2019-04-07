@@ -12,11 +12,13 @@
 
 封面樣式參考[註冊組](http://registra.web.nthu.edu.tw/files/13-1086-5155.php)
 
+**特別感謝 tommyannypeter 提供的[修正資訊](https://github.com/sppmg/TW_Thesis_Template/issues/5)！**
+
 ### 匯出摘要
 
 直接單獨編譯 `abstract_*.tex` 即可。（注意編輯器可能會自動改編譯主文件）
 
-如包含浮水印，在摘頁頁面加上 `\startWatermark` 即可。
+如包含浮水印，在摘要頁頁面加上 `\startWatermark` 即可。
 
 ### 加密
 清大規定加密，本人不贊成，所以不提供。
@@ -28,8 +30,6 @@
 ### 浮水印
 
 樣板已附上。圖書館說明指出：使用 100% 不透明度，但其實我比較建議用 50% ，比較不容易和文字混淆。想改的人可以在 `config.tex` 修改（`\def\wmOpacity{0.5}`） 。
-
-不過因為使用的是 `eso-pic` 套件，第一頁浮水印的透明設置會失效。（如果是從封面開始的話就當 logo 吧！不透明也沒關係。）
 
 ### 書脊
 我相信學校附近的影印店比我專業的多 :D 

@@ -20,9 +20,8 @@
 \begin{document}
     \frontmatter
 %         \addBookSpineThisPage    % 圖書館要求電子論文PDF檔封面不加【側邊（含虛線）】。送印紙本請利用 bookspine.tex 。
-        \input{titlepage}        % 封面
+        \input{titlepage}        % 封面(不加浮水印)
         \startDOI
-        \startWatermark
         \input{titlepage}        % 書名頁
         \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
             \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}

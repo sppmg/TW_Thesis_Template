@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{thesis_base}[2018/01/18 by sppmg]
+\ProvidesClass{thesis_base}[2019/04/07 by sppmg]
 % pass no defined option to book class.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extbook}}
 % terminates the option processing.
@@ -565,20 +565,16 @@
 % Package (\wmMethod) bug / disadvantages:
 % background: Background failed in \includepdf page.
 % eso-pic: Opacity failed in first image.
-\ifx\wmContent\empty\else
+\ifthenelse{\boolean{publish} \AND \NOT \equal{\wmContent}{}}{
+    % Determine use text or image (if exist).
     \IfFileExists{./figures/\wmContent}{
         \def\realWmContent{\includegraphics{\wmContent}}
     }{
         \def\realWmContent{\wmContent}
     }
-\fi
-
-\ifcase \wmMethod
-    % 0 == background package 
-    \ifx\wmContent\empty\else
-        \RequirePackage{background}
-        \SetBgContents{} % Clean default BgContents (before \startWatermark).
-        
+    
+    \ifcase \wmMethod
+        % 0 == background package 
         % background package use xshift of node in tikzpicture with scale,
         % So shift also scaled. here define ``length'' type variable because
         % need calculate : ShiftFromCenter / Scale
@@ -586,42 +582,77 @@
         \setlength{\wmBgShiftFromCenterX}{\wmShiftFromCenterX}
         \newlength{\wmBgShiftFromCenterY}
         \setlength{\wmBgShiftFromCenterY}{\wmShiftFromCenterY}
-    \fi
-    
-    \newcommand\startWatermark{
-        \ifx\wmContent\empty\else
-            \SetBgContents{\realWmContent} % need a watermark
-            \SetBgAngle{\wmAngle}  % rotate
-            \SetBgScale{\wmScale}  % scale
-            \SetBgHshift{\wmBgShiftFromCenterX/\wmScale} % x=0 for center
-            \SetBgVshift{\wmBgShiftFromCenterY/\wmScale} % y=0 for center
-            \SetBgOpacity{\wmOpacity}
-        \fi
-    }
-    
-\or
-    % 1 == eso-pic package, 
-    % \RequirePackage{eso-pic} % Readey in above.
-    \newcommand{\startWatermark}{
-        \ifx\wmContent\empty\else
-            \AddToShipoutPictureBG{%
-                \AtPageCenter{%
-                    \put(
-                        \LenToUnit{\wmShiftFromCenterX},
-                        \LenToUnit{\wmShiftFromCenterY}
-                    ){
-                        \tikz[overlay] 
-                            \node[opacity=\wmOpacity, inner sep=0pt, rotate=\wmAngle, scale=\wmScale] {
-                                \realWmContent
-                            };
+        
+        \RequirePackage[
+            pages=all,
+            scale=\wmScale,
+            angle=\wmAngle,
+            opacity=\wmOpacity,
+            hshift=\wmBgShiftFromCenterX/\wmScale, % x=0 for center
+            vshift=\wmBgShiftFromCenterY/\wmScale, % y=0 for center
+            contents={} % Clean default BgContents (before \startWatermark, don't add \realWmContent in here).
+        ]{background}
+        
+        \newcommand{\startWatermark}{
+            \ifthenelse{\NOT \boolean{wmStarted} }{
+                \backgroundsetup{contents={\realWmContent}}
+                \setboolean{wmStarted}{true}
+            }{}
+        }
+        
+    \or
+        % 1 == eso-pic package, 
+        % \RequirePackage{eso-pic} % Readey in above.
+        \newcommand{\startWatermark}{
+            \ifthenelse{\NOT \boolean{wmStarted} }{
+                \AddToShipoutPictureBG{%
+                    \AtPageCenter{%
+                        \put(
+                            \LenToUnit{\wmShiftFromCenterX},
+                            \LenToUnit{\wmShiftFromCenterY}
+                        ){
+                            \tikz[overlay] 
+                                \node[opacity=\wmOpacity, inner sep=0pt, rotate=\wmAngle, scale=\wmScale] {
+                                    \realWmContent
+                                };
+                        }
                     }
                 }
-           }
-        \fi
-    }
+                
+                \setboolean{wmStarted}{true}
+            }{}
+        }
         
-\fi
+    \fi
+    
+    % Lazy version \startWatermark
+    % It will stay in cover/titlepage and start watermark automaticlly.
+    \newcommand{\lazyStartWatermark}{
+            \stepcounter{phyPage}
+            
+            \ifcase \wmMethod
+                % 0 == background package 
+                \ifthenelse{\boolean{wmStarted} \OR \value{phyPage}>\wmStartPage \OR \value{phyPage}=\wmStartPage}{
+                    \startWatermark
+                    \BgThispage
+                }{} % It's only way for work with everypage in my case ....
+            \or
+                % 1 == eso-pic package, 
+                \ifnum\value{phyPage}=\wmStartPage
+                    \startWatermark
+                \fi
+            \fi
+    }
+    \newboolean{wmStarted}
+    \setboolean{wmStarted}{false} % mark wm started by \startWatermark .
+    \newcounter{phyPage} % The ``page'' counter always 1 in titlepage, so count by ourselves.
 
+    \RequirePackage{everypage}
+    \AddEverypageHook{\lazyStartWatermark}
+    
+}{
+    \newcommand{\startWatermark}{}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        Table

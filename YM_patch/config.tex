@@ -140,16 +140,22 @@
 % It will search (image) filename in figures folder.
 
 % Package (\wmMethod) bug / disadvantages:
-% background: Background failed in \includepdf page.
-% eso-pic: Opacity failed in first image.
-\def\wmContent{logo-YM.jpg} % 圖檔名或文字 | image filename or text.(中央不用加，若你想加，樣板已附上，填入 ``logo-YM.jpg'' 即可)
-\def\wmMethod{0} % {0}/{1} 0 == background pkg. , 1 == eso-pic pkg.
+% background: Background failed in all \includepdf page. Keep for compatibility.
+% eso-pic: No, but still failed in some \includepdf page.
+\def\wmContent{logo-YM.jpg} % 圖檔名或文字 | image filename or text.
+\def\wmMethod{1} % {0}/{1} 0 == background pkg. , 1 == eso-pic pkg. Recommend eso-pic
 \def\wmScale{1}                 % 縮放比
 \def\wmOpacity{1}               % 透明度
 \def\wmShiftFromCenterX{0mm}    % 圖片中心相對紙張中心垂直位移
 \def\wmShiftFromCenterY{0mm}    % 圖片中心相對紙張中心水平位移
 \def\wmAngle{0}                 % 旋轉角度
 
+% Start page:
+% 0 == Manually, start at \startWatermark .
+% 1 == Auto start at 1st physical page(include cover/titlepage).
+% 2 == Auto start at 2nd physical page(include cover/titlepage).
+% note: {1}/{2} request set ``publish'' (at line 2) to display.
+\def\wmStartPage{2}             % {0}/{1}/{2}
 
 %%%%% Really blank page | 純白空白頁 %%%%%
 \setboolean{reallyBlankPage}{false} % {true}/{false} true for use  really blank pages between chapters. 

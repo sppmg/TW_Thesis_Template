@@ -8,7 +8,7 @@
 % User guide in wiki of TW_Thesis_Template :
 % https://github.com/sppmg/TW_Thesis_Template/wiki
 
-\documentclass[]{NCU_thesis} % \documentclass[option1, option2, ...]
+\documentclass[]{NCTU_thesis} % \documentclass[option1, option2, ...]
 % Helpful options: 
 % draft = Don't load figure ,reduce compile time.
 % showframe = show document margins.
@@ -19,8 +19,7 @@
 
 \begin{document}
     \frontmatter
-        \startWatermark
-        \input{cover}       % 封面
+        \input{cover}       % 封面(不加浮水印)
         \input{titlepage}   % 書名頁
         \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
             \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
