@@ -6,6 +6,10 @@
 
 \documentclass[class=NCU_thesis, crop=false]{standalone}
 
+% automated sort citation   [1, 3, 4, 2] to [1, 2, 3, 4]
+% without nocompress option [1, 3, 4, 2] will be [1-4]
+\usepackage[nocompress]{cite}
+
 \begin{document}
 
 \ifcase \bibManType 
