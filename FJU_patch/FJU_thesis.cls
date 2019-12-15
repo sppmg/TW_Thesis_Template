@@ -24,11 +24,11 @@
     { \renewcommand{\arraystretch}{1}
     \begin{tabularx}{\textwidth}{l@{\hspace*{0.4em}}lXl@{\hspace*{0.4em}}l}
 
-    \textbf{論文名稱：{\titleZh}} & & \textbf{總頁數：{\totalpages}} \\
-    \par \\
-    \textbf{校(院)所組別：{\collegeZh}{\deptZh}} \\
-    \textbf{畢業時間：{\degreedAcademic}} \\
-    \textbf{研究生：{\authorZh}} & & \textbf{指導教授：{\profsZh}} \\
+    \multicolumn{3}{l}{\textbf{論文名稱：{\titleZh}}} \\
+    &  &  \\
+    \textbf{校(院)所組別：{\collegeZh}{\deptZh}} & \multicolumn{2}{r}{\textbf{總頁數：{\totalpages}}} \\
+    \textbf{畢業時間：{\degreedAcademic}} &  &  \\
+    \textbf{研究生：{\authorZh}} & \textbf{指導教授：{\profsZh}} & 
     
     \end{tabularx}\par }
 }
