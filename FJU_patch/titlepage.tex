@@ -1,0 +1,41 @@
+\documentclass[class=FJU_thesis, crop=false, float=true]{standalone}
+\begin{document}
+
+\def\fsUniversity{\fs{20}[1.5]\selectfont }
+\def\fsTitle{\fs{20}[1.5]\selectfont }
+\def\fsNames{\fs{20}[1.5]\selectfont }
+% --------define title page layout for thesis
+\titlepageFontFamily % set in config.tex
+\begin{spacing}{1.0}
+\begin{titlepage}
+    \begin{center}
+        {\fsUniversity 天主教輔仁大學{\deptZh}{\degree}論文 \par}
+        \vspace*{10mm}
+        {\fsTitle 指導教授：\profsZh \enspace 博士 \par}
+
+        \vspace*{25mm} %25mm vertical space
+
+        \vfill
+        {\fsTitle \subtitle \par}
+        \vspace*{10mm}
+        {\fsTitle \title \par}
+        \vfill
+        
+        {\ifx \logo\empty\vfill
+        \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
+        \fi}
+        \vspace*{10mm}\vfill\vfill
+        
+        {\fsTitle \authorZh \enspace 撰 \par}
+        {\fsTitle \degreedateROC \par}
+        \vspace*{2ex}
+        
+        \ifthenelse{\boolean{printcopyright}}
+        {{{版權所有\copyright\ \author\ \copyyear} \par}}
+    \end{center}
+\end{titlepage}
+\end{spacing}
+\normalfont % use main font
+%--------end of title page for thesis
+\cleardoublepage
+\end{document}
