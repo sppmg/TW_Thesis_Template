@@ -1,0 +1,108 @@
+\documentclass[class=NTOU_thesis, crop=false, float=true]{standalone}
+\usepackage{graphicx}
+\usepackage[pages=some]{background}
+\backgroundsetup{scale=0.5,angle=0,opacity=1,hshift=17cm,vshift=-14.5cm,
+contents={\includegraphics[scale=1]{ntou.png}}}
+%\backgroundsetup{scale=0.5,angle=0,opacity=1,
+%contents={\includegraphics[scale=1]{ntou.png}}}
+
+\begin{document}
+% I use LaTeX3 to automatically generate name table. 
+% Below \ExplSyntaxOn to \ExplSyntaxOff perpare prof. table contents,
+% it will save contents to `\profsTableContent''. 
+% You can ignore this block even you want make table by yourself.
+\ExplSyntaxOn
+\BgThispage
+% Copy prof. list from config.tex
+\clist_gclear_new:N \g_sppmg_profsZh_cl
+\clist_gset:NV \g_sppmg_profsZh_cl \profsZh
+\clist_gclear_new:N \g_sppmg_profsEn_cl
+\clist_gset:NV \g_sppmg_profsEn_cl \profsEn
+
+% get total number of prof. . Omitted language will not display.
+\int_gzero_new:N \g_sppmg_profTotal_int 
+\int_gset:Nn \g_sppmg_profTotal_int {\clist_count:N \g_sppmg_profsZh_cl} 
+
+% NOTE: ``tabularx'' will  processes its contents more than once
+% for calculate width, so ``gpop'' can't put in tabularx env.
+\tl_gclear_new:N \g_sppmg_tableContent_tl
+
+
+\ExplSyntaxOff
+
+\def\fsUniversity{\fontsize{38}{38}\selectfont }
+\def\fsDeptZh{\fontsize{28}{28}\selectfont }
+\def\fsDeptEn{\fontsize{14}{14}\selectfont }
+\def\fsTitle{\fontsize{22}{22}\selectfont }
+\def\fsNames{\fontsize{22}{22}\selectfont }
+
+% --------define title page layout for thesis
+\titlepageFontFamily % set in config.tex
+\newgeometry{top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm} % only for titlepage
+\begin{spacing}{1.0}
+\begin{titlepage}
+    %\null\vfill
+    \begin{center}
+        {\ifx \logo\empty\vfill
+        \else \includegraphics[height=30mm]{\logo}\vspace*{10mm} \par
+        \fi}
+        
+
+        {\fsTitle \title \par}
+        \vspace*{1ex}
+        {\fsTitle \subtitle \par}
+        
+        \vspace*{10mm}\vfill\vfill
+
+        \begin{minipage}{0.35\linewidth}
+            {研~究~生~: \authorZh \par}
+            \vspace*{1ex}
+            {指導教授: \profsZh \par}
+        \end{minipage}
+        \begin{minipage}{0.35\linewidth}
+            {Student: \authorEn \par}
+            \vspace*{1ex}
+            {Advisor: \profsEn \par}
+        \end{minipage}
+        
+        \vspace*{10mm}
+        \vfill\vfill
+
+        {國~立~臺~灣~海~洋~大~學 \par}
+        \vspace*{1ex}
+
+        {\deptspace \par}
+        \vspace*{1ex}
+
+        {{\degreespace} \par}
+        \vspace*{10mm}
+        \vfill\vfill
+
+        {A Thesis \\}
+        {Submitted to Department of {\deptEn} \\}
+        {College of {\collegeEn} \\}
+        National Taiwan Ocean University \\
+        In Partial Fulfillment of the Requirements \\
+        for the Degree of \\
+        {{\degreeEn} of Engineering \\}
+        in \\
+        {\deptEn \\}
+        {\degreedateAD \\}
+        Keelung, Taiwan, Republic of China
+        
+        \vspace*{10mm}
+        \vfill\vfill
+
+        {\degreedateROC \\}
+        
+        \ifthenelse{\boolean{printcopyright}}
+        {{{版權所有\copyright\ \author\ \copyyear} \par}}
+    \end{center}
+    \null\vfill
+\end{titlepage}
+\end{spacing}
+\restoregeometry
+\normalfont % use main font
+%--------end of title page for thesis
+\cleardoublepage
+\end{document}

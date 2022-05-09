@@ -1,0 +1,71 @@
+% !TEX TS-program = xelatex
+% !BIB program = biber
+% !TEX encoding = UTF-8 Unicode
+
+% 使用手冊請見 TW_Thesis_Template wiki:
+% https://github.com/sppmg/TW_Thesis_Template/wiki
+
+% User guide in wiki of TW_Thesis_Template :
+% https://github.com/sppmg/TW_Thesis_Template/wiki
+
+\documentclass[]{NTOU_thesis} % \documentclass[option1, option2, ...]
+% Helpful options: 
+% draft = Don't load figure ,reduce compile time.
+% showframe = show document margins.
+% colorgrid = show colored coordinate. (by eso-pic pkg.)
+\usepackage[subpreambles]{standalone} % standalone class setting in config.tex
+% Option ``subpreambles'' enable sub-tex's preambles when compile main tex. (pkg default disable)
+% sppmg think it's still some problem (e.g. \addbibresource will faild ), recommend move all subpreambles to ``macros_preamble.tex``
+
+\begin{document}
+    \frontmatter
+        \input{cover}        % 封面(不加浮水印)
+        \input{titlepage}        % 書名頁
+        \listoftodos   % todo list, hide when set \textbackslash{}setboolean\{publish\}\{\textbf{true}\} in config.tex. It will not add to TOC , you can add \todototoc before \listoftodos to do that.
+            \todo[inline]{``Todo List'' will hide when set \textbackslash{}setboolean\{publish\}\{\emph{true}\} in config.tex.}
+        %%%%%%%%%%%% letters %%%%%%%%%%%%
+        % Set file name in config.tex
+        % 碩博士論文電子檔授權書 Authorization Letter/Power of Attorney
+%         \IfFileExists{\letterAuthEl}{
+%             \cleardoublepage        % 由下個右頁開始
+%             \includepdf{\letterAuthEl}}{}
+%         % 碩博士紙本論文延後公開/下架申請書。(如需延後公開者,才需要裝訂於論文內頁)
+%         \IfFileExists{\letterPubReq}{
+%             \cleardoublepage
+%             \includepdf{\letterPubReq}}{}
+%         % 指導教授推薦書
+%         \IfFileExists{\letterRecom}{
+%             \cleardoublepage
+%             \includepdf{\letterRecom}}{}
+%         % 口試委員審定書
+%         \IfFileExists{\letterVerif}{
+%             \cleardoublepage
+%             \includepdf{\letterVerif}}{}
+%         \cleardoublepage
+        
+        %%%%%%%%%%%% Other frontmatter, eg,abstract %%%%%%%%%%%%
+        % 中英文論文摘要:內容應說明研究目的,資料來源,研究方法及研究結果等
+        \input{abstract_zh} % zh 中文摘要
+        \input{abstract_en} % en 英文摘要
+        \input{acknowledgements} % 誌謝(可略)
+
+        % 原始 book class 不將 TOC,LOF,LOT 加入目錄列表，須手動加
+        % 此樣板可由 config.tex 切換是否自動加入目錄
+        \tableofcontents        % 目錄
+        \listoffigures          % 圖目錄
+        \listoftables           % 表目錄
+        \input{abbreviation}    % 符號說明
+    \mainmatter
+        \input{chapter_introduction}    % 緒論
+        \input{chapter_method}          % 分析方法
+        \input{chapter_result}          % 實驗結果
+        \input{chapter_conclusion}      % 結論
+        \input{chapter_template_demo}
+    \backmatter          % book class 預設\backmatter 在\appendix 後面。因此.cls修改過\appendix 定義
+        \input{bibliography}
+    \appendix
+        \input{appendix_device}
+        \input{appendix_solution}
+        \input{appendix_codes}
+        
+\end{document}
