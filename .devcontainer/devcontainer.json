@@ -1,0 +1,136 @@
+{
+    "name": "TWThesisWorkspace",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "vscode", // the service in docker-compose.yml
+    "runServices": [
+        "vscode"
+    ],
+    "shutdownAction": "stopCompose",
+    "workspaceFolder": "/workspace",
+    // SETME: make this consistent with that in docker-compose.yml
+    // Seemingly it has to be "/workspace" because very likely in `FROM qmcgaw/latexdevcontainer:latest-full` some processes are done under `WORKDIR /workspace`
+    "postCreateCommand": "",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // KEYNOTE: Please refer "dev.containers.defaultExtensions" in  settings.json (Ctrl+Shift+P and Open User Settings (JSON)) for Common Extensions
+                "james-yu.latex-workshop", // Latex
+                "mathematic.vscode-latex",
+                "jeffersonqin.latex-snippets-jeff",
+                "tecosaur.latex-utilities",
+                "valentjn.vscode-ltex", // Spell & Grammar check
+                "tabnine.tabnine-vscode", // Other helpers
+                "stkb.rewrap", // rewrap comments after n characters on one line
+                "vscode-icons-team.vscode-icons",
+            ],
+            "settings": {
+                "gitProjectManager.baseProjectsFolders": [
+                    "/workspace/projects"
+                    // SETME: it is SUB_PROJECT_DIR in docker-compose.yml
+                ], // this allows GPM (felipecaputo.git-project-manager) to open repo in the "projects" in a new window
+                "latex-workshop.latexindent.path": "latexindent",
+                "latex-workshop.latexindent.args": [
+                    "-c",
+                    "%DIR%/",
+                    "%TMPFILE%",
+                    "-y=defaultIndent: '%INDENT%'"
+                ],
+                // General settings
+                "files.eol": "\n",
+                // Latex settings
+                "latex-workshop.linting.chktex.enabled": true,
+                "latex-workshop.linting.chktex.exec.path": "chktex",
+                "latex-workshop.latex.clean.subfolder.enabled": true,
+                "latex-workshop.latex.autoClean.run": "onBuilt",
+                "editor.formatOnSave": true,
+                "files.associations": {
+                    "*.tex": "latex"
+                },
+                "dev.containers.cacheVolume": false,
+                "latex-workshop.latex.tools": [
+                    {
+                        "name": "makeindex",
+                        "command": "makeindex",
+                        "args": []
+                    },
+                    {
+                        "name": "xelatex",
+                        "command": "xelatex",
+                        "args": [
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "%DOC%"
+                        ]
+                    },
+                    {
+                        "name": "latexmk",
+                        "command": "latexmk",
+                        "args": [
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "-pdf",
+                            "%DOC%"
+                        ]
+                    },
+                    {
+                        "name": "pdflatex",
+                        "command": "pdflatex",
+                        "args": [
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "%DOC%"
+                        ]
+                    },
+                    {
+                        "name": "bibtex",
+                        "command": "bibtex",
+                        "args": [
+                            "%DOCFILE%"
+                        ]
+                    },
+                    {
+                        "name": "biber",
+                        "command": "biber",
+                        "args": [
+                            "%DOCFILE%"
+                        ]
+                    }
+                ],
+                "latex-workshop.latex.recipes": [
+                    {
+                        "name": "xelatex -> biber",
+                        "tools": [
+                            "xelatex",
+                            "biber"
+                        ]
+                    },
+                    {
+                        "name": "xelatex -> bibtex -> xelatex*2",
+                        "tools": [
+                            "xelatex",
+                            "bibtex",
+                            "xelatex",
+                            "xelatex"
+                        ]
+                    },
+                    {
+                        "name": "xelatex -> bibtex -> makeindex -> xelatex*2",
+                        "tools": [
+                            "xelatex",
+                            "bibtex",
+                            "makeindex",
+                            "xelatex",
+                            "xelatex"
+                        ]
+                    }
+                ]
+                // to apply your extensions and settings in .devcontainer/devcontainer.json without cache.
+            }
+        }
+    }
+}
