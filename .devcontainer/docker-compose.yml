@@ -1,0 +1,48 @@
+# This is [Compose file](https://docs.docker.com/compose/compose-file/compose-file-v3/)
+version: "3.2"
+
+services:
+  vscode:
+    build:
+      context: .
+      # That is, /.devcontainer
+      dockerfile: Dockerfile
+      # That is, /.devcontainer/Dockerfile (rename makes it more clear)
+      args:
+        WORKSPACE_DIR: /workspace
+        SUB_PROJECT_DIR: /workspace/projects
+        # SETME: make this consistent with that in devcontainer.json
+        # SUB_PROJECT_DIR is intended for you to easily go there for cloning your projects,
+        # i.e., cd $SUB_PROJECT_DIR
+    image: latexdevcontainer
+    init: true
+    # See https://docs.docker.com/compose/compose-file/compose-file-v3/#init
+    volumes:
+      # The home directory is called "workspace"; try `cd ..` and `ls` to figure it out.
+      - ../:/workspace
+      # SETME: make this consistent with that in devcontainer.json
+
+      # Docker socket to access Docker server
+      - /var/run/docker.sock:/var/run/docker.sock
+      # SSH directory
+      - ~/.ssh:/home/jovyan/.ssh
+      # For Windows without WSL, a copy will be made
+      # from /tmp/.ssh to ~/.ssh to fix permissions
+      # - ~/.ssh:/tmp/.ssh:ro
+      # Shell history persistence
+      - ~/.zsh_history:/home/jovyan/.zsh_history:z
+      # Git config
+      - ~/.gitconfig:/home/jovyan/.gitconfig
+      # Avoid reinstall vscode extensions
+      # KEYNOTE: Please refer to my-julia-space for more explanation
+      # noted the context of my-tex-life is different from that of my-julia-space (so I have an additional `~/` here)
+      - ~/.vscode-server:/home/jovyan/.vscode-server
+
+    environment:
+      - TZ=TW
+      # Set time zone
+      # entrypoint: ["zsh", "-c", "while sleep 1000; do :; done"]
+    entrypoint: sh -c "sleep infinity"
+
+volumes:
+  vscode-server:
