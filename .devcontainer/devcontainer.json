@@ -127,7 +127,7 @@
                             "xelatex",
                             "xelatex"
                         ]
-                    },
+                    }
                 ]
                 // to apply your extensions and settings in .devcontainer/devcontainer.json without cache.
             }
